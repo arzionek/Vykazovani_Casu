@@ -1,0 +1,11 @@
+#tooltip{
+    float:left;
+    border: 2px solid black; 
+    background-color: blue; 
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12pt;
+    font-weight: normal;
+    color: white;
+}

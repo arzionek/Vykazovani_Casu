@@ -1,0 +1,349 @@
+#vnitrek{
+  position: relative;
+  width: 1024px;   
+  margin: 5px auto 5px auto;
+  background-image: url(../img/pozadi.jpg);
+  background-position: top;
+  border: solid black 0px;
+}
+
+#horni{
+  padding: 10px;
+  min-height: 110px; 
+}
+
+#horni h1{ 
+  text-align: center;
+  font: italic normal bold 22pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 6pt;
+  color: white;
+  margin: 5px;
+}
+
+#horni h2{ 
+  text-align: center;
+  font: italic normal normal 18pt/1 Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 5pt;
+  color: yellow;
+  margin: 10px; 
+}
+
+#hlavni2{
+  width: 100%;
+  background-position: center;
+}
+
+.box{
+  font: normal normal normal 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
+  border: solid black 1px;
+  margin: 20px 15px 20px 15px;
+  padding: 10px;
+  color: white;
+  background-image: url(../img/box.png);
+}
+
+.box2{
+  border: solid black 2px;
+  margin: 20px 15px 20px 15px;
+  color: white;
+  background-image: url(../img/box.png);
+}
+
+#hlavni table{
+  font: normal normal normal 12pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  margin: auto;
+  text-align: left;
+  color: white;
+  border-collapse: collapse;
+  width: 690px;
+}
+
+#hlavni td, th{
+  padding: 5px 5px 5px 5px;
+}
+
+th{
+  font: normal normal bold 11pt/1 Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+#hlavni p{
+  text-indent: 30px;
+  text-align: justify;
+}
+
+#hlavni2 table{
+  font: normal normal normal 12pt/3 Verdana, Geneva, Tahoma, sans-serif;
+  margin: auto;
+  color: white;
+  border-collapse: collapse;
+  width: 390px;
+}
+
+#hlavni2 td, th{
+  padding: 5px 10px 5px 5px;
+}
+
+.hlaska_chyba{
+  text-align: left;
+  color: red;
+  font-weight: bold;
+}
+
+.povinne{
+  border: 2px solid red;
+}
+
+.popisek{
+  text-align: left;
+  font: normal normal normal 9pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  padding: 40px 5px 5px 5px;
+  border-top: 1px solid black; 
+}
+
+#spodni{
+  clear: both;
+  background: white;
+  text-align: right;
+  font: normal normal normal 9pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid black;
+}
+
+#spodni a{
+  font: normal normal normal 9pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  color: black;	
+}
+
+.stred{
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+  font: italic normal bold 16pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 5pt;
+  color: yellow;
+}
+
+#menu{
+  position: relative;
+  float: left;
+  width: 248px;
+}
+
+a{
+  font: normal normal normal 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
+  color: white;	
+}
+
+#menu a, #menu p{
+  text-decoration: none;
+  font: normal normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
+  padding: 15px 10px 15px 20px;
+  margin: 0px 0px 15px 0px;
+  display: block;
+  color: white;
+}
+
+#menu a.podmenu{
+  text-decoration: none;
+  font: normal normal bold 10pt/1 Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px 10px 10px 20px;
+  margin: 0px 0px 10px 30px;
+  display: block;
+  color: white;
+}
+
+#menu2 a{
+  text-decoration: none;
+  font: normal normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px 10px 10px 5px;
+  margin: 0px 0px 0px 0px;
+  color: white;
+}
+
+#menu a:hover{
+  background-image: url(../img/logo.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  border: solid white 2px;
+  padding: 13px 8px 13px 18px;
+}
+
+#menu a.podmenu:hover{
+  background-image: url(../img/logo2.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  border: solid white 2px;
+  padding: 8px 8px 8px 18px;
+}
+
+#menu2 a:hover{
+  border: solid white 2px;
+  padding: 8px 8px 8px 3px;
+}
+
+#hlavni{
+  position: relative;
+  float: right;
+  width: 774px;
+  background-image: url(../img/hlavni.jpg);
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+}
+
+textarea{
+  width: 550px;
+  height: 100px;
+  resize: none;
+  float: left;
+}
+
+.text_pole{
+  width: 550px;
+  float: left;
+}
+
+.text_pole2{
+  width: 115px;
+  height: 60px;
+  font: normal normal normal 9pt/1 Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.text_pole3{
+  width: 95px;
+  font: normal normal normal 9pt/1 Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.spinner{
+  width: 60px;
+  float: left;
+}
+
+.spinner2{
+  width: 60px;
+  float: right;
+}
+
+input{
+  float: left;
+}
+
+.odsadit{
+  padding: 0px 30px 0px 0px;
+}
+
+.zvyraznit{
+  text-align: left;
+  font: normal normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 1pt;
+  color: white;
+}
+
+.zvyraznit2{
+  text-align: center;
+  font: normal normal bold 12pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 2pt;
+  color: white;
+}
+
+.zvyraznit3{
+  text-align: left;
+  font: normal normal bold 12pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 2pt;
+  color: white;
+}
+
+.zlute{
+  background-image: url(../img/zluta.png);
+  background-repeat: repeat;
+}
+
+.cervene{
+  background-image: url(../img/cervena.png);
+  background-repeat: repeat;
+}
+
+.zelene{
+  background-image: url(../img/zelena.png);
+  background-repeat: repeat;
+}
+
+.sedive{
+  background-image: url(../img/sediva.png);
+  background-repeat: repeat;
+}
+
+.bunka{
+	width: 270px;
+	text-align: left;
+  	font: normal normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
+  	letter-spacing: 0pt;
+ 	color: white;
+}
+
+.bunka2{
+	width: 20px;
+	text-align: center;
+}
+
+.bunka3{
+	width: 600px;
+	text-align: left;
+}
+
+i{
+	font: italic normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
+	color: white;
+}
+
+
+
+.nadpis{
+  margin: 10px 10px 10px 10px;
+  text-align: left;
+  font: normal normal bold 12pt/2 Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 5pt;
+  color: white;
+}
+
+.blok{
+  text-indent: 0px;
+  width: 50px;
+  margin: 5px;
+  text-align: left;
+}
+
+.vpravo{
+	text-align: right;
+	width: 50px;
+	vertical-align: middle;
+}
+
+.vpravo2{
+	float: right;
+}
+
+.oddelit{
+	border: 1px solid black;
+}
+
+.oddelitN{
+	border-top: 1px solid black;
+}
+
+.oddelitD{
+	border-bottom: 1px solid black;
+}
+
+.oddelitL{
+	border-left: 1px solid black;
+}
+
+.oddelitP{
+	border-right: 1px solid black;
+}
+
+.mezera{
+	width: 100px;
+}
+
