@@ -8,23 +8,28 @@
 		   </c:url>
 	       <a href="<c:out value="${uvod}" escapeXml="true" />">Úvodní stránka</a>
            
-           <c:url var="nastaveni" value="uvodni">
+           <c:url var="nastaveni" value="nastaveni">
 
 		   </c:url> 
            <a href="<c:out value="${nastaveni}" escapeXml="true" />">Nastavení</a>
            
-           <c:url var="sprava" value="uvodni">
+           <c:url var="vkladani" value="vkladani">
 
 		   </c:url>
-           <a href="<c:out value="${sprava}" escapeXml="true" />">Správa činností</a>
+           <a href="<c:out value="${vkladani}" escapeXml="true" />">Vkládání činností</a>
            
-           <c:url var="provestImport" value="uvodni">
+           <c:url var="prehled" value="prehled">
 
 		   </c:url>
-           <a href="<c:out value="${provestImport}" escapeXml="true" />">Import</a>
+           <a href="<c:out value="${prehled}" escapeXml="true" />">Přehled činností</a>
            
-           <c:url var="provestExport" value="uvodni">
+           <c:url var="importGoogle" value="import">
 
 		   </c:url>
-           <a href="<c:out value="${provestExport}" escapeXml="true" />">Export</a>
+           <a href="<c:out value="${importGoogle}" escapeXml="true" />">Import z Google calendar</a>
+           
+           <c:url var="export" value="export">
+
+		   </c:url>
+           <a href="<c:out value="${export}" escapeXml="true" />">Export výkazu</a>
         </div>

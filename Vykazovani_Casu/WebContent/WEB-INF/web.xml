@@ -46,8 +46,24 @@
   <servlet-class>servlety.role.Uvod</servlet-class>
  </servlet>
  <servlet>
-  <servlet-name>sprava</servlet-name>
-  <servlet-class>servlety.role.zamestnanec.Sprava</servlet-class>
+  <servlet-name>nastaveni</servlet-name>
+  <servlet-class>servlety.role.zamestnanec.Nastaveni</servlet-class>
+ </servlet>
+ <servlet>
+  <servlet-name>vkladani</servlet-name>
+  <servlet-class>servlety.role.zamestnanec.Vkladani</servlet-class>
+ </servlet>
+ <servlet>
+  <servlet-name>prehled</servlet-name>
+  <servlet-class>servlety.role.zamestnanec.Prehled</servlet-class>
+ </servlet>
+ <servlet>
+  <servlet-name>import</servlet-name>
+  <servlet-class>servlety.role.zamestnanec.Import</servlet-class>
+ </servlet>
+ <servlet>
+  <servlet-name>export</servlet-name>
+  <servlet-class>servlety.role.zamestnanec.Export</servlet-class>
  </servlet>
  <servlet>
   <servlet-name>vytvoreni</servlet-name>
@@ -74,12 +90,28 @@
   <url-pattern>/uvodni</url-pattern>
  </servlet-mapping>
  <servlet-mapping>
-  <servlet-name>vytvoreni</servlet-name>
-  <url-pattern>/vytvoreni</url-pattern>
+  <servlet-name>nastaveni</servlet-name>
+  <url-pattern>/nastaveni</url-pattern>
  </servlet-mapping>
  <servlet-mapping>
-  <servlet-name>sprava</servlet-name>
-  <url-pattern>/sprava</url-pattern>
+  <servlet-name>vkladani</servlet-name>
+  <url-pattern>/vkladani</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>prehled</servlet-name>
+  <url-pattern>/prehled</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>import</servlet-name>
+  <url-pattern>/import</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>export</servlet-name>
+  <url-pattern>/export</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>vytvoreni</servlet-name>
+  <url-pattern>/vytvoreni</url-pattern>
  </servlet-mapping>
  <welcome-file-list>
   <welcome-file>uvodni</welcome-file>
