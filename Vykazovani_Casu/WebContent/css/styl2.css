@@ -16,7 +16,7 @@
   text-align: center;
   font: italic normal bold 22pt/2 Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 6pt;
-  color: white;
+  color: black;
   margin: 5px;
 }
 
@@ -38,14 +38,14 @@
   border: solid black 1px;
   margin: 20px 15px 20px 15px;
   padding: 10px;
-  color: white;
+  color: black;
   background-image: url(../img/box.png);
 }
 
 .box2{
   border: solid black 2px;
   margin: 20px 15px 20px 15px;
-  color: white;
+  color: black;
   background-image: url(../img/box.png);
 }
 
@@ -53,7 +53,7 @@
   font: normal normal normal 12pt/2 Verdana, Geneva, Tahoma, sans-serif;
   margin: auto;
   text-align: left;
-  color: white;
+  color: black;
   border-collapse: collapse;
   width: 690px;
 }
@@ -75,7 +75,7 @@ th{
 #hlavni2 table{
   font: normal normal normal 12pt/3 Verdana, Geneva, Tahoma, sans-serif;
   margin: auto;
-  color: white;
+  color: black;
   border-collapse: collapse;
   width: 390px;
 }
@@ -97,7 +97,7 @@ th{
 .popisek{
   text-align: left;
   font: normal normal normal 9pt/2 Verdana, Geneva, Tahoma, sans-serif;
-  color: white;
+  color: black;
   padding: 40px 5px 5px 5px;
   border-top: 1px solid black; 
 }
@@ -121,7 +121,7 @@ th{
   text-align: center;
   font: italic normal bold 16pt/2 Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 5pt;
-  color: yellow;
+  color: black;
 }
 
 #menu{
@@ -132,7 +132,7 @@ th{
 
 a{
   font: normal normal normal 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
-  color: white;	
+  color: black;	
 }
 
 #menu a, #menu p{
@@ -141,7 +141,7 @@ a{
   padding: 15px 10px 15px 20px;
   margin: 0px 0px 15px 0px;
   display: block;
-  color: white;
+  color: black;
 }
 
 #menu a.podmenu{
@@ -150,7 +150,7 @@ a{
   padding: 10px 10px 10px 20px;
   margin: 0px 0px 10px 30px;
   display: block;
-  color: white;
+  color: black;
 }
 
 #menu2 a{
@@ -158,27 +158,27 @@ a{
   font: normal normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
   padding: 10px 10px 10px 5px;
   margin: 0px 0px 0px 0px;
-  color: white;
+  color: black;
 }
 
 #menu a:hover{
-  background-image: url(../img/logo.png);
+  background-image: url(../img/ukazatel.png);
   background-repeat: no-repeat;
   background-position: right;
-  border: solid white 2px;
-  padding: 13px 8px 13px 18px;
+  border: solid black 2px;
+  padding: 13px 13px 13px 18px;
 }
 
 #menu a.podmenu:hover{
-  background-image: url(../img/logo2.png);
+  background-image: url(../img/ukazatel2.png);
   background-repeat: no-repeat;
   background-position: right;
-  border: solid white 2px;
-  padding: 8px 8px 8px 18px;
+  border: solid black 2px;
+  padding: 8px 13px 8px 18px;
 }
 
 #menu2 a:hover{
-  border: solid white 2px;
+  border: solid black 2px;
   padding: 8px 8px 8px 3px;
 }
 
@@ -236,21 +236,21 @@ input{
   text-align: left;
   font: normal normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 1pt;
-  color: white;
+  color: black;
 }
 
 .zvyraznit2{
   text-align: center;
   font: normal normal bold 12pt/2 Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 2pt;
-  color: white;
+  color: black;
 }
 
 .zvyraznit3{
   text-align: left;
   font: normal normal bold 12pt/2 Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 2pt;
-  color: white;
+  color: black;
 }
 
 .zlute{
@@ -276,9 +276,9 @@ input{
 .bunka{
 	width: 270px;
 	text-align: left;
-  	font: normal normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
-  	letter-spacing: 0pt;
- 	color: white;
+  font: normal normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0pt;
+ 	color: black;
 }
 
 .bunka2{
@@ -293,7 +293,7 @@ input{
 
 i{
 	font: italic normal bold 12pt/1.5 Verdana, Geneva, Tahoma, sans-serif;
-	color: white;
+	color: black;
 }
 
 
@@ -303,7 +303,7 @@ i{
   text-align: left;
   font: normal normal bold 12pt/2 Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 5pt;
-  color: white;
+  color: black;
 }
 
 .blok{
