@@ -9,11 +9,11 @@ public class Akce {
 
 	
 	
-	private static final String ODHLASENI = "-1";
+	private static final String ODHLASIT = "-1";
 	
 
-	public String getOdhlaseni() {
-		return ODHLASENI;
+	public String getOdhlasit() {
+		return ODHLASIT;
 	}
 
 }

@@ -8,7 +8,7 @@
 <!-- hlavní část dokumentu -->
 <div id="hlavni">
 <jsp:include page="../menu_top.jsp" flush="true" />
-<h2 class="stred">Export výkazu</h2>
+<h2 class="stred">Export dat</h2>
 </div>  
 
 <jsp:include page="../spodni.jsp" flush="true" />

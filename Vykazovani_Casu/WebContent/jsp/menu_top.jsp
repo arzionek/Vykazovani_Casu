@@ -6,7 +6,7 @@
 		</script>
         <div id="menu_top" class="box2" style="margin-top: 5px; margin-bottom: 15px; padding: 0px;">           
             <c:url var="odhlaseni" value="uvodni">
-			  <c:param name="akce" value="${akce.odhlaseni}"/>
+			  <c:param name="akce" value="${akce.odhlasit}"/>
 			</c:url>
 			<table style="margin: 0px; width: 744px;">
 			<form action="<c:out value="${odhlaseni}" escapeXml="true" />" method="post">

@@ -8,7 +8,8 @@
 <!-- hlavní část dokumentu -->
 <div id="hlavni">
 <jsp:include page="../menu_top.jsp" flush="true" />
-<h2 class="stred">Import z Google calendar</h2>
+<h2 class="stred">Import dat</h2>
+<jsp:include page="../zamestnanec/import_menu.jsp" flush="true" />
 </div>  
 
 <jsp:include page="../spodni.jsp" flush="true" />

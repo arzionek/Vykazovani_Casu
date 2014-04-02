@@ -6,14 +6,14 @@
 
   </div>
   <div class="box">
-  <h3 id="" class="zvyraznit3">Správa:</h3>
+  <h3 id="" class="zvyraznit3">Zadané činnosti:</h3>
 
   </div>
     <div class="box">
-  <h3 id="" class="zvyraznit3">Import:</h3>
+  <h3 id="" class="zvyraznit3">Import dat:</h3>
 
   </div>
     <div class="box">
-  <h3 id="" class="zvyraznit3">Export:</h3>
+  <h3 id="" class="zvyraznit3">Export dat:</h3>
 
   </div>

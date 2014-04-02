@@ -9,19 +9,7 @@
 <div id="hlavni">
 <jsp:include page="../menu_top.jsp" flush="true" />
 <h2 class="stred">Přehled činností:</h2>
-<div class="box">
-<h3>Období</h3>
-<h3>Pracovní poměr</h3>
-
-<c:url var="export" value="export">
-		   </c:url>
-	       <h3><a href="<c:out value="${export}" escapeXml="true" />" style="text-decoration: none">Export výkazu</a></h3>
-	       
-<c:url var="vkladani" value="vkladani">
-		   </c:url>
-<h3><a href="<c:out value="${vkladani}" escapeXml="true" />" style="text-decoration: none">Vkládání činností</a></h3>
-
-</div>
+<jsp:include page="../zamestnanec/zadane_cinnosti_menu.jsp" flush="true" />
 </div>  
 
 <jsp:include page="../spodni.jsp" flush="true" />

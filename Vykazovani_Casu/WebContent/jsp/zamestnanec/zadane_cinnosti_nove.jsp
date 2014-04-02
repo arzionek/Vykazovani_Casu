@@ -9,9 +9,7 @@
 <div id="hlavni">
 <jsp:include page="../menu_top.jsp" flush="true" />
 <h2 class="stred">Vkládání činností:</h2>
-<div class="box">
-<h3>Pracovní poměr</h3>
-</div>
+<jsp:include page="../zamestnanec/zadane_cinnosti_menu.jsp" flush="true" />
 </div>  
 
 <jsp:include page="../spodni.jsp" flush="true" />

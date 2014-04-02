@@ -48,7 +48,7 @@ public abstract class AServlet extends HttpServlet{
 		akce = (Akce) request.getAttribute("akce");
 
 		//akce odhlaseni
-		if(!response.isCommitted() && akce.getOdhlaseni().equals(volanaAkce)) odhlasit(session, response);
+		if(!response.isCommitted() && akce.getOdhlasit().equals(volanaAkce)) odhlasit(session, response);
 		
 		//nastaveni adres
 		if(session.getAttribute("role") == "zamestnanec") adresa = "/zamestnanec";

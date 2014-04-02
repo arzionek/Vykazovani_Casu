@@ -9,12 +9,7 @@
 <div id="hlavni">
 <jsp:include page="../menu_top.jsp" flush="true" />
 <h2 class="stred">Nastavení:</h2>
-<div class="box">
-<h3>Nastavení svátků</h3>
-<h3>Nastavení pracovních poměrů</h3>
-<h3>Import šablon</h3>
-<h3>Tagy pro import z Google calendar</h3>
-</div>
+<jsp:include page="../zamestnanec/nastaveni_menu.jsp" flush="true" />
 </div>  
 
 <jsp:include page="../spodni.jsp" flush="true" />
