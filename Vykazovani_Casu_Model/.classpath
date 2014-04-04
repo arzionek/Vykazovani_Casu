@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="conf"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/javassist.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/antlr-2.7.6.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/asm-attrs.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/asm.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/jdbc2_0-stdext.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/cglib-2.1.3.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/jta.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/dom4j-1.6.1.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/ehcache-1.2.3.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/hibernate3.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/xml-apis.jar"/>
+	<classpathentry kind="var" path="HIBEROBJECTS_HIBERNATE/commons-lang-2.1.jar"/>
+	<classpathentry kind="var" path="HSQLDB/hsqldb.jar"/>
+	<classpathentry kind="lib" path="D:/UNIVERZITA/8.semestr/KIV-ZSWI/Vykazovani_Casu/Vykazovani_Casu_Model/lib/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
