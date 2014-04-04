@@ -1,14 +1,14 @@
 <project>
   <packages>
-    <javaPackage name="com.xyz.myproject.util">
+    <javaPackage name="dao.util">
       <projectName>Vykazovani_Casu_Model</projectName>
-      <path>src/com/xyz/myproject/util</path>
+      <path>src/dao/util</path>
       <classes>
         <classifier name="HibernateHelper">
           <stereotype>Persistence Helper</stereotype>
           <variables>
             <variable name="singleton">
-              <type class="com.xyz.myproject.util.HibernateHelper"/>
+              <type class="dao.util.HibernateHelper"/>
               <multiplicity>0..1</multiplicity>
               <modifiers>8</modifiers>
               <access>2</access>
@@ -72,7 +72,7 @@
               </method>
             </operation>
             <operation name="getInstance">
-              <type class="com.xyz.myproject.util.HibernateHelper"/>
+              <type class="dao.util.HibernateHelper"/>
               <multiplicity>0..1</multiplicity>
               <modifiers>8</modifiers>
               <access>1</access>
@@ -126,16 +126,16 @@
               <method>
                 <statements>
                   <javaCode>org.hibernate.cfg.Configuration config = new org.hibernate.cfg.Configuration();</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.Uzivatel.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.Cinnost.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.KalendarCinnost.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.SystemovaInformace.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.PracovniPomer.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.SablonaVykaz.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.Svatek.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.Kalendar.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.KalendarDefinice.class);</javaCode>
-                  <javaCode>config.addClass(com.xyz.myproject.model.NastaveniSystemu.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.Uzivatel.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.Cinnost.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.KalendarCinnost.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.SystemovaInformace.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.PracovniPomer.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.SablonaVykaz.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.Svatek.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.Kalendar.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.KalendarDefinice.class);</javaCode>
+                  <javaCode>config.addClass(dao.model.NastaveniSystemu.class);</javaCode>
                   <javaCode>return config;</javaCode>
                 </statements>
               </method>
@@ -233,16 +233,16 @@
           </operations>
           <generatedFiles>
             <name>HibernateHelper.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.util{HibernateHelper.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.util{HibernateHelper.java</compilationUnitId>
           </generatedFiles>
         </classifier>
       </classes>
       <rootName>src</rootName>
       <generateHibernateHelper>true</generateHibernateHelper>
     </javaPackage>
-    <javaPackage name="com.xyz.myproject.model">
+    <javaPackage name="dao.model">
       <projectName>Vykazovani_Casu_Model</projectName>
-      <path>src/com/xyz/myproject/model</path>
+      <path>src/dao/model</path>
       <classes>
         <classifier name="Uzivatel">
           <stereotype>Persistent</stereotype>
@@ -281,18 +281,18 @@
               <access>1</access>
             </variable>
             <variable name="cinnost">
-              <type class="com.xyz.myproject.model.Cinnost"/>
+              <type class="dao.model.Cinnost"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.cinnost()</value>
-              <inverse class="com.xyz.myproject.model.Cinnost" name="uzivatel"/>
+              <value>new dao.model.cinnost()</value>
+              <inverse class="dao.model.Cinnost" name="uzivatel"/>
             </variable>
             <variable name="serialVersionUID">
               <type>long</type>
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>179697428</value>
+              <value>-1014965043</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -305,61 +305,61 @@
               </tags>
             </variable>
             <variable name="pracovniPomer">
-              <type class="com.xyz.myproject.model.PracovniPomer"/>
+              <type class="dao.model.PracovniPomer"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.PracovniPomer()</value>
-              <inverse class="com.xyz.myproject.model.PracovniPomer" name="uzivatel"/>
+              <value>new dao.model.PracovniPomer()</value>
+              <inverse class="dao.model.PracovniPomer" name="uzivatel"/>
             </variable>
             <variable name="kalendarCinnost">
-              <type class="com.xyz.myproject.model.KalendarCinnost"/>
+              <type class="dao.model.KalendarCinnost"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.KalendarCinnost()</value>
-              <inverse class="com.xyz.myproject.model.KalendarCinnost" name="uzivatel"/>
+              <value>new dao.model.KalendarCinnost()</value>
+              <inverse class="dao.model.KalendarCinnost" name="uzivatel"/>
             </variable>
             <variable name="sablonaVykaz">
-              <type class="com.xyz.myproject.model.SablonaVykaz"/>
+              <type class="dao.model.SablonaVykaz"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.SablonaVykaz()</value>
-              <inverse class="com.xyz.myproject.model.SablonaVykaz" name="uzivatel"/>
+              <value>new dao.model.SablonaVykaz()</value>
+              <inverse class="dao.model.SablonaVykaz" name="uzivatel"/>
             </variable>
             <variable name="svatek">
-              <type class="com.xyz.myproject.model.Svatek"/>
+              <type class="dao.model.Svatek"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.Svatek()</value>
-              <inverse class="com.xyz.myproject.model.Svatek" name="uzivatel"/>
+              <value>new dao.model.Svatek()</value>
+              <inverse class="dao.model.Svatek" name="uzivatel"/>
             </variable>
             <variable name="nastaveniSystemu">
-              <type class="com.xyz.myproject.model.NastaveniSystemu"/>
+              <type class="dao.model.NastaveniSystemu"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.NastaveniSystemu()</value>
-              <inverse class="com.xyz.myproject.model.NastaveniSystemu" name="uzivatel"/>
+              <value>new dao.model.NastaveniSystemu()</value>
+              <inverse class="dao.model.NastaveniSystemu" name="uzivatel"/>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.UzivatelDAO"/>
+              <type class="dao.dao.UzivatelDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.UzivatelDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.UzivatelDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
             <variable name="kalendarDefinice">
-              <type class="com.xyz.myproject.model.KalendarDefinice"/>
+              <type class="dao.model.KalendarDefinice"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.KalendarDefinice()</value>
-              <inverse class="com.xyz.myproject.model.KalendarDefinice" name="uzivatel"/>
+              <value>new dao.model.KalendarDefinice()</value>
+              <inverse class="dao.model.KalendarDefinice" name="uzivatel"/>
             </variable>
             <variable name="kalendar">
-              <type class="com.xyz.myproject.model.Kalendar"/>
+              <type class="dao.model.Kalendar"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.Kalendar()</value>
-              <inverse class="com.xyz.myproject.model.Kalendar" name="uzivatel"/>
+              <value>new dao.model.Kalendar()</value>
+              <inverse class="dao.model.Kalendar" name="uzivatel"/>
             </variable>
           </variables>
           <operations>
@@ -376,9 +376,9 @@
           </operations>
           <generatedFiles>
             <name>Uzivatel.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{Uzivatel.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{Uzivatel.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/Uzivatel.hbm.xml</string>
+              <string>src/dao/model/Uzivatel.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -389,10 +389,10 @@
           </interfaces>
           <variables>
             <variable name="uzivatel">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="cinnost"/>
+              <inverse class="dao.model.Uzivatel" name="cinnost"/>
             </variable>
             <variable name="kod">
               <type class="java.lang.String"/>
@@ -409,7 +409,7 @@
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>1005391426</value>
+              <value>-1111356055</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -422,17 +422,17 @@
               </tags>
             </variable>
             <variable name="kalendarCinnost">
-              <type class="com.xyz.myproject.model.KalendarCinnost"/>
+              <type class="dao.model.KalendarCinnost"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.KalendarCinnost()</value>
-              <inverse class="com.xyz.myproject.model.KalendarCinnost" name="cinnost"/>
+              <value>new dao.model.KalendarCinnost()</value>
+              <inverse class="dao.model.KalendarCinnost" name="cinnost"/>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.CinnostDAO"/>
+              <type class="dao.dao.CinnostDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.CinnostDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.CinnostDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
@@ -451,9 +451,9 @@
           </operations>
           <generatedFiles>
             <name>Cinnost.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{Cinnost.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{Cinnost.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/Cinnost.hbm.xml</string>
+              <string>src/dao/model/Cinnost.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -478,7 +478,7 @@
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>-2114231508</value>
+              <value>-1328657581</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -491,36 +491,46 @@
               </tags>
             </variable>
             <variable name="cinnost">
-              <type class="com.xyz.myproject.model.Cinnost"/>
+              <type class="dao.model.Cinnost"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Cinnost" name="kalendarCinnost"/>
+              <inverse class="dao.model.Cinnost" name="kalendarCinnost"/>
             </variable>
             <variable name="pracovniPomer">
-              <type class="com.xyz.myproject.model.PracovniPomer"/>
+              <type class="dao.model.PracovniPomer"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.PracovniPomer" name="kalendarCinnost"/>
+              <inverse class="dao.model.PracovniPomer" name="kalendarCinnost"/>
             </variable>
             <variable name="uzivatel">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="kalendarCinnost"/>
+              <inverse class="dao.model.Uzivatel" name="kalendarCinnost"/>
             </variable>
             <variable name="kalendar">
-              <type class="com.xyz.myproject.model.Kalendar"/>
+              <type class="dao.model.Kalendar"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Kalendar" name="kalendarCinnost"/>
+              <inverse class="dao.model.Kalendar" name="kalendarCinnost"/>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.KalendarCinnostDAO"/>
+              <type class="dao.dao.KalendarCinnostDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.KalendarCinnostDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.KalendarCinnostDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
+            </variable>
+            <variable name="casOd">
+              <type class="java.util.Date"/>
+              <multiplicity>0..1</multiplicity>
+              <access>1</access>
+            </variable>
+            <variable name="casDo">
+              <type class="java.util.Date"/>
+              <multiplicity>0..1</multiplicity>
+              <access>1</access>
             </variable>
           </variables>
           <operations>
@@ -537,9 +547,9 @@
           </operations>
           <generatedFiles>
             <name>KalendarCinnost.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{KalendarCinnost.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.model{KalendarCinnost.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/KalendarCinnost.hbm.xml</string>
+              <string>src/dao/model/KalendarCinnost.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -569,7 +579,7 @@
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>-361587369</value>
+              <value>-605524016</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -582,10 +592,10 @@
               </tags>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.SystemovaInformaceDAO"/>
+              <type class="dao.dao.SystemovaInformaceDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.SystemovaInformaceDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.SystemovaInformaceDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
@@ -604,9 +614,9 @@
           </operations>
           <generatedFiles>
             <name>SystemovaInformace.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{SystemovaInformace.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{SystemovaInformace.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/SystemovaInformace.hbm.xml</string>
+              <string>src/dao/model/SystemovaInformace.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -636,7 +646,7 @@
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>367884589</value>
+              <value>1289371412</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -649,32 +659,32 @@
               </tags>
             </variable>
             <variable name="kalendarCinnost">
-              <type class="com.xyz.myproject.model.KalendarCinnost"/>
+              <type class="dao.model.KalendarCinnost"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.KalendarCinnost()</value>
-              <inverse class="com.xyz.myproject.model.KalendarCinnost" name="pracovniPomer"/>
+              <value>new dao.model.KalendarCinnost()</value>
+              <inverse class="dao.model.KalendarCinnost" name="pracovniPomer"/>
             </variable>
             <variable name="uzivatel">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="pracovniPomer"/>
+              <inverse class="dao.model.Uzivatel" name="pracovniPomer"/>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.PracovniPomerDAO"/>
+              <type class="dao.dao.PracovniPomerDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.PracovniPomerDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.PracovniPomerDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
             <variable name="sablonaVykaz">
-              <type class="com.xyz.myproject.model.SablonaVykaz"/>
+              <type class="dao.model.SablonaVykaz"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.SablonaVykaz()</value>
-              <inverse class="com.xyz.myproject.model.SablonaVykaz" name="pracovniPomer"/>
+              <value>new dao.model.SablonaVykaz()</value>
+              <inverse class="dao.model.SablonaVykaz" name="pracovniPomer"/>
             </variable>
           </variables>
           <operations>
@@ -691,9 +701,9 @@
           </operations>
           <generatedFiles>
             <name>PracovniPomer.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{PracovniPomer.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{PracovniPomer.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/PracovniPomer.hbm.xml</string>
+              <string>src/dao/model/PracovniPomer.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -725,17 +735,17 @@
               <arrayCount>1</arrayCount>
             </variable>
             <variable name="uzivatel">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="sablonaVykaz"/>
+              <inverse class="dao.model.Uzivatel" name="sablonaVykaz"/>
             </variable>
             <variable name="serialVersionUID">
               <type>long</type>
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>-1733335169</value>
+              <value>-2119251784</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -748,19 +758,19 @@
               </tags>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.SablonaVykazDAO"/>
+              <type class="dao.dao.SablonaVykazDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.SablonaVykazDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.SablonaVykazDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
             <variable name="pracovniPomer">
-              <type class="com.xyz.myproject.model.PracovniPomer"/>
+              <type class="dao.model.PracovniPomer"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.PracovniPomer()</value>
-              <inverse class="com.xyz.myproject.model.PracovniPomer" name="sablonaVykaz"/>
+              <value>new dao.model.PracovniPomer()</value>
+              <inverse class="dao.model.PracovniPomer" name="sablonaVykaz"/>
             </variable>
           </variables>
           <operations>
@@ -777,9 +787,9 @@
           </operations>
           <generatedFiles>
             <name>SablonaVykaz.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{SablonaVykaz.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{SablonaVykaz.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/SablonaVykaz.hbm.xml</string>
+              <string>src/dao/model/SablonaVykaz.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -800,10 +810,10 @@
               <access>1</access>
             </variable>
             <variable name="uzivatel">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="svatek"/>
+              <inverse class="dao.model.Uzivatel" name="svatek"/>
             </variable>
             <variable name="kod">
               <type class="java.lang.String"/>
@@ -815,7 +825,7 @@
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>779216996</value>
+              <value>-1644369827</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -828,10 +838,10 @@
               </tags>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.SvatekDAO"/>
+              <type class="dao.dao.SvatekDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.SvatekDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.SvatekDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
@@ -850,9 +860,9 @@
           </operations>
           <generatedFiles>
             <name>Svatek.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{Svatek.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{Svatek.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/Svatek.hbm.xml</string>
+              <string>src/dao/model/Svatek.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -863,11 +873,11 @@
           </interfaces>
           <variables>
             <variable name="kalendarCinnost">
-              <type class="com.xyz.myproject.model.KalendarCinnost"/>
+              <type class="dao.model.KalendarCinnost"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.KalendarCinnost()</value>
-              <inverse class="com.xyz.myproject.model.KalendarCinnost" name="kalendar"/>
+              <value>new dao.model.KalendarCinnost()</value>
+              <inverse class="dao.model.KalendarCinnost" name="kalendar"/>
             </variable>
             <variable name="datumImportu">
               <type class="java.util.Date"/>
@@ -875,17 +885,17 @@
               <access>1</access>
             </variable>
             <variable name="kalendarDefinice">
-              <type class="com.xyz.myproject.model.KalendarDefinice"/>
+              <type class="dao.model.KalendarDefinice"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.KalendarDefinice" name="kalendar"/>
+              <inverse class="dao.model.KalendarDefinice" name="kalendar"/>
             </variable>
             <variable name="serialVersionUID">
               <type>long</type>
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>-710732898</value>
+              <value>-1905395369</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -898,18 +908,18 @@
               </tags>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.KalendarDAO"/>
+              <type class="dao.dao.KalendarDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.KalendarDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.KalendarDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
             <variable name="uzivatel">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="kalendar"/>
+              <inverse class="dao.model.Uzivatel" name="kalendar"/>
             </variable>
           </variables>
           <operations>
@@ -926,9 +936,9 @@
           </operations>
           <generatedFiles>
             <name>Kalendar.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{Kalendar.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{Kalendar.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/Kalendar.hbm.xml</string>
+              <string>src/dao/model/Kalendar.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -959,18 +969,18 @@
               <access>1</access>
             </variable>
             <variable name="kalendar">
-              <type class="com.xyz.myproject.model.Kalendar"/>
+              <type class="dao.model.Kalendar"/>
               <multiplicity>*</multiplicity>
               <access>1</access>
-              <value>new com.xyz.myproject.model.Kalendar()</value>
-              <inverse class="com.xyz.myproject.model.Kalendar" name="kalendarDefinice"/>
+              <value>new dao.model.Kalendar()</value>
+              <inverse class="dao.model.Kalendar" name="kalendarDefinice"/>
             </variable>
             <variable name="serialVersionUID">
               <type>long</type>
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>1137404959</value>
+              <value>-279607080</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -983,18 +993,18 @@
               </tags>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.KalendarDefiniceDAO"/>
+              <type class="dao.dao.KalendarDefiniceDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.KalendarDefiniceDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.KalendarDefiniceDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
             <variable name="uzivatel">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="kalendarDefinice"/>
+              <inverse class="dao.model.Uzivatel" name="kalendarDefinice"/>
             </variable>
           </variables>
           <operations>
@@ -1011,9 +1021,9 @@
           </operations>
           <generatedFiles>
             <name>KalendarDefinice.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{KalendarDefinice.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{KalendarDefinice.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/KalendarDefinice.hbm.xml</string>
+              <string>src/dao/model/KalendarDefinice.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -1034,17 +1044,17 @@
               <access>1</access>
             </variable>
             <variable name="uzivatel">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="nastaveniSystemu"/>
+              <inverse class="dao.model.Uzivatel" name="nastaveniSystemu"/>
             </variable>
             <variable name="serialVersionUID">
               <type>long</type>
               <multiplicity>1</multiplicity>
               <modifiers>24</modifiers>
               <access>2</access>
-              <value>263789527</value>
+              <value>-1153222512</value>
             </variable>
             <variable name="id">
               <type>Long</type>
@@ -1057,10 +1067,10 @@
               </tags>
             </variable>
             <variable name="DAO_CLASS">
-              <type class="com.xyz.myproject.dao.NastaveniSystemuDAO"/>
+              <type class="dao.dao.NastaveniSystemuDAO"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.dao.NastaveniSystemuDAO" name="DAO_TARGET"/>
+              <inverse class="dao.dao.NastaveniSystemuDAO" name="DAO_TARGET"/>
               <association>dao</association>
               <type>5</type>
             </variable>
@@ -1079,9 +1089,9 @@
           </operations>
           <generatedFiles>
             <name>NastaveniSystemu.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.model{NastaveniSystemu.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model_2/src&lt;dao.model{NastaveniSystemu.java</compilationUnitId>
             <otherFiles>
-              <string>src/com/xyz/myproject/model/NastaveniSystemu.hbm.xml</string>
+              <string>src/dao/model/NastaveniSystemu.hbm.xml</string>
             </otherFiles>
           </generatedFiles>
         </classifier>
@@ -1090,150 +1100,150 @@
         <classDiagram name="Model">
           <showAttributes>true</showAttributes>
           <showOperations>true</showOperations>
-          <classSymbol id="4">
+          <classSymbol id="1">
             <x>930</x>
             <y>442</y>
-            <class class="com.xyz.myproject.dao.SystemovaInformaceDAO"/>
+            <class class="dao.dao.SystemovaInformaceDAO"/>
             <attributes autoDisplay="289" accessVisible="true"/>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
               <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.SystemovaInformace)</operation>
+              <operation>create(dao.model.SystemovaInformace)</operation>
               <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.SystemovaInformace)</operation>
-              <operation>delete(com.xyz.myproject.model.SystemovaInformace)</operation>
+              <operation>update(dao.model.SystemovaInformace)</operation>
+              <operation>delete(dao.model.SystemovaInformace)</operation>
+            </operations>
+          </classSymbol>
+          <classSymbol id="2">
+            <x>1170</x>
+            <y>439</y>
+            <class class="dao.dao.KalendarDefiniceDAO"/>
+            <attributes autoDisplay="289" accessVisible="true"/>
+            <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
+              <operation>getSession()</operation>
+              <operation>create(dao.model.KalendarDefinice)</operation>
+              <operation>read(Long)</operation>
+              <operation>update(dao.model.KalendarDefinice)</operation>
+              <operation>delete(dao.model.KalendarDefinice)</operation>
+            </operations>
+          </classSymbol>
+          <classSymbol id="3">
+            <x>1172</x>
+            <y>296</y>
+            <class class="dao.dao.KalendarDAO"/>
+            <attributes autoDisplay="289" accessVisible="true"/>
+            <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
+              <operation>getSession()</operation>
+              <operation>create(dao.model.Kalendar)</operation>
+              <operation>read(Long)</operation>
+              <operation>update(dao.model.Kalendar)</operation>
+              <operation>delete(dao.model.Kalendar)</operation>
+            </operations>
+          </classSymbol>
+          <classSymbol id="4">
+            <x>1135</x>
+            <y>151</y>
+            <class class="dao.dao.PracovniPomerDAO"/>
+            <attributes autoDisplay="289" accessVisible="true"/>
+            <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
+              <operation>getSession()</operation>
+              <operation>create(dao.model.PracovniPomer)</operation>
+              <operation>read(Long)</operation>
+              <operation>update(dao.model.PracovniPomer)</operation>
+              <operation>delete(dao.model.PracovniPomer)</operation>
             </operations>
           </classSymbol>
           <classSymbol id="5">
-            <x>1170</x>
-            <y>439</y>
-            <class class="com.xyz.myproject.dao.KalendarDefiniceDAO"/>
+            <x>1153</x>
+            <y>8</y>
+            <class class="dao.dao.NastaveniSystemuDAO"/>
             <attributes autoDisplay="289" accessVisible="true"/>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
               <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.KalendarDefinice)</operation>
+              <operation>create(dao.model.NastaveniSystemu)</operation>
               <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.KalendarDefinice)</operation>
-              <operation>delete(com.xyz.myproject.model.KalendarDefinice)</operation>
+              <operation>update(dao.model.NastaveniSystemu)</operation>
+              <operation>delete(dao.model.NastaveniSystemu)</operation>
             </operations>
           </classSymbol>
           <classSymbol id="6">
-            <x>1172</x>
-            <y>296</y>
-            <class class="com.xyz.myproject.dao.KalendarDAO"/>
+            <x>928</x>
+            <y>295</y>
+            <class class="dao.dao.KalendarCinnostDAO"/>
             <attributes autoDisplay="289" accessVisible="true"/>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
               <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.Kalendar)</operation>
+              <operation>create(dao.model.KalendarCinnost)</operation>
               <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.Kalendar)</operation>
-              <operation>delete(com.xyz.myproject.model.Kalendar)</operation>
+              <operation>update(dao.model.KalendarCinnost)</operation>
+              <operation>delete(dao.model.KalendarCinnost)</operation>
             </operations>
           </classSymbol>
           <classSymbol id="7">
-            <x>1135</x>
+            <x>926</x>
             <y>151</y>
-            <class class="com.xyz.myproject.dao.PracovniPomerDAO"/>
+            <class class="dao.dao.UzivatelDAO"/>
             <attributes autoDisplay="289" accessVisible="true"/>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
               <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.PracovniPomer)</operation>
+              <operation>create(dao.model.Uzivatel)</operation>
               <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.PracovniPomer)</operation>
-              <operation>delete(com.xyz.myproject.model.PracovniPomer)</operation>
+              <operation>update(dao.model.Uzivatel)</operation>
+              <operation>delete(dao.model.Uzivatel)</operation>
             </operations>
           </classSymbol>
           <classSymbol id="8">
-            <x>1153</x>
+            <x>931</x>
             <y>8</y>
-            <class class="com.xyz.myproject.dao.NastaveniSystemuDAO"/>
+            <class class="dao.dao.SablonaVykazDAO"/>
             <attributes autoDisplay="289" accessVisible="true"/>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
               <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.NastaveniSystemu)</operation>
+              <operation>create(dao.model.SablonaVykaz)</operation>
               <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.NastaveniSystemu)</operation>
-              <operation>delete(com.xyz.myproject.model.NastaveniSystemu)</operation>
+              <operation>update(dao.model.SablonaVykaz)</operation>
+              <operation>delete(dao.model.SablonaVykaz)</operation>
             </operations>
           </classSymbol>
           <classSymbol id="9">
-            <x>928</x>
-            <y>295</y>
-            <class class="com.xyz.myproject.dao.KalendarCinnostDAO"/>
+            <x>950</x>
+            <y>581</y>
+            <class class="dao.dao.CinnostDAO"/>
             <attributes autoDisplay="289" accessVisible="true"/>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
               <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.KalendarCinnost)</operation>
+              <operation>create(dao.model.Cinnost)</operation>
               <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.KalendarCinnost)</operation>
-              <operation>delete(com.xyz.myproject.model.KalendarCinnost)</operation>
+              <operation>update(dao.model.Cinnost)</operation>
+              <operation>delete(dao.model.Cinnost)</operation>
             </operations>
           </classSymbol>
           <classSymbol id="10">
-            <x>926</x>
-            <y>151</y>
-            <class class="com.xyz.myproject.dao.UzivatelDAO"/>
+            <x>797</x>
+            <y>399</y>
+            <class class="dao.dao.SvatekDAO"/>
             <attributes autoDisplay="289" accessVisible="true"/>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
               <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.Uzivatel)</operation>
+              <operation>create(dao.model.Svatek)</operation>
               <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.Uzivatel)</operation>
-              <operation>delete(com.xyz.myproject.model.Uzivatel)</operation>
+              <operation>update(dao.model.Svatek)</operation>
+              <operation>delete(dao.model.Svatek)</operation>
             </operations>
           </classSymbol>
           <classSymbol id="11">
-            <x>931</x>
-            <y>8</y>
-            <class class="com.xyz.myproject.dao.SablonaVykazDAO"/>
-            <attributes autoDisplay="289" accessVisible="true"/>
-            <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
-              <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.SablonaVykaz)</operation>
-              <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.SablonaVykaz)</operation>
-              <operation>delete(com.xyz.myproject.model.SablonaVykaz)</operation>
-            </operations>
-          </classSymbol>
-          <classSymbol id="12">
-            <x>950</x>
-            <y>581</y>
-            <class class="com.xyz.myproject.dao.CinnostDAO"/>
-            <attributes autoDisplay="289" accessVisible="true"/>
-            <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
-              <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.Cinnost)</operation>
-              <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.Cinnost)</operation>
-              <operation>delete(com.xyz.myproject.model.Cinnost)</operation>
-            </operations>
-          </classSymbol>
-          <classSymbol id="13">
-            <x>797</x>
-            <y>399</y>
-            <class class="com.xyz.myproject.dao.SvatekDAO"/>
-            <attributes autoDisplay="289" accessVisible="true"/>
-            <operations autoDisplay="37" accessVisible="true" parametersVisible="true">
-              <operation>getSession()</operation>
-              <operation>create(com.xyz.myproject.model.Svatek)</operation>
-              <operation>read(Long)</operation>
-              <operation>update(com.xyz.myproject.model.Svatek)</operation>
-              <operation>delete(com.xyz.myproject.model.Svatek)</operation>
-            </operations>
-          </classSymbol>
-          <classSymbol id="14">
             <x>11</x>
             <y>310</y>
-            <class class="com.xyz.myproject.model.NastaveniSystemu"/>
+            <class class="dao.model.NastaveniSystemu"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>nazev</attribute>
               <attribute>hodnota</attribute>
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="15">
+          <classSymbol id="12">
             <x>206</x>
             <y>509</y>
-            <class class="com.xyz.myproject.model.KalendarDefinice"/>
+            <class class="dao.model.KalendarDefinice"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>kod</attribute>
               <attribute>nazev</attribute>
@@ -1242,19 +1252,19 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="16">
+          <classSymbol id="13">
             <x>36</x>
             <y>409</y>
-            <class class="com.xyz.myproject.model.Kalendar"/>
+            <class class="dao.model.Kalendar"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>datumImportu</attribute>
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="17">
+          <classSymbol id="14">
             <x>14</x>
             <y>21</y>
-            <class class="com.xyz.myproject.model.Svatek"/>
+            <class class="dao.model.Svatek"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>datum</attribute>
               <attribute>nazev</attribute>
@@ -1262,10 +1272,10 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="22">
+          <classSymbol id="15">
             <x>11</x>
             <y>173</y>
-            <class class="com.xyz.myproject.model.SablonaVykaz"/>
+            <class class="dao.model.SablonaVykaz"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>kod</attribute>
               <attribute>nazev</attribute>
@@ -1274,10 +1284,10 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="23">
+          <classSymbol id="16">
             <x>190</x>
             <y>157</y>
-            <class class="com.xyz.myproject.model.Uzivatel"/>
+            <class class="dao.model.Uzivatel"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>jmeno</attribute>
               <attribute>prijmeni</attribute>
@@ -1288,10 +1298,10 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="24">
+          <classSymbol id="17">
             <x>417</x>
             <y>315</y>
-            <class class="com.xyz.myproject.model.PracovniPomer"/>
+            <class class="dao.model.PracovniPomer"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>kod</attribute>
               <attribute>nazev</attribute>
@@ -1299,10 +1309,10 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="25">
+          <classSymbol id="18">
             <x>417</x>
             <y>479</y>
-            <class class="com.xyz.myproject.model.SystemovaInformace"/>
+            <class class="dao.model.SystemovaInformace"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>datum</attribute>
               <attribute>nadpis</attribute>
@@ -1310,48 +1320,50 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="26">
+          <classSymbol id="19">
             <x>555</x>
             <y>197</y>
-            <class class="com.xyz.myproject.model.KalendarCinnost"/>
+            <class class="dao.model.KalendarCinnost"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>datum</attribute>
               <attribute>pocetHodin</attribute>
+              <attribute>casOd</attribute>
+              <attribute>casDo</attribute>
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <classSymbol id="27">
+          <classSymbol id="20">
             <x>389</x>
             <y>23</y>
-            <class class="com.xyz.myproject.model.Cinnost"/>
+            <class class="dao.model.Cinnost"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>kod</attribute>
               <attribute>nazev</attribute>
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <association id="28">
+          <association id="21">
             <x>277</x>
             <y>202</y>
-            <assocEnd-0 class="com.xyz.myproject.model.Cinnost" name="uzivatel"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Uzivatel" name="cinnost"/>
+            <assocEnd-0 class="dao.model.Cinnost" name="uzivatel"/>
+            <assocEnd-1 class="dao.model.Uzivatel" name="cinnost"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="23"/>
-              <connectY symbol="23"/>
+              <connectX symbol="16"/>
+              <connectY symbol="16"/>
               <x>0</x>
               <y>0</y>
               <atX>0.8787879</atX>
               <atY>0.31007752</atY>
             </point>
             <point>
-              <connectX symbol="27"/>
+              <connectX symbol="20"/>
               <x>-112</x>
               <y>68</y>
             </point>
             <point>
-              <connectX symbol="27"/>
-              <connectY symbol="27"/>
+              <connectX symbol="20"/>
+              <connectY symbol="20"/>
               <x>0</x>
               <y>0</y>
               <atX>0.28846154</atX>
@@ -1362,7 +1374,7 @@
               <y>157</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="23"/>
+              <connectedSymbol symbol="16"/>
               <text>+uzivatel</text>
               <text>0..1</text>
             </end-1>
@@ -1371,42 +1383,42 @@
               <y>68</y>
               <w>47</w>
               <h>34</h>
-              <connectedSymbol symbol="27"/>
+              <connectedSymbol symbol="20"/>
               <text>+cinnost</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="29">
+          <association id="22">
             <x>591</x>
-            <y>208</y>
-            <assocEnd-0 class="com.xyz.myproject.model.Cinnost" name="kalendarCinnost"/>
-            <assocEnd-1 class="com.xyz.myproject.model.KalendarCinnost" name="cinnost"/>
+            <y>212</y>
+            <assocEnd-0 class="dao.model.Cinnost" name="kalendarCinnost"/>
+            <assocEnd-1 class="dao.model.KalendarCinnost" name="cinnost"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="26"/>
-              <connectY symbol="26"/>
+              <connectX symbol="19"/>
+              <connectY symbol="19"/>
               <x>0</x>
               <y>0</y>
               <atX>0.29268292</atX>
               <atY>0.14102565</atY>
             </point>
             <point>
-              <connectX symbol="26"/>
+              <connectX symbol="19"/>
               <x>3</x>
               <y>204</y>
               <atX>0.29268292</atX>
             </point>
             <point>
-              <connectY symbol="27"/>
+              <connectY symbol="20"/>
               <x>594</x>
               <y>0</y>
               <atX>1.0</atX>
               <atY>0.55128205</atY>
             </point>
             <point>
-              <connectX symbol="27"/>
-              <connectY symbol="27"/>
+              <connectX symbol="20"/>
+              <connectY symbol="20"/>
               <x>0</x>
               <y>0</y>
               <atX>0.8947368</atX>
@@ -1417,7 +1429,7 @@
               <y>197</y>
               <w>94</w>
               <h>34</h>
-              <connectedSymbol symbol="26"/>
+              <connectedSymbol symbol="19"/>
               <text>+kalendarCinnost</text>
               <text>*</text>
             </end-1>
@@ -1426,42 +1438,42 @@
               <y>66</y>
               <w>47</w>
               <h>34</h>
-              <connectedSymbol symbol="27"/>
+              <connectedSymbol symbol="20"/>
               <text>+cinnost</text>
               <text>1</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="30">
+          <association id="23">
             <x>608</x>
-            <y>267</y>
-            <assocEnd-0 class="com.xyz.myproject.model.PracovniPomer" name="kalendarCinnost"/>
-            <assocEnd-1 class="com.xyz.myproject.model.KalendarCinnost" name="pracovniPomer"/>
+            <y>297</y>
+            <assocEnd-0 class="dao.model.PracovniPomer" name="kalendarCinnost"/>
+            <assocEnd-1 class="dao.model.KalendarCinnost" name="pracovniPomer"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="26"/>
-              <connectY symbol="26"/>
+              <connectX symbol="19"/>
+              <connectY symbol="19"/>
               <x>0</x>
               <y>0</y>
               <atX>0.43089432</atX>
               <atY>0.8974359</atY>
             </point>
             <point>
-              <connectX symbol="26"/>
+              <connectX symbol="19"/>
               <x>4</x>
               <y>266</y>
               <atX>0.42276424</atX>
             </point>
             <point>
-              <connectY symbol="24"/>
+              <connectY symbol="17"/>
               <x>611</x>
               <y>0</y>
               <atX>1.0</atX>
               <atY>0.6526316</atY>
             </point>
             <point>
-              <connectX symbol="24"/>
-              <connectY symbol="24"/>
+              <connectX symbol="17"/>
+              <connectY symbol="17"/>
               <x>0</x>
               <y>0</y>
               <atX>0.9057971</atX>
@@ -1469,10 +1481,10 @@
             </point>
             <end-1>
               <x>611</x>
-              <y>275</y>
+              <y>309</y>
               <w>94</w>
               <h>34</h>
-              <connectedSymbol symbol="26"/>
+              <connectedSymbol symbol="19"/>
               <text>+kalendarCinnost</text>
               <text>*</text>
             </end-1>
@@ -1481,35 +1493,35 @@
               <y>377</y>
               <w>89</w>
               <h>34</h>
-              <connectedSymbol symbol="24"/>
+              <connectedSymbol symbol="17"/>
               <text>+pracovniPomer</text>
               <text>1</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="31">
+          <association id="24">
             <x>255</x>
             <y>289</y>
-            <assocEnd-0 class="com.xyz.myproject.model.PracovniPomer" name="uzivatel"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Uzivatel" name="pracovniPomer"/>
+            <assocEnd-0 class="dao.model.PracovniPomer" name="uzivatel"/>
+            <assocEnd-1 class="dao.model.Uzivatel" name="pracovniPomer"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="23"/>
-              <connectY symbol="23"/>
+              <connectX symbol="16"/>
+              <connectY symbol="16"/>
               <x>0</x>
               <y>0</y>
               <atX>0.65656567</atX>
               <atY>0.9041096</atY>
             </point>
             <point>
-              <connectY symbol="24"/>
+              <connectY symbol="17"/>
               <x>255</x>
               <y>31</y>
               <atY>0.17894737</atY>
             </point>
             <point>
-              <connectX symbol="24"/>
-              <connectY symbol="24"/>
+              <connectX symbol="17"/>
+              <connectY symbol="17"/>
               <x>0</x>
               <y>0</y>
               <atX>0.29710144</atX>
@@ -1520,7 +1532,7 @@
               <y>303</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="23"/>
+              <connectedSymbol symbol="16"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -1529,35 +1541,41 @@
               <y>363</y>
               <w>89</w>
               <h>34</h>
-              <connectedSymbol symbol="24"/>
+              <connectedSymbol symbol="17"/>
               <text>+pracovniPomer</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="32">
+          <association id="25">
             <x>281</x>
             <y>231</y>
-            <assocEnd-0 class="com.xyz.myproject.model.KalendarCinnost" name="uzivatel"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Uzivatel" name="kalendarCinnost"/>
+            <assocEnd-0 class="dao.model.KalendarCinnost" name="uzivatel"/>
+            <assocEnd-1 class="dao.model.Uzivatel" name="kalendarCinnost"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="23"/>
-              <connectY symbol="23"/>
+              <connectX symbol="16"/>
+              <connectY symbol="16"/>
               <x>0</x>
               <y>0</y>
               <atX>0.9191919</atX>
               <atY>0.5068493</atY>
             </point>
             <point>
-              <connectY symbol="26"/>
-              <x>562</x>
-              <y>-1</y>
-              <atY>0.44871795</atY>
+              <connectY symbol="16"/>
+              <x>570</x>
+              <y>-11</y>
+              <atY>0.58219177</atY>
             </point>
             <point>
-              <connectX symbol="26"/>
-              <connectY symbol="26"/>
+              <connectY symbol="19"/>
+              <x>562</x>
+              <y>0</y>
+              <atY>0.4375</atY>
+            </point>
+            <point>
+              <connectX symbol="19"/>
+              <connectY symbol="19"/>
               <x>0</x>
               <y>0</y>
               <atX>0.43089432</atX>
@@ -1568,7 +1586,7 @@
               <y>231</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="23"/>
+              <connectedSymbol symbol="16"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -1577,28 +1595,28 @@
               <y>231</y>
               <w>94</w>
               <h>34</h>
-              <connectedSymbol symbol="26"/>
+              <connectedSymbol symbol="19"/>
               <text>+kalendarCinnost</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="33">
+          <association id="26">
             <x>156</x>
             <y>444</y>
-            <assocEnd-0 class="com.xyz.myproject.model.KalendarCinnost" name="kalendar"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Kalendar" name="kalendarCinnost"/>
+            <assocEnd-0 class="dao.model.KalendarCinnost" name="kalendar"/>
+            <assocEnd-1 class="dao.model.Kalendar" name="kalendarCinnost"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="16"/>
-              <connectY symbol="16"/>
+              <connectX symbol="13"/>
+              <connectY symbol="13"/>
               <x>0</x>
               <y>0</y>
               <atX>0.9672131</atX>
               <atY>0.5882353</atY>
             </point>
             <point>
-              <connectY symbol="16"/>
+              <connectY symbol="13"/>
               <x>320</x>
               <y>0</y>
               <atY>0.57377046</atY>
@@ -1617,15 +1635,15 @@
               <y>263</y>
             </point>
             <point>
-              <connectX symbol="26"/>
+              <connectX symbol="19"/>
               <x>0</x>
               <y>263</y>
               <atX>0.17886178</atX>
               <atY>0.7051282</atY>
             </point>
             <point>
-              <connectX symbol="26"/>
-              <connectY symbol="26"/>
+              <connectX symbol="19"/>
+              <connectY symbol="19"/>
               <x>0</x>
               <y>0</y>
               <atX>0.33333334</atX>
@@ -1636,7 +1654,7 @@
               <y>444</y>
               <w>53</w>
               <h>34</h>
-              <connectedSymbol symbol="16"/>
+              <connectedSymbol symbol="13"/>
               <text>+kalendar</text>
               <text>0..1</text>
             </end-1>
@@ -1645,35 +1663,35 @@
               <y>263</y>
               <w>94</w>
               <h>34</h>
-              <connectedSymbol symbol="26"/>
+              <connectedSymbol symbol="19"/>
               <text>+kalendarCinnost</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="34">
+          <association id="27">
             <x>105</x>
             <y>453</y>
-            <assocEnd-0 class="com.xyz.myproject.model.KalendarDefinice" name="kalendar"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Kalendar" name="kalendarDefinice"/>
+            <assocEnd-0 class="dao.model.KalendarDefinice" name="kalendar"/>
+            <assocEnd-1 class="dao.model.Kalendar" name="kalendarDefinice"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="16"/>
-              <connectY symbol="16"/>
+              <connectX symbol="13"/>
+              <connectY symbol="13"/>
               <x>0</x>
               <y>0</y>
               <atX>0.552</atX>
               <atY>0.72727275</atY>
             </point>
             <point>
-              <connectY symbol="15"/>
+              <connectY symbol="12"/>
               <x>105</x>
               <y>27</y>
               <atX>1.0</atX>
             </point>
             <point>
-              <connectX symbol="15"/>
-              <connectY symbol="15"/>
+              <connectX symbol="12"/>
+              <connectY symbol="12"/>
               <x>0</x>
               <y>0</y>
               <atX>0.5822785</atX>
@@ -1684,7 +1702,7 @@
               <y>470</y>
               <w>53</w>
               <h>34</h>
-              <connectedSymbol symbol="16"/>
+              <connectedSymbol symbol="13"/>
               <text>+kalendar</text>
               <text>*</text>
             </end-1>
@@ -1693,28 +1711,28 @@
               <y>536</y>
               <w>96</w>
               <h>34</h>
-              <connectedSymbol symbol="15"/>
+              <connectedSymbol symbol="12"/>
               <text>+kalendarDefinice</text>
               <text>1</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="35">
+          <association id="28">
             <x>227</x>
             <y>296</y>
-            <assocEnd-0 class="com.xyz.myproject.model.SablonaVykaz" name="uzivatel"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Uzivatel" name="sablonaVykaz"/>
+            <assocEnd-0 class="dao.model.SablonaVykaz" name="uzivatel"/>
+            <assocEnd-1 class="dao.model.Uzivatel" name="sablonaVykaz"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="23"/>
-              <connectY symbol="23"/>
+              <connectX symbol="16"/>
+              <connectY symbol="16"/>
               <x>0</x>
               <y>0</y>
               <atX>0.37373737</atX>
               <atY>0.9520548</atY>
             </point>
             <point>
-              <connectY symbol="23"/>
+              <connectY symbol="16"/>
               <x>157</x>
               <y>123</y>
               <atY>0.10958904</atY>
@@ -1725,15 +1743,15 @@
               <atY>0.44520548</atY>
             </point>
             <point>
-              <connectX symbol="22"/>
+              <connectX symbol="15"/>
               <x>0</x>
               <y>136</y>
               <atX>0.37894738</atX>
               <atY>0.90178573</atY>
             </point>
             <point>
-              <connectX symbol="22"/>
-              <connectY symbol="22"/>
+              <connectX symbol="15"/>
+              <connectY symbol="15"/>
               <x>0</x>
               <y>0</y>
               <atX>0.38636363</atX>
@@ -1744,7 +1762,7 @@
               <y>296</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="23"/>
+              <connectedSymbol symbol="16"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -1753,36 +1771,36 @@
               <y>173</y>
               <w>79</w>
               <h>34</h>
-              <connectedSymbol symbol="22"/>
+              <connectedSymbol symbol="15"/>
               <text>+sablonaVykaz</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="36">
+          <association id="29">
             <x>213</x>
             <y>267</y>
-            <assocEnd-0 class="com.xyz.myproject.model.Svatek" name="uzivatel"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Uzivatel" name="svatek"/>
+            <assocEnd-0 class="dao.model.Svatek" name="uzivatel"/>
+            <assocEnd-1 class="dao.model.Uzivatel" name="svatek"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="23"/>
-              <connectY symbol="23"/>
+              <connectX symbol="16"/>
+              <connectY symbol="16"/>
               <x>0</x>
               <y>0</y>
               <atX>0.23232323</atX>
               <atY>0.75342464</atY>
             </point>
             <point>
-              <connectX symbol="17"/>
+              <connectX symbol="14"/>
               <x>103</x>
               <y>75</y>
               <atX>1.0</atX>
               <atY>0.07534247</atY>
             </point>
             <point>
-              <connectX symbol="17"/>
-              <connectY symbol="17"/>
+              <connectX symbol="14"/>
+              <connectY symbol="14"/>
               <x>0</x>
               <y>0</y>
               <atX>0.6666667</atX>
@@ -1793,7 +1811,7 @@
               <y>157</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="23"/>
+              <connectedSymbol symbol="16"/>
               <text>+uzivatel</text>
               <text>0..1</text>
             </end-1>
@@ -1802,42 +1820,42 @@
               <y>75</y>
               <w>41</w>
               <h>34</h>
-              <connectedSymbol symbol="17"/>
+              <connectedSymbol symbol="14"/>
               <text>+svatek</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="37">
+          <association id="30">
             <x>219</x>
             <y>293</y>
-            <assocEnd-0 class="com.xyz.myproject.model.NastaveniSystemu" name="uzivatel"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Uzivatel" name="nastaveniSystemu"/>
+            <assocEnd-0 class="dao.model.NastaveniSystemu" name="uzivatel"/>
+            <assocEnd-1 class="dao.model.Uzivatel" name="nastaveniSystemu"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="23"/>
-              <connectY symbol="23"/>
+              <connectX symbol="16"/>
+              <connectY symbol="16"/>
               <x>0</x>
               <y>0</y>
               <atX>0.2929293</atX>
               <atY>0.9315069</atY>
             </point>
             <point>
-              <connectX symbol="23"/>
+              <connectX symbol="16"/>
               <x>-16</x>
               <y>304</y>
               <atX>0.28282827</atX>
             </point>
             <point>
-              <connectY symbol="14"/>
+              <connectY symbol="11"/>
               <x>201</x>
               <y>0</y>
               <atX>1.0</atX>
               <atY>0.60655737</atY>
             </point>
             <point>
-              <connectX symbol="14"/>
-              <connectY symbol="14"/>
+              <connectX symbol="11"/>
+              <connectY symbol="11"/>
               <x>0</x>
               <y>0</y>
               <atX>0.7826087</atX>
@@ -1848,7 +1866,7 @@
               <y>303</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="23"/>
+              <connectedSymbol symbol="16"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -1857,28 +1875,28 @@
               <y>357</y>
               <w>103</w>
               <h>34</h>
-              <connectedSymbol symbol="14"/>
+              <connectedSymbol symbol="11"/>
               <text>+nastaveniSystemu</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="38">
+          <association id="31">
             <x>91</x>
             <y>262</y>
-            <assocEnd-0 class="com.xyz.myproject.model.PracovniPomer" name="sablonaVykaz"/>
-            <assocEnd-1 class="com.xyz.myproject.model.SablonaVykaz" name="pracovniPomer"/>
+            <assocEnd-0 class="dao.model.PracovniPomer" name="sablonaVykaz"/>
+            <assocEnd-1 class="dao.model.SablonaVykaz" name="pracovniPomer"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="22"/>
-              <connectY symbol="22"/>
+              <connectX symbol="15"/>
+              <connectY symbol="15"/>
               <x>0</x>
               <y>0</y>
               <atX>0.84210527</atX>
               <atY>0.79464287</atY>
             </point>
             <point>
-              <connectY symbol="22"/>
+              <connectY symbol="15"/>
               <x>177</x>
               <y>0</y>
               <atY>0.79464287</atY>
@@ -1888,14 +1906,14 @@
               <y>435</y>
             </point>
             <point>
-              <connectY symbol="24"/>
+              <connectY symbol="17"/>
               <x>459</x>
               <y>39</y>
               <atY>0.85263157</atY>
             </point>
             <point>
-              <connectX symbol="24"/>
-              <connectY symbol="24"/>
+              <connectX symbol="17"/>
+              <connectY symbol="17"/>
               <x>0</x>
               <y>0</y>
               <atX>0.29710144</atX>
@@ -1906,7 +1924,7 @@
               <y>262</y>
               <w>79</w>
               <h>34</h>
-              <connectedSymbol symbol="22"/>
+              <connectedSymbol symbol="15"/>
               <text>+sablonaVykaz</text>
               <text>*</text>
             </end-1>
@@ -1915,28 +1933,28 @@
               <y>410</y>
               <w>89</w>
               <h>34</h>
-              <connectedSymbol symbol="24"/>
+              <connectedSymbol symbol="17"/>
               <text>+pracovniPomer</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="39">
+          <association id="32">
             <x>282</x>
             <y>279</y>
-            <assocEnd-0 class="com.xyz.myproject.model.KalendarDefinice" name="uzivatel"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Uzivatel" name="kalendarDefinice"/>
+            <assocEnd-0 class="dao.model.KalendarDefinice" name="uzivatel"/>
+            <assocEnd-1 class="dao.model.Uzivatel" name="kalendarDefinice"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="23"/>
-              <connectY symbol="23"/>
+              <connectX symbol="16"/>
+              <connectY symbol="16"/>
               <x>0</x>
               <y>1</y>
               <atX>0.9292929</atX>
               <atY>0.8356164</atY>
             </point>
             <point>
-              <connectY symbol="23"/>
+              <connectY symbol="16"/>
               <x>286</x>
               <y>-4</y>
               <atY>0.8356164</atY>
@@ -1948,15 +1966,15 @@
               <atY>0.8356164</atY>
             </point>
             <point>
-              <connectY symbol="15"/>
+              <connectY symbol="12"/>
               <x>390</x>
               <y>0</y>
               <atX>0.84810126</atX>
               <atY>0.64285713</atY>
             </point>
             <point>
-              <connectX symbol="15"/>
-              <connectY symbol="15"/>
+              <connectX symbol="12"/>
+              <connectY symbol="12"/>
               <x>0</x>
               <y>0</y>
               <atX>0.8101266</atX>
@@ -1967,7 +1985,7 @@
               <y>274</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="23"/>
+              <connectedSymbol symbol="16"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -1976,28 +1994,28 @@
               <y>580</y>
               <w>96</w>
               <h>34</h>
-              <connectedSymbol symbol="15"/>
+              <connectedSymbol symbol="12"/>
               <text>+kalendarDefinice</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="40">
+          <association id="33">
             <x>237</x>
             <y>293</y>
-            <assocEnd-0 class="com.xyz.myproject.model.Kalendar" name="uzivatel"/>
-            <assocEnd-1 class="com.xyz.myproject.model.Uzivatel" name="kalendar"/>
+            <assocEnd-0 class="dao.model.Kalendar" name="uzivatel"/>
+            <assocEnd-1 class="dao.model.Uzivatel" name="kalendar"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="23"/>
-              <connectY symbol="23"/>
+              <connectX symbol="16"/>
+              <connectY symbol="16"/>
               <x>0</x>
               <y>0</y>
               <atX>0.47474748</atX>
               <atY>0.9315069</atY>
             </point>
             <point>
-              <connectY symbol="23"/>
+              <connectY symbol="16"/>
               <x>200</x>
               <y>0</y>
               <atY>0.53424656</atY>
@@ -2035,14 +2053,14 @@
               <y>471</y>
             </point>
             <point>
-              <connectY symbol="16"/>
+              <connectY symbol="13"/>
               <x>62</x>
               <y>0</y>
               <atY>0.7704918</atY>
             </point>
             <point>
-              <connectX symbol="16"/>
-              <connectY symbol="16"/>
+              <connectX symbol="13"/>
+              <connectY symbol="13"/>
               <x>0</x>
               <y>0</y>
               <atX>0.64</atX>
@@ -2053,7 +2071,7 @@
               <y>225</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="23"/>
+              <connectedSymbol symbol="16"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -2062,7 +2080,7 @@
               <y>470</y>
               <w>53</w>
               <h>34</h>
-              <connectedSymbol symbol="16"/>
+              <connectedSymbol symbol="13"/>
               <text>+kalendar</text>
               <text>*</text>
             </end-2>
@@ -2075,18 +2093,18 @@
       </diagrams>
       <rootName>src</rootName>
     </javaPackage>
-    <javaPackage name="com.xyz.myproject.dao">
+    <javaPackage name="dao.dao">
       <projectName>Vykazovani_Casu_Model</projectName>
-      <path>src/com/xyz/myproject/dao</path>
+      <path>src/dao/dao</path>
       <classes>
         <classifier name="SvatekDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.Svatek"/>
+              <type class="dao.model.Svatek"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Svatek" name="DAO_CLASS"/>
+              <inverse class="dao.model.Svatek" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -2110,7 +2128,7 @@
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -2122,7 +2140,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Svatek"/>
+                  <type class="dao.model.Svatek"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2137,7 +2155,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.Svatek"/>
+              <type class="dao.model.Svatek"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -2151,7 +2169,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.Svatek) getSession().get(com.xyz.myproject.model.Svatek.class, id);
+return (dao.model.Svatek) getSession().get(dao.model.Svatek.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -2163,7 +2181,7 @@ return (com.xyz.myproject.model.Svatek) getSession().get(com.xyz.myproject.model
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Svatek"/>
+                  <type class="dao.model.Svatek"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2183,7 +2201,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Svatek"/>
+                  <type class="dao.model.Svatek"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2199,17 +2217,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>SvatekDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{SvatekDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{SvatekDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="CinnostDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.Cinnost"/>
+              <type class="dao.model.Cinnost"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Cinnost" name="DAO_CLASS"/>
+              <inverse class="dao.model.Cinnost" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -2233,7 +2251,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -2245,7 +2263,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Cinnost"/>
+                  <type class="dao.model.Cinnost"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2260,7 +2278,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.Cinnost"/>
+              <type class="dao.model.Cinnost"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -2274,7 +2292,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.Cinnost) getSession().get(com.xyz.myproject.model.Cinnost.class, id);
+return (dao.model.Cinnost) getSession().get(dao.model.Cinnost.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -2286,7 +2304,7 @@ return (com.xyz.myproject.model.Cinnost) getSession().get(com.xyz.myproject.mode
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Cinnost"/>
+                  <type class="dao.model.Cinnost"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2306,7 +2324,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Cinnost"/>
+                  <type class="dao.model.Cinnost"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2322,17 +2340,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>CinnostDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{CinnostDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{CinnostDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="SablonaVykazDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.SablonaVykaz"/>
+              <type class="dao.model.SablonaVykaz"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.SablonaVykaz" name="DAO_CLASS"/>
+              <inverse class="dao.model.SablonaVykaz" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -2356,7 +2374,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -2368,7 +2386,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.SablonaVykaz"/>
+                  <type class="dao.model.SablonaVykaz"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2383,7 +2401,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.SablonaVykaz"/>
+              <type class="dao.model.SablonaVykaz"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -2397,7 +2415,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.SablonaVykaz) getSession().get(com.xyz.myproject.model.SablonaVykaz.class, id);
+return (dao.model.SablonaVykaz) getSession().get(dao.model.SablonaVykaz.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -2409,7 +2427,7 @@ return (com.xyz.myproject.model.SablonaVykaz) getSession().get(com.xyz.myproject
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.SablonaVykaz"/>
+                  <type class="dao.model.SablonaVykaz"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2429,7 +2447,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.SablonaVykaz"/>
+                  <type class="dao.model.SablonaVykaz"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2445,17 +2463,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>SablonaVykazDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{SablonaVykazDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{SablonaVykazDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="UzivatelDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Uzivatel" name="DAO_CLASS"/>
+              <inverse class="dao.model.Uzivatel" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -2479,7 +2497,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -2491,7 +2509,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Uzivatel"/>
+                  <type class="dao.model.Uzivatel"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2506,7 +2524,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.Uzivatel"/>
+              <type class="dao.model.Uzivatel"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -2520,7 +2538,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.Uzivatel) getSession().get(com.xyz.myproject.model.Uzivatel.class, id);
+return (dao.model.Uzivatel) getSession().get(dao.model.Uzivatel.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -2532,7 +2550,7 @@ return (com.xyz.myproject.model.Uzivatel) getSession().get(com.xyz.myproject.mod
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Uzivatel"/>
+                  <type class="dao.model.Uzivatel"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2552,7 +2570,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Uzivatel"/>
+                  <type class="dao.model.Uzivatel"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2568,17 +2586,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>UzivatelDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{UzivatelDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{UzivatelDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="KalendarCinnostDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.KalendarCinnost"/>
+              <type class="dao.model.KalendarCinnost"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.KalendarCinnost" name="DAO_CLASS"/>
+              <inverse class="dao.model.KalendarCinnost" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -2602,7 +2620,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -2614,7 +2632,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.KalendarCinnost"/>
+                  <type class="dao.model.KalendarCinnost"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2629,7 +2647,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.KalendarCinnost"/>
+              <type class="dao.model.KalendarCinnost"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -2643,7 +2661,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.KalendarCinnost) getSession().get(com.xyz.myproject.model.KalendarCinnost.class, id);
+return (dao.model.KalendarCinnost) getSession().get(dao.model.KalendarCinnost.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -2655,7 +2673,7 @@ return (com.xyz.myproject.model.KalendarCinnost) getSession().get(com.xyz.myproj
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.KalendarCinnost"/>
+                  <type class="dao.model.KalendarCinnost"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2675,7 +2693,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.KalendarCinnost"/>
+                  <type class="dao.model.KalendarCinnost"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2691,17 +2709,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>KalendarCinnostDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{KalendarCinnostDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{KalendarCinnostDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="NastaveniSystemuDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.NastaveniSystemu"/>
+              <type class="dao.model.NastaveniSystemu"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.NastaveniSystemu" name="DAO_CLASS"/>
+              <inverse class="dao.model.NastaveniSystemu" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -2725,7 +2743,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -2737,7 +2755,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.NastaveniSystemu"/>
+                  <type class="dao.model.NastaveniSystemu"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2752,7 +2770,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.NastaveniSystemu"/>
+              <type class="dao.model.NastaveniSystemu"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -2766,7 +2784,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.NastaveniSystemu) getSession().get(com.xyz.myproject.model.NastaveniSystemu.class, id);
+return (dao.model.NastaveniSystemu) getSession().get(dao.model.NastaveniSystemu.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -2778,7 +2796,7 @@ return (com.xyz.myproject.model.NastaveniSystemu) getSession().get(com.xyz.mypro
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.NastaveniSystemu"/>
+                  <type class="dao.model.NastaveniSystemu"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2798,7 +2816,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.NastaveniSystemu"/>
+                  <type class="dao.model.NastaveniSystemu"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2814,17 +2832,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>NastaveniSystemuDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{NastaveniSystemuDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{NastaveniSystemuDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="PracovniPomerDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.PracovniPomer"/>
+              <type class="dao.model.PracovniPomer"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.PracovniPomer" name="DAO_CLASS"/>
+              <inverse class="dao.model.PracovniPomer" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -2848,7 +2866,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -2860,7 +2878,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.PracovniPomer"/>
+                  <type class="dao.model.PracovniPomer"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2875,7 +2893,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.PracovniPomer"/>
+              <type class="dao.model.PracovniPomer"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -2889,7 +2907,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.PracovniPomer) getSession().get(com.xyz.myproject.model.PracovniPomer.class, id);
+return (dao.model.PracovniPomer) getSession().get(dao.model.PracovniPomer.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -2901,7 +2919,7 @@ return (com.xyz.myproject.model.PracovniPomer) getSession().get(com.xyz.myprojec
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.PracovniPomer"/>
+                  <type class="dao.model.PracovniPomer"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2921,7 +2939,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.PracovniPomer"/>
+                  <type class="dao.model.PracovniPomer"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2937,17 +2955,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>PracovniPomerDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{PracovniPomerDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{PracovniPomerDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="KalendarDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.Kalendar"/>
+              <type class="dao.model.Kalendar"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.Kalendar" name="DAO_CLASS"/>
+              <inverse class="dao.model.Kalendar" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -2971,7 +2989,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -2983,7 +3001,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Kalendar"/>
+                  <type class="dao.model.Kalendar"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -2998,7 +3016,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.Kalendar"/>
+              <type class="dao.model.Kalendar"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -3012,7 +3030,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.Kalendar) getSession().get(com.xyz.myproject.model.Kalendar.class, id);
+return (dao.model.Kalendar) getSession().get(dao.model.Kalendar.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -3024,7 +3042,7 @@ return (com.xyz.myproject.model.Kalendar) getSession().get(com.xyz.myproject.mod
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Kalendar"/>
+                  <type class="dao.model.Kalendar"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -3044,7 +3062,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.Kalendar"/>
+                  <type class="dao.model.Kalendar"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -3060,17 +3078,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>KalendarDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{KalendarDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{KalendarDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="KalendarDefiniceDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.KalendarDefinice"/>
+              <type class="dao.model.KalendarDefinice"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.KalendarDefinice" name="DAO_CLASS"/>
+              <inverse class="dao.model.KalendarDefinice" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -3094,7 +3112,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -3106,7 +3124,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.KalendarDefinice"/>
+                  <type class="dao.model.KalendarDefinice"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -3121,7 +3139,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.KalendarDefinice"/>
+              <type class="dao.model.KalendarDefinice"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -3135,7 +3153,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.KalendarDefinice) getSession().get(com.xyz.myproject.model.KalendarDefinice.class, id);
+return (dao.model.KalendarDefinice) getSession().get(dao.model.KalendarDefinice.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -3147,7 +3165,7 @@ return (com.xyz.myproject.model.KalendarDefinice) getSession().get(com.xyz.mypro
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.KalendarDefinice"/>
+                  <type class="dao.model.KalendarDefinice"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -3167,7 +3185,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.KalendarDefinice"/>
+                  <type class="dao.model.KalendarDefinice"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -3183,17 +3201,17 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>KalendarDefiniceDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{KalendarDefiniceDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{KalendarDefiniceDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
         <classifier name="SystemovaInformaceDAO">
           <stereotype>DAO</stereotype>
           <variables>
             <variable name="DAO_TARGET">
-              <type class="com.xyz.myproject.model.SystemovaInformace"/>
+              <type class="dao.model.SystemovaInformace"/>
               <multiplicity>1</multiplicity>
               <access>1</access>
-              <inverse class="com.xyz.myproject.model.SystemovaInformace" name="DAO_CLASS"/>
+              <inverse class="dao.model.SystemovaInformace" name="DAO_CLASS"/>
               <association>dao</association>
               <type>4</type>
             </variable>
@@ -3217,7 +3235,7 @@ getSession().delete(object);
               <method>
                 <statements>
                   <javaCode>
-return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
+return dao.util.HibernateHelper.getInstance().getSession();
 </javaCode>
                 </statements>
               </method>
@@ -3229,7 +3247,7 @@ return com.xyz.myproject.util.HibernateHelper.getInstance().getSession();
               <generatedName>create</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.SystemovaInformace"/>
+                  <type class="dao.model.SystemovaInformace"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -3244,7 +3262,7 @@ return object.getId();
               </method>
             </operation>
             <operation name="read">
-              <type class="com.xyz.myproject.model.SystemovaInformace"/>
+              <type class="dao.model.SystemovaInformace"/>
               <multiplicity>0..1</multiplicity>
               <access>1</access>
               <generatedName>read</generatedName>
@@ -3258,7 +3276,7 @@ return object.getId();
               <method>
                 <statements>
                   <javaCode>
-return (com.xyz.myproject.model.SystemovaInformace) getSession().get(com.xyz.myproject.model.SystemovaInformace.class, id);
+return (dao.model.SystemovaInformace) getSession().get(dao.model.SystemovaInformace.class, id);
 </javaCode>
                 </statements>
               </method>
@@ -3270,7 +3288,7 @@ return (com.xyz.myproject.model.SystemovaInformace) getSession().get(com.xyz.myp
               <generatedName>update</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.SystemovaInformace"/>
+                  <type class="dao.model.SystemovaInformace"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -3290,7 +3308,7 @@ getSession().update(object);
               <generatedName>delete</generatedName>
               <parameters>
                 <variable name="object">
-                  <type class="com.xyz.myproject.model.SystemovaInformace"/>
+                  <type class="dao.model.SystemovaInformace"/>
                   <multiplicity>1</multiplicity>
                   <access>1</access>
                 </variable>
@@ -3306,7 +3324,7 @@ getSession().delete(object);
           </operations>
           <generatedFiles>
             <name>SystemovaInformaceDAO.java</name>
-            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;com.xyz.myproject.dao{SystemovaInformaceDAO.java</compilationUnitId>
+            <compilationUnitId>=Vykazovani_Casu_Model/src&lt;dao.dao{SystemovaInformaceDAO.java</compilationUnitId>
           </generatedFiles>
         </classifier>
       </classes>
@@ -3354,7 +3372,7 @@ getSession().delete(object);
   <properties>
     <conf-dir>conf</conf-dir>
     <platform>Hibernate 3</platform>
-    <root-package>com.xyz.myproject</root-package>
+    <root-package>dao</root-package>
     <create-hibernate-properties>true</create-hibernate-properties>
     <create-log4j-properties>true</create-log4j-properties>
     <project-name>Vykazovani_Casu_Model</project-name>
