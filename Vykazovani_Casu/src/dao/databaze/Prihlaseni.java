@@ -45,7 +45,7 @@ public class Prihlaseni{
 			String sql = "SELECT * FROM uzivatel WHERE login='" + login + "';";
 			ResultSet rs = s.executeQuery(sql);
 			if (rs.next()) prihlaseni = ulozeniDat(request, rs, login);
-			else prihlaseni = novyUzivatel(request, login);
+			//TODO else prihlaseni = novyUzivatel(request, login);
 			
 			rs.close();
 			s.close();
