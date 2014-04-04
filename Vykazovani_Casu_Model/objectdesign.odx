@@ -1322,7 +1322,7 @@
           </classSymbol>
           <classSymbol id="19">
             <x>555</x>
-            <y>197</y>
+            <y>196</y>
             <class class="dao.model.KalendarCinnost"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>datum</attribute>
@@ -1391,7 +1391,7 @@
           </association>
           <association id="22">
             <x>591</x>
-            <y>212</y>
+            <y>211</y>
             <assocEnd-0 class="dao.model.Cinnost" name="kalendarCinnost"/>
             <assocEnd-1 class="dao.model.KalendarCinnost" name="cinnost"/>
             <showMultiplicity>true</showMultiplicity>
@@ -1426,7 +1426,7 @@
             </point>
             <end-1>
               <x>594</x>
-              <y>197</y>
+              <y>196</y>
               <w>94</w>
               <h>34</h>
               <connectedSymbol symbol="19"/>
@@ -1446,7 +1446,7 @@
           </association>
           <association id="23">
             <x>608</x>
-            <y>297</y>
+            <y>296</y>
             <assocEnd-0 class="dao.model.PracovniPomer" name="kalendarCinnost"/>
             <assocEnd-1 class="dao.model.KalendarCinnost" name="pracovniPomer"/>
             <showMultiplicity>true</showMultiplicity>
@@ -1481,7 +1481,7 @@
             </point>
             <end-1>
               <x>611</x>
-              <y>309</y>
+              <y>308</y>
               <w>94</w>
               <h>34</h>
               <connectedSymbol symbol="19"/>
