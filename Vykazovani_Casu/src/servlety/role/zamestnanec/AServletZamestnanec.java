@@ -13,10 +13,11 @@ import dao.databaze.Databaze;
 
 import servlety.role.AVlastniServlet;
 
-public class AServletZamestnanec extends AVlastniServlet{
+public abstract class AServletZamestnanec extends AVlastniServlet{
 
 	private static final long serialVersionUID = -7749730765832324193L;
 
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
