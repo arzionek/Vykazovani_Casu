@@ -80,11 +80,11 @@ public class KalendarCinnost implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setDatum(java.util.Date datum) {
-		this.datum = datum;
-	}
+    this.datum = datum;
+  }
 
 	/**
    * @generated
@@ -94,11 +94,11 @@ public class KalendarCinnost implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setPocetHodin(double pocetHodin) {
-		this.pocetHodin = pocetHodin;
-	}
+    this.pocetHodin = pocetHodin;
+  }
 
 	/**
    * @generated

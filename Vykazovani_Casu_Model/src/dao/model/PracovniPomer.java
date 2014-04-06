@@ -71,11 +71,11 @@ public class PracovniPomer implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setKod(String kod) {
-		this.kod = kod;
-	}
+    this.kod = kod;
+  }
 
 	/**
    * @generated
@@ -85,11 +85,11 @@ public class PracovniPomer implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setNazev(String nazev) {
-		this.nazev = nazev;
-	}
+    this.nazev = nazev;
+  }
 
 	/**
    * @generated
@@ -99,11 +99,11 @@ public class PracovniPomer implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setVelikostUvazku(double velikostUvazku) {
-		this.velikostUvazku = velikostUvazku;
-	}
+    this.velikostUvazku = velikostUvazku;
+  }
 
 	/**
    * @generated

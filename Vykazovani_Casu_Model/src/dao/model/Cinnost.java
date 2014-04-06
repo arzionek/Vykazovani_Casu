@@ -53,11 +53,11 @@ public class Cinnost implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setKod(String kod) {
-		this.kod = kod;
-	}
+    this.kod = kod;
+  }
 
 	/**
    * @generated
@@ -67,11 +67,11 @@ public class Cinnost implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setNazev(String nazev) {
-		this.nazev = nazev;
-	}
+    this.nazev = nazev;
+  }
 
 	/**
    * @generated

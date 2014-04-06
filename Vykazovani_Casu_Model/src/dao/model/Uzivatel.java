@@ -81,11 +81,11 @@ public class Uzivatel implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setJmeno(String jmeno) {
-		this.jmeno = jmeno;
-	}
+    this.jmeno = jmeno;
+  }
 
 	/**
    * @generated
@@ -95,11 +95,11 @@ public class Uzivatel implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setPrijmeni(String prijmeni) {
-		this.prijmeni = prijmeni;
-	}
+    this.prijmeni = prijmeni;
+  }
 
 	/**
    * @generated
@@ -109,11 +109,11 @@ public class Uzivatel implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setTitulPred(String titulPred) {
-		this.titulPred = titulPred;
-	}
+    this.titulPred = titulPred;
+  }
 
 	/**
    * @generated
@@ -123,11 +123,11 @@ public class Uzivatel implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setTitulZa(String titulZa) {
-		this.titulZa = titulZa;
-	}
+    this.titulZa = titulZa;
+  }
 
 	/**
    * @generated
@@ -137,11 +137,11 @@ public class Uzivatel implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setLogin(String login) {
-		this.login = login;
-	}
+    this.login = login;
+  }
 
 	/**
    * @generated
@@ -151,11 +151,11 @@ public class Uzivatel implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setHeslo(String heslo) {
-		this.heslo = heslo;
-	}
+    this.heslo = heslo;
+  }
 
 	/**
    * @generated
