@@ -57,11 +57,11 @@ public class PracovniPomer implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setUzivatel(Uzivatel uzivatel) {
-		this.uzivatel = uzivatel;
-	}
+    this.uzivatel = uzivatel;
+  }
 
 	/**
    * @generated

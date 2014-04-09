@@ -5,11 +5,9 @@ package dao.model;
  * @generated
  */
 public class Uzivatel implements java.io.Serializable {
-	/**
-   * @generated
-   */
-  private String jmeno;
-	/**
+	
+  private String celeJmeno;
+  /**
    * @generated
    */
   private String prijmeni;
@@ -76,18 +74,9 @@ public class Uzivatel implements java.io.Serializable {
   /**
    * @generated
    */
-	public String getJmeno() {
-    return this.jmeno;
-  }
+  private String jmeno;
 
-	/**
-   * @generated
-   */
-	public void setJmeno(String jmeno) {
-    this.jmeno = jmeno;
-  }
-
-	/**
+  /**
    * @generated
    */
 	public String getPrijmeni() {
@@ -206,12 +195,6 @@ public class Uzivatel implements java.io.Serializable {
     return "Uzivatel" + " jmeno=" + jmeno + " prijmeni=" + prijmeni
         + " titulPred=" + titulPred + " titulZa=" + titulZa + " login=" + login
         + " heslo=" + heslo + " id=" + id;
-  }
-
-	/**
-   * @generated
-   */
-	public Uzivatel() {
   }
 
 	/**
@@ -411,5 +394,35 @@ public class Uzivatel implements java.io.Serializable {
    */
   public void removeKalendar(Kalendar kalendar) {
     getKalendar().remove(kalendar);
+  }
+
+  /**
+   * @generated
+   */
+  public Uzivatel() {
+  }
+
+  public String getCeleJmeno() {
+    celeJmeno = getTitulPred() + " " + getJmeno() + " " + getPrijmeni();
+    if(getTitulZa().length() > 0) celeJmeno += ", " + getTitulZa();
+    return celeJmeno;
+  }
+
+  public void setCeleJmeno(String celeJmeno) {
+    this.celeJmeno = celeJmeno;
+  }
+
+  /**
+   * @generated
+   */
+  public String getJmeno() {
+    return this.jmeno;
+  }
+
+  /**
+   * @generated
+   */
+  public void setJmeno(String jmeno) {
+    this.jmeno = jmeno;
   }
 }

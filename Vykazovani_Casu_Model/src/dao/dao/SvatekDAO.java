@@ -34,8 +34,7 @@ public class SvatekDAO {
   public dao.model.Svatek read(Long id) {
     if (id == null)
       throw new IllegalArgumentException("id");
-    return (dao.model.Svatek) getSession().get(
-        dao.model.Svatek.class, id);
+    return (dao.model.Svatek) getSession().get(dao.model.Svatek.class, id);
   }
 
   /**

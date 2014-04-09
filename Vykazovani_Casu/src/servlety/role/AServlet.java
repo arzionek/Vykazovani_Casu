@@ -76,8 +76,9 @@ public abstract class AServlet extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		ServletContext context = config.getServletContext();
-		pripojeni = new Databaze(context.getInitParameter("db-machine"), context.getInitParameter("db-db"), context.getInitParameter("db-user"), context.getInitParameter("db-pass"));
+		//ServletContext context = config.getServletContext();
+		//context.getInitParameter("db-machine"), context.getInitParameter("db-db"), context.getInitParameter("db-user"), context.getInitParameter("db-pass")
+		pripojeni = new Databaze();
 	}
 
 }

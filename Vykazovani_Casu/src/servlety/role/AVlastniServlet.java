@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.entity.Uzivatel;
+import dao.model.Uzivatel;
 
 public abstract class AVlastniServlet extends AServlet{
 	
@@ -23,8 +23,8 @@ public abstract class AVlastniServlet extends AServlet{
 	}
 	
 	protected void nastavUdajeOPrihlasenem(HttpServletRequest request, HttpSession session, String role) {
-		int id = Integer.parseInt(session.getAttribute("id_uzivatel").toString());
-		Uzivatel uzivatel = pripojeni.nactiUzivatele("" + id, "id_uzivatel", role);
+		long id = Integer.parseInt(session.getAttribute("id_uzivatel").toString());
+		Uzivatel uzivatel = (Uzivatel) pripojeni.nacti(Uzivatel.class, id);
 		request.setAttribute("uzivatel", uzivatel);
 		if(role.equals("zamestnanec")){
 			request.setAttribute("zamestnanec", uzivatel);

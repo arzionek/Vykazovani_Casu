@@ -3,7 +3,6 @@ package servlety.role.zamestnanec;
 import java.io.IOException;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +38,6 @@ public abstract class AServletZamestnanec extends AVlastniServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		ServletContext context = config.getServletContext();
-		pripojeni = new Databaze(context.getInitParameter("db-machine"), context.getInitParameter("db-db"), context.getInitParameter("db-user"), context.getInitParameter("db-pass"));
+		pripojeni = new Databaze();
 	}
 }

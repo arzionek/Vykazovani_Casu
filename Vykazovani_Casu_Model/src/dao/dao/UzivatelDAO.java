@@ -34,8 +34,7 @@ public class UzivatelDAO {
   public dao.model.Uzivatel read(Long id) {
     if (id == null)
       throw new IllegalArgumentException("id");
-    return (dao.model.Uzivatel) getSession().get(
-        dao.model.Uzivatel.class, id);
+    return (dao.model.Uzivatel) getSession().get(dao.model.Uzivatel.class, id);
   }
 
   /**

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.beany.Cas;
-import dao.databaze.Databaze;
 import dao.databaze.Prihlaseni;
 
 public class LoginZcu extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private Databaze pripojeni;
 	private static final String ADRESA = "/jsp";
+	private Prihlaseni pripojeni;
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +26,7 @@ public class LoginZcu extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(session == null || session.getAttribute("loggedUser") == null){
 			String login = (String) request.getAttribute("REMOTE_USER");
-			if (login != null && !login.equals("<UNSET>") && (new Prihlaseni(pripojeni)).login(login, request)){
+			if (login != null && !login.equals("<UNSET>") && (pripojeni.prihlaseni(login, request))){
 				System.out.println(new Cas().ziskejDatum() + " - prihlaseni: " + login);
 				response.sendRedirect("uvodni");
 			}else{
@@ -50,8 +48,7 @@ public class LoginZcu extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		ServletContext context = config.getServletContext();
-		pripojeni = new Databaze(context.getInitParameter("db-machine"), context.getInitParameter("db-db"), context.getInitParameter("db-user"), context.getInitParameter("db-pass"));
+		pripojeni = new Prihlaseni();
 	}
 	
 }

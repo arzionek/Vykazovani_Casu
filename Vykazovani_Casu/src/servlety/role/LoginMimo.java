@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.beany.Cas;
-import dao.databaze.Databaze;
 import dao.databaze.Prihlaseni;
 
 public class LoginMimo extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private Databaze pripojeni;
 	private static final String ADRESA = "/jsp";
+	private Prihlaseni pripojeni;
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +39,7 @@ public class LoginMimo extends HttpServlet {
 		String login = request.getParameter("login");
 		String heslo = request.getParameter("heslo");
 
-		if((new Prihlaseni(pripojeni)).login(login, heslo, request)){
+		if(pripojeni.prihlaseni(login, heslo, request)){
 			System.out.println(new Cas().ziskejDatum() + " - prihlaseni: " + request.getSession().getAttribute("loggedUser"));
 			response.sendRedirect("uvodni");
 		}else{
@@ -54,8 +52,7 @@ public class LoginMimo extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		ServletContext context = config.getServletContext();
-		pripojeni = new Databaze(context.getInitParameter("db-machine"), context.getInitParameter("db-db"), context.getInitParameter("db-user"), context.getInitParameter("db-pass"));
+		pripojeni = new Prihlaseni();
 	}
 	
 }
