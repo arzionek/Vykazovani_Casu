@@ -23,7 +23,7 @@ public abstract class ADatabaze{
   public Object nacti(Class<?> trida, String atribut, String hodnota){
     Query query = ctx.createQuery("select o from " + trida.getName() + " o where o." + atribut + "='" + hodnota + "'");
     List<?> list = query.list();
-    if(list != null && list.isEmpty()) return list.get(0);
+    if(list != null && !list.isEmpty()) return list.get(0);
     else return null;
   }
   
