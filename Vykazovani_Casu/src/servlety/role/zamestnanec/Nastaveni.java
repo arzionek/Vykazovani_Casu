@@ -32,7 +32,7 @@ public class Nastaveni extends AServletZamestnanec{
     if(akce.getNastaveniCinnosti().equals(volano)){
       vypisAkce("nastaveni_cinnosti", request);
       nastaveniCinnosti(request, response);  
-    }if(akce.getNastaveniSvatky().equals(volano)){
+    }else if(akce.getNastaveniSvatky().equals(volano)){
       vypisAkce("nastaveni_svatky", request);
       nastaveniSvatky(request, response);
     }else{    

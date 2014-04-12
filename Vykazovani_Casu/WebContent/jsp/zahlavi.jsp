@@ -23,18 +23,10 @@
     <script language="javascript" style="text/javascript" src="js/tooltip.js"></script>
     <script language="javascript" style="text/javascript" src="js/cas.js"></script>
     
-    <!-- <link rel="stylesheet" href="js/jquery-ui.css" type="text/css" media="all" /> 
-    <link rel="stylesheet" href="js/ui.theme.css" type="text/css" media="all" /> 
-    <script src="js/jquery.min.js" type="text/javascript"></script> 
-    <script src="js/jquery-ui.min.js" type="text/javascript"></script> -->
-    
-    
     <link rel="stylesheet" href="js/jquery-ui.css">
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/jquery-ui.js"></script>
 
-    
-    
     <title>Vykazování času</title>
     <!--[if IE]>
     <script type="text/javascript">
