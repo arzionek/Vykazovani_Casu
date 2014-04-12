@@ -11,7 +11,7 @@
       <a href="<c:out value="${svatky}" escapeXml="true" />">Svátky</a>
 	  
 	    <c:url var="pomery" value="nastaveni">
-		    <c:param name="akce" value="${akce.odhlasit}"/>
+		    <c:param name="akce" value="${akce.nastaveniPomeru}"/>
 	    </c:url>
       <a href="<c:out value="${pomery}" escapeXml="true" />">Pracovní poměry</a>
       

@@ -75,6 +75,19 @@ public abstract class AVlastniServlet extends AServlet{
 		return parameter;
 	}
 	
+	protected static double kontrolaDouble(String nazev, HttpServletRequest request) {
+		String parametr = request.getParameter(nazev);
+		double parameter = 0.0;
+		try {
+			parameter = Double.parseDouble(parametr);
+		} catch (Exception e) {
+			request.setAttribute("error3", true);
+		}
+		if (parameter <= 0) request.setAttribute("error3", true);
+		
+		return parameter;
+	}
+	
 	protected static String[] getObjekty(HttpServletRequest request, String nazev) {
 		String[] ids = request.getParameterValues(nazev);
 		if(ids == null || ids.length < 1){

@@ -7,51 +7,72 @@ package dao.beany;
  */
 public class Akce {
 
-  private static final String ODHLASIT = "-1";
-  
-  private static final String NASTAVENI_CINNOSTI = "1";
-  private static final String NASTAVENI_CINNOSTI_VLOZIT = "11";
-  private static final String NASTAVENI_CINNOSTI_UPRAVIT = "12";
-  private static final String NASTAVENI_CINNOSTI_SMAZAT = "13";
-  private static final String NASTAVENI_SVATKY = "2";
-  private static final String NASTAVENI_SVATKY_VLOZIT = "21";
-  private static final String NASTAVENI_SVATKY_UPRAVIT = "22";
-  private static final String NASTAVENI_SVATKY_SMAZAT = "23";
+	private static final String ODHLASIT = "-1";
+
+	private static final String NASTAVENI_CINNOSTI = "1";
+	private static final String NASTAVENI_CINNOSTI_VLOZIT = "11";
+	private static final String NASTAVENI_CINNOSTI_UPRAVIT = "12";
+	private static final String NASTAVENI_CINNOSTI_SMAZAT = "13";
 	
+	private static final String NASTAVENI_SVATKY = "2";
+	private static final String NASTAVENI_SVATKY_VLOZIT = "21";
+	private static final String NASTAVENI_SVATKY_UPRAVIT = "22";
+	private static final String NASTAVENI_SVATKY_SMAZAT = "23";
+	
+	private static final String NASTAVENI_POMERU = "3";
+	private static final String NASTAVENI_POMERU_VLOZIT = "31";
+	private static final String NASTAVENI_POMERU_UPRAVIT = "32";
+	private static final String NASTAVENI_POMERU_SMAZAT = "33";
+
 	public String getOdhlasit() {
 		return ODHLASIT;
 	}
 
-  public String getNastaveniCinnosti() {
-    return NASTAVENI_CINNOSTI;
-  }
+	public String getNastaveniCinnosti() {
+		return NASTAVENI_CINNOSTI;
+	}
 
-  public String getNastaveniCinnostiVlozit() {
-    return NASTAVENI_CINNOSTI_VLOZIT;
-  }
+	public String getNastaveniCinnostiVlozit() {
+		return NASTAVENI_CINNOSTI_VLOZIT;
+	}
 
-  public String getNastaveniCinnostiUpravit() {
-    return NASTAVENI_CINNOSTI_UPRAVIT;
-  }
+	public String getNastaveniCinnostiUpravit() {
+		return NASTAVENI_CINNOSTI_UPRAVIT;
+	}
 
-  public String getNastaveniCinnostiSmazat() {
-    return NASTAVENI_CINNOSTI_SMAZAT;
-  }
+	public String getNastaveniCinnostiSmazat() {
+		return NASTAVENI_CINNOSTI_SMAZAT;
+	}
 
-  public String getNastaveniSvatky() {
-    return NASTAVENI_SVATKY;
-  }
+	public String getNastaveniSvatky() {
+		return NASTAVENI_SVATKY;
+	}
 
-  public String getNastaveniSvatkyVlozit() {
-    return NASTAVENI_SVATKY_VLOZIT;
-  }
+	public String getNastaveniSvatkyVlozit() {
+		return NASTAVENI_SVATKY_VLOZIT;
+	}
 
-  public String getNastaveniSvatkyUpravit() {
-    return NASTAVENI_SVATKY_UPRAVIT;
-  }
+	public String getNastaveniSvatkyUpravit() {
+		return NASTAVENI_SVATKY_UPRAVIT;
+	}
 
-  public String getNastaveniSvatkySmazat() {
-    return NASTAVENI_SVATKY_SMAZAT;
-  }
+	public String getNastaveniSvatkySmazat() {
+		return NASTAVENI_SVATKY_SMAZAT;
+	}
 
+	public String getNastaveniPomeru() {
+		return NASTAVENI_POMERU;
+	}
+
+	public String getNastaveniPomeruVlozit() {
+		return NASTAVENI_POMERU_VLOZIT;
+	}
+
+	public String getNastaveniPomeruUpravit() {
+		return NASTAVENI_POMERU_UPRAVIT;
+	}
+
+	public String getNastaveniPomeruSmazat() {
+		return NASTAVENI_POMERU_SMAZAT;
+	}
 }
