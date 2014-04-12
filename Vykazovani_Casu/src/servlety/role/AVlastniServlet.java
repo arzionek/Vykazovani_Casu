@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.beany.Cas;
 import dao.model.Uzivatel;
 
 public abstract class AVlastniServlet extends AServlet{
@@ -77,6 +78,14 @@ public abstract class AVlastniServlet extends AServlet{
 			return null;
 		}
 		return ids;
+	}
+	
+	protected String getUzivatele(HttpServletRequest request){
+	  return (String) request.getSession().getAttribute("login");
+	}
+	
+	protected void vypisAkce(String akce, HttpServletRequest request){
+	  System.out.println(new Cas().ziskejDatum() + " - _" + akce + ": " + getUzivatele(request));
 	}
 	
 }

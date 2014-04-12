@@ -12,10 +12,6 @@ public class Cinnost implements java.io.Serializable {
 	/**
    * @generated
    */
-  private String kod;
-	/**
-   * @generated
-   */
   private String nazev;
 	/**
    * @generated
@@ -34,6 +30,11 @@ public class Cinnost implements java.io.Serializable {
 	/**
    * @generated
    */
+  private String kod;
+
+  /**
+   * @generated
+   */
 	public Uzivatel getUzivatel() {
     return this.uzivatel;
   }
@@ -43,20 +44,6 @@ public class Cinnost implements java.io.Serializable {
    */
 	public void setUzivatel(Uzivatel uzivatel) {
     this.uzivatel = uzivatel;
-  }
-
-	/**
-   * @generated
-   */
-	public String getKod() {
-    return this.kod;
-  }
-
-	/**
-   * @generated
-   */
-	public void setKod(String kod) {
-    this.kod = kod;
   }
 
 	/**
@@ -81,11 +68,11 @@ public class Cinnost implements java.io.Serializable {
   }
 
 	/**
-	 * @generated
-	 */
+   * @generated
+   */
 	public void setId(Long id) {
-		this.id = id;
-	}
+    this.id = id;
+  }
 
 	/**
    * @generated
@@ -128,4 +115,18 @@ public class Cinnost implements java.io.Serializable {
 	public void removeKalendarCinnost(KalendarCinnost kalendarCinnost) {
 		getKalendarCinnost().remove(kalendarCinnost);
 	}
+
+  /**
+   * @generated
+   */
+  public String getKod() {
+    return this.kod;
+  }
+
+  /**
+   * @generated
+   */
+  public void setKod(String kod) {
+    this.kod = kod;
+  }
 }
