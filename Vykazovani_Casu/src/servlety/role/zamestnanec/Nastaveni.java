@@ -67,7 +67,7 @@ public class Nastaveni extends AServletZamestnanec{
     }
     
     request.setAttribute("objekt", cinnost);
-    List<?> cinnosti = (List<?>) pripojeni.ziskejObjekty(Cinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    List<?> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
     request.setAttribute("objekty", cinnosti);
     presmerovani(request, response, adresa + "/cinnosti.jsp");
   }
