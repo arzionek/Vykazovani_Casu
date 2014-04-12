@@ -1,5 +1,7 @@
 package dao.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  * @generated
@@ -9,6 +11,8 @@ public class Svatek implements java.io.Serializable {
    * @generated
    */
   private java.util.Date datum;
+  private String datum2;
+  
   /**
    * @generated
    */
@@ -112,5 +116,23 @@ public class Svatek implements java.io.Serializable {
    */
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public String getDatum2() {
+    if(datum != null){
+      DateFormat df = new SimpleDateFormat("dd_M_yyyy_HH_mm_ss"); 
+      String datumCas[] = (df.format(datum)).split("_");
+      
+      String den = datumCas[0];
+      if(den.length() == 1) den = "0" + den;
+      String mesic = datumCas[1];
+      if(mesic.length() == 1) mesic = "0" + mesic;
+      datum2 = den + "." + mesic + ".";
+    }
+    return datum2;
+  }
+
+  public void setDatum2(String datum2) {
+    this.datum2 = datum2;
   }
 }

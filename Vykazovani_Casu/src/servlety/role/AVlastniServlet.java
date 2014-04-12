@@ -1,7 +1,10 @@
 package servlety.role;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,10 +20,11 @@ public abstract class AVlastniServlet extends AServlet{
 	private static final long serialVersionUID = 4290993986585412083L;
 
 	protected void presmerovani(HttpServletRequest request, HttpServletResponse response, String adresa) throws ServletException, IOException{
-		RequestDispatcher dispatcher;
-		
-		dispatcher = request.getRequestDispatcher("/jsp" + adresa);
-		dispatcher.forward(request, response);
+		if(!response.isCommitted()){
+  	  RequestDispatcher dispatcher;
+  		dispatcher = request.getRequestDispatcher("/jsp" + adresa);
+  		dispatcher.forward(request, response);
+		}
 	}
 	
 	protected void nastavUdajeOPrihlasenem(HttpServletRequest request, HttpSession session, String role) {
@@ -87,5 +91,19 @@ public abstract class AVlastniServlet extends AServlet{
 	protected void vypisAkce(String akce, HttpServletRequest request){
 	  System.out.println(new Cas().ziskejDatum() + " - _" + akce + ": " + getUzivatele(request));
 	}
+	
+	public static Date vratDatum(String atribut, HttpServletRequest request, boolean rok) {
+    String datum = (String) request.getParameter(atribut);
+    datum = datum.replace('.', '-');
+    if(!rok) datum += "9999";
+    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    Date datumDatabaze = new Date();
+    try {
+      datumDatabaze = format.parse(datum);
+    } catch (ParseException e) {
+      request.setAttribute("error3", true);
+    }
+    return datumDatabaze;
+  }
 	
 }

@@ -6,11 +6,11 @@
         
         <!-- hlavní část dokumentu -->
         <div id="hlavni2">
-			<div class="box" style="width: 450px; height: 350px; float: left; margin-left: 24px; margin-top: 80px;">
+			      <div class="box" style="width: 450px; height: 350px; float: left; margin-left: 24px; margin-top: 80px;">
             <table>
-			  <tr style="text-align: center;"><td><b class="nadpis">UŽIVATEL V RÁMCI ZČU</b></td></tr>
-			</table>
-			<table>
+			        <tr style="text-align: center;"><td><b class="nadpis">UŽIVATEL V RÁMCI ZČU</b></td></tr>
+			      </table>
+			      <table>
                 <tr><td><p>&nbsp</p></td></tr>
             </table>
             <table style="border: solid 2px black; height: 200px;">

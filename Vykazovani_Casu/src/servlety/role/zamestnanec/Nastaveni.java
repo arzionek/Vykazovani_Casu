@@ -1,6 +1,7 @@
 package servlety.role.zamestnanec;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.model.Cinnost;
+import dao.model.Svatek;
 import dao.model.Uzivatel;
 
 public class Nastaveni extends AServletZamestnanec{
@@ -30,10 +32,52 @@ public class Nastaveni extends AServletZamestnanec{
     if(akce.getNastaveniCinnosti().equals(volano)){
       vypisAkce("nastaveni_cinnosti", request);
       nastaveniCinnosti(request, response);  
-    }else{
+    }if(akce.getNastaveniSvatky().equals(volano)){
+      vypisAkce("nastaveni_svatky", request);
+      nastaveniSvatky(request, response);
+    }else{    
       presmerovani(request, response, adresa + "/nastaveni.jsp");
     }
 	}
+
+  private void nastaveniSvatky(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
+    Svatek svatek = new Svatek();
+    long svatekId = vratId(request, "objektId");
+    if(akce.getNastaveniSvatkyVlozit().equals(volanaAkce)){
+      String kod = request.getParameter("kod");
+      if(kod != null){
+        kod = kontrola("kod", request);
+        String nazev = kontrola("nazev", request);
+        Date datum = vratDatum("datum", request, false);
+        if(svatekId != 0) svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
+        svatek.setKod(kod);
+        svatek.setNazev(nazev);
+        svatek.setDatum(datum);
+        svatek.setUzivatel(uzivatel);
+        
+        Object chyba = request.getAttribute("error2");
+        Object chyba2 = request.getAttribute("error3");
+        if(chyba == null && chyba2 == null){
+          pripojeni.vlozUprav(svatek, svatek.getId());
+          svatek = new Svatek();
+        }
+      }
+      vypisAkce("_vlozit", request);
+    }else if(akce.getNastaveniSvatkyUpravit().equals(volanaAkce)){
+      svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
+      vypisAkce("_upravit", request);
+    }else if(akce.getNastaveniSvatkySmazat().equals(volanaAkce)){
+      svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
+      pripojeni.smaz(svatek);
+      vypisAkce("_smazat", request);
+    }
+    
+    request.setAttribute("objekt", svatek);
+    List<?> svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    request.setAttribute("objekty", svatky);
+    presmerovani(request, response, adresa + "/svatky.jsp");
+  }
 
   private void nastaveniCinnosti(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");

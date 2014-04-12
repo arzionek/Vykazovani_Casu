@@ -6,7 +6,7 @@
   <table>
     <tr><td>
       <c:url var="svatky" value="nastaveni">
-		    <c:param name="akce" value="${akce.odhlasit}"/>
+		    <c:param name="akce" value="${akce.nastaveniSvatky}"/>
 	    </c:url>
       <a href="<c:out value="${svatky}" escapeXml="true" />">Svátky</a>
 	  
