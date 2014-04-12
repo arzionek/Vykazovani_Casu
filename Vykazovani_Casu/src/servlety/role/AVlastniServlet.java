@@ -77,6 +77,7 @@ public abstract class AVlastniServlet extends AServlet{
 	
 	protected static double kontrolaDouble(String nazev, HttpServletRequest request) {
 		String parametr = request.getParameter(nazev);
+		parametr = parametr.replace(",", ".");
 		double parameter = 0.0;
 		try {
 			parameter = Double.parseDouble(parametr);
