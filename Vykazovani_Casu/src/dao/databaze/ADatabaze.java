@@ -1,7 +1,9 @@
 package dao.databaze;
 
 import java.util.List;
+import java.util.Set;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -68,4 +70,7 @@ public abstract class ADatabaze{
     return dotaz;
   }
 
+  public void inicializaceSetu(Set<?> set) {
+    Hibernate.initialize(set);
+  }
 }

@@ -68,7 +68,7 @@
       <td class="vpravo"><input onmouseover="tooltip(upravitTooltip, this, 100)" type="image" alt="Upravit" src="img/upravit.png" name="upravit" value="Upravit" class="vpravo2"/></td>
     </form>
     <td class="vpravo">
-      <!-- c:if test="" dodělat kontrolu, jestli už není použito -->
+      <c:if test="${empty o.kalendarCinnost && empty o.sablonaVykaz}">
         <c:url var="odstranit" value="nastaveni">
 	      <c:param name="akce" value="${akce.nastaveniPomeruSmazat}"/>
         </c:url>   
@@ -76,10 +76,10 @@
           <input type="hidden" name="objektId" value="${o.id}" />
           <input onmouseover="tooltip(odstranitTooltip, this, 100)" type="image" alt="Odstranit" src="img/odstranit.png" name="odstranit" value="Odstranit" class="vpravo2"/>
         </form>
-      <!-- /c:if -->
-      <!-- c:if test="" dodělat kontrolu, jestli už je použito
+      </c:if>
+      <c:if test="${!empty o.kalendarCinnost || !empty o.sablonaVykaz}">
         <img src="img/odstranit2.png" alt="Odstranit" class="vpravo2"/>
-      /c:if -->
+      </c:if>
     </td>    
   </table> 
   </c:forEach> 
