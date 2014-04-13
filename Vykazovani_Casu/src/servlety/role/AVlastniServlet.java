@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -120,4 +122,11 @@ public abstract class AVlastniServlet extends AServlet{
     return datumDatabaze;
   }
 	
+	protected double vratPocetOdpracovanychHodin(Date casOd, Date casDo) {
+	  double rozdil = casDo.getTime() - casOd.getTime();	  
+	  rozdil /= 1000; //na sekundy
+	  rozdil /= 60; //na minuty
+	  rozdil /= 60; //na hodiny  
+	  return rozdil;
+	}
 }
