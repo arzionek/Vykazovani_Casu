@@ -1,13 +1,3 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-INSERT INTO `svatek` (`svatek_id`, `datum`, `nazev`, `uzivatel_id`, `kod`) VALUES
-(1, '9999-04-01 00:00:00', 'Svátek1', 1, 'sv1'),
-(2, '9999-04-02 00:00:00', 'Svátek2', 1, 'sv2'),
-(3, '9999-04-03 00:00:00', 'Svátek3', 1, 'sv3'),
-(4, '9999-04-04 00:00:00', 'Svátek4', 1, 'sv4'),
-(5, '9999-04-05 00:00:00', 'Svátek5', 1, 'sv5');
-
 INSERT INTO `uzivatel` (`uzivatel_id`, `jmeno`, `prijmeni`, `titul_pred`, `titul_za`, `login`, `heslo`) VALUES
 (1, 'Vendelín', 'Pokus', 'prof. Ing.', 'Ph.D.', 'admin', 'admin'),
 (2, 'Marek', 'Vohradský', 'Bc.', '', 'capo333', 'xxx'),
@@ -16,6 +6,13 @@ INSERT INTO `uzivatel` (`uzivatel_id`, `jmeno`, `prijmeni`, `titul_pred`, `titul
 (5, 'Jaroslav', 'Ullmann', '', '', 'ullmannj', 'xxx'),
 (6, 'Roman', 'Mouček', 'Ing.', 'Ph.D.', 'moucek', 'xxx'),
 (7, 'Petr', 'Ježek', 'Ing.', 'Ph.D.', 'jezekp', 'xxx');
+
+INSERT INTO `svatek` (`svatek_id`, `datum`, `nazev`, `uzivatel_id`, `kod`) VALUES
+(1, '9999-04-01 00:00:00', 'Svátek1', 1, 'sv1'),
+(2, '9999-04-02 00:00:00', 'Svátek2', 1, 'sv2'),
+(3, '9999-04-03 00:00:00', 'Svátek3', 1, 'sv3'),
+(4, '9999-04-04 00:00:00', 'Svátek4', 1, 'sv4'),
+(5, '9999-04-05 00:00:00', 'Svátek5', 1, 'sv5');
 
 INSERT INTO `cinnost` (`cinnost_id`, `uzivatel_id`, `kod`, `nazev`) VALUES
 (1, 1, 'cin1', 'Cinnost1'),
