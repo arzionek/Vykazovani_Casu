@@ -86,7 +86,7 @@
   </table>
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px">
-    <tr><td>${o.kod} - ${o.nazev}, ${o.datum2}</td>
+    <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" />, <c:out value="${o.datum2}" /></td>
     <c:url var="upravit" value="nastaveni">
 	  <c:param name="akce" value="${akce.nastaveniSvatkyUpravit}"/>
     </c:url>  
