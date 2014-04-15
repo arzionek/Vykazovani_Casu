@@ -1,12 +1,11 @@
 package servlety.role;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,11 +52,11 @@ public abstract class AVlastniServlet extends AServlet{
 		try{
 			cislo = Integer.parseInt(request.getParameter(jmeno));
 			if(cislo < 0){
-				request.setAttribute("error4", true);
+				request.setAttribute("error1", true);
 				cislo = 0;
 			}
 		}catch(Exception e){
-			request.setAttribute("error4", true);
+			request.setAttribute("error1", true);
 		}
 		return cislo;
 	}
@@ -66,7 +65,7 @@ public abstract class AVlastniServlet extends AServlet{
 		int cislo = 0;
 		try{
 			cislo = Integer.parseInt(request.getParameter(jmeno));
-		}catch(Exception e){}
+		} catch(Exception e) {}
 		return cislo;
 	}
 	
@@ -112,16 +111,32 @@ public abstract class AVlastniServlet extends AServlet{
 	  System.out.println(new Cas().ziskejDatum() + " - _" + akce + ": " + getUzivatele(request));
 	}
 	
-	public static Date vratDatum(String atribut, HttpServletRequest request, boolean rok) {
+	public static Date vratDatum(String atribut, HttpServletRequest request) {
     String datum = (String) request.getParameter(atribut);
     datum = datum.replace('.', '-');
-    if(!rok) datum += "9999";
-    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    
+    int pocetUdaju = datum.length() - datum.replace("-", "").length();
+    if (pocetUdaju < 1 || pocetUdaju > 2) {
+      request.setAttribute("error3", true);
+      return new Date();
+    }
+    else if (pocetUdaju == 2) {
+      if (datum.charAt(datum.length() - 1) == '-') datum += "9999";
+    }
+    else datum += "-9999";
+    
+    DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    format.setLenient(false);    
     Date datumDatabaze = new Date();
     try {
       datumDatabaze = format.parse(datum);
-    } catch (ParseException e) {
-      request.setAttribute("error3", true);
+    } catch (ParseException e1) {
+      if (datum.contains("29-2-") || datum.contains("29-02-")) { //29. unor - prestupny rok
+        try {
+          return format.parse("29-02-2000");
+        } catch (Exception e2) {}
+      }
+      else request.setAttribute("error3", true);
     }
     return datumDatabaze;
   }

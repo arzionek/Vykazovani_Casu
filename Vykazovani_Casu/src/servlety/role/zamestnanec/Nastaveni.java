@@ -62,7 +62,10 @@ public class Nastaveni extends AServletZamestnanec{
         kontrolaMaximalniDelky(kod, request, 10);
         String nazev = kontrola("nazev", request);
         kontrolaMaximalniDelky(nazev, request, 64);
-        Date datum = vratDatum("datum", request, false);
+        Date datum = vratDatum("datum", request);
+        
+        if (request.getAttribute("error3") != null) System.out.println("Chyba");
+        
         if(svatekId != 0) svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
         svatek.setKod(kod);
         svatek.setNazev(nazev);
