@@ -84,11 +84,15 @@ public abstract class AVlastniServlet extends AServlet{
 		try {
 			parameter = Double.parseDouble(parametr);
 		} catch (Exception e) {
-			request.setAttribute("error3", true);
+			request.setAttribute("error4", true);
 		}
-		if (parameter <= 0) request.setAttribute("error3", true);
+		if (parameter <= 0) request.setAttribute("error4", true);
 		
 		return parameter;
+	}
+	
+	protected static void kontrolaMaximalniDelky(String nazev, HttpServletRequest request, int maximalniDelka) {
+	  if (nazev.length() > maximalniDelka) request.setAttribute("error5", true);
 	}
 	
 	protected static String[] getObjekty(HttpServletRequest request, String nazev) {

@@ -59,7 +59,9 @@ public class Nastaveni extends AServletZamestnanec{
       String kod = request.getParameter("kod");
       if(kod != null){
         kod = kontrola("kod", request);
+        kontrolaMaximalniDelky(kod, request, 10);
         String nazev = kontrola("nazev", request);
+        kontrolaMaximalniDelky(nazev, request, 64);
         Date datum = vratDatum("datum", request, false);
         if(svatekId != 0) svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
         svatek.setKod(kod);
@@ -68,8 +70,10 @@ public class Nastaveni extends AServletZamestnanec{
         svatek.setUzivatel(uzivatel);
 
         Object chyba = request.getAttribute("error2");
-        Object chyba2 = request.getAttribute("error3");
-        if(chyba == null && chyba2 == null){
+        if (chyba == null) chyba = request.getAttribute("error3");
+        if (chyba == null) chyba = request.getAttribute("error5");
+        
+        if(chyba == null){
           pripojeni.vlozUprav(svatek, svatek.getId());
           svatek = new Svatek();
         }
@@ -98,7 +102,9 @@ public class Nastaveni extends AServletZamestnanec{
       String kod = request.getParameter("kod");
       if(kod != null){
         kod = kontrola("kod", request);
+        kontrolaMaximalniDelky(kod, request, 10);
         String nazev = kontrola("nazev", request);
+        kontrolaMaximalniDelky(nazev, request, 128);
 
         if(cinnostId != 0) cinnost = (Cinnost) pripojeni.nacti(Cinnost.class, cinnostId);
         cinnost.setKod(kod);
@@ -106,6 +112,8 @@ public class Nastaveni extends AServletZamestnanec{
         cinnost.setUzivatel(uzivatel);
 
         Object chyba = request.getAttribute("error2");
+        if (chyba == null) chyba = request.getAttribute("error5");
+        
         if(chyba == null){
           pripojeni.vlozUprav(cinnost, cinnost.getId());
           cinnost = new Cinnost();
@@ -141,7 +149,9 @@ public class Nastaveni extends AServletZamestnanec{
       String kod = request.getParameter("kod");
       if(kod != null){
         kod = kontrola("kod", request);
+        kontrolaMaximalniDelky(kod, request, 10);
         String nazev = kontrola("nazev", request);
+        kontrolaMaximalniDelky(nazev, request, 128);
         double velikost = kontrolaDouble("velikost", request);
 
         if(pomerId != 0) pomer = (PracovniPomer) pripojeni.nacti(PracovniPomer.class, pomerId);
@@ -152,8 +162,9 @@ public class Nastaveni extends AServletZamestnanec{
         pomer.setUzivatel(uzivatel);
 
         Object chyba = request.getAttribute("error2");
-        if (chyba == null) chyba = request.getAttribute("error3");
-
+        if (chyba == null) chyba = request.getAttribute("error4");
+        if (chyba == null) chyba = request.getAttribute("error5");
+        
         if(chyba == null){
           pripojeni.vlozUprav(pomer, pomer.getId());
           pomer = new PracovniPomer();
