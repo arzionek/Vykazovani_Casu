@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 
 <jsp:include page="../../zahlavi.jsp" flush="true" />
 <jsp:include page="../../horni.jsp" flush="true" />
@@ -18,7 +19,12 @@
   
   <jsp:include page="menu.jsp" flush="true" />
   	
-  <div class="box2">	
+  <div class="box2">
+    <c:url var="ulozit" value="nastaveni">
+    <c:param name="akce" value="${akce.nastaveniCinnostiVlozit}"/>
+  </c:url>
+  <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
+  <input type="hidden" name="objektId" value="${objekt.id}" /> 	
   <div class="box">
   <table>
     <c:if test="${objekt.id != null}"><tr><td class="zvyraznit2">Upravit činnost:</td></tr></c:if>
@@ -26,30 +32,27 @@
     <c:if test="${error2 == true}" ><tr><td class="hlaska_chyba">Označené údaje musí být vyplněny!</td></tr></c:if> 
     <c:if test="${error5 == true}" ><tr><td class="hlaska_chyba">Zadané údaje jsou příliš dlouhé!</td></tr></c:if>
   </table>
-  <c:url var="ulozit" value="nastaveni">
-	  <c:param name="akce" value="${akce.nastaveniCinnostiVlozit}"/>
-  </c:url>
-  <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
-  <input type="hidden" name="objektId" value="${objekt.id}" /> 
   <table>
     <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${error2 == true || error5 == true}">class="povinne"</c:if>/></td></tr>
     <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${error2 == true || error5 == true}">class="povinne"</c:if>/></td></tr>
-    <tr><td>&nbsp</td></tr>
+    <tr><td>&nbsp;</td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>  
   </table>
   </div>
   <div class="box" style="padding-top: 0px; padding-bottom: 0px;">  
   <table>
-    <tr><td style="float: left;"><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td></td>
-    </form>
+    <tr><td style="float: left;"><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td>
     <c:url var="novy" value="nastaveni">
 	    <c:param name="akce" value="${akce.nastaveniCinnosti}"/>
     </c:url>
-    <form action="<c:out value="${novy}" escapeXml="true" />" method="post">
-      <td style="float: left;"><input onmouseover="tooltip(novyTooltip, this, 100)" type="image" alt="Nový" src="img/papir.png" name="novy" value="Nový"/></td></tr>
-    </form>  
+    <td style="float: left;">
+    <a href="<c:out value="${novy}" escapeXml="true" />">
+    <img onmouseover="tooltip(novyTooltip, this, 100)" alt="Nový" src="img/papir.png" />
+    </a>
+    </td></tr>
   </table> 
   </div>
+  </form>
   </div>  
   
   <div class="box2">
@@ -62,10 +65,12 @@
     <c:url var="upravit" value="nastaveni">
 	  <c:param name="akce" value="${akce.nastaveniCinnostiUpravit}"/>
     </c:url>  
-    <form action="<c:out value="${upravit}" escapeXml="true" />" method="post">
+      <td class="vpravo">
+      <form action="<c:out value="${upravit}" escapeXml="true" />" method="post">
       <input type="hidden" name="objektId" value="${o.id}" />
-      <td class="vpravo"><input onmouseover="tooltip(upravitTooltip, this, 100)" type="image" alt="Upravit" src="img/upravit.png" name="upravit" value="Upravit" class="vpravo2"/></td>
-    </form>
+      <input onmouseover="tooltip(upravitTooltip, this, 100)" type="image" alt="Upravit" src="img/upravit.png" name="upravit" value="Upravit" class="vpravo2"/>
+      </form>
+      </td>
     <td class="vpravo">
       <c:if test="${empty o.kalendarCinnost}">
         <c:url var="odstranit" value="nastaveni">

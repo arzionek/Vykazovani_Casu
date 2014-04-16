@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 
 <jsp:include page="../zahlavi.jsp" flush="true" />
 <jsp:include page="../horni.jsp" flush="true" />

@@ -7,7 +7,7 @@
                 <td style="float: right;">rok: 2014</td>
                 <td style="float: right">verze: 1.0.0,</td>
                 <td style="float: right;">TimeForMoney,</td>
-                <td style="float: right;"><img alt="podpis" src="img/podpis.png"></td>
+                <td style="float: right;"><img alt="podpis" src="img/podpis.png" /></td>
                 <td style="float: right;"><a href="uvodni">www.vykazovani-casu.zcu.cz</a>,</td>
               </tr>
             </table>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page trimDirectiveWhitespaces="true" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -19,13 +20,13 @@
 	<![endif]-->
     <link rel="stylesheet" type="text/css" href="css/tooltip.css" title="style" />
     <link rel="shortcut icon" href="img/favicon.ico"/>
-    <script language="javascript" style="text/javascript" src="js/celkem.js"></script>
-    <script language="javascript" style="text/javascript" src="js/tooltip.js"></script>
-    <script language="javascript" style="text/javascript" src="js/cas.js"></script>
+    <script type="text/javascript" src="js/celkem.js"></script>
+    <script type="text/javascript" src="js/tooltip.js"></script>
+    <script type="text/javascript" src="js/cas.js"></script>
     
-    <link rel="stylesheet" href="js/jquery-ui.css">
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="js/jquery-ui.css" type="text/css" />
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
 
     <title>Vykazování času</title>
     <!--[if IE]>

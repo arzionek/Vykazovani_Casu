@@ -86,6 +86,7 @@ public class Nastaveni extends AServletZamestnanec{
     }else if(akce.getNastaveniSvatkySmazat().equals(volanaAkce)){
       svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
       pripojeni.smaz(svatek);
+      svatek = new Svatek();
       vypisAkce("_smazat", request);
     }
 
@@ -127,6 +128,7 @@ public class Nastaveni extends AServletZamestnanec{
     }else if(akce.getNastaveniCinnostiSmazat().equals(volanaAkce)){
       cinnost = (Cinnost) pripojeni.nacti(Cinnost.class, cinnostId);
       pripojeni.smaz(cinnost);
+      cinnost = new Cinnost();
       vypisAkce("_smazat", request);
     }
 
@@ -178,6 +180,7 @@ public class Nastaveni extends AServletZamestnanec{
     } else if(akce.getNastaveniPomeruSmazat().equals(volanaAkce)){
       pomer = (PracovniPomer) pripojeni.nacti(PracovniPomer.class, pomerId);
       pripojeni.smaz(pomer);
+      pomer = new PracovniPomer();
       vypisAkce("_smazat", request);
     }
 
