@@ -1,10 +1,6 @@
 package dao.model;
 
-
-/**
- * @generated
- */
-public class SablonaVykaz implements java.io.Serializable {
+public class SablonaVykaz extends AEntita implements java.io.Serializable {
 	/**
    * @generated
    */

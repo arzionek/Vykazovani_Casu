@@ -1,10 +1,6 @@
 package dao.model;
 
-
-/**
- * @generated
- */
-public class PracovniPomer implements java.io.Serializable {
+public class PracovniPomer extends AEntita implements java.io.Serializable {
 	/**
    * @generated
    */

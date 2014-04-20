@@ -1,18 +1,10 @@
 package dao.model;
 
-
-/**
- * @generated
- */
-public class KalendarCinnost implements java.io.Serializable {
+public class KalendarCinnost extends AEntita implements java.io.Serializable {
 	/**
    * @generated
    */
   private Uzivatel uzivatel;
-	/**
-   * @generated
-   */
-  private java.util.Date datum;
 	/**
    * @generated
    */
@@ -53,6 +45,11 @@ public class KalendarCinnost implements java.io.Serializable {
   /**
    * @generated
    */
+  private java.util.Date datum;
+
+  /**
+   * @generated
+   */
 	public String toString() {
     return "KalendarCinnost" + " datum=" + datum + " pocetHodin=" + pocetHodin
         + " id=" + id + " casOd=" + casOd + " casDo=" + casDo;
@@ -70,20 +67,6 @@ public class KalendarCinnost implements java.io.Serializable {
    */
 	public void setUzivatel(Uzivatel uzivatel) {
     this.uzivatel = uzivatel;
-  }
-
-	/**
-   * @generated
-   */
-	public java.util.Date getDatum() {
-    return this.datum;
-  }
-
-	/**
-   * @generated
-   */
-	public void setDatum(java.util.Date datum) {
-    this.datum = datum;
   }
 
 	/**
@@ -188,5 +171,19 @@ public class KalendarCinnost implements java.io.Serializable {
    */
   public void setCasOd(java.util.Date casOd) {
     this.casOd = casOd;
+  }
+
+  /**
+   * @generated
+   */
+  public java.util.Date getDatum() {
+    return this.datum;
+  }
+
+  /**
+   * @generated
+   */
+  public void setDatum(java.util.Date datum) {
+    this.datum = datum;
   }
 }

@@ -1,10 +1,6 @@
 package dao.model;
 
-
-/**
- * @generated
- */
-public class Uzivatel implements java.io.Serializable {
+public class Uzivatel extends AEntita implements java.io.Serializable {
 	
   private String celeJmeno;
   /**

@@ -1,10 +1,6 @@
 package dao.model;
 
-
-/**
- * @generated
- */
-public class NastaveniSystemu implements java.io.Serializable {
+public class NastaveniSystemu extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */

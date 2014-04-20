@@ -1,10 +1,6 @@
 package dao.model;
 
-
-/**
- * @generated
- */
-public class Cinnost implements java.io.Serializable {
+public class Cinnost extends AEntita implements java.io.Serializable {
 	/**
    * @generated
    */

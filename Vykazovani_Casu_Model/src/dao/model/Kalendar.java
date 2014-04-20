@@ -1,10 +1,6 @@
 package dao.model;
 
-
-/**
- * @generated
- */
-public class Kalendar implements java.io.Serializable {
+public class Kalendar extends AEntita implements java.io.Serializable {
 	/**
    * @generated
    */

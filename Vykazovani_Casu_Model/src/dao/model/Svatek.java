@@ -3,10 +3,7 @@ package dao.model;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-/**
- * @generated
- */
-public class Svatek implements java.io.Serializable {
+public class Svatek extends AEntita implements java.io.Serializable {
 	/**
    * @generated
    */
