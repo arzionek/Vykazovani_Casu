@@ -1,4 +1,4 @@
-package servlety.role.zamestnanec;
+package servlety.nastroje;
 
 import java.io.File;
 import java.io.FileInputStream;
