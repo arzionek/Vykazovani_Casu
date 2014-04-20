@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.beany.Cas;
+import dao.model.AEntita;
 import dao.model.Uzivatel;
 
 public abstract class AVlastniServlet extends AServlet{
@@ -70,30 +71,78 @@ public abstract class AVlastniServlet extends AServlet{
 		return cislo;
 	}
 	
-	protected static String kontrola(String nazev, HttpServletRequest request) {
+	protected static Object kontrola(HttpServletRequest request, Class<?> trida, String nazev, ETypDat typDat) {
+	  if (typDat == ETypDat.DOUBLE) {
+	    return new Double(kontrolaDouble(nazev, request));
+	  }
+
+	  if (typDat == ETypDat.DATE) {
+	    return kontrolaDatum(nazev, request);
+	  }  
+
+	  if (typDat == ETypDat.STRING) {
+	    String parametr = kontrolaVyplneni(nazev, request);
+	    kontrolaMaximalniDelky(parametr, request, AEntita.getOmezeniSloupce(trida, nazev).getLength());  
+	    return parametr;
+	  }
+	  
+	  return null;
+	}
+	
+	 private static double kontrolaDouble(String nazev, HttpServletRequest request) {
+	    String parametr = request.getParameter(nazev);
+	    parametr = parametr.replace(",", ".");
+	    double parameter = 0.0;
+	    try {
+	      parameter = Double.parseDouble(parametr);
+	    } catch (Exception e) {
+	      request.setAttribute("error4", true);
+	    }
+	    if (parameter <= 0) request.setAttribute("error4", true);
+	    
+	    return parameter;
+	  }
+	
+	 private static Date kontrolaDatum(String atribut, HttpServletRequest request) {
+	    String datum = (String) request.getParameter(atribut);
+	    datum = datum.replace('.', '-');
+	    
+	    int pocetUdaju = datum.length() - datum.replace("-", "").length();
+	    if (pocetUdaju < 1 || pocetUdaju > 2) {
+	      request.setAttribute("error3", true);
+	      return new Date();
+	    }
+	    else if (pocetUdaju == 2) {
+	      if (datum.charAt(datum.length() - 1) == '-') datum += "9999";
+	    }
+	    else datum += "-9999";
+	    
+	    DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+	    format.setLenient(false);    
+	    Date datumDatabaze = new Date();
+	    try {
+	      datumDatabaze = format.parse(datum);
+	    } catch (ParseException e1) {
+	      if (datum.contains("29-2-") || datum.contains("29-02-")) { //29. unor - prestupny rok
+	        try {
+	          return format.parse("29-02-2000");
+	        } catch (Exception e2) {}
+	      }
+	      else request.setAttribute("error3", true);
+	    }
+	    return datumDatabaze;
+	  }
+	
+	private static String kontrolaVyplneni(String nazev, HttpServletRequest request) {
 		String parameter = request.getParameter(nazev);
 		if(parameter == null) return parameter;
 		if(parameter.length() < 2 || parameter.equals("%")) request.setAttribute("error2", true);
 		return parameter;
 	}
 	
-	protected static double kontrolaDouble(String nazev, HttpServletRequest request) {
-		String parametr = request.getParameter(nazev);
-		parametr = parametr.replace(",", ".");
-		double parameter = 0.0;
-		try {
-			parameter = Double.parseDouble(parametr);
-		} catch (Exception e) {
-			request.setAttribute("error4", true);
-		}
-		if (parameter <= 0) request.setAttribute("error4", true);
-		
-		return parameter;
-	}
-	
-	protected static void kontrolaMaximalniDelky(String nazev, HttpServletRequest request, int maximalniDelka) {
-	  if (nazev.length() > maximalniDelka) request.setAttribute("error5", true);
-	}
+	 private static void kontrolaMaximalniDelky(String nazev, HttpServletRequest request, int maximalniDelka) {
+	    if (nazev.length() > maximalniDelka) request.setAttribute("error5", true);
+	  }
 	
 	protected static String[] getObjekty(HttpServletRequest request, String nazev) {
 		String[] ids = request.getParameterValues(nazev);
@@ -111,36 +160,6 @@ public abstract class AVlastniServlet extends AServlet{
 	protected void vypisAkce(String akce, HttpServletRequest request){
 	  System.out.println(new Cas().ziskejDatum() + " - _" + akce + ": " + getUzivatele(request));
 	}
-	
-	public static Date vratDatum(String atribut, HttpServletRequest request) {
-    String datum = (String) request.getParameter(atribut);
-    datum = datum.replace('.', '-');
-    
-    int pocetUdaju = datum.length() - datum.replace("-", "").length();
-    if (pocetUdaju < 1 || pocetUdaju > 2) {
-      request.setAttribute("error3", true);
-      return new Date();
-    }
-    else if (pocetUdaju == 2) {
-      if (datum.charAt(datum.length() - 1) == '-') datum += "9999";
-    }
-    else datum += "-9999";
-    
-    DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-    format.setLenient(false);    
-    Date datumDatabaze = new Date();
-    try {
-      datumDatabaze = format.parse(datum);
-    } catch (ParseException e1) {
-      if (datum.contains("29-2-") || datum.contains("29-02-")) { //29. unor - prestupny rok
-        try {
-          return format.parse("29-02-2000");
-        } catch (Exception e2) {}
-      }
-      else request.setAttribute("error3", true);
-    }
-    return datumDatabaze;
-  }
 	
 	protected double vratPocetOdpracovanychHodin(Date casOd, Date casDo) {
 	  double rozdil = casDo.getTime() - casOd.getTime();	  

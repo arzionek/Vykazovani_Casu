@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlety.role.ETypDat;
+
 import dao.model.Cinnost;
 import dao.model.KalendarCinnost;
 import dao.model.PracovniPomer;
@@ -58,11 +60,9 @@ public class Nastaveni extends AServletZamestnanec{
     if(akce.getNastaveniSvatkyVlozit().equals(volanaAkce)){
       String kod = request.getParameter("kod");
       if(kod != null){
-        kod = kontrola("kod", request);
-        kontrolaMaximalniDelky(kod, request, 10);
-        String nazev = kontrola("nazev", request);
-        kontrolaMaximalniDelky(nazev, request, 64);
-        Date datum = vratDatum("datum", request);
+        kod = (String) kontrola(request, Svatek.class, "kod", ETypDat.STRING);
+        String nazev = (String) kontrola(request, Svatek.class, "nazev", ETypDat.STRING);
+        Date datum = (Date) kontrola(request, Svatek.class, "datum", ETypDat.DATE);
         
         if(svatekId != 0) svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
         svatek.setKod(kod);
@@ -103,10 +103,8 @@ public class Nastaveni extends AServletZamestnanec{
     if(akce.getNastaveniCinnostiVlozit().equals(volanaAkce)){
       String kod = request.getParameter("kod");
       if(kod != null){
-        kod = kontrola("kod", request);
-        kontrolaMaximalniDelky(kod, request, 10);
-        String nazev = kontrola("nazev", request);
-        kontrolaMaximalniDelky(nazev, request, 128);
+        kod = (String) kontrola(request, Cinnost.class, "kod", ETypDat.STRING);
+        String nazev = (String) kontrola(request, Cinnost.class, "nazev", ETypDat.STRING);
 
         if(cinnostId != 0) cinnost = (Cinnost) pripojeni.nacti(Cinnost.class, cinnostId);
         cinnost.setKod(kod);
@@ -151,11 +149,9 @@ public class Nastaveni extends AServletZamestnanec{
     if(akce.getNastaveniPomeruVlozit().equals(volanaAkce)) {
       String kod = request.getParameter("kod");
       if(kod != null){
-        kod = kontrola("kod", request);
-        kontrolaMaximalniDelky(kod, request, 10);
-        String nazev = kontrola("nazev", request);
-        kontrolaMaximalniDelky(nazev, request, 128);
-        double velikost = kontrolaDouble("velikost", request);
+        kod = (String) kontrola(request, PracovniPomer.class, "kod", ETypDat.STRING);
+        String nazev = (String) kontrola(request, PracovniPomer.class, "nazev", ETypDat.STRING);
+        double velikost = (Double) kontrola(request, PracovniPomer.class, "velikost", ETypDat.DOUBLE);
 
         if(pomerId != 0) pomer = (PracovniPomer) pripojeni.nacti(PracovniPomer.class, pomerId);
 
