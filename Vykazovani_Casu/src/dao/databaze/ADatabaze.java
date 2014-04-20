@@ -1,73 +1,144 @@
 package dao.databaze;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import dao.model.NastaveniSystemu;
 import dao.util.HibernateHelper;
 
 public abstract class ADatabaze{
   
-  private static final String POSLEDNI_PRIPOJENI = "posledni.pripojeni";
-  private boolean kontrola = true;
-  
-  protected Session ctx;
+  protected HibernateHelper hibernate;
+  private static final int TIMEOUT = 5;
   
   public ADatabaze(){
-    ctx = HibernateHelper.getInstance().getSession();
+    hibernate = HibernateHelper.getInstance();
   }
   
   public Object nacti(Class<?> trida, Long id) {
-    zkontrolujSession();
-    Object object = ctx.load(trida, id);
+    Object object = null;
+    Session session = null;
+    try{
+      session = hibernate.getSession();
+      object = session.load(trida, id);
+    }catch(RuntimeException e){
+      throw e;
+    }finally{
+      /*if(session != null){
+        hibernate.closeSession();
+      }*/
+    }
     return object;
   }
   
   public Object nacti(Class<?> trida, String atribut, String hodnota){
-    if(kontrola) zkontrolujSession();
-    Query query = ctx.createQuery("select o from " + trida.getName() + " o where o." + atribut + "='" + hodnota + "'");
-    List<?> list = query.list();
-    if(list != null && !list.isEmpty()) return list.get(0);
-    else return null;
+    Object object = null;
+    Session session = null;
+    try{
+      session = hibernate.getSession();
+      Query query = session.createQuery("select o from " + trida.getName() + " o where o." + atribut + "='" + hodnota + "'");
+      List<?> list = query.list();
+      if(list != null && !list.isEmpty()) object = list.get(0);
+    }catch(RuntimeException e){
+      throw e;
+    }finally{
+      /*if(session != null){
+        hibernate.closeSession();
+      }*/
+    }
+    return object;
   }
   
   public Object nacti(Class<?> trida, Object atributy[], Object hodnoty[]){
-    zkontrolujSession();
-    Query query = ctx.createQuery(vytvorDotaz(trida, atributy, hodnoty));
-    List<?> list = query.list();
-    if(list != null && !list.isEmpty()) return list.get(0);
-    else return null;
+    Object object = null;
+    Session session = null;
+    try{
+      session = hibernate.getSession();
+      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty));
+      List<?> list = query.list();
+      if(list != null && !list.isEmpty()) object = list.get(0);
+    }catch(RuntimeException e){
+      throw e;
+    }finally{
+      /*if(session != null){
+        hibernate.closeSession();
+      }*/
+    }
+    return object;
   }
   
   public void vlozUprav(Object object, Long id) {
-    if(kontrola) zkontrolujSession();
-    if(id == null){
-      ctx.beginTransaction();
-      ctx.save(object);
-      ctx.getTransaction().commit();
-    }else{
-      ctx.beginTransaction();
-      ctx.update(object);
-      ctx.getTransaction().commit();
+    Session session = null;
+    Transaction tx = null;
+    try{
+      if(id == null){
+        session = hibernate.getSession();
+        tx = session.beginTransaction();
+        tx.setTimeout(TIMEOUT);
+        session.save(object);
+        tx.commit();
+      }else{
+        session = hibernate.getSession();
+        tx = session.beginTransaction();
+        tx.setTimeout(TIMEOUT);
+        session.save(object);
+        tx.commit();
+      }
+    }catch(RuntimeException e){
+      try{
+        tx.rollback();
+      }catch(RuntimeException rbe){
+        rbe.printStackTrace();
+      }
+      throw e;
+    }finally{
+      /*if(session != null){
+        hibernate.closeSession();
+      }*/
     }
   }
   
   public void smaz(Object object) {
-    zkontrolujSession();
-    ctx.beginTransaction();
-    ctx.delete(object);
-    ctx.getTransaction().commit();
+    Session session = null;
+    Transaction tx = null;
+    try{
+      session = hibernate.getSession();
+      tx = session.beginTransaction();
+      tx.setTimeout(TIMEOUT);
+      session.delete(object);
+      tx.commit();
+    }catch(RuntimeException e){
+      try{
+        tx.rollback();
+      }catch(RuntimeException rbe){
+        rbe.printStackTrace();
+      }
+      throw e;
+    }finally{
+      /*if(session != null){
+        hibernate.closeSession();
+      }*/
+    }
   }
   
   public List<?> ziskejObjekty(Class<?> trida, Object[] atributy, Object[] hodnoty) {
-    zkontrolujSession();
-    Query query = ctx.createQuery(vytvorDotaz(trida, atributy, hodnoty));
-    List<?> list = query.list();
+    List<?> list = null;
+    Session session = null;
+    try{
+      session = hibernate.getSession();
+      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty));
+      list = query.list();
+    }catch(RuntimeException e){
+      throw e;
+    }finally{
+      /*if(session != null){
+        hibernate.closeSession();
+      }*/
+    }
     return list;
   }
 
@@ -82,23 +153,11 @@ public abstract class ADatabaze{
   }
 
   public void inicializaceSetu(Set<?> set) {
-    zkontrolujSession();
     Hibernate.initialize(set);
   }
 
-  private void zkontrolujSession() {
-    try{
-      kontrola = false;
-      NastaveniSystemu nastaveni = (NastaveniSystemu) nacti(NastaveniSystemu.class, "nazev", POSLEDNI_PRIPOJENI);
-      if(nastaveni == null) nastaveni = new NastaveniSystemu();
-      nastaveni.setNazev(POSLEDNI_PRIPOJENI);
-      nastaveni.setHodnota((new Date()).toString());
-      vlozUprav(nastaveni, nastaveni.getId());
-      kontrola = true;
-    }catch(Throwable th){
-      System.out.println(new Date() + " " + th.getMessage());
-      HibernateHelper.getInstance().closeSession();
-      ctx = HibernateHelper.getInstance().getSession();
-    }
+  public void uzavritSpojeni(boolean vse){
+    if(vse) hibernate.close();
+    else hibernate.closeSession();
   }
 }

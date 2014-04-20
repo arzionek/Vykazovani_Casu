@@ -3,7 +3,6 @@ package servlety.role;
 import java.io.IOException;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -79,6 +78,12 @@ public abstract class AServlet extends HttpServlet{
 		//ServletContext context = config.getServletContext();
 		//context.getInitParameter("db-machine"), context.getInitParameter("db-db"), context.getInitParameter("db-user"), context.getInitParameter("db-pass")
 		pripojeni = new Databaze();
+	}
+	
+	@Override
+	public void destroy() {
+	  super.destroy();
+	  pripojeni.uzavritSpojeni(true);
 	}
 
 }

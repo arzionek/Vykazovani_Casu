@@ -26,6 +26,7 @@ public abstract class AVlastniServlet extends AServlet{
   		dispatcher = request.getRequestDispatcher("/jsp" + adresa);
   		dispatcher.forward(request, response);
 		}
+		pripojeni.uzavritSpojeni(false);
 	}
 	
 	protected void nastavUdajeOPrihlasenem(HttpServletRequest request, HttpSession session, String role) {
