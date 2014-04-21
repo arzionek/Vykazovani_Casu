@@ -73,15 +73,15 @@ public abstract class AVlastniServlet extends AServlet{
 	
 	protected static Object kontrola(HttpServletRequest request, Class<?> trida, String nazev) {
 	  Class<?> typDat = AEntita.getTypSloupce(trida, nazev);
-	  if (typDat.getSimpleName().equals("Double")) {
-	    return new Double(kontrolaDouble(nazev, request));
+	  if (typDat.equals(Double.class)) {
+	    return kontrolaDouble(nazev, request);
 	  }
 
-	  if (typDat.getSimpleName().equals("Date")) {
+	  if (typDat.equals(Date.class)) {
 	    return kontrolaDatum(nazev, request);
 	  }  
 
-	  if (typDat.getSimpleName().equals("String")) {
+	  if (typDat.equals(String.class)) {
 	    String parametr = kontrolaVyplneni(nazev, request);
 	    kontrolaMaximalniDelky(parametr, request, AEntita.getOmezeniSloupce(trida, nazev).getLength());  
 	    return parametr;
@@ -90,7 +90,7 @@ public abstract class AVlastniServlet extends AServlet{
 	  return null;
 	}
 	
-	 private static double kontrolaDouble(String nazev, HttpServletRequest request) {
+	 private static Double kontrolaDouble(String nazev, HttpServletRequest request) {
 	    String parametr = request.getParameter(nazev);
 	    parametr = parametr.replace(",", ".");
 	    double parameter = 0.0;
