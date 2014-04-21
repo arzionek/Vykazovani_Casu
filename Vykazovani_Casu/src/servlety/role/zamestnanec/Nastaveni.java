@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import servlety.role.ETypDat;
 
+import dao.beany.Cas;
+import dao.model.AEntita;
 import dao.model.Cinnost;
 import dao.model.KalendarCinnost;
 import dao.model.PracovniPomer;
@@ -56,8 +58,6 @@ public class Nastaveni extends AServletZamestnanec{
   private void nastaveniSvatky(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
     
-    List<?> svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
-    
     Svatek svatek = new Svatek();
     long svatekId = vratId(request, "objektId");
     if(akce.getNastaveniSvatkyVlozit().equals(volanaAkce)){
@@ -66,27 +66,20 @@ public class Nastaveni extends AServletZamestnanec{
         kod = (String) kontrola(request, Svatek.class, "kod", ETypDat.STRING);
         String nazev = (String) kontrola(request, Svatek.class, "nazev", ETypDat.STRING);
         Date datum = (Date) kontrola(request, Svatek.class, "datum", ETypDat.DATE);
-        
-        if(svatekId != 0) svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
-        svatek.setKod(kod);
-        svatek.setNazev(nazev);
-        svatek.setDatum(datum);
-        svatek.setUzivatel(uzivatel);
-        
-        //Nesmi se shodovat kod, nazev a datum
-        for (int i = 0; i < svatky.size(); i++) {
-          Svatek s = (Svatek) svatky.get(i);
-          if (s.getKod().equals(svatek.getKod()) || s.getNazev().equals(svatek.getNazev()) 
-              || s.getDatum2().equals(svatek.getDatum2())) {
-            request.setAttribute("error0", true);
-            break;
-          }
-        }
+        Svatek svatek2 = (Svatek) pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()});
+        if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute("error0", true);
         
         Object chyba = request.getAttribute("error0");
         if (chyba == null) chyba = request.getAttribute("error2");
         if (chyba == null) chyba = request.getAttribute("error3");
         if (chyba == null) chyba = request.getAttribute("error5");
+        
+        if(svatekId != 0 && chyba == null) svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
+        else if(svatekId != 0) svatek.setId(svatekId);
+        svatek.setKod(kod);
+        svatek.setNazev(nazev);
+        svatek.setDatum(datum);
+        svatek.setUzivatel(uzivatel);
         
         if(chyba == null){
           pripojeni.vlozUprav(svatek, svatek.getId());
@@ -105,7 +98,7 @@ public class Nastaveni extends AServletZamestnanec{
     }
     
     request.setAttribute("objekt", svatek);
-    svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    List<?> svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
     request.setAttribute("objekty", svatky);
     presmerovani(request, response, adresa + "/svatky.jsp");
   }

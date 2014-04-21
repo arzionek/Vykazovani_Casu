@@ -54,11 +54,15 @@ public abstract class ADatabaze{
   }
   
   public Object nacti(Class<?> trida, Object atributy[], Object hodnoty[]){
+    return nacti(trida, atributy, hodnoty, false);
+  }
+  
+  public Object nacti(Class<?> trida, Object atributy[], Object hodnoty[], boolean zaroven){
     Object object = null;
     Session session = null;
     try{
       session = hibernate.getSession();
-      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty));
+      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty, zaroven));
       List<?> list = query.list();
       if(list != null && !list.isEmpty()) object = list.get(0);
     }catch(RuntimeException e){
@@ -130,7 +134,7 @@ public abstract class ADatabaze{
     Session session = null;
     try{
       session = hibernate.getSession();
-      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty));
+      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty, false));
       list = query.list();
     }catch(RuntimeException e){
       throw e;
@@ -142,11 +146,14 @@ public abstract class ADatabaze{
     return list;
   }
 
-  private String vytvorDotaz(Class<?> trida, Object[] atributy, Object[] hodnoty) {
+  private String vytvorDotaz(Class<?> trida, Object[] atributy, Object[] hodnoty, boolean zaroven) {
     String dotaz = "select o from " + trida.getName() + " o where";
     for (int i = 0; i < atributy.length; i++) {
       String podminka = " o." + atributy[i].toString() + "='" + hodnoty[i].toString() + "'";
-      if(i > 0) podminka = " and" + podminka;
+      if(i > 0){
+        if(zaroven) podminka = " and" + podminka;
+        else podminka = " or" + podminka;
+      }
       dotaz += podminka;
     }
     return dotaz;

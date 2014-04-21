@@ -9,7 +9,7 @@ public class Prihlaseni extends ADatabaze{
 
 	public boolean prihlaseni(String login, String heslo, HttpServletRequest request) {
 	  boolean prihlaseni = false;
-	  Uzivatel uzivatel = (Uzivatel) nacti(Uzivatel.class, new Object[]{"login", "heslo"}, new Object[]{login, heslo});
+	  Uzivatel uzivatel = (Uzivatel) nacti(Uzivatel.class, new Object[]{"login", "heslo"}, new Object[]{login, heslo}, true);
 		if (uzivatel != null) prihlaseni = ulozeniDat(request, uzivatel);
 		return prihlaseni;
 	}
