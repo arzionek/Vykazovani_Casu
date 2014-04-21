@@ -29,12 +29,13 @@
   <table>
     <c:if test="${objekt.id != null}"><tr><td class="zvyraznit2">Upravit činnost:</td></tr></c:if>
     <c:if test="${objekt.id == null}"><tr><td class="zvyraznit2">Nová činnost:</td></tr></c:if>
+    <c:if test="${error0 == true}" ><tr><td class="hlaska_chyba">Údaj se stejným kódem nebo názvem již existuje!</td></tr></c:if> 
     <c:if test="${error2 == true}" ><tr><td class="hlaska_chyba">Označené údaje musí být vyplněny!</td></tr></c:if> 
     <c:if test="${error5 == true}" ><tr><td class="hlaska_chyba">Zadané údaje jsou příliš dlouhé!</td></tr></c:if>
   </table>
   <table>
-    <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${error2 == true || error5 == true}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${error2 == true || error5 == true}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${error0 == true || error2 == true || error5 == true}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${error0 == true || error2 == true || error5 == true}">class="povinne"</c:if>/></td></tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>  
   </table>
