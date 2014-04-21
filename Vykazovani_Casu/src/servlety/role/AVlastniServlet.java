@@ -71,16 +71,17 @@ public abstract class AVlastniServlet extends AServlet{
 		return cislo;
 	}
 	
-	protected static Object kontrola(HttpServletRequest request, Class<?> trida, String nazev, ETypDat typDat) {
-	  if (typDat == ETypDat.DOUBLE) {
+	protected static Object kontrola(HttpServletRequest request, Class<?> trida, String nazev) {
+	  Class<?> typDat = AEntita.getTypSloupce(trida, nazev);
+	  if (typDat.getSimpleName().equals("Double")) {
 	    return new Double(kontrolaDouble(nazev, request));
 	  }
 
-	  if (typDat == ETypDat.DATE) {
+	  if (typDat.getSimpleName().equals("Date")) {
 	    return kontrolaDatum(nazev, request);
 	  }  
 
-	  if (typDat == ETypDat.STRING) {
+	  if (typDat.getSimpleName().equals("String")) {
 	    String parametr = kontrolaVyplneni(nazev, request);
 	    kontrolaMaximalniDelky(parametr, request, AEntita.getOmezeniSloupce(trida, nazev).getLength());  
 	    return parametr;

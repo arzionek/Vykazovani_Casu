@@ -10,8 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import servlety.role.ETypDat;
-
 import dao.beany.Cas;
 import dao.model.Cinnost;
 import dao.model.KalendarCinnost;
@@ -55,16 +53,15 @@ public class Nastaveni extends AServletZamestnanec{
   }
 
   private void nastaveniSvatky(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
-    
+    Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");  
     Svatek svatek = new Svatek();
     long svatekId = vratId(request, "objektId");
     if(akce.getNastaveniSvatkyVlozit().equals(volanaAkce)){
       String kod = request.getParameter("kod");
       if(kod != null){
-        kod = (String) kontrola(request, Svatek.class, "kod", ETypDat.STRING);
-        String nazev = (String) kontrola(request, Svatek.class, "nazev", ETypDat.STRING);
-        Date datum = (Date) kontrola(request, Svatek.class, "datum", ETypDat.DATE);
+        kod = (String) kontrola(request, Svatek.class, "kod");
+        String nazev = (String) kontrola(request, Svatek.class, "nazev");
+        Date datum = (Date) kontrola(request, Svatek.class, "datum");
         Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()});
         if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute("error0", true);
         
@@ -104,34 +101,25 @@ public class Nastaveni extends AServletZamestnanec{
 
   private void nastaveniCinnosti(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
-    
-    List<?> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
-    
     Cinnost cinnost = new Cinnost();
     long cinnostId = vratId(request, "objektId");
     if(akce.getNastaveniCinnostiVlozit().equals(volanaAkce)){
       String kod = request.getParameter("kod");
       if(kod != null){
-        kod = (String) kontrola(request, Cinnost.class, "kod", ETypDat.STRING);
-        String nazev = (String) kontrola(request, Cinnost.class, "nazev", ETypDat.STRING);
-
-        if(cinnostId != 0) cinnost = (Cinnost) pripojeni.nacti(Cinnost.class, cinnostId);
-        cinnost.setKod(kod);
-        cinnost.setNazev(nazev);
-        cinnost.setUzivatel(uzivatel);
+        kod = (String) kontrola(request, Cinnost.class, "kod");
+        String nazev = (String) kontrola(request, Cinnost.class, "nazev");
+        Cinnost cinnost2 = pripojeni.nacti(Cinnost.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev});
+        if(cinnost2 != null && cinnost2.getId() != cinnostId) request.setAttribute("error0", true);
         
-        //Nesmi se shodovat kod a nazev
-        for (int i = 0; i < cinnosti.size(); i++) {
-          Cinnost c = (Cinnost) cinnosti.get(i);
-          if (c.getKod().equals(cinnost.getKod()) || c.getNazev().equals(cinnost.getNazev())) {
-            request.setAttribute("error0", true);
-            break;
-          }
-        }
-
         Object chyba = request.getAttribute("error0");
         if (chyba == null) chyba = request.getAttribute("error2");
         if (chyba == null) chyba = request.getAttribute("error5");
+
+        if(cinnostId != 0 && chyba == null) cinnost = pripojeni.nacti(Cinnost.class, cinnostId);
+        else if(cinnostId != 0) cinnost.setId(cinnostId);
+        cinnost.setKod(kod);
+        cinnost.setNazev(nazev);
+        cinnost.setUzivatel(uzivatel);
         
         if(chyba == null){
           pripojeni.vlozUprav(cinnost, cinnost.getId());
@@ -150,7 +138,7 @@ public class Nastaveni extends AServletZamestnanec{
     }
 
     request.setAttribute("objekt", cinnost);
-    cinnosti = pripojeni.ziskejObjekty(Cinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    List<Cinnost> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
     Iterator<?> it = cinnosti.iterator();
     while (it.hasNext()) {
       Cinnost c = (Cinnost) it.next();
@@ -163,38 +151,28 @@ public class Nastaveni extends AServletZamestnanec{
 
   private void nastaveniPomeru(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
-    
-    List<?> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
-    
     PracovniPomer pomer = new PracovniPomer();
     long pomerId = vratId(request, "objektId");
     if(akce.getNastaveniPomeruVlozit().equals(volanaAkce)) {
       String kod = request.getParameter("kod");
       if(kod != null){
-        kod = (String) kontrola(request, PracovniPomer.class, "kod", ETypDat.STRING);
-        String nazev = (String) kontrola(request, PracovniPomer.class, "nazev", ETypDat.STRING);
-        double velikost = (Double) kontrola(request, PracovniPomer.class, "velikost", ETypDat.DOUBLE);
-
-        if(pomerId != 0) pomer = (PracovniPomer) pripojeni.nacti(PracovniPomer.class, pomerId);
-
-        pomer.setKod(kod);
-        pomer.setNazev(nazev);
-        pomer.setVelikostUvazku(velikost);
-        pomer.setUzivatel(uzivatel);
+        kod = (String) kontrola(request, PracovniPomer.class, "kod");
+        String nazev = (String) kontrola(request, PracovniPomer.class, "nazev");
+        double velikost = (Double) kontrola(request, PracovniPomer.class, "velikostUvazku");
+        PracovniPomer pomer2 = pripojeni.nacti(PracovniPomer.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev});
+        if(pomer2 != null && pomer2.getId() != pomerId) request.setAttribute("error0", true);
         
-        //Nesmi se shodovat kod a nazev
-        for (int i = 0; i < pomery.size(); i++) {
-          PracovniPomer p = (PracovniPomer) pomery.get(i);
-          if (p.getKod().equals(pomer.getKod()) || p.getNazev().equals(pomer.getNazev())) {
-            request.setAttribute("error0", true);
-            break;
-          }
-        }
-
         Object chyba = request.getAttribute("error0");
         if (chyba == null) chyba = request.getAttribute("error2");
         if (chyba == null) chyba = request.getAttribute("error4");
         if (chyba == null) chyba = request.getAttribute("error5");
+
+        if(pomerId != 0 && chyba == null) pomer = pripojeni.nacti(PracovniPomer.class, pomerId);
+        else if(pomerId != 0) pomer.setId(pomerId);
+        pomer.setKod(kod);
+        pomer.setNazev(nazev);
+        pomer.setVelikostUvazku(velikost);
+        pomer.setUzivatel(uzivatel);
         
         if(chyba == null){
           pripojeni.vlozUprav(pomer, pomer.getId());
@@ -213,7 +191,7 @@ public class Nastaveni extends AServletZamestnanec{
     }
 
     request.setAttribute("objekt", pomer);
-    pomery = pripojeni.ziskejObjekty(PracovniPomer.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
     Iterator<?> it = pomery.iterator();
     while (it.hasNext()) {
       PracovniPomer p = (PracovniPomer) it.next();

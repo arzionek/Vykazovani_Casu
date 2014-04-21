@@ -37,7 +37,7 @@
   <table>
     <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${error0 == true || error2 == true || error5 == true}">class="povinne"</c:if>/></td></tr>
     <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${error0 == true || error2 == true || error5 == true}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 160px;"><b>*Velikost úvazku:</b></td><td><input type="text" required="true" name="velikost" value="${objekt.velikostUvazku}" <c:if test="${error4 == true}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 160px;"><b>*Velikost úvazku:</b></td><td><input type="text" required="true" name="velikostUvazku" value="${objekt.velikostUvazku}" <c:if test="${error4 == true}">class="povinne"</c:if>/></td></tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>  
   </table>
