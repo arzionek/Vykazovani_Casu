@@ -19,12 +19,13 @@ public abstract class ADatabaze{
     hibernate = HibernateHelper.getInstance();
   }
   
-  public Object nacti(Class<?> trida, Long id) {
-    Object object = null;
+  @SuppressWarnings("unchecked")
+  public <T> T nacti(Class<T> trida, Long id) {
+    T object = null;
     Session session = null;
     try{
       session = hibernate.getSession();
-      object = session.load(trida, id);
+      object = (T) session.load(trida, id);
     }catch(RuntimeException e){
       throw e;
     }finally{
@@ -35,14 +36,15 @@ public abstract class ADatabaze{
     return object;
   }
   
-  public Object nacti(Class<?> trida, String atribut, String hodnota){
-    Object object = null;
+  public <T> T nacti(Class<T> trida, String atribut, String hodnota){
+    T object = null;
     Session session = null;
     try{
       session = hibernate.getSession();
       Query query = session.createQuery("select o from " + trida.getName() + " o where o." + atribut + "='" + hodnota + "'");
-      List<?> list = query.list();
-      if(list != null && !list.isEmpty()) object = list.get(0);
+      @SuppressWarnings("unchecked")
+      List<T> list = query.list();
+      if(list != null && !list.isEmpty()) object = (T) list.get(0);
     }catch(RuntimeException e){
       throw e;
     }finally{
@@ -53,18 +55,19 @@ public abstract class ADatabaze{
     return object;
   }
   
-  public Object nacti(Class<?> trida, Object atributy[], Object hodnoty[]){
+  public <T> T nacti(Class<T> trida, Object atributy[], Object hodnoty[]){
     return nacti(trida, atributy, hodnoty, false);
   }
   
-  public Object nacti(Class<?> trida, Object atributy[], Object hodnoty[], boolean zaroven){
-    Object object = null;
+  public <T> T nacti(Class<T> trida, Object atributy[], Object hodnoty[], boolean zaroven){
+    T object = null;
     Session session = null;
     try{
       session = hibernate.getSession();
       Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty, zaroven));
-      List<?> list = query.list();
-      if(list != null && !list.isEmpty()) object = list.get(0);
+      @SuppressWarnings("unchecked")
+      List<T> list = query.list();
+      if(list != null && !list.isEmpty()) object = (T) list.get(0);
     }catch(RuntimeException e){
       throw e;
     }finally{
@@ -129,8 +132,9 @@ public abstract class ADatabaze{
     }
   }
   
-  public List<?> ziskejObjekty(Class<?> trida, Object[] atributy, Object[] hodnoty) {
-    List<?> list = null;
+  @SuppressWarnings("unchecked")
+  public <T> List<T> ziskejObjekty(Class<T> trida, Object[] atributy, Object[] hodnoty) {
+    List<T> list = null;
     Session session = null;
     try{
       session = hibernate.getSession();

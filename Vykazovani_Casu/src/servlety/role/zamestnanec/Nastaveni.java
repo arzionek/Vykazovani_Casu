@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import servlety.role.ETypDat;
 
 import dao.beany.Cas;
-import dao.model.AEntita;
 import dao.model.Cinnost;
 import dao.model.KalendarCinnost;
 import dao.model.PracovniPomer;
@@ -66,7 +65,7 @@ public class Nastaveni extends AServletZamestnanec{
         kod = (String) kontrola(request, Svatek.class, "kod", ETypDat.STRING);
         String nazev = (String) kontrola(request, Svatek.class, "nazev", ETypDat.STRING);
         Date datum = (Date) kontrola(request, Svatek.class, "datum", ETypDat.DATE);
-        Svatek svatek2 = (Svatek) pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()});
+        Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()});
         if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute("error0", true);
         
         Object chyba = request.getAttribute("error0");
@@ -74,7 +73,7 @@ public class Nastaveni extends AServletZamestnanec{
         if (chyba == null) chyba = request.getAttribute("error3");
         if (chyba == null) chyba = request.getAttribute("error5");
         
-        if(svatekId != 0 && chyba == null) svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
+        if(svatekId != 0 && chyba == null) svatek = pripojeni.nacti(Svatek.class, svatekId);
         else if(svatekId != 0) svatek.setId(svatekId);
         svatek.setKod(kod);
         svatek.setNazev(nazev);
@@ -88,17 +87,17 @@ public class Nastaveni extends AServletZamestnanec{
       }
       vypisAkce("_vlozit", request);
     }else if(akce.getNastaveniSvatkyUpravit().equals(volanaAkce)){
-      svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
+      svatek = pripojeni.nacti(Svatek.class, svatekId);
       vypisAkce("_upravit", request);
     }else if(akce.getNastaveniSvatkySmazat().equals(volanaAkce)){
-      svatek = (Svatek) pripojeni.nacti(Svatek.class, svatekId);
+      svatek = pripojeni.nacti(Svatek.class, svatekId);
       pripojeni.smaz(svatek);
       svatek = new Svatek();
       vypisAkce("_smazat", request);
     }
     
     request.setAttribute("objekt", svatek);
-    List<?> svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    List<Svatek> svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
     request.setAttribute("objekty", svatky);
     presmerovani(request, response, adresa + "/svatky.jsp");
   }
