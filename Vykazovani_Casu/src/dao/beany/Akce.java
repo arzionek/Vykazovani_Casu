@@ -24,6 +24,11 @@ public class Akce {
 	private static final String NASTAVENI_POMERU_UPRAVIT = "32";
 	private static final String NASTAVENI_POMERU_SMAZAT = "33";
 
+	private static final String NASTAVENI_DEFINICE_KALENDARE = "4";
+	private static final String NASTAVENI_DEFINICE_KALENDARE_VLOZIT = "41";
+	private static final String NASTAVENI_DEFINICE_KALENDARE_UPRAVIT = "42";
+	private static final String NASTAVENI_DEFINICE_KALENDARE_SMAZAT = "43";
+	
 	public String getOdhlasit() {
 		return ODHLASIT;
 	}
@@ -74,5 +79,21 @@ public class Akce {
 
 	public String getNastaveniPomeruSmazat() {
 		return NASTAVENI_POMERU_SMAZAT;
+	}
+	
+	public String getNastaveniDefiniceKalendare() {
+		return NASTAVENI_DEFINICE_KALENDARE;
+	}
+
+	public String getNastaveniDefiniceKalendareVlozit() {
+		return NASTAVENI_DEFINICE_KALENDARE_VLOZIT;
+	}
+
+	public String getNastaveniDefiniceKalendareUpravit() {
+		return NASTAVENI_DEFINICE_KALENDARE_UPRAVIT;
+	}
+
+	public String getNastaveniDefiniceKalendareSmazat() {
+		return NASTAVENI_DEFINICE_KALENDARE_SMAZAT;
 	}
 }
