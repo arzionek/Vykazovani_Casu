@@ -172,12 +172,12 @@ public abstract class AVlastniServlet extends AServlet{
 	}
 	
 	protected Object overChyby(HttpServletRequest request) {
-    Object chyba = request.getAttribute("duplicitniZadani");
-    if (chyba == null) chyba = request.getAttribute("celeNezaporneCislo");
-    if (chyba == null) chyba = request.getAttribute("povinnyUdaj");
-    if (chyba == null) chyba = request.getAttribute("platneDatum");
-    if (chyba == null) chyba = request.getAttribute("realneNezaporneCislo");
-    if (chyba == null) chyba = request.getAttribute("maximalniDelka");
+    Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);
+    if (chyba == null) chyba = request.getAttribute(Chyby.CELE_NEZAPORNE_CISLO);
+    if (chyba == null) chyba = request.getAttribute(Chyby.POVINNY_UDAJ);
+    if (chyba == null) chyba = request.getAttribute(Chyby.PLATNE_DATUM);
+    if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_NEZAPORNE_CISLO);
+    if (chyba == null) chyba = request.getAttribute(Chyby.MAXIMALNI_DELKA);
     return chyba;
   }
 }
