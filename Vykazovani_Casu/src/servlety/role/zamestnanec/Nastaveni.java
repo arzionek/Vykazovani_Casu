@@ -48,6 +48,10 @@ public class Nastaveni extends AServletZamestnanec{
       vypisAkce("nastaveni_pomeru", request);
       nastaveniPomeru(request, response);
     }
+    else if (akce.getNastaveniDefiniceKalendare().equals(volano)) {
+        vypisAkce("nastaveni_kalendare", request);
+        nastaveniKalendare(request, response);
+      }
     else {    
       presmerovani(request, response, adresa + "/nastaveni.jsp");
     }
@@ -196,4 +200,9 @@ public class Nastaveni extends AServletZamestnanec{
     request.setAttribute("objekty", pomery);
     presmerovani(request, response, adresa + "/pomery.jsp");
   }
+  
+  private void nastaveniKalendare(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  presmerovani(request, response, adresa + "/definiceKalendare.jsp");
+  }
+  
 }

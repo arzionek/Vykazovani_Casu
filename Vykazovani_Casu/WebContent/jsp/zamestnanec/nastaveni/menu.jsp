@@ -26,7 +26,7 @@
       <a href="<c:out value="${sablony}" escapeXml="true" />">Šablony</a>
       
       <c:url var="kalendare" value="nastaveni">
-		    <c:param name="akce" value="${akce.odhlasit}"/>
+		    <c:param name="akce" value="${akce.nastaveniDefiniceKalendare}"/>
 	    </c:url>
       <a href="<c:out value="${kalendare}" escapeXml="true" />">Kalendáře</a>
     </tr>

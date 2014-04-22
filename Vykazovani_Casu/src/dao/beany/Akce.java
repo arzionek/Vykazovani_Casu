@@ -96,4 +96,5 @@ public class Akce {
 	public String getNastaveniDefiniceKalendareSmazat() {
 		return NASTAVENI_DEFINICE_KALENDARE_SMAZAT;
 	}
+
 }
