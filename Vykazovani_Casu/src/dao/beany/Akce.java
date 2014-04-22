@@ -29,6 +29,11 @@ public class Akce {
 	private static final String NASTAVENI_DEFINICE_KALENDARE_UPRAVIT = "42";
 	private static final String NASTAVENI_DEFINICE_KALENDARE_SMAZAT = "43";
 	
+	private static final String PREHLED = "6";
+  private static final String VYTVORENI_VLOZIT = "61";
+  private static final String PREHLED_UPRAVIT = "62";
+  private static final String PREHLED_SMAZAT = "63";
+	
 	public String getOdhlasit() {
 		return ODHLASIT;
 	}
@@ -96,5 +101,21 @@ public class Akce {
 	public String getNastaveniDefiniceKalendareSmazat() {
 		return NASTAVENI_DEFINICE_KALENDARE_SMAZAT;
 	}
+
+  public String getPrehled() {
+    return PREHLED;
+  }
+
+  public String getVytvoreniVlozit() {
+    return VYTVORENI_VLOZIT;
+  }
+
+  public String getPrehledUpravit() {
+    return PREHLED_UPRAVIT;
+  }
+
+  public String getPrehledSmazat() {
+    return PREHLED_SMAZAT;
+  }
 
 }

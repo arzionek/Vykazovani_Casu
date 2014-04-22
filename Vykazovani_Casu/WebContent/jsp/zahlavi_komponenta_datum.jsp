@@ -4,11 +4,6 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 
   <script type="text/javascript">
-    var ulozitTooltip = 'Uložit svátek.';
-    var upravitTooltip = 'Upravit svátek.';
-    var odstranitTooltip = 'Odstranit svátek.';
-    var novyTooltip = 'Nový svátek.';
-    
     $(function() {
      $( "#datepicker" ).datepicker();
     });
@@ -23,7 +18,7 @@
       dayNamesShort: ['Ne','Po','Út','St','Čt','Pá','So',],
       dayNamesMin: ['Ne','Po','Út','St','Čt','Pá','So'],
       weekHeader: 'Sm',
-      dateFormat: 'dd.mm.',
+      dateFormat: '${datepickerFormat}',
       firstDay: 1,
       isRTL: false,
       showMonthAfterYear: false,

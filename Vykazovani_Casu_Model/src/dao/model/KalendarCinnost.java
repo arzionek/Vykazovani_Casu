@@ -1,5 +1,8 @@
 package dao.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class KalendarCinnost extends AEntita implements java.io.Serializable {
 	/**
    * @generated
@@ -36,16 +39,19 @@ public class KalendarCinnost extends AEntita implements java.io.Serializable {
    * @generated
    */
   private java.util.Date casDo;
+  private String casDo2;
 
   /**
    * @generated
    */
   private java.util.Date casOd;
+  private String casOd2;
 
   /**
    * @generated
    */
   private java.util.Date datum;
+  private String datum2;
 
   /**
    * @generated
@@ -185,5 +191,61 @@ public class KalendarCinnost extends AEntita implements java.io.Serializable {
    */
   public void setDatum(java.util.Date datum) {
     this.datum = datum;
+  }
+
+  public String getCasDo2() {
+    if(casDo != null){
+      DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss"); 
+      String datumCas[] = (df.format(casDo)).split("_");
+      
+      String hodina = datumCas[3];
+      if(hodina.length() == 1) hodina = "0" + hodina;
+      String minuta = datumCas[4];
+      if(minuta.length() == 1) minuta = "0" + minuta;
+      casDo2 = hodina + ":" + minuta;
+    }
+    return casDo2;
+  }
+
+  public void setCasDo2(String casDo2) {
+    this.casDo2 = casDo2;
+  }
+
+  public String getCasOd2() {
+    if(casOd != null){
+      DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss"); 
+      String datumCas[] = (df.format(casOd)).split("_");
+      
+      String hodina = datumCas[3];
+      if(hodina.length() == 1) hodina = "0" + hodina;
+      String minuta = datumCas[4];
+      if(minuta.length() == 1) minuta = "0" + minuta;
+      casOd2 = hodina + ":" + minuta;
+    }
+    return casOd2;
+  }
+
+  public void setCasOd2(String casOd2) {
+    this.casOd2 = casOd2;
+  }
+
+  public String getDatum2() {
+    if(datum != null){
+      DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss"); 
+      String datumCas[] = (df.format(datum)).split("_");
+      
+      String den = datumCas[0];
+      if(den.length() == 1) den = "0" + den;
+      String mesic = datumCas[1];
+      if(mesic.length() == 1) mesic = "0" + mesic;
+      String rok = datumCas[2];
+      if(rok.length() == 1) rok = "0" + rok;
+      datum2 = den + "." + mesic + "." + rok;
+    }
+    return datum2;
+  }
+
+  public void setDatum2(String datum2) {
+    this.datum2 = datum2;
   }
 }

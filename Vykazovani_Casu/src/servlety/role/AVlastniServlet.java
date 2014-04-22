@@ -106,33 +106,45 @@ public abstract class AVlastniServlet extends AServlet{
 	  }
 	
 	 private static Date kontrolaDatum(String atribut, HttpServletRequest request) {
-	    String datum = (String) request.getParameter(atribut);
-	    datum = datum.replace('.', '-');
-	    
-	    int pocetUdaju = datum.length() - datum.replace("-", "").length();
-	    if (pocetUdaju < 1 || pocetUdaju > 2) {
-	      request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
-	      return new Date();
-	    }
-	    else if (pocetUdaju == 2) {
-	      if (datum.charAt(datum.length() - 1) == '-') datum += "9999";
-	    }
-	    else datum += "-9999";
-	    
-	    DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-	    format.setLenient(false);    
-	    Date datumDatabaze = new Date();
-	    try {
-	      datumDatabaze = format.parse(datum);
-	    } catch (ParseException e1) {
-	      if (datum.contains("29-2-") || datum.contains("29-02-")) { //29. unor - prestupny rok
-	        try {
-	          return format.parse("29-02-2000");
-	        } catch (Exception e2) {}
-	      }
-	      else request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
-	    }
-	    return datumDatabaze;
+	   String datum = (String) request.getParameter(atribut);
+	   DateFormat format = null;
+	   if(atribut.contains("cas")){
+	     int pocetUdaju = datum.length() - datum.replace(":", "").length();
+       if (pocetUdaju != 1) {
+         request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
+         return new Date();
+       }
+	     datum = "01-01-2000 " + datum;
+       
+	     format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+	   }else{
+  	   datum = datum.replace('.', '-');
+  	    
+  	   int pocetUdaju = datum.length() - datum.replace("-", "").length();
+  	   if (pocetUdaju < 1 || pocetUdaju > 2) {
+  	     request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
+  	     return new Date();
+  	   }
+  	   else if (pocetUdaju == 2) {
+  	     if (datum.charAt(datum.length() - 1) == '-') datum += "9999";
+  	   }
+  	   else datum += "-9999";
+  	   
+  	   format = new SimpleDateFormat("dd-MM-yyyy");
+	   }
+  	 format.setLenient(false); 
+  	 Date datumDatabaze = new Date();
+  	 try {
+  	   datumDatabaze = format.parse(datum);
+  	 } catch (ParseException e1) {
+  	   if (datum.contains("29-2-") || datum.contains("29-02-")) { //29. unor - prestupny rok
+  	     try {
+  	       return format.parse("29-02-2000");
+  	     } catch (Exception e2) {}
+  	   }
+  	   else request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
+  	 }
+  	 return datumDatabaze;
 	  }
 	
 	private static String kontrolaVyplneni(String nazev, HttpServletRequest request) {

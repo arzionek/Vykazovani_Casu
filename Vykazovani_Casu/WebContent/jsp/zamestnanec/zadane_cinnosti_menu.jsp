@@ -6,7 +6,7 @@
   <div id="menu2">
   <table>
     <tr><td>
-      <c:url var="novy" value="vkladani">
+      <c:url var="novy" value="vytvoreni">
 
 	  </c:url>
       <a href="<c:out value="${novy}" escapeXml="true" />">Nové činnosti</a>

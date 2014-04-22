@@ -1,13 +1,16 @@
 package servlety.role.zamestnanec;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.beany.Cas;
 import dao.databaze.Databaze;
+import dao.model.KalendarCinnost;
+import dao.model.Svatek;
+import dao.model.Uzivatel;
 
 public class Prehled extends AServletZamestnanec{
 
@@ -17,12 +20,28 @@ public class Prehled extends AServletZamestnanec{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		if(!response.isCommitted()){
-			System.out.println(new Cas().ziskejDatum() + " - _zadane_cinnosti: " + request.getSession().getAttribute("login"));
+		  vypisAkce("prehled", request);
 			prehled(request, response, pripojeni);
 		}
 	}
 	
 	private void prehled(HttpServletRequest request, HttpServletResponse response, Databaze pripojeni) throws ServletException, IOException {
-		presmerovani(request, response, adresa + "/zadane_cinnosti.jsp");
+	  Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");  
+    KalendarCinnost cinnost = new KalendarCinnost();
+    long cinnostId = vratId(request, "objektId");
+    if(akce.getPrehledUpravit().equals(volanaAkce)){
+      cinnost = pripojeni.nacti(KalendarCinnost.class, cinnostId);
+      vypisAkce("_upravit", request);
+    }else if(akce.getPrehledSmazat().equals(volanaAkce)){
+      cinnost = pripojeni.nacti(KalendarCinnost.class, cinnostId);
+      pripojeni.smaz(cinnost);
+      vypisAkce("_smazat", request);
+    }
+    
+    if(!response.isCommitted()){
+      List<Svatek> svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+      request.setAttribute("objekty", svatky);
+  	  presmerovani(request, response, adresa + "/zadane_cinnosti.jsp");
+    }
 	}
 }

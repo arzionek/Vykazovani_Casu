@@ -10,6 +10,12 @@
 <div id="hlavni">
   <jsp:include page="../../menu_top.jsp" flush="true" />
   <jsp:include page="../../zahlavi_komponenta_datum.jsp" flush="true" />
+  <script type="text/javascript">
+    var ulozitTooltip = 'Uložit svátek.';
+    var upravitTooltip = 'Upravit svátek.';
+    var odstranitTooltip = 'Odstranit svátek.';
+    var novyTooltip = 'Nový svátek.';
+  </script>
   <h2 class="stred">Nastavení systému:</h2>
   
   <jsp:include page="menu.jsp" flush="true" />
