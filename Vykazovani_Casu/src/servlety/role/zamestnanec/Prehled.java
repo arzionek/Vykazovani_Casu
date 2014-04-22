@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.databaze.Databaze;
 import dao.model.KalendarCinnost;
-import dao.model.Svatek;
 import dao.model.Uzivatel;
 
 public class Prehled extends AServletZamestnanec{
@@ -32,6 +31,8 @@ public class Prehled extends AServletZamestnanec{
     if(akce.getPrehledUpravit().equals(volanaAkce)){
       cinnost = pripojeni.nacti(KalendarCinnost.class, cinnostId);
       vypisAkce("_upravit", request);
+      Vytvoreni.vytvoreniCinnosti(request, response, uzivatel, cinnost, pripojeni, akce, volanaAkce);
+      presmerovani(request, response, adresa + "/zadane_cinnosti_nove.jsp");
     }else if(akce.getPrehledSmazat().equals(volanaAkce)){
       cinnost = pripojeni.nacti(KalendarCinnost.class, cinnostId);
       pripojeni.smaz(cinnost);
@@ -39,8 +40,13 @@ public class Prehled extends AServletZamestnanec{
     }
     
     if(!response.isCommitted()){
-      List<Svatek> svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
-      request.setAttribute("objekty", svatky);
+      List<KalendarCinnost> cinnosti = pripojeni.ziskejObjekty(KalendarCinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+      for (int i = 0; cinnosti != null && i < cinnosti.size(); i++) {
+        KalendarCinnost cin = cinnosti.get(i);
+        pripojeni.inicializaceObjektu(cin.getCinnost());
+        pripojeni.inicializaceObjektu(cin.getPracovniPomer());
+      }
+      request.setAttribute("objekty", cinnosti);
   	  presmerovani(request, response, adresa + "/zadane_cinnosti.jsp");
     }
 	}

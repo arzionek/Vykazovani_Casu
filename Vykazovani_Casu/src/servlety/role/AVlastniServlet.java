@@ -167,15 +167,15 @@ public abstract class AVlastniServlet extends AServlet{
 		return ids;
 	}
 	
-	protected String getUzivatele(HttpServletRequest request){
+	protected static String getUzivatele(HttpServletRequest request){
 	  return (String) request.getSession().getAttribute("login");
 	}
 	
-	protected void vypisAkce(String akce, HttpServletRequest request){
+	protected static void vypisAkce(String akce, HttpServletRequest request){
 	  System.out.println(new Cas().ziskejDatum() + " - _" + akce + ": " + getUzivatele(request));
 	}
 	
-	protected double vratPocetOdpracovanychHodin(Date casOd, Date casDo) {
+	protected static double vratPocetOdpracovanychHodin(Date casOd, Date casDo) {
 	  double rozdil = casDo.getTime() - casOd.getTime();	  
 	  rozdil /= 1000; //na sekundy
 	  rozdil /= 60; //na minuty
@@ -183,7 +183,7 @@ public abstract class AVlastniServlet extends AServlet{
 	  return rozdil;
 	}
 	
-	protected Object overChyby(HttpServletRequest request) {
+	protected static Object overChyby(HttpServletRequest request) {
     Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);
     if (chyba == null) chyba = request.getAttribute(Chyby.CELE_NEZAPORNE_CISLO);
     if (chyba == null) chyba = request.getAttribute(Chyby.POVINNY_UDAJ);

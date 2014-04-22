@@ -8,8 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.beany.Akce;
 import dao.beany.Cas;
 import dao.beany.Chyby;
+import dao.databaze.Databaze;
 import dao.model.Cinnost;
 import dao.model.KalendarCinnost;
 import dao.model.PracovniPomer;
@@ -30,8 +32,13 @@ public class Vytvoreni extends AServletZamestnanec{
 
 	private void vytvoreni(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");  
-    KalendarCinnost kalendarCinnost = new KalendarCinnost();
-    long kalendarCinnostId = vratId(request, "cinnostId");
+	  KalendarCinnost kalendarCinnost = new KalendarCinnost();
+	  vytvoreniCinnosti(request, response, uzivatel, kalendarCinnost, pripojeni, akce, volanaAkce);
+	  presmerovani(request, response, adresa + "/zadane_cinnosti_nove.jsp");
+	}
+
+  public static void vytvoreniCinnosti(HttpServletRequest request, HttpServletResponse response, Uzivatel uzivatel, KalendarCinnost kalendarCinnost, Databaze pripojeni, Akce akce, String volanaAkce) {
+    long kalendarCinnostId = vratId(request, "objektId");
     if(akce.getVytvoreniVlozit().equals(volanaAkce)){
       //if(kod != null){
         Date datum = (Date) kontrola(request, KalendarCinnost.class, "datum");
@@ -70,6 +77,5 @@ public class Vytvoreni extends AServletZamestnanec{
     List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
     request.setAttribute("pomery", pomery);
     request.setAttribute("datepickerFormat", "dd.mm.yy");
-    presmerovani(request, response, adresa + "/zadane_cinnosti_nove.jsp");
-	}
+  }
 }

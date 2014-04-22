@@ -167,6 +167,10 @@ public abstract class ADatabaze{
     Hibernate.initialize(set);
   }
 
+  public void inicializaceObjektu(Object objekt) {
+    Hibernate.initialize(objekt);
+  }
+  
   public void uzavritSpojeni(boolean vse){
     if(vse) hibernate.close();
     else hibernate.closeSession();
