@@ -9,39 +9,7 @@
 <!-- hlavní část dokumentu -->
 <div id="hlavni">
   <jsp:include page="../../menu_top.jsp" flush="true" />
-  <script type="text/javascript">
-    var ulozitTooltip = 'Uložit svátek.';
-    var upravitTooltip = 'Upravit svátek.';
-    var odstranitTooltip = 'Odstranit svátek.';
-    var novyTooltip = 'Nový svátek.';
-    
-    $(function() {
-     $( "#datepicker" ).datepicker();
-    });
-    $.datepicker.regional['cs'] = {
-      closeText: 'Cerrar',
-      prevText: 'Předchozí',
-      nextText: 'Další',
-      currentText: 'Hoy',
-      monthNames: ['Leden','Únor','Březen','Duben','Květen','Červen', 'Červenec','Srpen','Září','Říjen','Listopad','Prosinec'],
-      monthNamesShort: ['Le','Ún','Bř','Du','Kv','Čn', 'Čc','Sr','Zá','Ří','Li','Pr'],
-      dayNames: ['Neděle','Pondělí','Úterý','Středa','Čtvrtek','Pátek','Sobota'],
-      dayNamesShort: ['Ne','Po','Út','St','Čt','Pá','So',],
-      dayNamesMin: ['Ne','Po','Út','St','Čt','Pá','So'],
-      weekHeader: 'Sm',
-      dateFormat: 'dd.mm.',
-      firstDay: 1,
-      isRTL: false,
-      showMonthAfterYear: false,
-      yearSuffix: ''};
-    $.datepicker.setDefaults($.datepicker.regional['cs']);
-    var changeMonth = $('.selector').datepicker('option', 'changeMonth');
-    $('.selector').datepicker('option', 'changeMonth', true);
-    var changeYear = $('.selector').datepicker('option', 'changeYear');
-    $('.selector').datepicker('option', 'changeYear', true);
-    $("#datepicker").datepicker();
-    
-  </script>
+  <jsp:include page="../../zahlavi_komponenta_datum.jsp" flush="true" />
   <h2 class="stred">Nastavení systému:</h2>
   
   <jsp:include page="menu.jsp" flush="true" />
