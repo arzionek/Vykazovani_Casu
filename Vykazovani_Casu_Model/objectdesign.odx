@@ -327,7 +327,6 @@
               <tags>
                 <tag name="@hibernate">
                   <parameters>
-                    <not-null>true</not-null>
                     <length>64</length>
                   </parameters>
                 </tag>
@@ -1422,8 +1421,8 @@
           <showAttributes>true</showAttributes>
           <showOperations>true</showOperations>
           <tagSymbol id="1">
-            <x>320</x>
-            <y>123</y>
+            <x>323</x>
+            <y>122</y>
             <connectedTo symbol="53"/>
             <tag class="dao.model.Uzivatel" variable="heslo" id="@hibernate"/>
             <showNotSet>true</showNotSet>

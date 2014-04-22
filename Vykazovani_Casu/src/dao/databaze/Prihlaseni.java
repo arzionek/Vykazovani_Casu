@@ -18,7 +18,7 @@ public class Prihlaseni extends ADatabaze{
 	  boolean prihlaseni = false;
 	  Uzivatel uzivatel = (Uzivatel) nacti(Uzivatel.class, "login", login);
 		if (uzivatel != null) prihlaseni = ulozeniDat(request, uzivatel);
-		//TODO else prihlaseni = novyUzivatel(request, login);
+		else prihlaseni = novyUzivatel(request, login);
 		return prihlaseni;
 	}
 
@@ -39,7 +39,7 @@ public class Prihlaseni extends ADatabaze{
 		return true;
 	}
 
-	private String ziskejRoli(long id) {
+	public static String ziskejRoli(long id) {
 		String role = null;
 		if(id != -1) role = "zamestnanec";
 		else role = "zadna";

@@ -33,7 +33,7 @@ public abstract class AServlet extends HttpServlet{
 		if (session == null || session.getAttribute("loggedUser") == null){
 			response.sendRedirect("log");
 		//overeni registrace
-		}/*else if(session.getAttribute("role").equals("zadna")){
+		}else if(session.getAttribute("role").equals("zadna")){
 			String stagUserTicket = request.getParameter("stagUserTicket");
 			if(stagUserTicket != null || session.getAttribute("ticket") != null){
 				session.setAttribute("ticket", stagUserTicket);
@@ -42,7 +42,7 @@ public abstract class AServlet extends HttpServlet{
 				String cesta = request.getRequestURL().toString();
 				response.sendRedirect("https://stag-ws.zcu.cz/webauth/ws/login?originalURL=" + cesta);
 			}
-		}*/
+		}
 		
 		//nastaveni akce
 		volanaAkce = request.getParameter("akce");

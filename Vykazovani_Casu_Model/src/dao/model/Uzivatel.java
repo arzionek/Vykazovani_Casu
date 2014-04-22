@@ -399,8 +399,12 @@ public class Uzivatel extends AEntita implements java.io.Serializable {
   }
 
   public String getCeleJmeno() {
-    celeJmeno = getTitulPred() + " " + getJmeno() + " " + getPrijmeni();
-    if(getTitulZa().length() > 0) celeJmeno += ", " + getTitulZa();
+    String pred = getTitulPred();
+    if(pred == null) pred = "";
+    String za = getTitulZa();
+    if(za == null) za = "";
+    celeJmeno = pred + " " + getJmeno() + " " + getPrijmeni();
+    if(za.length() > 0) celeJmeno += ", " + getTitulZa();
     return celeJmeno;
   }
 
