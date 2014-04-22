@@ -19,7 +19,7 @@ import dao.model.Uzivatel;
 public class ImportKalendare {
 
   public ImportKalendare() {
-    
+
   }
 
   public void novyKalendar(File kalendar, Uzivatel uzivatel) {
@@ -29,48 +29,57 @@ public class ImportKalendare {
       FileInputStream fis = new FileInputStream(kalendar);
       CalendarBuilder builder = new CalendarBuilder();
       Calendar calendar = builder.build(fis);
+      
+      for (int j = 0; j < definice.size(); j++) {
+        KalendarDefinice kd = definice.get(j); 
+        String pomStart = "<" + kd.getTagPracovniPomer() + ">";
+        String pomKonec = "</" + kd.getTagPracovniPomer() + ">";
+        String cinStart = "<" + kd.getTagKalendarCinnost() + ">";
+        String cinKonec = "</" + kd.getTagKalendarCinnost() + ">";
+        
+        for (Iterator<?> i = calendar.getComponents(Component.VEVENT).iterator(); i.hasNext(); ) {
+          VEvent component = (VEvent) i.next();
+          String text = component.getDescription().getValue();
+          if (text.equals("")) text = component.getSummary().getValue();
 
-      for (Iterator<?> i = calendar.getComponents(Component.VEVENT).iterator(); i.hasNext(); ) {
-        VEvent component = (VEvent) i.next();
-        String description = component.getDescription().getValue();
-        if (description.equals("")) description = component.getSummary().getValue();
-
-        for (int j = 0; j < definice.size(); j++) {
-          KalendarDefinice kd = definice.get(j);
-          if (description.contains(kd.getTagKalendarCinnost()) && description.contains(kd.getTagPracovniPomer())) {
-            Date start = component.getStartDate().getDate();        
+          if (text.contains(pomStart) && text.contains(pomKonec) 
+              && text.contains(cinStart) && text.contains(cinKonec)) {
+            String pomer = text.substring(text.lastIndexOf(pomStart) + 1, text.indexOf(pomKonec));
+            String cinnost = text.substring(text.lastIndexOf(cinStart) + 1, text.indexOf(cinKonec));
+            Date start = component.getStartDate().getDate();
             Date end = component.getEndDate().getDate();
-            ulozUdalost(start, end, uzivatel, kd);
+            ulozUdalost(start, end, uzivatel, kd, pomer, cinnost);
             break;
           }
-        }
+        }      
       }
+
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  private void ulozUdalost(Date start, Date end, Uzivatel uzivatel, KalendarDefinice kalendarDefinice) {
+  private void ulozUdalost(Date start, Date end, Uzivatel uzivatel, KalendarDefinice kalendarDefinice, String pomer, String cinnost2) {
     Kalendar kalendar = new Kalendar();
     Date ted = new Date();
     kalendar.setDatumImportu(ted);
     kalendar.setKalendarDefinice(kalendarDefinice);
     kalendar.setUzivatel(uzivatel);
     //TODO ulozit
-    
+
     KalendarCinnost cinnost = new KalendarCinnost();
     cinnost.setDatum(ted);
     double cas = end.getTime() - start.getTime();
     cas /= (1000.0 * 60 * 60);
     cinnost.setPocetHodin(cas);
-    //cinnost.setCinnost(cinnost);
-    //cinnost.setPracovniPomer(pracovniPomer);
+    //cinnost.setCinnost(cinnost);  //TODO najit cinnost (vytvorit ji)
+    //cinnost.setPracovniPomer(pracovniPomer);  //TODO najit pomer (vytvorit ho)
     cinnost.setUzivatel(uzivatel);
     cinnost.setKalendar(kalendar);
     cinnost.setCasOd(start);
     cinnost.setCasDo(end);
     //TODO ulozit
-    
+
   }
 
 }
