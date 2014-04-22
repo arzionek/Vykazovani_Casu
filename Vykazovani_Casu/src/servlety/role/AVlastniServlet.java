@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.beany.Cas;
+import dao.beany.Chyby;
 import dao.model.AEntita;
 import dao.model.Uzivatel;
 
@@ -54,11 +55,11 @@ public abstract class AVlastniServlet extends AServlet{
 		try{
 			cislo = Integer.parseInt(request.getParameter(jmeno));
 			if(cislo < 0){
-				request.setAttribute("error1", true);
+				request.setAttribute(Chyby.CELE_NEZAPORNE_CISLO, Chyby.CELE_NEZAPORNE_CISLO_ZPRAVA);
 				cislo = 0;
 			}
 		}catch(Exception e){
-			request.setAttribute("error1", true);
+			request.setAttribute(Chyby.CELE_NEZAPORNE_CISLO, Chyby.CELE_NEZAPORNE_CISLO_ZPRAVA);
 		}
 		return cislo;
 	}
@@ -97,9 +98,9 @@ public abstract class AVlastniServlet extends AServlet{
 	    try {
 	      parameter = Double.parseDouble(parametr);
 	    } catch (Exception e) {
-	      request.setAttribute("error4", true);
+	      request.setAttribute(Chyby.REALNE_NEZAPORNE_CISLO, Chyby.REALNE_NEZAPORNE_CISLO_ZPRAVA);
 	    }
-	    if (parameter <= 0) request.setAttribute("error4", true);
+	    if (parameter <= 0) request.setAttribute(Chyby.REALNE_NEZAPORNE_CISLO, Chyby.REALNE_NEZAPORNE_CISLO_ZPRAVA);
 	    
 	    return parameter;
 	  }
@@ -110,7 +111,7 @@ public abstract class AVlastniServlet extends AServlet{
 	    
 	    int pocetUdaju = datum.length() - datum.replace("-", "").length();
 	    if (pocetUdaju < 1 || pocetUdaju > 2) {
-	      request.setAttribute("error3", true);
+	      request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
 	      return new Date();
 	    }
 	    else if (pocetUdaju == 2) {
@@ -129,7 +130,7 @@ public abstract class AVlastniServlet extends AServlet{
 	          return format.parse("29-02-2000");
 	        } catch (Exception e2) {}
 	      }
-	      else request.setAttribute("error3", true);
+	      else request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
 	    }
 	    return datumDatabaze;
 	  }
@@ -137,12 +138,12 @@ public abstract class AVlastniServlet extends AServlet{
 	private static String kontrolaVyplneni(String nazev, HttpServletRequest request) {
 		String parameter = request.getParameter(nazev);
 		if(parameter == null) return parameter;
-		if(parameter.length() < 2 || parameter.equals("%")) request.setAttribute("error2", true);
+		if(parameter.length() < 2 || parameter.equals("%")) request.setAttribute(Chyby.POVINNY_UDAJ, Chyby.POVINNY_UDAJ_ZPRAVA);
 		return parameter;
 	}
 	
 	 private static void kontrolaMaximalniDelky(String nazev, HttpServletRequest request, int maximalniDelka) {
-	    if (nazev.length() > maximalniDelka) request.setAttribute("error5", true);
+	    if (nazev.length() > maximalniDelka) request.setAttribute(Chyby.MAXIMALNI_DELKA, Chyby.MAXIMALNI_DELKA_ZPRAVA);
 	  }
 	
 	protected static String[] getObjekty(HttpServletRequest request, String nazev) {
@@ -171,12 +172,12 @@ public abstract class AVlastniServlet extends AServlet{
 	}
 	
 	protected Object overChyby(HttpServletRequest request) {
-    Object chyba = request.getAttribute("error0");
-    if (chyba == null) chyba = request.getAttribute("error1");
-    if (chyba == null) chyba = request.getAttribute("error2");
-    if (chyba == null) chyba = request.getAttribute("error3");
-    if (chyba == null) chyba = request.getAttribute("error4");
-    if (chyba == null) chyba = request.getAttribute("error5");
+    Object chyba = request.getAttribute("duplicitniZadani");
+    if (chyba == null) chyba = request.getAttribute("celeNezaporneCislo");
+    if (chyba == null) chyba = request.getAttribute("povinnyUdaj");
+    if (chyba == null) chyba = request.getAttribute("platneDatum");
+    if (chyba == null) chyba = request.getAttribute("realneNezaporneCislo");
+    if (chyba == null) chyba = request.getAttribute("maximalniDelka");
     return chyba;
   }
 }
