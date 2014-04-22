@@ -50,10 +50,6 @@
   <servlet-class>servlety.role.zamestnanec.Nastaveni</servlet-class>
  </servlet>
  <servlet>
-  <servlet-name>vkladani</servlet-name>
-  <servlet-class>servlety.role.zamestnanec.Vkladani</servlet-class>
- </servlet>
- <servlet>
   <servlet-name>prehled</servlet-name>
   <servlet-class>servlety.role.zamestnanec.Prehled</servlet-class>
  </servlet>
@@ -92,10 +88,6 @@
  <servlet-mapping>
   <servlet-name>nastaveni</servlet-name>
   <url-pattern>/nastaveni</url-pattern>
- </servlet-mapping>
- <servlet-mapping>
-  <servlet-name>vkladani</servlet-name>
-  <url-pattern>/vkladani</url-pattern>
  </servlet-mapping>
  <servlet-mapping>
   <servlet-name>prehled</servlet-name>
