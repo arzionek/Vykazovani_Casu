@@ -40,8 +40,8 @@ public class Nastaveni extends AServletZamestnanec{
       nastaveniCinnosti(request, response);  
     } 
     else if(akce.getNastaveniSvatky().equals(volano)) {
-      vypisAkce("nastaveni_svatky", request);
-      nastaveniSvatky(request, response);
+      vypisAkce("nastaveni_svatku", request);
+      nastaveniSvatku(request, response);
     } 
     else if (akce.getNastaveniPomeru().equals(volano)) {
       vypisAkce("nastaveni_pomeru", request);
@@ -52,7 +52,7 @@ public class Nastaveni extends AServletZamestnanec{
     }
   }
 
-  private void nastaveniSvatky(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  private void nastaveniSvatku(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");  
     Svatek svatek = new Svatek();
     long svatekId = vratId(request, "objektId");
@@ -65,10 +65,7 @@ public class Nastaveni extends AServletZamestnanec{
         Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()});
         if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute("error0", true);
         
-        Object chyba = request.getAttribute("error0");
-        if (chyba == null) chyba = request.getAttribute("error2");
-        if (chyba == null) chyba = request.getAttribute("error3");
-        if (chyba == null) chyba = request.getAttribute("error5");
+        Object chyba = overChyby(request);
         
         if(svatekId != 0 && chyba == null) svatek = pripojeni.nacti(Svatek.class, svatekId);
         else if(svatekId != 0) svatek.setId(svatekId);
@@ -111,9 +108,7 @@ public class Nastaveni extends AServletZamestnanec{
         Cinnost cinnost2 = pripojeni.nacti(Cinnost.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev});
         if(cinnost2 != null && cinnost2.getId() != cinnostId) request.setAttribute("error0", true);
         
-        Object chyba = request.getAttribute("error0");
-        if (chyba == null) chyba = request.getAttribute("error2");
-        if (chyba == null) chyba = request.getAttribute("error5");
+        Object chyba = overChyby(request);
 
         if(cinnostId != 0 && chyba == null) cinnost = pripojeni.nacti(Cinnost.class, cinnostId);
         else if(cinnostId != 0) cinnost.setId(cinnostId);
@@ -162,10 +157,7 @@ public class Nastaveni extends AServletZamestnanec{
         PracovniPomer pomer2 = pripojeni.nacti(PracovniPomer.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev});
         if(pomer2 != null && pomer2.getId() != pomerId) request.setAttribute("error0", true);
         
-        Object chyba = request.getAttribute("error0");
-        if (chyba == null) chyba = request.getAttribute("error2");
-        if (chyba == null) chyba = request.getAttribute("error4");
-        if (chyba == null) chyba = request.getAttribute("error5");
+        Object chyba = overChyby(request);
 
         if(pomerId != 0 && chyba == null) pomer = pripojeni.nacti(PracovniPomer.class, pomerId);
         else if(pomerId != 0) pomer.setId(pomerId);

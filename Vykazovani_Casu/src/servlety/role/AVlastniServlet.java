@@ -169,4 +169,14 @@ public abstract class AVlastniServlet extends AServlet{
 	  rozdil /= 60; //na hodiny  
 	  return rozdil;
 	}
+	
+	protected Object overChyby(HttpServletRequest request) {
+    Object chyba = request.getAttribute("error0");
+    if (chyba == null) chyba = request.getAttribute("error1");
+    if (chyba == null) chyba = request.getAttribute("error2");
+    if (chyba == null) chyba = request.getAttribute("error3");
+    if (chyba == null) chyba = request.getAttribute("error4");
+    if (chyba == null) chyba = request.getAttribute("error5");
+    return chyba;
+  }
 }

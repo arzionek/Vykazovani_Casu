@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.beany.Akce;
 import dao.beany.Cas;
+import dao.beany.Chyby;
 import dao.databaze.Databaze;
 
 public abstract class AServlet extends HttpServlet{
@@ -19,6 +20,7 @@ public abstract class AServlet extends HttpServlet{
 	
 	protected Databaze pripojeni;
 	protected Akce akce;
+	protected Chyby chyby;
 	protected String volanaAkce;
 	protected String adresa;
 	
@@ -45,7 +47,8 @@ public abstract class AServlet extends HttpServlet{
 		//nastaveni akce
 		volanaAkce = request.getParameter("akce");
 		akce = (Akce) request.getAttribute("akce");
-
+		chyby = (Chyby) request.getAttribute("chyby");
+		
 		//akce odhlaseni
 		if(!response.isCommitted() && akce.getOdhlasit().equals(volanaAkce)) odhlasit(session, response);
 		
