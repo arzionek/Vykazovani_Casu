@@ -47,13 +47,9 @@
   <table>
     <tr><td style="float: left;"><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td>
     <c:url var="novy" value="nastaveni">
-<c:param name="akce" value="${akce.nastaveniSvatky}"/>
+      <c:param name="akce" value="${akce.nastaveniSvatky}"/>
     </c:url>
-    <td style="float: left;">
-    <a href="<c:out value="${novy}" escapeXml="true" />">
-    <img onmouseover="tooltip(novyTooltip, this, 100)" alt="Nový" src="img/papir.png" />
-    </a>
-    </td></tr>
+    <td style="float: left;"><a href="<c:out value="${novy}" escapeXml="true" />"><img onmouseover="tooltip(novyTooltip, this, 100)" alt="Nový" src="img/papir.png" /></a></td></tr>
   </table>
   </div>
   </form>
@@ -65,24 +61,34 @@
   </table>
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px">
-    <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" />, <c:out value="${o.datum2}" /></td>
-    <c:url var="upravit" value="nastaveni">
-<c:param name="akce" value="${akce.nastaveniSvatkyUpravit}"/>
-    </c:url>
+    <tr><td><c:out value="${o.datum2}" /> : <c:out value="${o.kod}" /> - <c:out value="${o.nazev}" /></td>
     <td class="vpravo">
-    <form action="<c:out value="${upravit}" escapeXml="true" />" method="post">
-      <input type="hidden" name="objektId" value="${o.id}" />
-      <input onmouseover="tooltip(upravitTooltip, this, 100)" type="image" alt="Upravit" src="img/upravit.png" name="upravit" value="Upravit" class="vpravo2"/>
-    </form>
+      <c:if test="${o.uzivatel != null}">
+        <c:url var="upravit" value="nastaveni">
+          <c:param name="akce" value="${akce.nastaveniSvatkyUpravit}"/>
+        </c:url>
+        <form action="<c:out value="${upravit}" escapeXml="true" />" method="post">
+          <input type="hidden" name="objektId" value="${o.id}" />
+          <input onmouseover="tooltip(upravitTooltip, this, 100)" type="image" alt="Upravit" src="img/upravit.png" name="upravit" value="Upravit" class="vpravo2"/>
+        </form>
+      </c:if>
+      <c:if test="${o.uzivatel == null}">
+        <img src="img/upravit2.png" alt="Upravit" class="vpravo2"/>
+      </c:if>
     </td>
     <td class="vpravo">
+      <c:if test="${o.uzivatel != null}">
         <c:url var="odstranit" value="nastaveni">
-<c:param name="akce" value="${akce.nastaveniSvatkySmazat}"/>
+          <c:param name="akce" value="${akce.nastaveniSvatkySmazat}"/>
         </c:url>
         <form action="<c:out value="${odstranit}" escapeXml="true" />" method="post">
           <input type="hidden" name="objektId" value="${o.id}" />
           <input onmouseover="tooltip(odstranitTooltip, this, 100)" type="image" alt="Odstranit" src="img/odstranit.png" name="odstranit" value="Odstranit" class="vpravo2"/>
         </form>
+      </c:if>
+      <c:if test="${o.uzivatel == null}">
+        <img src="img/odstranit2.png" alt="Odstranit" class="vpravo2"/>
+      </c:if>
     </td>
   </table>
   </c:forEach>

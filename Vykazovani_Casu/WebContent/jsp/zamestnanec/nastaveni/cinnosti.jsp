@@ -63,15 +63,16 @@
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px">
     <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" /></td>
-    <c:url var="upravit" value="nastaveni">
-	  <c:param name="akce" value="${akce.nastaveniCinnostiUpravit}"/>
-    </c:url>  
-      <td class="vpravo">
+    
+    <td class="vpravo">
+      <c:url var="upravit" value="nastaveni">
+        <c:param name="akce" value="${akce.nastaveniCinnostiUpravit}"/>
+      </c:url>  
       <form action="<c:out value="${upravit}" escapeXml="true" />" method="post">
-      <input type="hidden" name="objektId" value="${o.id}" />
-      <input onmouseover="tooltip(upravitTooltip, this, 100)" type="image" alt="Upravit" src="img/upravit.png" name="upravit" value="Upravit" class="vpravo2"/>
+        <input type="hidden" name="objektId" value="${o.id}" />
+        <input onmouseover="tooltip(upravitTooltip, this, 100)" type="image" alt="Upravit" src="img/upravit.png" name="upravit" value="Upravit" class="vpravo2"/>
       </form>
-      </td>
+    </td>
     <td class="vpravo">
       <c:if test="${empty o.kalendarCinnost}">
         <c:url var="odstranit" value="nastaveni">

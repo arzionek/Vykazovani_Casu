@@ -12,7 +12,19 @@ INSERT INTO `svatek` (`svatek_id`, `datum`, `nazev`, `uzivatel_id`, `kod`) VALUE
 (2, '9999-04-02 00:00:00', 'Svátek2', 1, 'sv2'),
 (3, '9999-04-03 00:00:00', 'Svátek3', 1, 'sv3'),
 (4, '9999-04-04 00:00:00', 'Svátek4', 1, 'sv4'),
-(5, '9999-04-05 00:00:00', 'Svátek5', 1, 'sv5');
+(5, '9999-04-05 00:00:00', 'Svátek5', 1, 'sv5'),
+(6, '9999-01-01 00:00:00', 'Nový rok', NULL, '000'),
+(7, '9999-01-06 00:00:00', 'Tři králové', NULL, '001'),
+(8, '9999-05-01 00:00:00', 'Svátek Práce', NULL, '002'),
+(9, '9999-05-08 00:00:00', 'Den vítězství', NULL, '003'),
+(10, '9999-07-05 00:00:00', 'Cyril a Metoděj', NULL, '004'),
+(11, '9999-07-06 00:00:00', 'Mistr Jan Hus', NULL, '005'),
+(12, '9999-10-28 00:00:00', 'Den vzniku samostatného Československého státu', NULL, '006'),
+(13, '9999-11-02 00:00:00', 'Dušičky', NULL, '007'),
+(14, '9999-12-24 00:00:00', 'Štědrý den', NULL, '008'),
+(15, '9999-12-25 00:00:00', '1. svátek vánoční', NULL, '009'),
+(16, '9999-12-26 00:00:00', '2. svátek vánoční', NULL, '010'),
+(17, '9999-11-17 00:00:00', 'Den boje za svobodu', NULL, '011');
 
 INSERT INTO `cinnost` (`cinnost_id`, `uzivatel_id`, `kod`, `nazev`) VALUES
 (1, 1, 'cin1', 'Cinnost1'),
