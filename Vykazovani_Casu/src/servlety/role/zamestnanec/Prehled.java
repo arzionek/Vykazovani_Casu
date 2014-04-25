@@ -40,7 +40,7 @@ public class Prehled extends AServletZamestnanec{
     }
     
     if(!response.isCommitted()){
-      List<KalendarCinnost> cinnosti = pripojeni.ziskejObjekty(KalendarCinnost.class, uzivatel);
+      List<KalendarCinnost> cinnosti = pripojeni.ziskejObjekty(KalendarCinnost.class, uzivatel, new String[]{"datum desc", "casOd asc"});
       for (int i = 0; cinnosti != null && i < cinnosti.size(); i++) {
         KalendarCinnost kc = cinnosti.get(i);
         pripojeni.inicializaceObjektu(kc.getCinnost());

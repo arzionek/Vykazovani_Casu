@@ -84,7 +84,7 @@ public abstract class AVlastniServlet extends AServlet{
 
 	  if (typDat.equals(String.class)) {
 	    String parametr = kontrolaVyplneni(nazev, request);
-	    kontrolaMaximalniDelky(parametr, request, AEntita.getOmezeniSloupce(trida, nazev).getLength());  
+	    kontrolaMaximalniDelky(parametr, request, AEntita.getSloupec(trida, nazev).getLength());  
 	    return parametr;
 	  }
 	  

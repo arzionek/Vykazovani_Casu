@@ -92,7 +92,7 @@ public class Nastaveni extends AServletZamestnanec{
     }
     
     request.setAttribute("objekt", svatek);
-    List<Svatek> svatky = pripojeni.ziskejObjekty(Svatek.class, uzivatel);
+    List<Svatek> svatky = pripojeni.ziskejObjekty(Svatek.class, uzivatel, "datum");
     request.setAttribute("objekty", svatky);
     request.setAttribute("datepickerFormat", "dd.mm.");
     presmerovani(request, response, adresa + "/svatky.jsp");

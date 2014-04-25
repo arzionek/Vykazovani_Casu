@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import dao.model.AEntita;
 import dao.model.Uzivatel;
 import dao.util.HibernateHelper;
 
@@ -38,22 +39,7 @@ public abstract class ADatabaze{
   }
   
   public <T> T nacti(Class<T> trida, String atribut, String hodnota){
-    T object = null;
-    Session session = null;
-    try{
-      session = hibernate.getSession();
-      Query query = session.createQuery("select o from " + trida.getName() + " o where o." + atribut + "='" + hodnota + "'");
-      @SuppressWarnings("unchecked")
-      List<T> list = query.list();
-      if(list != null && !list.isEmpty()) object = (T) list.get(0);
-    }catch(RuntimeException e){
-      throw e;
-    }finally{
-      /*if(session != null){
-        hibernate.closeSession();
-      }*/
-    }
-    return object;
+    return nacti(trida, new String[]{atribut}, new String[]{hodnota}, null, null);
   }
   
   public <T> T nacti(Class<T> trida, Object atributy[], Object hodnoty[], Boolean zaroven){
@@ -69,7 +55,9 @@ public abstract class ADatabaze{
     Session session = null;
     try{
       session = hibernate.getSession();
-      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty, zaroven, uzivatel));
+      String dotaz = "select o from " + trida.getName() + " o";
+      dotaz += " where" + getPodminka(trida, atributy, hodnoty, zaroven, uzivatel);
+      Query query = session.createQuery(dotaz);
       @SuppressWarnings("unchecked")
       List<T> list = query.list();
       if(list != null && !list.isEmpty()) object = (T) list.get(0);
@@ -82,7 +70,7 @@ public abstract class ADatabaze{
     }
     return object;
   }
-  
+
   public void vlozUprav(Object object, Long id) {
     Session session = null;
     Transaction tx = null;
@@ -137,13 +125,24 @@ public abstract class ADatabaze{
     }
   }
   
-  @SuppressWarnings("unchecked")
   public <T> List<T> ziskejObjekty(Class<T> trida, Uzivatel uzivatel) {
+    return ziskejObjekty(trida, uzivatel, new String[]{});
+  }
+  
+  public <T> List<T> ziskejObjekty(Class<T> trida, Uzivatel uzivatel, String atributRazeni) {
+    return ziskejObjekty(trida, uzivatel, new String[]{atributRazeni});
+  }
+  
+  @SuppressWarnings("unchecked")
+  public <T> List<T> ziskejObjekty(Class<T> trida, Uzivatel uzivatel, String[] atributyRazeni) {
     List<T> list = null;
     Session session = null;
     try{
       session = hibernate.getSession();
-      Query query = session.createQuery(vytvorDotaz(trida, null, null, null, uzivatel));
+      String dotaz = "select o from " + trida.getName() + " o";
+      dotaz += " where" + getPodminka(trida, null, null, null, uzivatel);
+      dotaz += getRazeni(trida, atributyRazeni);
+      Query query = session.createQuery(dotaz);
       list = query.list();
     }catch(RuntimeException e){
       throw e;
@@ -155,8 +154,7 @@ public abstract class ADatabaze{
     return list;
   }
 
-  private String vytvorDotaz(Class<?> trida, Object[] atributy, Object[] hodnoty, Boolean zaroven, Uzivatel uzivatel) {
-    String dotaz = "select o from " + trida.getName() + " o where";
+  private String getPodminka(Class<?> trida, Object[] atributy, Object[] hodnoty, Boolean zaroven, Uzivatel uzivatel) {
     String podminka = "";
     for (int i = 0; atributy != null && i < atributy.length; i++) {
       podminka += " o." + atributy[i].toString() + "='" + hodnoty[i].toString() + "'";
@@ -167,14 +165,26 @@ public abstract class ADatabaze{
     }
     if(uzivatel != null){
     	String podminkaUzivatel = " (o.uzivatel.id=" + uzivatel.getId() + " or o.uzivatel is null)";
-    	if(podminka.length() > 0) dotaz += "(" + podminka + ")" + " and" + podminkaUzivatel;
-    	else dotaz += podminkaUzivatel;
-    }else{
-    	dotaz += podminka;
+    	if(podminka.length() > 0) podminka += "(" + podminka + ")" + " and" + podminkaUzivatel;
+    	else podminka += podminkaUzivatel;
     }
-    return dotaz;
+    return podminka;
   }
 
+  private String getRazeni(Class<?> trida, String[] atributyRazeni) {
+    String razeni = "";
+    if(atributyRazeni.length == 0){
+      if(AEntita.getSloupec(trida, "kod") != null) razeni = "order by o.kod";
+    }else{
+      razeni = "order by";
+      for (int i = 0; i < atributyRazeni.length; i++) {
+        razeni += " o." + atributyRazeni[i];
+        if(i < (atributyRazeni.length - 1)) razeni += ",";
+      }
+    }
+    return razeni;
+  }
+  
   public void inicializaceSetu(Set<?> set) {
     Hibernate.initialize(set);
   }
