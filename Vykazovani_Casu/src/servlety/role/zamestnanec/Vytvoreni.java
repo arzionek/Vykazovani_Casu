@@ -52,10 +52,11 @@ public class Vytvoreni extends AServletZamestnanec{
         Date datum = (Date) kontrola(request, KalendarCinnost.class, "datum");
         Date casOd = (Date) kontrola(request, KalendarCinnost.class, "casOd");
         Date casDo = (Date) kontrola(request, KalendarCinnost.class, "casDo");
+        kontrolaCas(casOd, casDo, request);
         long pomerId = vratId(request, "pomer");
         long cinnostId = vratId(request, "cinnost");
-        KalendarCinnost cinnost2 = pripojeni.nacti(KalendarCinnost.class, new String[]{"uzivatel.id", "pracovniPomer.id", "cinnost.id", "datum"}, new Object[]{uzivatel.getId(), pomerId, cinnostId, new Cas(datum).getDatumDatabaze()}, true);
-        if(cinnost2 != null && cinnost2.getId() != kalendarCinnostId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, Chyby.DUPLICITNI_ZADANI_ZPRAVA);
+        List<KalendarCinnost> cinnostList = pripojeni.ziskejObjekty(KalendarCinnost.class, new String[]{"datum"}, new Object[]{new Cas(datum).getDatumDatabaze()}, true, uzivatel, new String[]{"casOd asc"});
+        zkontrolujZadaneCinnosti(request, cinnostList, casOd, casDo, kalendarCinnostId);
         
         Object chyba = overChyby(request);
         
@@ -64,7 +65,7 @@ public class Vytvoreni extends AServletZamestnanec{
         kalendarCinnost.setDatum(datum);
         kalendarCinnost.setCasOd(casOd);
         kalendarCinnost.setCasDo(casDo);
-        kalendarCinnost.setPocetHodin(vratPocetOdpracovanychHodin(casOd, casDo));
+        if(request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI) == null) kalendarCinnost.setPocetHodin(vratPocetOdpracovanychHodin(casOd, casDo));
         PracovniPomer pomer = pripojeni.nacti(PracovniPomer.class, pomerId);
         kalendarCinnost.setPracovniPomer(pomer);
         Cinnost cinnost = pripojeni.nacti(Cinnost.class, cinnostId);
@@ -85,5 +86,26 @@ public class Vytvoreni extends AServletZamestnanec{
     List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel);
     request.setAttribute("pomery", pomery);
     request.setAttribute("datepickerFormat", "dd.mm.yy");
+  }
+
+  private static void kontrolaCas(Date casOd, Date casDo, HttpServletRequest request) {
+    if(casOd.after(casDo)) request.setAttribute(Chyby.PLATNE_DATUM_POROVNANI, "casOd"); 
+  }
+
+  private static void zkontrolujZadaneCinnosti(HttpServletRequest request, List<KalendarCinnost> cinnostList, Date casOd, Date casDo, long kalendarCinnostId) {
+    boolean chyba = false;
+    for (int i = 0; cinnostList != null && i < cinnostList.size(); i++) {
+      KalendarCinnost cinnost2 = cinnostList.get(i);
+      Date casOd2 = cinnost2.getCasOd();
+      Date casDo2 = cinnost2.getCasDo();
+      if(casOd.after(casDo2) || casDo.before(casOd2)){
+        
+      }else if(casOd.equals(casOd2) && casDo.equals(casDo2) && kalendarCinnostId == cinnost2.getId()){
+        
+      }else{
+        chyba = true;
+      }
+    }
+    if(chyba) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "casOd"); 
   }
 }

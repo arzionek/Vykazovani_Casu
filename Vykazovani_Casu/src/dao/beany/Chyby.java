@@ -7,6 +7,7 @@ public class Chyby {
   public static final String PLATNE_DATUM = "platneDatum";
   public static final String REALNE_NEZAPORNE_CISLO = "realneNezaporneCislo";
   public static final String MAXIMALNI_DELKA = "maximalniDelka";
+  public static final String PLATNE_DATUM_POROVNANI = "platneDatumPorovnani";
   
   public static final String DUPLICITNI_ZADANI_ZPRAVA = "Údaj se stejnými atributy již existuje!";
   public static final String CELE_NEZAPORNE_CISLO_ZPRAVA = "Musí být zadáno kladné celé èíslo!";
@@ -14,6 +15,7 @@ public class Chyby {
   public static final String PLATNE_DATUM_ZPRAVA = "Neplatné datum nebo èas!";
   public static final String REALNE_NEZAPORNE_CISLO_ZPRAVA = "Musí být zadáno kladné èíslo!";
   public static final String MAXIMALNI_DELKA_ZPRAVA = "Zadané údaje jsou pøíliš dlouhé!";
+  public static final String PLATNE_DATUM_POROVNANI_ZPRAVA = "Èas od je vìtší než èas do!";
   
   public String getDuplicitniZadani() {
     return DUPLICITNI_ZADANI;
@@ -61,6 +63,14 @@ public class Chyby {
 
   public String getMaximalniDelkaZprava() {
     return MAXIMALNI_DELKA_ZPRAVA;
+  }
+
+  public String getPlatneDatumPorovnani() {
+    return PLATNE_DATUM_POROVNANI;
+  }
+
+  public String getPlatneDatumPorovnaniZprava() {
+    return PLATNE_DATUM_POROVNANI_ZPRAVA;
   }
 
 }

@@ -133,14 +133,18 @@ public abstract class ADatabaze{
     return ziskejObjekty(trida, uzivatel, new String[]{atributRazeni});
   }
   
-  @SuppressWarnings("unchecked")
   public <T> List<T> ziskejObjekty(Class<T> trida, Uzivatel uzivatel, String[] atributyRazeni) {
+    return ziskejObjekty(trida, null, null, null, uzivatel, atributyRazeni);
+  }
+  
+  @SuppressWarnings("unchecked")
+  public <T> List<T> ziskejObjekty(Class<T> trida, Object atributy[], Object hodnoty[], Boolean zaroven, Uzivatel uzivatel, String[] atributyRazeni) {
     List<T> list = null;
     Session session = null;
     try{
       session = hibernate.getSession();
       String dotaz = "select o from " + trida.getName() + " o";
-      dotaz += " where" + getPodminka(trida, null, null, null, uzivatel);
+      dotaz += " where" + getPodminka(trida, atributy, hodnoty, zaroven, uzivatel);
       dotaz += getRazeni(trida, atributyRazeni);
       Query query = session.createQuery(dotaz);
       list = query.list();

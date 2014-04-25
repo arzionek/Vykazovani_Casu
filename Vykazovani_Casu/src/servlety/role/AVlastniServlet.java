@@ -53,8 +53,8 @@ public abstract class AVlastniServlet extends AServlet{
     System.out.println(new Cas().ziskejDatum() + " - _" + akce + ": " + getUzivatele(request));
   }
 	
-	protected static int vratId(HttpServletRequest request, String jmeno){
-		int cislo = 0;
+	protected static long vratId(HttpServletRequest request, String jmeno){
+		long cislo = 0;
 		try{
 			cislo = Integer.parseInt(request.getParameter(jmeno));
 		} catch(Exception e) {}
@@ -186,31 +186,32 @@ public abstract class AVlastniServlet extends AServlet{
 	  if (chyba == null) chyba = request.getAttribute(Chyby.PLATNE_DATUM);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_NEZAPORNE_CISLO);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.MAXIMALNI_DELKA);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI);
 	  return chyba;
 	}
 	
-	protected String getShoda(AEntita entita, AEntita entitaDb) {
+	protected static String getShoda(AEntita entita, AEntita entitaDb) {
     String nazev = "";
     if(entita instanceof PracovniPomer){
       if(((PracovniPomer) entita).getKod().equals(((PracovniPomer) entitaDb).getKod())) nazev = "kod";
-      else if(((PracovniPomer) entita).getNazev().equals(((PracovniPomer) entitaDb).getNazev())) nazev = "nazev";
+      if(((PracovniPomer) entita).getNazev().equals(((PracovniPomer) entitaDb).getNazev())) nazev += " nazev";
       
     }else if(entita instanceof Cinnost){
       if(((Cinnost) entita).getKod().equals(((Cinnost) entitaDb).getKod())) nazev = "kod";
-      else if(((Cinnost) entita).getNazev().equals(((Cinnost) entitaDb).getNazev())) nazev = "nazev";
+      if(((Cinnost) entita).getNazev().equals(((Cinnost) entitaDb).getNazev())) nazev += " nazev";
       
     }else if(entita instanceof Svatek){
       if(((Svatek) entita).getKod().equals(((Svatek) entitaDb).getKod())) nazev = "kod";
-      else if(((Svatek) entita).getNazev().equals(((Svatek) entitaDb).getNazev())) nazev = "nazev";
-      else if(((Svatek) entita).getDatum().equals(((Svatek) entitaDb).getDatum())) nazev = "datum";
+      if(((Svatek) entita).getNazev().equals(((Svatek) entitaDb).getNazev())) nazev += " nazev";
+      if(((Svatek) entita).getDatum().equals(((Svatek) entitaDb).getDatum())) nazev += " datum";
       
     }else if(entita instanceof KalendarDefinice){
       if(((KalendarDefinice) entita).getKod().equals(((KalendarDefinice) entitaDb).getKod())) nazev = "kod"; 
-      else if(((KalendarDefinice) entita).getNazev().equals(((KalendarDefinice) entitaDb).getNazev())) nazev = "nazev"; 
+      if(((KalendarDefinice) entita).getNazev().equals(((KalendarDefinice) entitaDb).getNazev())) nazev += " nazev"; 
 
     }else if(entita instanceof SablonaVykaz){
       if(((SablonaVykaz) entita).getKod().equals(((SablonaVykaz) entitaDb).getKod())) nazev = "kod";
-      else if(((SablonaVykaz) entita).getKod().equals(((SablonaVykaz) entitaDb).getKod())) nazev = "nazev";
+      if(((SablonaVykaz) entita).getKod().equals(((SablonaVykaz) entitaDb).getKod())) nazev += " nazev";
       
     }
     return nazev;
