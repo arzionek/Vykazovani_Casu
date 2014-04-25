@@ -33,6 +33,11 @@ public class Akce {
   private static final String VYTVORENI_VLOZIT = "61";
   private static final String PREHLED_UPRAVIT = "62";
   private static final String PREHLED_SMAZAT = "63";
+  
+  private static final String IMPORT = "7";
+  private static final String IMPORT_NAHRAT = "71";
+  private static final String IMPORT_SMAZAT = "72";
+
 	
 	public String getOdhlasit() {
 		return ODHLASIT;
@@ -116,6 +121,18 @@ public class Akce {
 
   public String getPrehledSmazat() {
     return PREHLED_SMAZAT;
+  }
+
+  public String getImport() {
+    return IMPORT;
+  }
+
+  public String getImportNahrat() {
+    return IMPORT_NAHRAT;
+  }
+
+  public String getImportSmazat() {
+    return IMPORT_SMAZAT;
   }
 
 }

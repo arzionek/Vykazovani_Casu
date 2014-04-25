@@ -66,6 +66,10 @@
   <servlet-class>servlety.role.zamestnanec.Vytvoreni</servlet-class>
  </servlet>
  <servlet>
+  <servlet-name>novyImport</servlet-name>
+  <servlet-class>servlety.role.zamestnanec.NovyImport</servlet-class>
+ </servlet>
+ <servlet>
   <servlet-name>registrace</servlet-name>
   <servlet-class>servlety.role.zamestnanec.Registrace</servlet-class>
  </servlet>
@@ -104,6 +108,10 @@
  <servlet-mapping>
   <servlet-name>vytvoreni</servlet-name>
   <url-pattern>/vytvoreni</url-pattern>
+ </servlet-mapping>
+  <servlet-mapping>
+  <servlet-name>novyImport</servlet-name>
+  <url-pattern>/novyImport</url-pattern>
  </servlet-mapping>
  <welcome-file-list>
   <welcome-file>uvodni</welcome-file>
