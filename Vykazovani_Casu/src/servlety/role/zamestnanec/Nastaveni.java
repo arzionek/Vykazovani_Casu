@@ -127,21 +127,21 @@ public class Nastaveni extends AServletZamestnanec{
       }
       vypisAkce("_vlozit", request);
     }else if(akce.getNastaveniCinnostiUpravit().equals(volanaAkce)){
-      cinnost = (Cinnost) pripojeni.nacti(Cinnost.class, cinnostId);
+      cinnost = pripojeni.nacti(Cinnost.class, cinnostId);
       vypisAkce("_upravit", request);
     }else if(akce.getNastaveniCinnostiSmazat().equals(volanaAkce)){
-      cinnost = (Cinnost) pripojeni.nacti(Cinnost.class, cinnostId);
+      cinnost = pripojeni.nacti(Cinnost.class, cinnostId);
       pripojeni.smaz(cinnost);
       cinnost = new Cinnost();
       vypisAkce("_smazat", request);
     }
 
     request.setAttribute("objekt", cinnost);
-    List<Cinnost> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, uzivatel);
+    List<Cinnost> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, uzivatel, "kod");
     for (int i = 0; cinnosti != null && i < cinnosti.size(); i++) {
-	  Cinnost c = cinnosti.get(i);
-	  pripojeni.inicializaceSetu(c.getKalendarCinnost());
-	}
+    Cinnost c = cinnosti.get(i);
+    pripojeni.inicializaceSetu(c.getKalendarCinnost());
+  }
     request.setAttribute("objekty", cinnosti);
     presmerovani(request, response, adresa + "/cinnosti.jsp");
   }
@@ -178,28 +178,28 @@ public class Nastaveni extends AServletZamestnanec{
       }
       vypisAkce("_vlozit", request);
     } else if(akce.getNastaveniPomeruUpravit().equals(volanaAkce)){
-      pomer = (PracovniPomer) pripojeni.nacti(PracovniPomer.class, pomerId);
+      pomer = pripojeni.nacti(PracovniPomer.class, pomerId);
       vypisAkce("_upravit", request);
     } else if(akce.getNastaveniPomeruSmazat().equals(volanaAkce)){
-      pomer = (PracovniPomer) pripojeni.nacti(PracovniPomer.class, pomerId);
+      pomer = pripojeni.nacti(PracovniPomer.class, pomerId);
       pripojeni.smaz(pomer);
       pomer = new PracovniPomer();
       vypisAkce("_smazat", request);
     }
 
     request.setAttribute("objekt", pomer);
-    List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel);
+    List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel, "kod");
     for (int i = 0; pomery != null && i < pomery.size(); i++) {
-	  PracovniPomer p = pomery.get(i);
-	  pripojeni.inicializaceSetu(p.getKalendarCinnost());
-	  pripojeni.inicializaceSetu(p.getSablonaVykaz());
-	}
+    PracovniPomer p = pomery.get(i);
+    pripojeni.inicializaceSetu(p.getKalendarCinnost());
+    pripojeni.inicializaceSetu(p.getSablonaVykaz());
+  }
     request.setAttribute("objekty", pomery);
     presmerovani(request, response, adresa + "/pomery.jsp");
   }
 
   private void nastaveniKalendare(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  presmerovani(request, response, adresa + "/definiceKalendare.jsp");
-  }
+    presmerovani(request, response, adresa + "/definiceKalendare.jsp");
+  } 
   
 }
