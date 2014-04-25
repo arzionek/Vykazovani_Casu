@@ -40,11 +40,11 @@ public class Prehled extends AServletZamestnanec{
     }
     
     if(!response.isCommitted()){
-      List<KalendarCinnost> cinnosti = pripojeni.ziskejObjekty(KalendarCinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+      List<KalendarCinnost> cinnosti = pripojeni.ziskejObjekty(KalendarCinnost.class, uzivatel);
       for (int i = 0; cinnosti != null && i < cinnosti.size(); i++) {
-        KalendarCinnost cin = cinnosti.get(i);
-        pripojeni.inicializaceObjektu(cin.getCinnost());
-        pripojeni.inicializaceObjektu(cin.getPracovniPomer());
+        KalendarCinnost kc = cinnosti.get(i);
+        pripojeni.inicializaceObjektu(kc.getCinnost());
+        pripojeni.inicializaceObjektu(kc.getPracovniPomer());
       }
       request.setAttribute("objekty", cinnosti);
   	  presmerovani(request, response, adresa + "/zadane_cinnosti.jsp");

@@ -72,9 +72,9 @@ public class Vytvoreni extends AServletZamestnanec{
     }
     
     request.setAttribute("objekt", kalendarCinnost);
-    List<Cinnost> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    List<Cinnost> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, uzivatel);
     request.setAttribute("cinnosti", cinnosti);
-    List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel);
     request.setAttribute("pomery", pomery);
     request.setAttribute("datepickerFormat", "dd.mm.yy");
   }

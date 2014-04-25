@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import dao.model.Uzivatel;
 import dao.util.HibernateHelper;
 
 public abstract class ADatabaze{
@@ -55,16 +56,20 @@ public abstract class ADatabaze{
     return object;
   }
   
-  public <T> T nacti(Class<T> trida, Object atributy[], Object hodnoty[]){
-    return nacti(trida, atributy, hodnoty, false);
+  public <T> T nacti(Class<T> trida, Object atributy[], Object hodnoty[], Boolean zaroven){
+    return nacti(trida, atributy, hodnoty, zaroven, null);
   }
   
-  public <T> T nacti(Class<T> trida, Object atributy[], Object hodnoty[], boolean zaroven){
+  public <T> T nacti(Class<T> trida, Object atributy[], Object hodnoty[], Uzivatel uzivatel){
+	return nacti(trida, atributy, hodnoty, null, uzivatel);
+  }
+  
+  public <T> T nacti(Class<?> trida, Object atributy[], Object hodnoty[], Boolean zaroven, Uzivatel uzivatel){
     T object = null;
     Session session = null;
     try{
       session = hibernate.getSession();
-      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty, zaroven));
+      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty, zaroven, uzivatel));
       @SuppressWarnings("unchecked")
       List<T> list = query.list();
       if(list != null && !list.isEmpty()) object = (T) list.get(0);
@@ -133,12 +138,12 @@ public abstract class ADatabaze{
   }
   
   @SuppressWarnings("unchecked")
-  public <T> List<T> ziskejObjekty(Class<T> trida, Object[] atributy, Object[] hodnoty) {
+  public <T> List<T> ziskejObjekty(Class<T> trida, Uzivatel uzivatel) {
     List<T> list = null;
     Session session = null;
     try{
       session = hibernate.getSession();
-      Query query = session.createQuery(vytvorDotaz(trida, atributy, hodnoty, false));
+      Query query = session.createQuery(vytvorDotaz(trida, null, null, null, uzivatel));
       list = query.list();
     }catch(RuntimeException e){
       throw e;
@@ -150,15 +155,22 @@ public abstract class ADatabaze{
     return list;
   }
 
-  private String vytvorDotaz(Class<?> trida, Object[] atributy, Object[] hodnoty, boolean zaroven) {
+  private String vytvorDotaz(Class<?> trida, Object[] atributy, Object[] hodnoty, Boolean zaroven, Uzivatel uzivatel) {
     String dotaz = "select o from " + trida.getName() + " o where";
-    for (int i = 0; i < atributy.length; i++) {
-      String podminka = " o." + atributy[i].toString() + "='" + hodnoty[i].toString() + "'";
-      if(i > 0){
-        if(zaroven) podminka = " and" + podminka;
-        else podminka = " or" + podminka;
+    String podminka = "";
+    for (int i = 0; atributy != null && i < atributy.length; i++) {
+      podminka += " o." + atributy[i].toString() + "='" + hodnoty[i].toString() + "'";
+      if(i < (atributy.length - 1)){
+        if(zaroven != null && zaroven.booleanValue()) podminka += " and";
+        else podminka += " or";
       }
-      dotaz += podminka;
+    }
+    if(uzivatel != null){
+    	String podminkaUzivatel = " (o.uzivatel.id=" + uzivatel.getId() + " or o.uzivatel is null)";
+    	if(podminka.length() > 0) dotaz += "(" + podminka + ")" + " and" + podminkaUzivatel;
+    	else dotaz += podminkaUzivatel;
+    }else{
+    	dotaz += podminka;
     }
     return dotaz;
   }

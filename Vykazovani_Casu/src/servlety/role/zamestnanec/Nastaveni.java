@@ -2,9 +2,7 @@ package servlety.role.zamestnanec;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.beany.Cas;
 import dao.beany.Chyby;
 import dao.model.Cinnost;
-import dao.model.KalendarCinnost;
 import dao.model.PracovniPomer;
-import dao.model.SablonaVykaz;
 import dao.model.Svatek;
 import dao.model.Uzivatel;
 
@@ -67,7 +63,7 @@ public class Nastaveni extends AServletZamestnanec{
         kod = (String) kontrola(request, Svatek.class, "kod");
         String nazev = (String) kontrola(request, Svatek.class, "nazev");
         Date datum = (Date) kontrola(request, Svatek.class, "datum");
-        Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()});
+        Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()}, uzivatel);
         if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, Chyby.DUPLICITNI_ZADANI_ZPRAVA);
         
         Object chyba = overChyby(request);
@@ -96,7 +92,7 @@ public class Nastaveni extends AServletZamestnanec{
     }
     
     request.setAttribute("objekt", svatek);
-    List<Svatek> svatky = pripojeni.ziskejObjekty(Svatek.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
+    List<Svatek> svatky = pripojeni.ziskejObjekty(Svatek.class, uzivatel);
     request.setAttribute("objekty", svatky);
     request.setAttribute("datepickerFormat", "dd.mm.");
     presmerovani(request, response, adresa + "/svatky.jsp");
@@ -111,7 +107,7 @@ public class Nastaveni extends AServletZamestnanec{
       if(kod != null){
         kod = (String) kontrola(request, Cinnost.class, "kod");
         String nazev = (String) kontrola(request, Cinnost.class, "nazev");
-        Cinnost cinnost2 = pripojeni.nacti(Cinnost.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev});
+        Cinnost cinnost2 = pripojeni.nacti(Cinnost.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev}, uzivatel);
         if(cinnost2 != null && cinnost2.getId() != cinnostId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, Chyby.DUPLICITNI_ZADANI_ZPRAVA);
         
         Object chyba = overChyby(request);
@@ -139,13 +135,11 @@ public class Nastaveni extends AServletZamestnanec{
     }
 
     request.setAttribute("objekt", cinnost);
-    List<Cinnost> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
-    Iterator<?> it = cinnosti.iterator();
-    while (it.hasNext()) {
-      Cinnost c = (Cinnost) it.next();
-      Set<KalendarCinnost> set = c.getKalendarCinnost();
-      pripojeni.inicializaceSetu(set);
-    }
+    List<Cinnost> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, uzivatel);
+    for (int i = 0; cinnosti != null && i < cinnosti.size(); i++) {
+	  Cinnost c = cinnosti.get(i);
+	  pripojeni.inicializaceSetu(c.getKalendarCinnost());
+	}
     request.setAttribute("objekty", cinnosti);
     presmerovani(request, response, adresa + "/cinnosti.jsp");
   }
@@ -160,7 +154,7 @@ public class Nastaveni extends AServletZamestnanec{
         kod = (String) kontrola(request, PracovniPomer.class, "kod");
         String nazev = (String) kontrola(request, PracovniPomer.class, "nazev");
         double velikost = (Double) kontrola(request, PracovniPomer.class, "velikostUvazku");
-        PracovniPomer pomer2 = pripojeni.nacti(PracovniPomer.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev});
+        PracovniPomer pomer2 = pripojeni.nacti(PracovniPomer.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev}, uzivatel);
         if(pomer2 != null && pomer2.getId() != pomerId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, Chyby.DUPLICITNI_ZADANI_ZPRAVA);
         
         Object chyba = overChyby(request);
@@ -189,21 +183,18 @@ public class Nastaveni extends AServletZamestnanec{
     }
 
     request.setAttribute("objekt", pomer);
-    List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, new Object[]{"uzivatel.id"}, new Object[]{uzivatel.getId()});
-    Iterator<?> it = pomery.iterator();
-    while (it.hasNext()) {
-      PracovniPomer p = (PracovniPomer) it.next();
-      Set<KalendarCinnost> set1 = p.getKalendarCinnost();
-      pripojeni.inicializaceSetu(set1);
-      Set<SablonaVykaz> set2 = p.getSablonaVykaz();
-      pripojeni.inicializaceSetu(set2);
-    }
+    List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel);
+    for (int i = 0; pomery != null && i < pomery.size(); i++) {
+	  PracovniPomer p = pomery.get(i);
+	  pripojeni.inicializaceSetu(p.getKalendarCinnost());
+	  pripojeni.inicializaceSetu(p.getSablonaVykaz());
+	}
     request.setAttribute("objekty", pomery);
     presmerovani(request, response, adresa + "/pomery.jsp");
   }
   
   private void nastaveniKalendare(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  presmerovani(request, response, adresa + "/definiceKalendare.jsp");
+	presmerovani(request, response, adresa + "/definiceKalendare.jsp");
   }
   
 }
