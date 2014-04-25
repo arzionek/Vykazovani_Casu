@@ -165,8 +165,8 @@ public abstract class ADatabaze{
     }
     if(uzivatel != null){
     	String podminkaUzivatel = " (o.uzivatel.id=" + uzivatel.getId() + " or o.uzivatel is null)";
-    	if(podminka.length() > 0) podminka += "(" + podminka + ")" + " and" + podminkaUzivatel;
-    	else podminka += podminkaUzivatel;
+    	if(podminka.length() > 0) podminka = "(" + podminka + ")" + " and" + podminkaUzivatel;
+    	else podminka = podminkaUzivatel;
     }
     return podminka;
   }
