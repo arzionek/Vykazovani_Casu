@@ -35,20 +35,16 @@ public class Nastaveni extends AServletZamestnanec{
     if(akce.getNastaveniCinnosti().equals(volano)) {
       vypisAkce("nastaveni_cinnosti", request);
       nastaveniCinnosti(request, response);  
-    } 
-    else if(akce.getNastaveniSvatky().equals(volano)) {
+    }else if(akce.getNastaveniSvatky().equals(volano)) {
       vypisAkce("nastaveni_svatku", request);
       nastaveniSvatku(request, response);
-    } 
-    else if (akce.getNastaveniPomeru().equals(volano)) {
+    }else if (akce.getNastaveniPomeru().equals(volano)) {
       vypisAkce("nastaveni_pomeru", request);
       nastaveniPomeru(request, response);
-    }
-    else if (akce.getNastaveniDefiniceKalendare().equals(volano)) {
-        vypisAkce("nastaveni_kalendare", request);
-        nastaveniKalendare(request, response);
-      }
-    else {    
+    }else if (akce.getNastaveniDefiniceKalendare().equals(volano)) {
+      vypisAkce("nastaveni_kalendare", request);
+      nastaveniKalendare(request, response);
+    }else {    
       presmerovani(request, response, adresa + "/nastaveni.jsp");
     }
   }
@@ -64,7 +60,7 @@ public class Nastaveni extends AServletZamestnanec{
         String nazev = (String) kontrola(request, Svatek.class, "nazev");
         Date datum = (Date) kontrola(request, Svatek.class, "datum");
         Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()}, uzivatel);
-        if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, Chyby.DUPLICITNI_ZADANI_ZPRAVA);
+        if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
         
         Object chyba = overChyby(request);
         
@@ -78,6 +74,9 @@ public class Nastaveni extends AServletZamestnanec{
         if(chyba == null){
           pripojeni.vlozUprav(svatek, svatek.getId());
           svatek = new Svatek();
+        }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
+          String atribut = getShoda(svatek, svatek2);
+          request.setAttribute(Chyby.DUPLICITNI_ZADANI, atribut);
         }
       }
       vypisAkce("_vlozit", request);
@@ -108,7 +107,7 @@ public class Nastaveni extends AServletZamestnanec{
         kod = (String) kontrola(request, Cinnost.class, "kod");
         String nazev = (String) kontrola(request, Cinnost.class, "nazev");
         Cinnost cinnost2 = pripojeni.nacti(Cinnost.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev}, uzivatel);
-        if(cinnost2 != null && cinnost2.getId() != cinnostId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, Chyby.DUPLICITNI_ZADANI_ZPRAVA);
+        if(cinnost2 != null && cinnost2.getId() != cinnostId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
         
         Object chyba = overChyby(request);
 
@@ -121,6 +120,9 @@ public class Nastaveni extends AServletZamestnanec{
         if(chyba == null){
           pripojeni.vlozUprav(cinnost, cinnost.getId());
           cinnost = new Cinnost();
+        }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
+          String atribut = getShoda(cinnost, cinnost2);
+          request.setAttribute(Chyby.DUPLICITNI_ZADANI, atribut);
         }
       }
       vypisAkce("_vlozit", request);
@@ -155,7 +157,7 @@ public class Nastaveni extends AServletZamestnanec{
         String nazev = (String) kontrola(request, PracovniPomer.class, "nazev");
         double velikost = (Double) kontrola(request, PracovniPomer.class, "velikostUvazku");
         PracovniPomer pomer2 = pripojeni.nacti(PracovniPomer.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev}, uzivatel);
-        if(pomer2 != null && pomer2.getId() != pomerId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, Chyby.DUPLICITNI_ZADANI_ZPRAVA);
+        if(pomer2 != null && pomer2.getId() != pomerId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
         
         Object chyba = overChyby(request);
 
@@ -169,6 +171,9 @@ public class Nastaveni extends AServletZamestnanec{
         if(chyba == null){
           pripojeni.vlozUprav(pomer, pomer.getId());
           pomer = new PracovniPomer();
+        }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
+          String atribut = getShoda(pomer, pomer2);
+          request.setAttribute(Chyby.DUPLICITNI_ZADANI, atribut);
         }
       }
       vypisAkce("_vlozit", request);
@@ -192,9 +197,9 @@ public class Nastaveni extends AServletZamestnanec{
     request.setAttribute("objekty", pomery);
     presmerovani(request, response, adresa + "/pomery.jsp");
   }
-  
+
   private void nastaveniKalendare(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	presmerovani(request, response, adresa + "/definiceKalendare.jsp");
+	  presmerovani(request, response, adresa + "/definiceKalendare.jsp");
   }
   
 }

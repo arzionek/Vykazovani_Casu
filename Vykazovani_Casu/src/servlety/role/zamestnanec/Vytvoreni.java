@@ -37,6 +37,14 @@ public class Vytvoreni extends AServletZamestnanec{
 	  presmerovani(request, response, adresa + "/zadane_cinnosti_nove.jsp");
 	}
 
+	private static double vratPocetOdpracovanychHodin(Date casOd, Date casDo) {
+    double rozdil = casDo.getTime() - casOd.getTime();    
+    rozdil /= 1000; //na sekundy
+    rozdil /= 60; //na minuty
+    rozdil /= 60; //na hodiny  
+    return rozdil;
+  }
+	
   public static void vytvoreniCinnosti(HttpServletRequest request, HttpServletResponse response, Uzivatel uzivatel, KalendarCinnost kalendarCinnost, Databaze pripojeni, Akce akce, String volanaAkce) {
     long kalendarCinnostId = vratId(request, "objektId");
     if(akce.getVytvoreniVlozit().equals(volanaAkce)){

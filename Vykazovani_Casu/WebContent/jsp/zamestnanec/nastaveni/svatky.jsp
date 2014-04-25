@@ -36,9 +36,9 @@
     <c:if test="${maximalniDelka != null}" ><tr><td class="hlaska_chyba">${chyby.maximalniDelkaZprava}</td></tr></c:if>
   </table>
   <table>
-    <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${duplicitniZadani != null || povinnyUdaj != null || maximalniDelka != null}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${duplicitniZadani != null || povinnyUdaj != null || maximalniDelka != null}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 100px;"><b>*Datum:</b></td><td><input type="text" required="true" name="datum" id="datepicker" value="${objekt.datum2}" <c:if test="${duplicitniZadani != null || platneDatum != null}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${duplicitniZadani == 'kod' || povinnyUdaj == 'kod' || maximalniDelka == 'kod'}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${duplicitniZadani == 'nazev' || povinnyUdaj == 'nazev' || maximalniDelka == 'nazev'}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 100px;"><b>*Datum:</b></td><td><input type="text" required="true" name="datum" id="datepicker" value="${objekt.datum2}" <c:if test="${duplicitniZadani == 'datum' || platneDatum == 'datum'}">class="povinne"</c:if>/></td></tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>
   </table>

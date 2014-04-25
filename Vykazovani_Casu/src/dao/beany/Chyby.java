@@ -11,7 +11,7 @@ public class Chyby {
   public static final String DUPLICITNI_ZADANI_ZPRAVA = "Údaj se stejnými atributy již existuje!";
   public static final String CELE_NEZAPORNE_CISLO_ZPRAVA = "Musí být zadáno kladné celé èíslo!";
   public static final String POVINNY_UDAJ_ZPRAVA = "Oznaèené údaje musí být vyplnìny!";
-  public static final String PLATNE_DATUM_ZPRAVA = "Neplatné datum!";
+  public static final String PLATNE_DATUM_ZPRAVA = "Neplatné datum nebo èas!";
   public static final String REALNE_NEZAPORNE_CISLO_ZPRAVA = "Musí být zadáno kladné èíslo!";
   public static final String MAXIMALNI_DELKA_ZPRAVA = "Zadané údaje jsou pøíliš dlouhé!";
   

@@ -16,6 +16,11 @@ import javax.servlet.http.HttpSession;
 import dao.beany.Cas;
 import dao.beany.Chyby;
 import dao.model.AEntita;
+import dao.model.Cinnost;
+import dao.model.KalendarDefinice;
+import dao.model.PracovniPomer;
+import dao.model.SablonaVykaz;
+import dao.model.Svatek;
 import dao.model.Uzivatel;
 
 public abstract class AVlastniServlet extends AServlet{
@@ -40,6 +45,31 @@ public abstract class AVlastniServlet extends AServlet{
 		}
 	}
 	
+	protected static String getUzivatele(HttpServletRequest request){
+    return (String) request.getSession().getAttribute("login");
+  }
+  
+  protected static void vypisAkce(String akce, HttpServletRequest request){
+    System.out.println(new Cas().ziskejDatum() + " - _" + akce + ": " + getUzivatele(request));
+  }
+	
+	protected static int vratId(HttpServletRequest request, String jmeno){
+		int cislo = 0;
+		try{
+			cislo = Integer.parseInt(request.getParameter(jmeno));
+		} catch(Exception e) {}
+		return cislo;
+	}
+	
+	protected static String[] vratIdObjektù(HttpServletRequest request, String nazev) {
+    String[] ids = request.getParameterValues(nazev);
+    if(ids == null || ids.length < 1){
+      request.setAttribute(Chyby.POVINNY_UDAJ, nazev);
+      return null;
+    }
+    return ids;
+  }
+	
 	protected static ArrayList<String> vratVybrane(HttpServletRequest request, String jmeno, boolean vyjimka){
 		ArrayList<String> vysledek = new ArrayList<String>();
 		int i = 1;
@@ -48,28 +78,6 @@ public abstract class AVlastniServlet extends AServlet{
 			i++;
 		}
 		return vysledek;
-	}
-	
-	protected static int vratCislo(HttpServletRequest request, String jmeno){
-		int cislo = 0;
-		try{
-			cislo = Integer.parseInt(request.getParameter(jmeno));
-			if(cislo < 0){
-				request.setAttribute(Chyby.CELE_NEZAPORNE_CISLO, Chyby.CELE_NEZAPORNE_CISLO_ZPRAVA);
-				cislo = 0;
-			}
-		}catch(Exception e){
-			request.setAttribute(Chyby.CELE_NEZAPORNE_CISLO, Chyby.CELE_NEZAPORNE_CISLO_ZPRAVA);
-		}
-		return cislo;
-	}
-	
-	protected static int vratId(HttpServletRequest request, String jmeno){
-		int cislo = 0;
-		try{
-			cislo = Integer.parseInt(request.getParameter(jmeno));
-		} catch(Exception e) {}
-		return cislo;
 	}
 	
 	protected static Object kontrola(HttpServletRequest request, Class<?> trida, String nazev) {
@@ -91,27 +99,40 @@ public abstract class AVlastniServlet extends AServlet{
 	  return null;
 	}
 	
+	protected static int kontrolaCislo(String nazev, HttpServletRequest request){
+    int cislo = 0;
+    try{
+      cislo = Integer.parseInt(request.getParameter(nazev));
+      if(cislo < 0){
+        request.setAttribute(Chyby.CELE_NEZAPORNE_CISLO, nazev);
+        cislo = 0;
+      }
+    }catch(Exception e){
+      request.setAttribute(Chyby.CELE_NEZAPORNE_CISLO, nazev);
+    }
+    return cislo;
+  }
+	
 	 private static Double kontrolaDouble(String nazev, HttpServletRequest request) {
 	    String parametr = request.getParameter(nazev);
 	    parametr = parametr.replace(",", ".");
-	    double parameter = 0.0;
+	    double cislo = 0.0;
 	    try {
-	      parameter = Double.parseDouble(parametr);
+	      cislo = Double.parseDouble(parametr);
 	    } catch (Exception e) {
-	      request.setAttribute(Chyby.REALNE_NEZAPORNE_CISLO, Chyby.REALNE_NEZAPORNE_CISLO_ZPRAVA);
+	      request.setAttribute(Chyby.REALNE_NEZAPORNE_CISLO, nazev);
 	    }
-	    if (parameter <= 0) request.setAttribute(Chyby.REALNE_NEZAPORNE_CISLO, Chyby.REALNE_NEZAPORNE_CISLO_ZPRAVA);
-	    
-	    return parameter;
+	    if (cislo <= 0) request.setAttribute(Chyby.REALNE_NEZAPORNE_CISLO, nazev);
+	    return cislo;
 	  }
 	
-	 private static Date kontrolaDatum(String atribut, HttpServletRequest request) {
-	   String datum = (String) request.getParameter(atribut);
+	 private static Date kontrolaDatum(String nazev, HttpServletRequest request) {
+	   String datum = (String) request.getParameter(nazev);
 	   DateFormat format = null;
-	   if(atribut.contains("cas")){
+	   if(nazev.contains("cas")){
 	     int pocetUdaju = datum.length() - datum.replace(":", "").length();
        if (pocetUdaju != 1) {
-         request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
+         request.setAttribute(Chyby.PLATNE_DATUM, nazev);
          return new Date();
        }
 	     datum = "01-01-2000 " + datum;
@@ -122,7 +143,7 @@ public abstract class AVlastniServlet extends AServlet{
   	    
   	   int pocetUdaju = datum.length() - datum.replace("-", "").length();
   	   if (pocetUdaju < 1 || pocetUdaju > 2) {
-  	     request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
+  	     request.setAttribute(Chyby.PLATNE_DATUM, nazev);
   	     return new Date();
   	   }
   	   else if (pocetUdaju == 2) {
@@ -142,7 +163,7 @@ public abstract class AVlastniServlet extends AServlet{
   	       return format.parse("29-02-2000");
   	     } catch (Exception e2) {}
   	   }
-  	   else request.setAttribute(Chyby.PLATNE_DATUM, Chyby.PLATNE_DATUM_ZPRAVA);
+  	   else request.setAttribute(Chyby.PLATNE_DATUM, nazev);
   	 }
   	 return datumDatabaze;
 	  }
@@ -150,46 +171,48 @@ public abstract class AVlastniServlet extends AServlet{
 	private static String kontrolaVyplneni(String nazev, HttpServletRequest request) {
 		String parameter = request.getParameter(nazev);
 		if(parameter == null) return parameter;
-		if(parameter.length() < 2 || parameter.equals("%")) request.setAttribute(Chyby.POVINNY_UDAJ, Chyby.POVINNY_UDAJ_ZPRAVA);
+		if(parameter.length() < 2 || parameter.equals("%")) request.setAttribute(Chyby.POVINNY_UDAJ, nazev);
 		return parameter;
 	}
 	
-	 private static void kontrolaMaximalniDelky(String nazev, HttpServletRequest request, int maximalniDelka) {
-	    if (nazev.length() > maximalniDelka) request.setAttribute(Chyby.MAXIMALNI_DELKA, Chyby.MAXIMALNI_DELKA_ZPRAVA);
-	  }
-	
-	protected static String[] getObjekty(HttpServletRequest request, String nazev) {
-		String[] ids = request.getParameterValues(nazev);
-		if(ids == null || ids.length < 1){
-			request.setAttribute("error2", true);
-			return null;
-		}
-		return ids;
-	}
-	
-	protected static String getUzivatele(HttpServletRequest request){
-	  return (String) request.getSession().getAttribute("login");
-	}
-	
-	protected static void vypisAkce(String akce, HttpServletRequest request){
-	  System.out.println(new Cas().ziskejDatum() + " - _" + akce + ": " + getUzivatele(request));
-	}
-	
-	protected static double vratPocetOdpracovanychHodin(Date casOd, Date casDo) {
-	  double rozdil = casDo.getTime() - casOd.getTime();	  
-	  rozdil /= 1000; //na sekundy
-	  rozdil /= 60; //na minuty
-	  rozdil /= 60; //na hodiny  
-	  return rozdil;
+	private static void kontrolaMaximalniDelky(String nazev, HttpServletRequest request, int maximalniDelka) {
+	  if (nazev.length() > maximalniDelka) request.setAttribute(Chyby.MAXIMALNI_DELKA, nazev);
 	}
 	
 	protected static Object overChyby(HttpServletRequest request) {
-    Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);
-    if (chyba == null) chyba = request.getAttribute(Chyby.CELE_NEZAPORNE_CISLO);
-    if (chyba == null) chyba = request.getAttribute(Chyby.POVINNY_UDAJ);
-    if (chyba == null) chyba = request.getAttribute(Chyby.PLATNE_DATUM);
-    if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_NEZAPORNE_CISLO);
-    if (chyba == null) chyba = request.getAttribute(Chyby.MAXIMALNI_DELKA);
-    return chyba;
+	  Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.CELE_NEZAPORNE_CISLO);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.POVINNY_UDAJ);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.PLATNE_DATUM);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_NEZAPORNE_CISLO);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.MAXIMALNI_DELKA);
+	  return chyba;
+	}
+	
+	protected String getShoda(AEntita entita, AEntita entitaDb) {
+    String nazev = "";
+    if(entita instanceof PracovniPomer){
+      if(((PracovniPomer) entita).getKod().equals(((PracovniPomer) entitaDb).getKod())) nazev = "kod";
+      else if(((PracovniPomer) entita).getNazev().equals(((PracovniPomer) entitaDb).getNazev())) nazev = "nazev";
+      
+    }else if(entita instanceof Cinnost){
+      if(((Cinnost) entita).getKod().equals(((Cinnost) entitaDb).getKod())) nazev = "kod";
+      else if(((Cinnost) entita).getNazev().equals(((Cinnost) entitaDb).getNazev())) nazev = "nazev";
+      
+    }else if(entita instanceof Svatek){
+      if(((Svatek) entita).getKod().equals(((Svatek) entitaDb).getKod())) nazev = "kod";
+      else if(((Svatek) entita).getNazev().equals(((Svatek) entitaDb).getNazev())) nazev = "nazev";
+      else if(((Svatek) entita).getDatum().equals(((Svatek) entitaDb).getDatum())) nazev = "datum";
+      
+    }else if(entita instanceof KalendarDefinice){
+      if(((KalendarDefinice) entita).getKod().equals(((KalendarDefinice) entitaDb).getKod())) nazev = "kod"; 
+      else if(((KalendarDefinice) entita).getNazev().equals(((KalendarDefinice) entitaDb).getNazev())) nazev = "nazev"; 
+
+    }else if(entita instanceof SablonaVykaz){
+      if(((SablonaVykaz) entita).getKod().equals(((SablonaVykaz) entitaDb).getKod())) nazev = "kod";
+      else if(((SablonaVykaz) entita).getKod().equals(((SablonaVykaz) entitaDb).getKod())) nazev = "nazev";
+      
+    }
+    return nazev;
   }
 }
