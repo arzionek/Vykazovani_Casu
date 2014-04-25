@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <jsp:include page="../zahlavi.jsp" flush="true" />
@@ -34,15 +35,15 @@
     <c:if test="${platneDatumPorovnani != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumPorovnaniZprava}</td></tr></c:if>
   </table>
   <table>
-    <tr><td style="width: 200px;"><b>*Datum:</b></td><td><input type="text" required="true" name="datum" id="datepicker" value="${objekt.datum2}" <c:if test="${duplicitniZadani == 'casOd' || povinnyUdaj == 'datum' || platneDatum == 'datum'}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 200px;"><b>*Čas od (hh:mm):</b></td><td><input type="text" required="true" name="casOd" value="${objekt.casOd2}" <c:if test="${duplicitniZadani == 'casOd' || platneDatumPorovnani == 'casOd' || povinnyUdaj == 'casOd' || platneDatum == 'casOd'}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 200px;"><b>*Čas do (hh:mm):</b></td><td><input type="text" required="true" name="casDo" value="${objekt.casDo2}" <c:if test="${povinnyUdaj == 'casDo' || platneDatum == 'casDo'}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 200px;"><b>*Pracovní poměr:</b></td><td><select name="pomer" required="true" <c:if test="${povinnyUdaj == 'pomer'}">class="povinne"</c:if>>
+    <tr><td style="width: 200px;"><b>*Datum:</b></td><td><input type="text" required="true" name="datum" id="datepicker" value="${objekt.datum2}" <c:if test="${fn:contains(duplicitniZadani,'casOd') || fn:contains(povinnyUdaj,'datum') || fn:contains(platneDatum,'datum')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;"><b>*Čas od (hh:mm):</b></td><td><input type="text" required="true" name="casOd" value="${objekt.casOd2}" <c:if test="${fn:contains(duplicitniZadani,'casOd') || fn:contains(platneDatumPorovnani,'casOd') || fn:contains(povinnyUdaj,'casOd') || fn:contains(platneDatum,'casOd')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;"><b>*Čas do (hh:mm):</b></td><td><input type="text" required="true" name="casDo" value="${objekt.casDo2}" <c:if test="${fn:contains(povinnyUdaj,'casDo') || fn:contains(platneDatum,'casDo')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;"><b>*Pracovní poměr:</b></td><td><select name="pomer" required="true" <c:if test="${fn:contains(povinnyUdaj,'pomer')}">class="povinne"</c:if>>
       <c:forEach items="${pomery}" var="pomer">
         <option value="${pomer.id}" <c:if test="${pomer.id == objekt.pracovniPomer.id}">selected="selected"</c:if>><c:out value="${pomer.kod}" /> - <c:out value="${pomer.nazev}" /></option>  
       </c:forEach>
     </select></td></tr>
-    <tr><td style="width: 200px;"><b>*Pracovní činnost:</b></td><td><select name="cinnost" required="true" <c:if test="${povinnyUdaj == 'cinnost'}">class="povinne"</c:if>>
+    <tr><td style="width: 200px;"><b>*Pracovní činnost:</b></td><td><select name="cinnost" required="true" <c:if test="${fn:contains(povinnyUdaj,'cinnost')}">class="povinne"</c:if>>
       <c:forEach items="${cinnosti}" var="cinnost">
         <option value="${cinnost.id}" <c:if test="${cinnost.id == objekt.cinnost.id}">selected="selected"</c:if>><c:out value="${cinnost.kod}" /> - <c:out value="${cinnost.nazev}" /></option>  
       </c:forEach>

@@ -64,13 +64,13 @@ public abstract class AVlastniServlet extends AServlet{
 	protected static String[] vratIdObjektù(HttpServletRequest request, String nazev) {
     String[] ids = request.getParameterValues(nazev);
     if(ids == null || ids.length < 1){
-      request.setAttribute(Chyby.POVINNY_UDAJ, nazev);
+      pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
       return null;
     }
     return ids;
   }
-	
-	protected static ArrayList<String> vratVybrane(HttpServletRequest request, String jmeno, boolean vyjimka){
+
+  protected static ArrayList<String> vratVybrane(HttpServletRequest request, String jmeno, boolean vyjimka){
 		ArrayList<String> vysledek = new ArrayList<String>();
 		int i = 1;
 		while(request.getParameter(jmeno + i) != null){
@@ -104,11 +104,11 @@ public abstract class AVlastniServlet extends AServlet{
     try{
       cislo = Integer.parseInt(request.getParameter(nazev));
       if(cislo < 0){
-        request.setAttribute(Chyby.CELE_NEZAPORNE_CISLO, nazev);
+        pridejChybu(request, Chyby.CELE_NEZAPORNE_CISLO, nazev);
         cislo = 0;
       }
     }catch(Exception e){
-      request.setAttribute(Chyby.CELE_NEZAPORNE_CISLO, nazev);
+      pridejChybu(request, Chyby.CELE_NEZAPORNE_CISLO, nazev);
     }
     return cislo;
   }
@@ -120,9 +120,9 @@ public abstract class AVlastniServlet extends AServlet{
 	    try {
 	      cislo = Double.parseDouble(parametr);
 	    } catch (Exception e) {
-	      request.setAttribute(Chyby.REALNE_NEZAPORNE_CISLO, nazev);
+	      pridejChybu(request, Chyby.REALNE_NEZAPORNE_CISLO, nazev);
 	    }
-	    if (cislo <= 0) request.setAttribute(Chyby.REALNE_NEZAPORNE_CISLO, nazev);
+	    if (cislo <= 0) pridejChybu(request, Chyby.REALNE_NEZAPORNE_CISLO, nazev);
 	    return cislo;
 	  }
 	
@@ -132,7 +132,7 @@ public abstract class AVlastniServlet extends AServlet{
 	   if(nazev.contains("cas")){
 	     int pocetUdaju = datum.length() - datum.replace(":", "").length();
        if (pocetUdaju != 1) {
-         request.setAttribute(Chyby.PLATNE_DATUM, nazev);
+         pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
          return new Date();
        }
 	     datum = "01-01-2000 " + datum;
@@ -143,7 +143,7 @@ public abstract class AVlastniServlet extends AServlet{
   	    
   	   int pocetUdaju = datum.length() - datum.replace("-", "").length();
   	   if (pocetUdaju < 1 || pocetUdaju > 2) {
-  	     request.setAttribute(Chyby.PLATNE_DATUM, nazev);
+  	     pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
   	     return new Date();
   	   }
   	   else if (pocetUdaju == 2) {
@@ -163,7 +163,7 @@ public abstract class AVlastniServlet extends AServlet{
   	       return format.parse("29-02-2000");
   	     } catch (Exception e2) {}
   	   }
-  	   else request.setAttribute(Chyby.PLATNE_DATUM, nazev);
+  	   else pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
   	 }
   	 return datumDatabaze;
 	  }
@@ -171,12 +171,12 @@ public abstract class AVlastniServlet extends AServlet{
 	private static String kontrolaVyplneni(String nazev, HttpServletRequest request) {
 		String parameter = request.getParameter(nazev);
 		if(parameter == null) return parameter;
-		if(parameter.length() < 2 || parameter.equals("%")) request.setAttribute(Chyby.POVINNY_UDAJ, nazev);
+		if(parameter.length() < 2 || parameter.equals("%")) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
 		return parameter;
 	}
 	
 	private static void kontrolaMaximalniDelky(String nazev, HttpServletRequest request, int maximalniDelka) {
-	  if (nazev.length() > maximalniDelka) request.setAttribute(Chyby.MAXIMALNI_DELKA, nazev);
+	  if (nazev.length() > maximalniDelka) pridejChybu(request, Chyby.MAXIMALNI_DELKA, nazev);
 	}
 	
 	protected static Object overChyby(HttpServletRequest request) {
@@ -216,4 +216,11 @@ public abstract class AVlastniServlet extends AServlet{
     }
     return nazev;
   }
+	
+	private static void pridejChybu(HttpServletRequest request, String nazevChyby, String nazevAtributu) {
+	  String predesleChyby = (String) request.getAttribute(nazevChyby);
+	  if(predesleChyby != null) predesleChyby += " " + nazevAtributu;
+	  else predesleChyby = nazevAtributu;
+	  request.setAttribute(nazevChyby, nazevAtributu);
+	}
 }
