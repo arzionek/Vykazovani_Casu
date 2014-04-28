@@ -2,7 +2,6 @@ package servlety.nastroje;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -18,14 +17,14 @@ import dao.model.Uzivatel;
 
 public class ImportKalendare {
 
-  public ImportKalendare() {
+  private static final long serialVersionUID = 5338411303615501444L;
+  
+  public static ImportKalendare getImport = new ImportKalendare();
 
-  }
+  private ImportKalendare() {}
 
-  public void novyKalendar(File kalendar, Uzivatel uzivatel) {
-    try {
-      List<KalendarDefinice> definice = new ArrayList<KalendarDefinice>();  //TODO nacist data
-
+  public void novyKalendar(File kalendar, Uzivatel uzivatel, List<KalendarDefinice> definice) {
+    try {      
       FileInputStream fis = new FileInputStream(kalendar);
       CalendarBuilder builder = new CalendarBuilder();
       Calendar calendar = builder.build(fis);
@@ -44,12 +43,15 @@ public class ImportKalendare {
 
           if (text.contains(pomStart) && text.contains(pomKonec) 
               && text.contains(cinStart) && text.contains(cinKonec)) {
-            String pomer = text.substring(text.lastIndexOf(pomStart) + 1, text.indexOf(pomKonec));
-            String cinnost = text.substring(text.lastIndexOf(cinStart) + 1, text.indexOf(cinKonec));
+            String pomer = text.substring(text.lastIndexOf(pomStart) + pomStart.length(), text.indexOf(pomKonec));
+            String cinnost = text.substring(text.lastIndexOf(cinStart) + cinStart.length(), text.indexOf(cinKonec));
             Date start = component.getStartDate().getDate();
             Date end = component.getEndDate().getDate();
-            ulozUdalost(start, end, uzivatel, kd, pomer, cinnost);
-            break;
+            System.out.println("cinnost = " + cinnost);
+            System.out.println("pomer = " + pomer);
+            System.out.println("start = " + start.toString());
+            System.out.println("koenc = " + end.toString());
+            //ulozUdalost(start, end, uzivatel, kd, pomer, cinnost);
           }
         }      
       }
