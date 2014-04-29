@@ -52,7 +52,7 @@ public class Vytvoreni extends AServletZamestnanec{
         Date datum = (Date) kontrola(request, KalendarCinnost.class, "datum");
         Date casOd = (Date) kontrola(request, KalendarCinnost.class, "casOd");
         Date casDo = (Date) kontrola(request, KalendarCinnost.class, "casDo");
-        kontrolaCas(casOd, casDo, request);
+        kontrolaDatumCas(casOd, casDo, request, "casOd");
         long pomerId = vratId(request, "pomer");
         long cinnostId = vratId(request, "cinnost");
         String popis = (String) kontrola(request, KalendarCinnost.class, "popis");
@@ -88,10 +88,6 @@ public class Vytvoreni extends AServletZamestnanec{
     List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel);
     request.setAttribute("pomery", pomery);
     request.setAttribute("datepickerFormat", "dd.mm.yy");
-  }
-
-  private static void kontrolaCas(Date casOd, Date casDo, HttpServletRequest request) {
-    if(casOd.after(casDo)) request.setAttribute(Chyby.PLATNE_DATUM_POROVNANI, "casOd"); 
   }
 
   private static void zkontrolujZadaneCinnosti(HttpServletRequest request, List<KalendarCinnost> cinnostList, Date casOd, Date casDo, long kalendarCinnostId) {

@@ -128,7 +128,7 @@ public abstract class AVlastniServlet extends AServlet{
 	    return cislo;
 	  }
 	
-	 private static Date kontrolaDatum(String nazev, HttpServletRequest request) {
+	 protected static Date kontrolaDatum(String nazev, HttpServletRequest request) {
 	   String datum = (String) request.getParameter(nazev);
 	   DateFormat format = null;
 	   if(nazev.contains("cas")){
@@ -179,6 +179,10 @@ public abstract class AVlastniServlet extends AServlet{
 	
 	protected static void kontrolaMaximalniDelky(String nazev, String parametr, HttpServletRequest request, int maximalniDelka) {
     if (parametr.length() > maximalniDelka) pridejChybu(request, Chyby.MAXIMALNI_DELKA, nazev);
+  }
+	
+	protected static void kontrolaDatumCas(Date casOd, Date casDo, HttpServletRequest request, String nazev) {
+    if(casOd.after(casDo)) pridejChybu(request, Chyby.PLATNE_DATUM_POROVNANI, nazev); 
   }
 	
 	protected static Object overChyby(HttpServletRequest request) {

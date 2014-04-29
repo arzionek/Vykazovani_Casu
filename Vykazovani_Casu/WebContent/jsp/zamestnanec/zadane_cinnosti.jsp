@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <jsp:include page="../zahlavi.jsp" flush="true" />
@@ -16,7 +17,25 @@
 	<h2 class="stred">Přehled činností:</h2>
 	
 	<jsp:include page="../zamestnanec/zadane_cinnosti_menu.jsp" flush="true" />
-	
+	<jsp:include page="../zahlavi_komponenta_datum.jsp" flush="true" />
+	<div class="box2">
+	  <table>
+	    <c:if test="${platneDatum != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumZprava}</td></tr></c:if>
+	    <c:if test="${platneDatumPorovnani != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumPorovnaniZprava}</td></tr></c:if>
+	  </table>
+	  <c:url var="ulozit" value="prehled">
+	    <c:param name="akce" value="${akce.prehledObdobi}"/>
+	  </c:url>
+	  <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
+	  <table>
+	    <tr>
+	      <td style="width: 15px;"><b>Od:</b></td><td style="width: 80px;"><input id="datumOd" type="text" name="datumOd" value="${datumOd.datum}" class="datepicker<c:if test="${fn:contains(platneDatum,'datumOd') || fn:contains(platneDatumPorovnani,'datumOd')}"> povinne</c:if>"/></td>
+	      <td style="width: 15px;"><b>Do:</b></td><td style="width: 80px;"><input id="datumDo" type="text" name="datumDo" value="${datumDo.datum}" class="datepicker<c:if test="${fn:contains(platneDatum,'datumDo')}"> povinne</c:if>"/></td>
+	      <td><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td>
+	    </tr>
+	  </table>
+	  </form>
+	</div>
 	<div class="box2">
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px; margin-top: 20px;">

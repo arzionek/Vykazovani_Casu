@@ -9,6 +9,7 @@ public class NastaveniSystemu extends AEntita implements java.io.Serializable {
    * @generated
    */
   private String hodnota;
+  private String datum;
   /**
    * @generated
    */
@@ -91,5 +92,21 @@ public class NastaveniSystemu extends AEntita implements java.io.Serializable {
    */
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public String getDatum() {
+    String rok = hodnota.substring(0, hodnota.indexOf('-'));
+    hodnota = hodnota.substring(hodnota.indexOf('-') + 1);
+    String mesic = hodnota.substring(0, hodnota.indexOf('-'));
+    if(mesic.length() == 1) mesic = "0" + mesic;
+    hodnota = hodnota.substring(hodnota.indexOf('-') + 1);
+    String den = hodnota.substring(0, hodnota.indexOf(' '));
+    if(den.length() == 1) den = "0" + den;
+    datum = den + "." + mesic + "." + rok;
+    return datum;
+  }
+
+  public void setDatum(String datum) {
+    this.datum = datum;
   }
 }

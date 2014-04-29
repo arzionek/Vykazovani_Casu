@@ -33,6 +33,7 @@ public class Akce {
   private static final String VYTVORENI_VLOZIT = "61";
   private static final String PREHLED_UPRAVIT = "62";
   private static final String PREHLED_SMAZAT = "63";
+  private static final String PREHLED_OBDOBI = "64";
   
   private static final String IMPORT = "7";
   private static final String IMPORT_NAHRAT = "71";
@@ -133,6 +134,10 @@ public class Akce {
 
   public String getImportSmazat() {
     return IMPORT_SMAZAT;
+  }
+
+  public String getPrehledObdobi() {
+    return PREHLED_OBDOBI;
   }
 
 }

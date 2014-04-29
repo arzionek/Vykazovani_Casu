@@ -7,6 +7,9 @@
     $(function() {
      $( "#datepicker" ).datepicker();
     });
+    $(function() {
+     $( ".datepicker" ).datepicker();
+    });
     $.datepicker.regional['cs'] = {
       closeText: 'Cerrar',
       prevText: 'Předchozí',

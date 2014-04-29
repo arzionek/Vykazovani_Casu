@@ -47,7 +47,11 @@ public abstract class ADatabaze{
   }
   
   public <T> T nacti(Class<T> trida, Object atributy[], Object hodnoty[], Uzivatel uzivatel){
-	return nacti(trida, atributy, hodnoty, null, uzivatel);
+	  return nacti(trida, atributy, hodnoty, null, uzivatel);
+  }
+  
+  public <T> T nacti(Class<T> trida, String atribut, String hodnota, Boolean zaroven, Uzivatel uzivatel) {
+    return nacti(trida, new String[]{atribut}, new String[]{hodnota}, zaroven, uzivatel);
   }
   
   public <T> T nacti(Class<?> trida, Object atributy[], Object hodnoty[], Boolean zaroven, Uzivatel uzivatel){
@@ -175,7 +179,7 @@ public abstract class ADatabaze{
     return podminka;
   }
 
-  private String getRazeni(Class<?> trida, String[] atributyRazeni) {
+  protected String getRazeni(Class<?> trida, String[] atributyRazeni) {
     String razeni = "";
     if(atributyRazeni.length == 0){
       if(AEntita.getSloupec(trida, "kod") != null) razeni = "order by o.kod";
