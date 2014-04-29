@@ -187,6 +187,7 @@ public abstract class AVlastniServlet extends AServlet{
 	  if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_NEZAPORNE_CISLO);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.MAXIMALNI_DELKA);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_CISLO_0_1);
 	  return chyba;
 	}
 	
@@ -217,10 +218,11 @@ public abstract class AVlastniServlet extends AServlet{
     return nazev;
   }
 	
-	private static void pridejChybu(HttpServletRequest request, String nazevChyby, String nazevAtributu) {
+	protected static void pridejChybu(HttpServletRequest request, String nazevChyby, String nazevAtributu) {
 	  String predesleChyby = (String) request.getAttribute(nazevChyby);
 	  if(predesleChyby != null) predesleChyby += " " + nazevAtributu;
 	  else predesleChyby = nazevAtributu;
 	  request.setAttribute(nazevChyby, nazevAtributu);
+	  System.out.println(nazevChyby + " " + nazevAtributu);
 	}
 }

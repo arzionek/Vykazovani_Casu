@@ -156,6 +156,8 @@ public class Nastaveni extends AServletZamestnanec{
         kod = (String) kontrola(request, PracovniPomer.class, "kod");
         String nazev = (String) kontrola(request, PracovniPomer.class, "nazev");
         double velikost = (Double) kontrola(request, PracovniPomer.class, "velikostUvazku");
+        if(velikost > 1) pridejChybu(request, Chyby.REALNE_CISLO_0_1, "velikostUvazku");
+        String typUvazku = (String) kontrola(request, PracovniPomer.class, "typUvazku");
         PracovniPomer pomer2 = pripojeni.nacti(PracovniPomer.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev}, uzivatel);
         if(pomer2 != null && pomer2.getId() != pomerId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
         
@@ -166,6 +168,7 @@ public class Nastaveni extends AServletZamestnanec{
         pomer.setKod(kod);
         pomer.setNazev(nazev);
         pomer.setVelikostUvazku(velikost);
+        pomer.setTypUvazku(typUvazku);
         pomer.setUzivatel(uzivatel);
         
         if(chyba == null){
@@ -190,11 +193,12 @@ public class Nastaveni extends AServletZamestnanec{
     request.setAttribute("objekt", pomer);
     List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel, "kod");
     for (int i = 0; pomery != null && i < pomery.size(); i++) {
-    PracovniPomer p = pomery.get(i);
-    pripojeni.inicializaceSetu(p.getKalendarCinnost());
-    pripojeni.inicializaceSetu(p.getSablonaVykaz());
-  }
+      PracovniPomer p = pomery.get(i);
+      pripojeni.inicializaceSetu(p.getKalendarCinnost());
+      pripojeni.inicializaceSetu(p.getSablonaVykaz());
+    }
     request.setAttribute("objekty", pomery);
+    request.setAttribute("typy", PracovniPomer.getTypy());
     presmerovani(request, response, adresa + "/pomery.jsp");
   }
 

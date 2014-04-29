@@ -33,12 +33,18 @@
     <c:if test="${duplicitniZadani != null}" ><tr><td class="hlaska_chyba">${chyby.duplicitniZadaniZprava}</td></tr></c:if>
     <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
     <c:if test="${realneNezaporneCislo != null}" ><tr><td class="hlaska_chyba">${chyby.realneNezaporneCisloZprava}</td></tr></c:if>
+    <c:if test="${realneCislo01 != null}" ><tr><td class="hlaska_chyba">${chyby.realneCislo01Zprava}</td></tr></c:if>
     <c:if test="${maximalniDelka != null}" ><tr><td class="hlaska_chyba">${chyby.maximalniDelkaZprava}</td></tr></c:if>
   </table>
   <table>
     <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${fn:contains(duplicitniZadani,'kod') || fn:contains(povinnyUdaj,'kod') || fn:contains(maximalniDelka,'kod')}">class="povinne"</c:if>/></td></tr>
     <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${fn:contains(duplicitniZadani,'nazev') || fn:contains(povinnyUdaj,'nazev') || fn:contains(maximalniDelka,'nazev')}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 160px;"><b>*Velikost úvazku:</b></td><td><input type="text" required="true" name="velikostUvazku" value="${objekt.velikostUvazku}" <c:if test="${fn:contains(realneNezaporneCislo,'velikostUvazku')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 160px;"><b>*Velikost úvazku:</b></td><td><input type="text" required="true" name="velikostUvazku" value="${objekt.velikostUvazku}" <c:if test="${fn:contains(realneNezaporneCislo,'velikostUvazku') || fn:contains(realneCislo01,'velikostUvazku')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;"><b>*Typ úvazku:</b></td><td><select name="typUvazku">
+      <c:forEach items="${typy}" var="typ">
+        <option value="${typ}" <c:if test="${typ== objekt.typUvazku}">selected="selected"</c:if>><c:out value="${typ}" /></option>  
+      </c:forEach>
+    </select></td></tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>  
   </table>
