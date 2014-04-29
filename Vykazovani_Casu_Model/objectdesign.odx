@@ -621,6 +621,18 @@
                 </tag>
               </tags>
             </variable>
+            <variable name="popis">
+              <type class="java.lang.String"/>
+              <multiplicity>0..1</multiplicity>
+              <access>1</access>
+              <tags>
+                <tag name="@hibernate">
+                  <parameters>
+                    <length>512</length>
+                  </parameters>
+                </tag>
+              </tags>
+            </variable>
           </variables>
           <operations>
             <operation name="constructor">
@@ -820,6 +832,19 @@
               <access>1</access>
               <value>new dao.model.SablonaVykaz()</value>
               <inverse class="dao.model.SablonaVykaz" name="pracovniPomer"/>
+            </variable>
+            <variable name="typUvazku">
+              <type class="java.lang.String"/>
+              <multiplicity>0..1</multiplicity>
+              <access>1</access>
+              <tags>
+                <tag name="@hibernate">
+                  <parameters>
+                    <not-null>true</not-null>
+                    <length>64</length>
+                  </parameters>
+                </tag>
+              </tags>
             </variable>
           </variables>
           <operations>
@@ -1115,6 +1140,20 @@
               <access>1</access>
               <inverse class="dao.model.Uzivatel" name="kalendar"/>
             </variable>
+            <variable name="data">
+              <type basicType="byte"/>
+              <multiplicity>*</multiplicity>
+              <access>1</access>
+              <arrayCount>1</arrayCount>
+              <tags>
+                <tag name="@hibernate">
+                  <parameters>
+                    <not-null>true</not-null>
+                    <type>blob</type>
+                  </parameters>
+                </tag>
+              </tags>
+            </variable>
           </variables>
           <operations>
             <operation name="constructor">
@@ -1341,225 +1380,246 @@
           <showAttributes>true</showAttributes>
           <showOperations>true</showOperations>
           <tagSymbol id="1">
-            <x>323</x>
-            <y>122</y>
-            <connectedTo symbol="53"/>
-            <tag class="dao.model.Uzivatel" variable="heslo" id="@hibernate"/>
+            <x>580</x>
+            <y>444</y>
+            <connectedTo symbol="59"/>
+            <tag class="dao.model.PracovniPomer" variable="typUvazku" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="2">
-            <x>303</x>
-            <y>121</y>
-            <connectedTo symbol="53"/>
-            <tag class="dao.model.Uzivatel" variable="login" id="@hibernate"/>
-            <showNotSet>true</showNotSet>
-          </tagSymbol>
-          <tagSymbol id="3">
-            <x>282</x>
-            <y>123</y>
-            <connectedTo symbol="53"/>
-            <tag class="dao.model.Uzivatel" variable="titulZa" id="@hibernate"/>
+            <x>46</x>
+            <y>520</y>
+            <connectedTo symbol="51"/>
+            <tag class="dao.model.Kalendar" variable="data" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="4">
-            <x>261</x>
-            <y>119</y>
-            <connectedTo symbol="53"/>
-            <tag class="dao.model.Uzivatel" variable="titulPred" id="@hibernate"/>
+            <x>715</x>
+            <y>345</y>
+            <connectedTo symbol="63"/>
+            <tag class="dao.model.KalendarCinnost" variable="popis" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="5">
-            <x>244</x>
-            <y>116</y>
-            <connectedTo symbol="53"/>
-            <tag class="dao.model.Uzivatel" variable="prijmeni" id="@hibernate"/>
+            <x>323</x>
+            <y>122</y>
+            <connectedTo symbol="57"/>
+            <tag class="dao.model.Uzivatel" variable="heslo" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="6">
-            <x>225</x>
-            <y>116</y>
-            <connectedTo symbol="53"/>
-            <tag class="dao.model.Uzivatel" variable="jmeno" id="@hibernate"/>
+            <x>303</x>
+            <y>121</y>
+            <connectedTo symbol="57"/>
+            <tag class="dao.model.Uzivatel" variable="login" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="7">
-            <x>71</x>
-            <y>120</y>
-            <connectedTo symbol="51"/>
-            <tag class="dao.model.SablonaVykaz" variable="data" id="@hibernate"/>
+            <x>282</x>
+            <y>123</y>
+            <connectedTo symbol="57"/>
+            <tag class="dao.model.Uzivatel" variable="titulZa" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="8">
-            <x>53</x>
-            <y>124</y>
-            <connectedTo symbol="51"/>
-            <tag class="dao.model.SablonaVykaz" variable="typ" id="@hibernate"/>
+            <x>261</x>
+            <y>119</y>
+            <connectedTo symbol="57"/>
+            <tag class="dao.model.Uzivatel" variable="titulPred" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="9">
-            <x>37</x>
-            <y>124</y>
-            <connectedTo symbol="51"/>
-            <tag class="dao.model.SablonaVykaz" variable="nazev" id="@hibernate"/>
+            <x>244</x>
+            <y>116</y>
+            <connectedTo symbol="57"/>
+            <tag class="dao.model.Uzivatel" variable="prijmeni" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="10">
-            <x>17</x>
-            <y>123</y>
-            <connectedTo symbol="51"/>
-            <tag class="dao.model.SablonaVykaz" variable="kod" id="@hibernate"/>
+            <x>225</x>
+            <y>116</y>
+            <connectedTo symbol="57"/>
+            <tag class="dao.model.Uzivatel" variable="jmeno" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="11">
-            <x>56</x>
-            <y>435</y>
-            <connectedTo symbol="43"/>
-            <tag class="dao.model.NastaveniSystemu" variable="hodnota" id="@hibernate"/>
+            <x>116</x>
+            <y>124</y>
+            <connectedTo symbol="55"/>
+            <tag class="dao.model.SablonaVykaz" variable="data" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="12">
-            <x>35</x>
-            <y>438</y>
-            <connectedTo symbol="43"/>
-            <tag class="dao.model.NastaveniSystemu" variable="nazev" id="@hibernate"/>
+            <x>53</x>
+            <y>124</y>
+            <connectedTo symbol="55"/>
+            <tag class="dao.model.SablonaVykaz" variable="typ" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="13">
-            <x>25</x>
-            <y>519</y>
-            <connectedTo symbol="47"/>
-            <tag class="dao.model.Kalendar" variable="datumImportu" id="@hibernate"/>
+            <x>37</x>
+            <y>124</y>
+            <connectedTo symbol="55"/>
+            <tag class="dao.model.SablonaVykaz" variable="nazev" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="14">
-            <x>436</x>
-            <y>476</y>
-            <connectedTo symbol="45"/>
-            <tag class="dao.model.KalendarDefinice" variable="tagKalendarCinnost" id="@hibernate"/>
+            <x>17</x>
+            <y>123</y>
+            <connectedTo symbol="55"/>
+            <tag class="dao.model.SablonaVykaz" variable="kod" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="15">
-            <x>416</x>
-            <y>472</y>
-            <connectedTo symbol="45"/>
-            <tag class="dao.model.KalendarDefinice" variable="tagPracovniPomer" id="@hibernate"/>
+            <x>12</x>
+            <y>338</y>
+            <connectedTo symbol="47"/>
+            <tag class="dao.model.NastaveniSystemu" variable="hodnota" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="16">
-            <x>397</x>
-            <y>473</y>
-            <connectedTo symbol="45"/>
-            <tag class="dao.model.KalendarDefinice" variable="nazev" id="@hibernate"/>
+            <x>104</x>
+            <y>302</y>
+            <connectedTo symbol="47"/>
+            <tag class="dao.model.NastaveniSystemu" variable="nazev" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="17">
-            <x>377</x>
-            <y>473</y>
-            <connectedTo symbol="45"/>
-            <tag class="dao.model.KalendarDefinice" variable="kod" id="@hibernate"/>
+            <x>25</x>
+            <y>519</y>
+            <connectedTo symbol="51"/>
+            <tag class="dao.model.Kalendar" variable="datumImportu" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="18">
-            <x>591</x>
-            <y>558</y>
-            <connectedTo symbol="57"/>
-            <tag class="dao.model.SystemovaInformace" variable="data" id="@hibernate"/>
+            <x>436</x>
+            <y>476</y>
+            <connectedTo symbol="49"/>
+            <tag class="dao.model.KalendarDefinice" variable="tagKalendarCinnost" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="19">
-            <x>589</x>
-            <y>533</y>
-            <connectedTo symbol="57"/>
-            <tag class="dao.model.SystemovaInformace" variable="nadpis" id="@hibernate"/>
+            <x>416</x>
+            <y>472</y>
+            <connectedTo symbol="49"/>
+            <tag class="dao.model.KalendarDefinice" variable="tagPracovniPomer" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="20">
-            <x>586</x>
-            <y>513</y>
-            <connectedTo symbol="57"/>
-            <tag class="dao.model.SystemovaInformace" variable="datum" id="@hibernate"/>
+            <x>397</x>
+            <y>473</y>
+            <connectedTo symbol="49"/>
+            <tag class="dao.model.KalendarDefinice" variable="nazev" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="21">
-            <x>584</x>
-            <y>427</y>
-            <connectedTo symbol="55"/>
-            <tag class="dao.model.PracovniPomer" variable="velikostUvazku" id="@hibernate"/>
+            <x>377</x>
+            <y>473</y>
+            <connectedTo symbol="49"/>
+            <tag class="dao.model.KalendarDefinice" variable="kod" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="22">
-            <x>588</x>
-            <y>391</y>
-            <connectedTo symbol="55"/>
-            <tag class="dao.model.PracovniPomer" variable="nazev" id="@hibernate"/>
+            <x>591</x>
+            <y>558</y>
+            <connectedTo symbol="61"/>
+            <tag class="dao.model.SystemovaInformace" variable="data" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="23">
-            <x>626</x>
-            <y>357</y>
-            <connectedTo symbol="55"/>
-            <tag class="dao.model.PracovniPomer" variable="kod" id="@hibernate"/>
+            <x>589</x>
+            <y>533</y>
+            <connectedTo symbol="61"/>
+            <tag class="dao.model.SystemovaInformace" variable="nadpis" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="24">
-            <x>753</x>
-            <y>293</y>
-            <connectedTo symbol="59"/>
-            <tag class="dao.model.KalendarCinnost" variable="casDo" id="@hibernate"/>
+            <x>586</x>
+            <y>513</y>
+            <connectedTo symbol="61"/>
+            <tag class="dao.model.SystemovaInformace" variable="datum" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="25">
-            <x>742</x>
-            <y>255</y>
+            <x>584</x>
+            <y>427</y>
             <connectedTo symbol="59"/>
-            <tag class="dao.model.KalendarCinnost" variable="casOd" id="@hibernate"/>
+            <tag class="dao.model.PracovniPomer" variable="velikostUvazku" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="26">
-            <x>717</x>
-            <y>195</y>
+            <x>588</x>
+            <y>391</y>
             <connectedTo symbol="59"/>
-            <tag class="dao.model.KalendarCinnost" variable="pocetHodin" id="@hibernate"/>
+            <tag class="dao.model.PracovniPomer" variable="nazev" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="27">
-            <x>702</x>
-            <y>158</y>
+            <x>626</x>
+            <y>357</y>
             <connectedTo symbol="59"/>
-            <tag class="dao.model.KalendarCinnost" variable="datum" id="@hibernate"/>
+            <tag class="dao.model.PracovniPomer" variable="kod" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="28">
-            <x>567</x>
-            <connectedTo symbol="61"/>
-            <tag class="dao.model.Cinnost" variable="kod" id="@hibernate"/>
+            <x>753</x>
+            <y>293</y>
+            <connectedTo symbol="63"/>
+            <tag class="dao.model.KalendarCinnost" variable="casDo" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="29">
-            <x>649</x>
-            <connectedTo symbol="61"/>
-            <tag class="dao.model.Cinnost" variable="nazev" id="@hibernate"/>
+            <x>742</x>
+            <y>255</y>
+            <connectedTo symbol="63"/>
+            <tag class="dao.model.KalendarCinnost" variable="casOd" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="30">
-            <x>312</x>
-            <connectedTo symbol="49"/>
-            <tag class="dao.model.Svatek" variable="kod" id="@hibernate"/>
+            <x>717</x>
+            <y>195</y>
+            <connectedTo symbol="63"/>
+            <tag class="dao.model.KalendarCinnost" variable="pocetHodin" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="31">
-            <x>236</x>
-            <connectedTo symbol="49"/>
-            <tag class="dao.model.Svatek" variable="nazev" id="@hibernate"/>
+            <x>702</x>
+            <y>158</y>
+            <connectedTo symbol="63"/>
+            <tag class="dao.model.KalendarCinnost" variable="datum" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="32">
+            <x>567</x>
+            <connectedTo symbol="65"/>
+            <tag class="dao.model.Cinnost" variable="kod" id="@hibernate"/>
+            <showNotSet>true</showNotSet>
+          </tagSymbol>
+          <tagSymbol id="33">
+            <x>649</x>
+            <connectedTo symbol="65"/>
+            <tag class="dao.model.Cinnost" variable="nazev" id="@hibernate"/>
+            <showNotSet>true</showNotSet>
+          </tagSymbol>
+          <tagSymbol id="34">
+            <x>312</x>
+            <connectedTo symbol="53"/>
+            <tag class="dao.model.Svatek" variable="kod" id="@hibernate"/>
+            <showNotSet>true</showNotSet>
+          </tagSymbol>
+          <tagSymbol id="35">
+            <x>236</x>
+            <connectedTo symbol="53"/>
+            <tag class="dao.model.Svatek" variable="nazev" id="@hibernate"/>
+            <showNotSet>true</showNotSet>
+          </tagSymbol>
+          <tagSymbol id="36">
             <x>171</x>
-            <connectedTo symbol="49"/>
+            <connectedTo symbol="53"/>
             <tag class="dao.model.Svatek" variable="datum" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="43">
+          <classSymbol id="47">
             <x>11</x>
             <y>310</y>
             <class class="dao.model.NastaveniSystemu"/>
@@ -1569,14 +1629,14 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="44">
-            <x>13</x>
-            <y>440</y>
-            <connectedTo symbol="43"/>
+          <tagSymbol id="48">
+            <x>106</x>
+            <y>325</y>
+            <connectedTo symbol="47"/>
             <tag class="dao.model.NastaveniSystemu" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="45">
+          <classSymbol id="49">
             <x>206</x>
             <y>509</y>
             <class class="dao.model.KalendarDefinice"/>
@@ -1588,30 +1648,31 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="46">
+          <tagSymbol id="50">
             <x>359</x>
             <y>475</y>
-            <connectedTo symbol="45"/>
+            <connectedTo symbol="49"/>
             <tag class="dao.model.KalendarDefinice" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="47">
+          <classSymbol id="51">
             <x>36</x>
             <y>408</y>
             <class class="dao.model.Kalendar"/>
             <attributes autoDisplay="289" accessVisible="true">
               <attribute>datumImportu</attribute>
+              <attribute>data</attribute>
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="48">
+          <tagSymbol id="52">
             <x>5</x>
             <y>524</y>
-            <connectedTo symbol="47"/>
+            <connectedTo symbol="51"/>
             <tag class="dao.model.Kalendar" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="49">
+          <classSymbol id="53">
             <x>14</x>
             <y>21</y>
             <class class="dao.model.Svatek"/>
@@ -1622,13 +1683,13 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="50">
+          <tagSymbol id="54">
             <x>102</x>
-            <connectedTo symbol="49"/>
+            <connectedTo symbol="53"/>
             <tag class="dao.model.Svatek" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="51">
+          <classSymbol id="55">
             <x>11</x>
             <y>173</y>
             <class class="dao.model.SablonaVykaz"/>
@@ -1640,13 +1701,13 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="52">
+          <tagSymbol id="56">
             <y>122</y>
-            <connectedTo symbol="51"/>
+            <connectedTo symbol="55"/>
             <tag class="dao.model.SablonaVykaz" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="53">
+          <classSymbol id="57">
             <x>190</x>
             <y>157</y>
             <class class="dao.model.Uzivatel"/>
@@ -1660,14 +1721,14 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="54">
+          <tagSymbol id="58">
             <x>207</x>
             <y>113</y>
-            <connectedTo symbol="53"/>
+            <connectedTo symbol="57"/>
             <tag class="dao.model.Uzivatel" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="55">
+          <classSymbol id="59">
             <x>417</x>
             <y>315</y>
             <class class="dao.model.PracovniPomer"/>
@@ -1675,17 +1736,18 @@
               <attribute>kod</attribute>
               <attribute>nazev</attribute>
               <attribute>velikostUvazku</attribute>
+              <attribute>typUvazku</attribute>
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="56">
-            <x>575</x>
-            <y>315</y>
-            <connectedTo symbol="55"/>
+          <tagSymbol id="60">
+            <x>584</x>
+            <y>345</y>
+            <connectedTo symbol="59"/>
             <tag class="dao.model.PracovniPomer" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="57">
+          <classSymbol id="61">
             <x>417</x>
             <y>479</y>
             <class class="dao.model.SystemovaInformace"/>
@@ -1696,14 +1758,14 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="58">
+          <tagSymbol id="62">
             <x>584</x>
             <y>493</y>
-            <connectedTo symbol="57"/>
+            <connectedTo symbol="61"/>
             <tag class="dao.model.SystemovaInformace" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="59">
+          <classSymbol id="63">
             <x>555</x>
             <y>196</y>
             <class class="dao.model.KalendarCinnost"/>
@@ -1712,17 +1774,18 @@
               <attribute>pocetHodin</attribute>
               <attribute>casOd</attribute>
               <attribute>casDo</attribute>
+              <attribute>popis</attribute>
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="60">
+          <tagSymbol id="64">
             <x>695</x>
             <y>119</y>
-            <connectedTo symbol="59"/>
+            <connectedTo symbol="63"/>
             <tag class="dao.model.KalendarCinnost" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <classSymbol id="61">
+          <classSymbol id="65">
             <x>389</x>
             <y>23</y>
             <class class="dao.model.Cinnost"/>
@@ -1732,34 +1795,34 @@
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
-          <tagSymbol id="62">
+          <tagSymbol id="66">
             <x>485</x>
-            <connectedTo symbol="61"/>
+            <connectedTo symbol="65"/>
             <tag class="dao.model.Cinnost" id="@hibernate"/>
             <showNotSet>true</showNotSet>
           </tagSymbol>
-          <association id="63">
+          <association id="67">
             <x>277</x>
             <y>202</y>
             <assocEnd-0 class="dao.model.Cinnost" name="uzivatel"/>
             <assocEnd-1 class="dao.model.Uzivatel" name="cinnost"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="53"/>
-              <connectY symbol="53"/>
+              <connectX symbol="57"/>
+              <connectY symbol="57"/>
               <x>0</x>
               <y>0</y>
               <atX>0.8787879</atX>
               <atY>0.31007752</atY>
             </point>
             <point>
-              <connectX symbol="61"/>
+              <connectX symbol="65"/>
               <x>-112</x>
               <y>68</y>
             </point>
             <point>
-              <connectX symbol="61"/>
-              <connectY symbol="61"/>
+              <connectX symbol="65"/>
+              <connectY symbol="65"/>
               <x>0</x>
               <y>0</y>
               <atX>0.28846154</atX>
@@ -1770,7 +1833,7 @@
               <y>157</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="53"/>
+              <connectedSymbol symbol="57"/>
               <text>+uzivatel</text>
               <text>0..1</text>
             </end-1>
@@ -1779,42 +1842,42 @@
               <y>68</y>
               <w>47</w>
               <h>34</h>
-              <connectedSymbol symbol="61"/>
+              <connectedSymbol symbol="65"/>
               <text>+cinnost</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="64">
+          <association id="68">
             <x>591</x>
-            <y>211</y>
+            <y>214</y>
             <assocEnd-0 class="dao.model.Cinnost" name="kalendarCinnost"/>
             <assocEnd-1 class="dao.model.KalendarCinnost" name="cinnost"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="59"/>
-              <connectY symbol="59"/>
+              <connectX symbol="63"/>
+              <connectY symbol="63"/>
               <x>0</x>
               <y>0</y>
               <atX>0.29268292</atX>
               <atY>0.14102565</atY>
             </point>
             <point>
-              <connectX symbol="59"/>
+              <connectX symbol="63"/>
               <x>3</x>
               <y>204</y>
               <atX>0.29268292</atX>
             </point>
             <point>
-              <connectY symbol="61"/>
+              <connectY symbol="65"/>
               <x>594</x>
               <y>0</y>
               <atX>1.0</atX>
               <atY>0.55128205</atY>
             </point>
             <point>
-              <connectX symbol="61"/>
-              <connectY symbol="61"/>
+              <connectX symbol="65"/>
+              <connectY symbol="65"/>
               <x>0</x>
               <y>0</y>
               <atX>0.8947368</atX>
@@ -1825,7 +1888,7 @@
               <y>196</y>
               <w>94</w>
               <h>34</h>
-              <connectedSymbol symbol="59"/>
+              <connectedSymbol symbol="63"/>
               <text>+kalendarCinnost</text>
               <text>*</text>
             </end-1>
@@ -1834,42 +1897,42 @@
               <y>66</y>
               <w>47</w>
               <h>34</h>
-              <connectedSymbol symbol="61"/>
+              <connectedSymbol symbol="65"/>
               <text>+cinnost</text>
               <text>1</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="65">
+          <association id="69">
             <x>608</x>
-            <y>296</y>
+            <y>311</y>
             <assocEnd-0 class="dao.model.PracovniPomer" name="kalendarCinnost"/>
             <assocEnd-1 class="dao.model.KalendarCinnost" name="pracovniPomer"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="59"/>
-              <connectY symbol="59"/>
+              <connectX symbol="63"/>
+              <connectY symbol="63"/>
               <x>0</x>
               <y>0</y>
               <atX>0.43089432</atX>
               <atY>0.8974359</atY>
             </point>
             <point>
-              <connectX symbol="59"/>
+              <connectX symbol="63"/>
               <x>4</x>
               <y>266</y>
               <atX>0.42276424</atX>
             </point>
             <point>
-              <connectY symbol="55"/>
+              <connectY symbol="59"/>
               <x>611</x>
               <y>0</y>
               <atX>1.0</atX>
               <atY>0.6526316</atY>
             </point>
             <point>
-              <connectX symbol="55"/>
-              <connectY symbol="55"/>
+              <connectX symbol="59"/>
+              <connectY symbol="59"/>
               <x>0</x>
               <y>0</y>
               <atX>0.9057971</atX>
@@ -1877,47 +1940,47 @@
             </point>
             <end-1>
               <x>611</x>
-              <y>308</y>
+              <y>325</y>
               <w>94</w>
               <h>34</h>
-              <connectedSymbol symbol="59"/>
+              <connectedSymbol symbol="63"/>
               <text>+kalendarCinnost</text>
               <text>*</text>
             </end-1>
             <end-2>
               <x>555</x>
-              <y>377</y>
+              <y>388</y>
               <w>89</w>
               <h>34</h>
-              <connectedSymbol symbol="55"/>
+              <connectedSymbol symbol="59"/>
               <text>+pracovniPomer</text>
               <text>1</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="66">
+          <association id="70">
             <x>255</x>
             <y>289</y>
             <assocEnd-0 class="dao.model.PracovniPomer" name="uzivatel"/>
             <assocEnd-1 class="dao.model.Uzivatel" name="pracovniPomer"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="53"/>
-              <connectY symbol="53"/>
+              <connectX symbol="57"/>
+              <connectY symbol="57"/>
               <x>0</x>
               <y>0</y>
               <atX>0.65656567</atX>
               <atY>0.9041096</atY>
             </point>
             <point>
-              <connectY symbol="55"/>
+              <connectY symbol="59"/>
               <x>255</x>
-              <y>31</y>
+              <y>36</y>
               <atY>0.17894737</atY>
             </point>
             <point>
-              <connectX symbol="55"/>
-              <connectY symbol="55"/>
+              <connectX symbol="59"/>
+              <connectY symbol="59"/>
               <x>0</x>
               <y>0</y>
               <atX>0.29710144</atX>
@@ -1928,50 +1991,50 @@
               <y>303</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="53"/>
+              <connectedSymbol symbol="57"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
             <end-2>
               <x>417</x>
-              <y>363</y>
+              <y>371</y>
               <w>89</w>
               <h>34</h>
-              <connectedSymbol symbol="55"/>
+              <connectedSymbol symbol="59"/>
               <text>+pracovniPomer</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="67">
+          <association id="71">
             <x>281</x>
             <y>231</y>
             <assocEnd-0 class="dao.model.KalendarCinnost" name="uzivatel"/>
             <assocEnd-1 class="dao.model.Uzivatel" name="kalendarCinnost"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="53"/>
-              <connectY symbol="53"/>
+              <connectX symbol="57"/>
+              <connectY symbol="57"/>
               <x>0</x>
               <y>0</y>
               <atX>0.9191919</atX>
               <atY>0.5068493</atY>
             </point>
             <point>
-              <connectY symbol="53"/>
+              <connectY symbol="57"/>
               <x>570</x>
               <y>-11</y>
               <atY>0.58219177</atY>
             </point>
             <point>
-              <connectY symbol="59"/>
+              <connectY symbol="63"/>
               <x>562</x>
               <y>0</y>
               <atY>0.4375</atY>
             </point>
             <point>
-              <connectX symbol="59"/>
-              <connectY symbol="59"/>
+              <connectX symbol="63"/>
+              <connectY symbol="63"/>
               <x>0</x>
               <y>0</y>
               <atX>0.43089432</atX>
@@ -1982,7 +2045,7 @@
               <y>231</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="53"/>
+              <connectedSymbol symbol="57"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -1991,28 +2054,28 @@
               <y>231</y>
               <w>94</w>
               <h>34</h>
-              <connectedSymbol symbol="59"/>
+              <connectedSymbol symbol="63"/>
               <text>+kalendarCinnost</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="68">
+          <association id="72">
             <x>156</x>
-            <y>443</y>
+            <y>453</y>
             <assocEnd-0 class="dao.model.KalendarCinnost" name="kalendar"/>
             <assocEnd-1 class="dao.model.Kalendar" name="kalendarCinnost"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="47"/>
-              <connectY symbol="47"/>
+              <connectX symbol="51"/>
+              <connectY symbol="51"/>
               <x>0</x>
               <y>0</y>
               <atX>0.9672131</atX>
               <atY>0.5882353</atY>
             </point>
             <point>
-              <connectY symbol="47"/>
+              <connectY symbol="51"/>
               <x>320</x>
               <y>0</y>
               <atY>0.57377046</atY>
@@ -2031,15 +2094,15 @@
               <y>263</y>
             </point>
             <point>
-              <connectX symbol="59"/>
+              <connectX symbol="63"/>
               <x>0</x>
               <y>263</y>
               <atX>0.17886178</atX>
               <atY>0.7051282</atY>
             </point>
             <point>
-              <connectX symbol="59"/>
-              <connectY symbol="59"/>
+              <connectX symbol="63"/>
+              <connectY symbol="63"/>
               <x>0</x>
               <y>0</y>
               <atX>0.33333334</atX>
@@ -2047,10 +2110,10 @@
             </point>
             <end-1>
               <x>161</x>
-              <y>443</y>
+              <y>452</y>
               <w>53</w>
               <h>34</h>
-              <connectedSymbol symbol="47"/>
+              <connectedSymbol symbol="51"/>
               <text>+kalendar</text>
               <text>0..1</text>
             </end-1>
@@ -2059,35 +2122,35 @@
               <y>263</y>
               <w>94</w>
               <h>34</h>
-              <connectedSymbol symbol="59"/>
+              <connectedSymbol symbol="63"/>
               <text>+kalendarCinnost</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="69">
+          <association id="73">
             <x>105</x>
-            <y>452</y>
+            <y>464</y>
             <assocEnd-0 class="dao.model.KalendarDefinice" name="kalendar"/>
             <assocEnd-1 class="dao.model.Kalendar" name="kalendarDefinice"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="47"/>
-              <connectY symbol="47"/>
+              <connectX symbol="51"/>
+              <connectY symbol="51"/>
               <x>0</x>
               <y>0</y>
               <atX>0.552</atX>
               <atY>0.72727275</atY>
             </point>
             <point>
-              <connectY symbol="45"/>
+              <connectY symbol="49"/>
               <x>105</x>
               <y>27</y>
               <atX>1.0</atX>
             </point>
             <point>
-              <connectX symbol="45"/>
-              <connectY symbol="45"/>
+              <connectX symbol="49"/>
+              <connectY symbol="49"/>
               <x>0</x>
               <y>0</y>
               <atX>0.5822785</atX>
@@ -2095,10 +2158,10 @@
             </point>
             <end-1>
               <x>105</x>
-              <y>469</y>
+              <y>486</y>
               <w>53</w>
               <h>34</h>
-              <connectedSymbol symbol="47"/>
+              <connectedSymbol symbol="51"/>
               <text>+kalendar</text>
               <text>*</text>
             </end-1>
@@ -2107,28 +2170,28 @@
               <y>536</y>
               <w>96</w>
               <h>34</h>
-              <connectedSymbol symbol="45"/>
+              <connectedSymbol symbol="49"/>
               <text>+kalendarDefinice</text>
               <text>1</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="70">
+          <association id="74">
             <x>227</x>
             <y>296</y>
             <assocEnd-0 class="dao.model.SablonaVykaz" name="uzivatel"/>
             <assocEnd-1 class="dao.model.Uzivatel" name="sablonaVykaz"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="53"/>
-              <connectY symbol="53"/>
+              <connectX symbol="57"/>
+              <connectY symbol="57"/>
               <x>0</x>
               <y>0</y>
               <atX>0.37373737</atX>
               <atY>0.9520548</atY>
             </point>
             <point>
-              <connectY symbol="53"/>
+              <connectY symbol="57"/>
               <x>157</x>
               <y>123</y>
               <atY>0.10958904</atY>
@@ -2139,15 +2202,15 @@
               <atY>0.44520548</atY>
             </point>
             <point>
-              <connectX symbol="51"/>
+              <connectX symbol="55"/>
               <x>0</x>
               <y>136</y>
               <atX>0.37894738</atX>
               <atY>0.90178573</atY>
             </point>
             <point>
-              <connectX symbol="51"/>
-              <connectY symbol="51"/>
+              <connectX symbol="55"/>
+              <connectY symbol="55"/>
               <x>0</x>
               <y>0</y>
               <atX>0.38636363</atX>
@@ -2158,7 +2221,7 @@
               <y>296</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="53"/>
+              <connectedSymbol symbol="57"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -2167,36 +2230,36 @@
               <y>173</y>
               <w>79</w>
               <h>34</h>
-              <connectedSymbol symbol="51"/>
+              <connectedSymbol symbol="55"/>
               <text>+sablonaVykaz</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="71">
+          <association id="75">
             <x>213</x>
             <y>267</y>
             <assocEnd-0 class="dao.model.Svatek" name="uzivatel"/>
             <assocEnd-1 class="dao.model.Uzivatel" name="svatek"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="53"/>
-              <connectY symbol="53"/>
+              <connectX symbol="57"/>
+              <connectY symbol="57"/>
               <x>0</x>
               <y>0</y>
               <atX>0.23232323</atX>
               <atY>0.75342464</atY>
             </point>
             <point>
-              <connectX symbol="49"/>
+              <connectX symbol="53"/>
               <x>103</x>
               <y>75</y>
               <atX>1.0</atX>
               <atY>0.07534247</atY>
             </point>
             <point>
-              <connectX symbol="49"/>
-              <connectY symbol="49"/>
+              <connectX symbol="53"/>
+              <connectY symbol="53"/>
               <x>0</x>
               <y>0</y>
               <atX>0.6666667</atX>
@@ -2207,7 +2270,7 @@
               <y>157</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="53"/>
+              <connectedSymbol symbol="57"/>
               <text>+uzivatel</text>
               <text>0..1</text>
             </end-1>
@@ -2216,42 +2279,42 @@
               <y>75</y>
               <w>41</w>
               <h>34</h>
-              <connectedSymbol symbol="49"/>
+              <connectedSymbol symbol="53"/>
               <text>+svatek</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="72">
+          <association id="76">
             <x>219</x>
             <y>293</y>
             <assocEnd-0 class="dao.model.NastaveniSystemu" name="uzivatel"/>
             <assocEnd-1 class="dao.model.Uzivatel" name="nastaveniSystemu"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="53"/>
-              <connectY symbol="53"/>
+              <connectX symbol="57"/>
+              <connectY symbol="57"/>
               <x>0</x>
               <y>0</y>
               <atX>0.2929293</atX>
               <atY>0.9315069</atY>
             </point>
             <point>
-              <connectX symbol="53"/>
+              <connectX symbol="57"/>
               <x>-16</x>
               <y>304</y>
               <atX>0.28282827</atX>
             </point>
             <point>
-              <connectY symbol="43"/>
+              <connectY symbol="47"/>
               <x>201</x>
               <y>0</y>
               <atX>1.0</atX>
               <atY>0.60655737</atY>
             </point>
             <point>
-              <connectX symbol="43"/>
-              <connectY symbol="43"/>
+              <connectX symbol="47"/>
+              <connectY symbol="47"/>
               <x>0</x>
               <y>0</y>
               <atX>0.7826087</atX>
@@ -2262,7 +2325,7 @@
               <y>303</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="53"/>
+              <connectedSymbol symbol="57"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -2271,28 +2334,28 @@
               <y>357</y>
               <w>103</w>
               <h>34</h>
-              <connectedSymbol symbol="43"/>
+              <connectedSymbol symbol="47"/>
               <text>+nastaveniSystemu</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="73">
+          <association id="77">
             <x>91</x>
             <y>262</y>
             <assocEnd-0 class="dao.model.PracovniPomer" name="sablonaVykaz"/>
             <assocEnd-1 class="dao.model.SablonaVykaz" name="pracovniPomer"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="51"/>
-              <connectY symbol="51"/>
+              <connectX symbol="55"/>
+              <connectY symbol="55"/>
               <x>0</x>
               <y>0</y>
               <atX>0.84210527</atX>
               <atY>0.79464287</atY>
             </point>
             <point>
-              <connectY symbol="51"/>
+              <connectY symbol="55"/>
               <x>177</x>
               <y>0</y>
               <atY>0.79464287</atY>
@@ -2302,14 +2365,14 @@
               <y>435</y>
             </point>
             <point>
-              <connectY symbol="55"/>
-              <x>459</x>
-              <y>39</y>
+              <connectY symbol="59"/>
+              <x>453</x>
+              <y>25</y>
               <atY>0.85263157</atY>
             </point>
             <point>
-              <connectX symbol="55"/>
-              <connectY symbol="55"/>
+              <connectX symbol="59"/>
+              <connectY symbol="59"/>
               <x>0</x>
               <y>0</y>
               <atX>0.29710144</atX>
@@ -2320,37 +2383,37 @@
               <y>262</y>
               <w>79</w>
               <h>34</h>
-              <connectedSymbol symbol="51"/>
+              <connectedSymbol symbol="55"/>
               <text>+sablonaVykaz</text>
               <text>*</text>
             </end-1>
             <end-2>
-              <x>458</x>
-              <y>410</y>
+              <x>454</x>
+              <y>427</y>
               <w>89</w>
               <h>34</h>
-              <connectedSymbol symbol="55"/>
+              <connectedSymbol symbol="59"/>
               <text>+pracovniPomer</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="74">
+          <association id="78">
             <x>282</x>
             <y>279</y>
             <assocEnd-0 class="dao.model.KalendarDefinice" name="uzivatel"/>
             <assocEnd-1 class="dao.model.Uzivatel" name="kalendarDefinice"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="53"/>
-              <connectY symbol="53"/>
+              <connectX symbol="57"/>
+              <connectY symbol="57"/>
               <x>0</x>
               <y>1</y>
               <atX>0.9292929</atX>
               <atY>0.8356164</atY>
             </point>
             <point>
-              <connectY symbol="53"/>
+              <connectY symbol="57"/>
               <x>286</x>
               <y>-4</y>
               <atY>0.8356164</atY>
@@ -2362,15 +2425,15 @@
               <atY>0.8356164</atY>
             </point>
             <point>
-              <connectY symbol="45"/>
+              <connectY symbol="49"/>
               <x>390</x>
               <y>0</y>
               <atX>0.84810126</atX>
               <atY>0.64285713</atY>
             </point>
             <point>
-              <connectX symbol="45"/>
-              <connectY symbol="45"/>
+              <connectX symbol="49"/>
+              <connectY symbol="49"/>
               <x>0</x>
               <y>0</y>
               <atX>0.8101266</atX>
@@ -2381,7 +2444,7 @@
               <y>274</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="53"/>
+              <connectedSymbol symbol="57"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
@@ -2390,28 +2453,28 @@
               <y>580</y>
               <w>96</w>
               <h>34</h>
-              <connectedSymbol symbol="45"/>
+              <connectedSymbol symbol="49"/>
               <text>+kalendarDefinice</text>
               <text>*</text>
             </end-2>
             <style>STRAIGHT</style>
           </association>
-          <association id="75">
+          <association id="79">
             <x>237</x>
             <y>293</y>
             <assocEnd-0 class="dao.model.Kalendar" name="uzivatel"/>
             <assocEnd-1 class="dao.model.Uzivatel" name="kalendar"/>
             <showMultiplicity>true</showMultiplicity>
             <point>
-              <connectX symbol="53"/>
-              <connectY symbol="53"/>
+              <connectX symbol="57"/>
+              <connectY symbol="57"/>
               <x>0</x>
               <y>0</y>
               <atX>0.47474748</atX>
               <atY>0.9315069</atY>
             </point>
             <point>
-              <connectY symbol="53"/>
+              <connectY symbol="57"/>
               <x>200</x>
               <y>0</y>
               <atY>0.53424656</atY>
@@ -2449,14 +2512,14 @@
               <y>435</y>
             </point>
             <point>
-              <connectY symbol="47"/>
+              <connectY symbol="51"/>
               <x>62</x>
               <y>0</y>
               <atY>0.7704918</atY>
             </point>
             <point>
-              <connectX symbol="47"/>
-              <connectY symbol="47"/>
+              <connectX symbol="51"/>
+              <connectY symbol="51"/>
               <x>0</x>
               <y>0</y>
               <atX>0.64</atX>
@@ -2467,16 +2530,16 @@
               <y>225</y>
               <w>48</w>
               <h>34</h>
-              <connectedSymbol symbol="53"/>
+              <connectedSymbol symbol="57"/>
               <text>+uzivatel</text>
               <text>1</text>
             </end-1>
             <end-2>
               <x>41</x>
-              <y>469</y>
+              <y>486</y>
               <w>53</w>
               <h>34</h>
-              <connectedSymbol symbol="47"/>
+              <connectedSymbol symbol="51"/>
               <text>+kalendar</text>
               <text>*</text>
             </end-2>

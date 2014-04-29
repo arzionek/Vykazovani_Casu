@@ -31,6 +31,11 @@ public class Kalendar extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
+  private byte[] data;
+
+  /**
+   * @generated
+   */
 	public Kalendar() {
   }
 
@@ -38,7 +43,8 @@ public class Kalendar extends AEntita implements java.io.Serializable {
    * @generated
    */
 	public String toString() {
-    return "Kalendar" + " datumImportu=" + datumImportu + " id=" + id;
+    return "Kalendar" + " datumImportu=" + datumImportu + " id=" + id
+        + " data=" + java.util.Arrays.toString(data);
   }
 
   /**
@@ -123,5 +129,19 @@ public class Kalendar extends AEntita implements java.io.Serializable {
    */
   public void setUzivatel(Uzivatel uzivatel) {
     this.uzivatel = uzivatel;
+  }
+
+  /**
+   * @generated
+   */
+  public byte[] getData() {
+    return data;
+  }
+
+  /**
+   * @generated
+   */
+  public void setData(byte[] data) {
+    this.data = data;
   }
 }

@@ -24,5 +24,7 @@
          <key column='pracovni_pomer_id' foreign-key='fk_pracovni_pomer_id'/>
          <many-to-many class='dao.model.SablonaVykaz' foreign-key='fk_pracovni_pomer_sablona_vykaz' column='sablona_vykaz_id' />
       </set>
+      <property  name='typUvazku' type='string' column='typ_uvazku' not-null='true' length='64'>
+      </property>
    </class>
 </hibernate-mapping>

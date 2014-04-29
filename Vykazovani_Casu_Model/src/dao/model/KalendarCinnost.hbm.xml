@@ -27,5 +27,7 @@
       </property>
       <property  name='casDo' type='timestamp' column='cas_do' not-null='true'>
       </property>
+      <property  name='popis' type='string' column='popis' length='512'>
+      </property>
    </class>
 </hibernate-mapping>

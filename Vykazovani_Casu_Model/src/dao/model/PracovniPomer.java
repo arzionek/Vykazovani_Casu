@@ -40,9 +40,15 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
+  private String typUvazku;
+
+  /**
+   * @generated
+   */
 	public String toString() {
     return "PracovniPomer" + " kod=" + kod + " nazev=" + nazev
-        + " velikostUvazku=" + velikostUvazku + " id=" + id;
+        + " velikostUvazku=" + velikostUvazku + " id=" + id + " typUvazku="
+        + typUvazku;
   }
 
 	/**
@@ -176,5 +182,19 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
    */
   public void removeSablonaVykaz(SablonaVykaz sablonaVykaz) {
     getSablonaVykaz().remove(sablonaVykaz);
+  }
+
+  /**
+   * @generated
+   */
+  public String getTypUvazku() {
+    return this.typUvazku;
+  }
+
+  /**
+   * @generated
+   */
+  public void setTypUvazku(String typUvazku) {
+    this.typUvazku = typUvazku;
   }
 }
