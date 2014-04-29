@@ -20,8 +20,7 @@
 	<div class="box2">
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px; margin-top: 20px;">
-    <tr><td><c:out value="${o.datum2}" />&nbsp;<c:out value="${o.casOd2}" /> - <c:out value="${o.casDo2}" /></td><td></td><td></td></tr>
-    <tr><td style="padding-left: 20px;"><c:out value="${o.pracovniPomer.kod}" /> - <c:out value="${o.cinnost.nazev}" /></td>
+    <tr><td><c:out value="${o.datum2}" />&nbsp;<c:out value="${o.casOd2}" /> - <c:out value="${o.casDo2}" /></td>
     <c:url var="upravit" value="prehled">
       <c:param name="akce" value="${akce.prehledUpravit}"/>
     </c:url>
@@ -39,7 +38,9 @@
           <input type="hidden" name="objektId" value="${o.id}" />
           <input onmouseover="tooltip(odstranitTooltip, this, 100)" type="image" alt="Odstranit" src="img/odstranit.png" name="odstranit" value="Odstranit" class="vpravo2"/>
         </form>
-    </td>
+    </td></tr>
+    <tr><td style="padding-left: 20px;"><c:out value="${o.pracovniPomer.kod}" /> - <c:out value="${o.cinnost.nazev}" /></td><td></td><td></td></tr>
+    <tr><td style="padding-left: 20px;"><c:out value="${o.popis}" /></td><td></td><td></td></tr>
   </table>
   </c:forEach>
   </div>

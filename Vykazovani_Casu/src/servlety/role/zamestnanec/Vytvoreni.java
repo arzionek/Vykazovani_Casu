@@ -55,6 +55,7 @@ public class Vytvoreni extends AServletZamestnanec{
         kontrolaCas(casOd, casDo, request);
         long pomerId = vratId(request, "pomer");
         long cinnostId = vratId(request, "cinnost");
+        String popis = (String) kontrola(request, KalendarCinnost.class, "popis");
         List<KalendarCinnost> cinnostList = pripojeni.ziskejObjekty(KalendarCinnost.class, new String[]{"datum"}, new Object[]{new Cas(datum).getDatumDatabaze()}, true, uzivatel, new String[]{"casOd asc"});
         zkontrolujZadaneCinnosti(request, cinnostList, casOd, casDo, kalendarCinnostId);
         
@@ -70,6 +71,7 @@ public class Vytvoreni extends AServletZamestnanec{
         kalendarCinnost.setPracovniPomer(pomer);
         Cinnost cinnost = pripojeni.nacti(Cinnost.class, cinnostId);
         kalendarCinnost.setCinnost(cinnost);
+        kalendarCinnost.setPopis(popis);
         kalendarCinnost.setUzivatel(uzivatel);
         
         if(chyba == null){

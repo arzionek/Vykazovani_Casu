@@ -48,6 +48,7 @@
         <option value="${cinnost.id}" <c:if test="${cinnost.id == objekt.cinnost.id}">selected="selected"</c:if>><c:out value="${cinnost.kod}" /> - <c:out value="${cinnost.nazev}" /></option>  
       </c:forEach>
     </select></td></tr>
+    <tr><td style="width: 200px;">Popis činnosti:</td><td><textarea name="popis" style="width: 400px;">${objekt.popis}</textarea></td></tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>
   </table>

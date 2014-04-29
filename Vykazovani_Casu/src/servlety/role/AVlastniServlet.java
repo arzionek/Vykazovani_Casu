@@ -91,9 +91,11 @@ public abstract class AVlastniServlet extends AServlet{
 	  }  
 
 	  if (typDat.equals(String.class)) {
-	    String parametr = kontrolaVyplneni(nazev, request);
-	    kontrolaMaximalniDelky(parametr, request, AEntita.getSloupec(trida, nazev).getLength());  
-	    return parametr;
+	    String parametr = "";
+      if(!AEntita.getSloupec(trida, nazev).isNullable()) parametr = kontrolaVyplneni(nazev, request);
+      else parametr = request.getParameter(nazev);
+      kontrolaMaximalniDelky(nazev, parametr, request, AEntita.getSloupec(trida, nazev).getLength());  
+      return parametr;
 	  }
 	  
 	  return null;
@@ -175,9 +177,9 @@ public abstract class AVlastniServlet extends AServlet{
 		return parameter;
 	}
 	
-	private static void kontrolaMaximalniDelky(String nazev, HttpServletRequest request, int maximalniDelka) {
-	  if (nazev.length() > maximalniDelka) pridejChybu(request, Chyby.MAXIMALNI_DELKA, nazev);
-	}
+	protected static void kontrolaMaximalniDelky(String nazev, String parametr, HttpServletRequest request, int maximalniDelka) {
+    if (parametr.length() > maximalniDelka) pridejChybu(request, Chyby.MAXIMALNI_DELKA, nazev);
+  }
 	
 	protected static Object overChyby(HttpServletRequest request) {
 	  Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);
@@ -222,7 +224,6 @@ public abstract class AVlastniServlet extends AServlet{
 	  String predesleChyby = (String) request.getAttribute(nazevChyby);
 	  if(predesleChyby != null) predesleChyby += " " + nazevAtributu;
 	  else predesleChyby = nazevAtributu;
-	  request.setAttribute(nazevChyby, nazevAtributu);
-	  System.out.println(nazevChyby + " " + nazevAtributu);
+	  request.setAttribute(nazevChyby, predesleChyby);
 	}
 }
