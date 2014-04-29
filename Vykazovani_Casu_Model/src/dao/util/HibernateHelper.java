@@ -55,12 +55,12 @@ public class HibernateHelper {
    */
   public synchronized org.hibernate.SessionFactory getFactory()
       throws org.hibernate.HibernateException {
-    if (factory == null) {
-      org.hibernate.cfg.Configuration config = getConfiguration();
-      factory = config.buildSessionFactory();
-    }
-    return factory;
-  }
+        if (factory == null) {
+          org.hibernate.cfg.Configuration config = getConfiguration();
+          factory = config.buildSessionFactory();
+        }
+        return factory;
+      }
 
   /**
    * @generated
@@ -78,43 +78,43 @@ public class HibernateHelper {
    */
   public org.hibernate.cfg.Configuration getConfiguration()
       throws org.hibernate.MappingException {
-    org.hibernate.cfg.Configuration config = new org.hibernate.cfg.Configuration();
-    config.addClass(dao.model.Uzivatel.class);
-    config.addClass(dao.model.Cinnost.class);
-    config.addClass(dao.model.KalendarCinnost.class);
-    config.addClass(dao.model.SystemovaInformace.class);
-    config.addClass(dao.model.PracovniPomer.class);
-    config.addClass(dao.model.SablonaVykaz.class);
-    config.addClass(dao.model.Svatek.class);
-    config.addClass(dao.model.Kalendar.class);
-    config.addClass(dao.model.KalendarDefinice.class);
-    config.addClass(dao.model.NastaveniSystemu.class);
-    return config;
-  }
+        org.hibernate.cfg.Configuration config = new org.hibernate.cfg.Configuration();
+        config.addClass(dao.model.Uzivatel.class);
+        config.addClass(dao.model.Cinnost.class);
+        config.addClass(dao.model.KalendarCinnost.class);
+        config.addClass(dao.model.SystemovaInformace.class);
+        config.addClass(dao.model.PracovniPomer.class);
+        config.addClass(dao.model.SablonaVykaz.class);
+        config.addClass(dao.model.Svatek.class);
+        config.addClass(dao.model.Kalendar.class);
+        config.addClass(dao.model.KalendarDefinice.class);
+        config.addClass(dao.model.NastaveniSystemu.class);
+        return config;
+      }
 
   /**
    * @generated
    */
   public org.hibernate.Session openSession()
       throws org.hibernate.HibernateException {
-    org.hibernate.Session session = getFactory().openSession();
-    session.connection();
-    return session;
-  }
+        org.hibernate.Session session = getFactory().openSession();
+        session.connection();
+        return session;
+      }
 
   /**
    * @generated
    */
   public org.hibernate.Session getSession()
       throws org.hibernate.HibernateException {
-    org.hibernate.Session session = (org.hibernate.Session) currentSession
-        .get();
-    if (session == null || !session.isOpen()) {
-      session = openSession();
-      currentSession.set(session);
-    }
-    return session;
-  }
+        org.hibernate.Session session = (org.hibernate.Session) currentSession
+            .get();
+        if (session == null || !session.isOpen()) {
+          session = openSession();
+          currentSession.set(session);
+        }
+        return session;
+      }
 
   /**
    * @generated
