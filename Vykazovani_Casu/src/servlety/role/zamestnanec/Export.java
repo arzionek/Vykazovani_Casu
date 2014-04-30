@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.beany.Cas;
 import dao.databaze.Databaze;
+import dao.model.ExportSablona;
 
 public class Export extends AServletZamestnanec{
 
@@ -23,6 +24,9 @@ public class Export extends AServletZamestnanec{
 	}
 
 	private void export(HttpServletRequest request, HttpServletResponse response, Databaze pripojeni) throws ServletException, IOException {
+	  ExportSablona export = new ExportSablona();
+	  
+	  request.setAttribute("objekt", export);
 	  request.setAttribute("datepickerFormat", "dd.mm.yy");
 	  presmerovani(request, response, adresa + "/export.jsp");	
 	}

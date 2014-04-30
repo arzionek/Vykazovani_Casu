@@ -18,10 +18,9 @@
 <h2 class="stred">Export dat</h2>
 <div class="box2"> 
   <c:url var="ulozit" value="export">
-
+    <c:param name="akce" value="${akce.exportPomer}"/>
   </c:url>
   <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
-  <input type="hidden" name="objektId" value="${objekt.id}" />
   <div class="box">
   <table>
   
@@ -31,14 +30,20 @@
       <c:forEach items="${pomery}" var="pomer">
         <option value="${pomer.id}" <c:if test="${pomer.id == objekt.pracovniPomer.id}">selected="selected"</c:if>><c:out value="${pomer.kod}" /> - <c:out value="${pomer.nazev}" /></option>  
       </c:forEach>
-    </select></td></tr>
+    </select></td>
+    <td><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td></tr>
   </table>
+  </form>
+  <c:url var="ulozit" value="export">
+    <c:param name="akce" value="${akce.exportXls}"/>
+  </c:url>
+  <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
   <table>
     <tr><td style="width: 200px;"><b>*Datum od:</b></td><td><input type="text" required="true" name="datumOd" value="${objekt.datumOd2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumOd') || fn:contains(platneDatumPorovnani,'datumOd') || fn:contains(platneDatum,'datumOd')}"> povinne</c:if>"/></td></tr>
     <tr><td style="width: 200px;"><b>*Datum do:</b></td><td><input type="text" required="true" name="datumDo" value="${objekt.datumDo2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumDo') || fn:contains(platneDatum,'datumDo')}"> povinne</c:if>"/></td></tr>
     <tr><td style="width: 200px;"><b>*Šablona:</b></td><td><select name="sablona" required="true" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if>>
       <c:forEach items="${sablony}" var="sablona">
-        <option value="${sablona.id}" <c:if test="${sablona.id == objekt.sablona.id}">selected="selected"</c:if>><c:out value="${sablona.typ}" /> - <c:out value="${pomer.nazev}" /></option>  
+        <option value="${sablona.id}" <c:if test="${sablona.id == objekt.sablonaVykaz.id}">selected="selected"</c:if>><c:out value="${sablona.typ}" /> - <c:out value="${pomer.nazev}" /></option>  
       </c:forEach>
     </select></td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>

@@ -38,6 +38,10 @@ public class Akce {
   private static final String IMPORT = "7";
   private static final String IMPORT_NAHRAT = "71";
   private static final String IMPORT_SMAZAT = "72";
+  
+  private static final String EXPORT = "8";
+  private static final String EXPORT_POMER = "81";
+  private static final String EXPORT_XLS = "82";
 
 	
 	public String getOdhlasit() {
@@ -138,6 +142,18 @@ public class Akce {
 
   public String getPrehledObdobi() {
     return PREHLED_OBDOBI;
+  }
+
+  public String getExport() {
+    return EXPORT;
+  }
+
+  public String getExportPomer() {
+    return EXPORT_POMER;
+  }
+
+  public String getExportXls() {
+    return EXPORT_XLS;
   }
 
 }
