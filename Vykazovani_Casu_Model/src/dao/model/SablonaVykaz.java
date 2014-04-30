@@ -12,7 +12,8 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
-  private int typ;
+  private String typ;
+  private static final String[] TYPY = {"Pracovní výkaz","Dovolená","Nemocenská"};
   /**
    * @generated
    */
@@ -80,14 +81,14 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
-  public int getTyp() {
+  public String getTyp() {
     return this.typ;
   }
 
   /**
    * @generated
    */
-  public void setTyp(int typ) {
+  public void setTyp(String typ) {
     this.typ = typ;
   }
 
@@ -159,5 +160,9 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
    */
   public void removePracovniPomer(PracovniPomer pracovniPomer) {
     getPracovniPomer().remove(pracovniPomer);
+  }
+
+  public static String[] getTypy() {
+    return TYPY;
   }
 }

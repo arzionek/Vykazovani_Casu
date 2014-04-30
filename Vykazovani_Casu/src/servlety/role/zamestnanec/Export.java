@@ -23,6 +23,7 @@ public class Export extends AServletZamestnanec{
 	}
 
 	private void export(HttpServletRequest request, HttpServletResponse response, Databaze pripojeni) throws ServletException, IOException {
-		presmerovani(request, response, adresa + "/export.jsp");	
+	  request.setAttribute("datepickerFormat", "dd.mm.yy");
+	  presmerovani(request, response, adresa + "/export.jsp");	
 	}
 }

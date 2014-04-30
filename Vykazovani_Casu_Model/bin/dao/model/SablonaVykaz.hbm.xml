@@ -11,7 +11,7 @@
       </property>
       <property  name='nazev' type='string' column='nazev' not-null='true' length='64'>
       </property>
-      <property  name='typ' type='integer' column='typ' not-null='true' precision='2'>
+      <property  name='typ' type='string' column='typ' not-null='true' precision='2'>
       </property>
       <property  name='data' type='blob' column='data' not-null='true'>
       </property>
