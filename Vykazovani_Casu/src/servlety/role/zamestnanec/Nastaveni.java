@@ -241,7 +241,7 @@ public class Nastaveni extends AServletZamestnanec{
     } else if(akce.getNastaveniSablonStahnout().equals(volanaAkce)){
       sablona = pripojeni.nacti(SablonaVykaz.class, sablonaId);
       pripojeni.inicializaceObjektu(sablona);
-      String nazev = "sablona_" + sablona.getKod().replace(" ", "");
+      String nazev = "sablona_" + sablona.getKod().replace(" ", "") + ".xls";
       Download.download(response, sablona.getData(), nazev);
       vypisAkce("_stahnout", request);
     } 
