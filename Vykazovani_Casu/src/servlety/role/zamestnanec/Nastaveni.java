@@ -12,6 +12,7 @@ import dao.beany.Cas;
 import dao.beany.Chyby;
 import dao.model.Cinnost;
 import dao.model.PracovniPomer;
+import dao.model.SablonaVykaz;
 import dao.model.Svatek;
 import dao.model.Uzivatel;
 
@@ -44,6 +45,9 @@ public class Nastaveni extends AServletZamestnanec{
     }else if (akce.getNastaveniDefiniceKalendare().equals(volano)) {
       vypisAkce("nastaveni_kalendare", request);
       nastaveniKalendare(request, response);
+    }else if (akce.getNastaveniSablon().equals(volano)) {
+      vypisAkce("nastaveni_sablony", request);
+      nastaveniSablony(request, response);
     }else {    
       vypisAkce("nastaveni_cinnosti", request);
       nastaveniCinnosti(request, response);  
@@ -206,5 +210,14 @@ public class Nastaveni extends AServletZamestnanec{
   private void nastaveniKalendare(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     presmerovani(request, response, adresa + "/definiceKalendare.jsp");
   } 
+  
+  private void nastaveniSablony(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
+    
+    List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel, "kod");
+    request.setAttribute("pomery", pomery);
+    request.setAttribute("typy", SablonaVykaz.getTypy());
+    presmerovani(request, response, adresa + "/sablony.jsp");
+  }
   
 }

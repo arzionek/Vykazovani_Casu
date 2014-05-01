@@ -71,13 +71,16 @@
     <td class="vpravo">
       <c:if  test="${o.uzivatel != null}">
         <c:url var="upravit" value="nastaveni">
-	     <c:param name="akce" value="${akce.nastaveniPomeruUpravit}"/>
+	        <c:param name="akce" value="${akce.nastaveniPomeruUpravit}"/>
         </c:url>  
         <form action="<c:out value="${upravit}" escapeXml="true" />" method="post">
           <input type="hidden" name="objektId" value="${o.id}" />
           <input onmouseover="tooltip(upravitTooltip, this, 100)" type="image" alt="Upravit" src="img/upravit.png" name="upravit" value="Upravit" class="vpravo2"/>
         </form>
-        </c:if>
+      </c:if>
+      <c:if test="${o.uzivatel == null}">
+        <img src="img/upravit2.png" alt="Upravit" class="vpravo2"/>
+      </c:if>
     </td>
     <td class="vpravo">
       <c:if test="${o.uzivatel != null && empty o.kalendarCinnost && empty o.sablonaVykaz}">

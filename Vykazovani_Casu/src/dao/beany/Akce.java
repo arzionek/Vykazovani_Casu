@@ -29,6 +29,11 @@ public class Akce {
 	private static final String NASTAVENI_DEFINICE_KALENDARE_UPRAVIT = "42";
 	private static final String NASTAVENI_DEFINICE_KALENDARE_SMAZAT = "43";
 	
+	private static final String NASTAVENI_SABLON = "5";
+  private static final String NASTAVENI_SABLON_VLOZIT = "51";
+  private static final String NASTAVENI_SABLON_UPRAVIT = "52";
+  private static final String NASTAVENI_SABLON_SMAZAT = "53";
+	
 	private static final String PREHLED = "6";
   private static final String VYTVORENI_VLOZIT = "61";
   private static final String PREHLED_UPRAVIT = "62";
@@ -154,6 +159,22 @@ public class Akce {
 
   public String getExportXls() {
     return EXPORT_XLS;
+  }
+
+  public String getNastaveniSablon() {
+    return NASTAVENI_SABLON;
+  }
+
+  public String getNastaveniSablonVlozit() {
+    return NASTAVENI_SABLON_VLOZIT;
+  }
+
+  public String getNastaveniSablonUpravit() {
+    return NASTAVENI_SABLON_UPRAVIT;
+  }
+
+  public String getNastaveniSablonSmazat() {
+    return NASTAVENI_SABLON_SMAZAT;
   }
 
 }

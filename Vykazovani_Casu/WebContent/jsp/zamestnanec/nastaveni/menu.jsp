@@ -21,7 +21,7 @@
       <a href="<c:out value="${cinnosti}" escapeXml="true" />">Činnosti</a>
       
       <c:url var="sablony" value="nastaveni">
-		    <c:param name="akce" value="${akce.odhlasit}"/>
+		    <c:param name="akce" value="${akce.nastaveniSablon}"/>
 	    </c:url>
       <a href="<c:out value="${sablony}" escapeXml="true" />">Šablony</a>
       
