@@ -13,6 +13,7 @@
   <script type="text/javascript">
     var ulozitTooltip = 'Uložit pracovní poměr.';
     var upravitTooltip = 'Upravit pracovní poměr.';
+    var stahnoutTooltip = 'Stáhnout soubor.';
     var odstranitTooltip = 'Odstranit pracovní poměr.';
     var novyTooltip = 'Nový pracovní poměr';
   </script>
@@ -72,6 +73,15 @@
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px">
     <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" /> - <c:out value="${o.typ}" /></td>
+    <td class="vpravo">
+      <c:url var="stahnout" value="nastaveni">
+        <c:param name="akce" value="${akce.nastaveniSablonStahnout}"/>
+      </c:url>  
+      <form action="<c:out value="${stahnout}" escapeXml="true" />" method="post">
+        <input type="hidden" name="objektId" value="${o.id}" />
+        <input onmouseover="tooltip(stahnoutTooltip, this, 100)" type="image" alt="Stáhnout" src="img/xls.png" name="stahnout" value="Stáhnout" class="vpravo2"/>
+      </form>
+    </td>
     <td class="vpravo">
       <c:if  test="${o.uzivatel != null}">
         <c:url var="upravit" value="nastaveni">

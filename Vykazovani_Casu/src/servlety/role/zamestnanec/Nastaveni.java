@@ -16,6 +16,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
 
+import servlety.nastroje.Download;
+
 import dao.beany.Cas;
 import dao.beany.Chyby;
 import dao.model.Cinnost;
@@ -239,11 +241,19 @@ public class Nastaveni extends AServletZamestnanec{
       pripojeni.smaz(sablona);
       sablona = new SablonaVykaz();
       vypisAkce("_smazat", request);
-    }
+    } else if(akce.getNastaveniSablonStahnout().equals(volanaAkce)){
+      sablona = pripojeni.nacti(SablonaVykaz.class, sablonaId);
+      pripojeni.inicializaceObjektu(sablona);
+      String nazev = "sablona_" + sablona.getKod().replace(" ", "");
+      Download.download(response, sablona.getData(), nazev);
+      vypisAkce("_stahnout", request);
+    } 
     
     request.setAttribute("objekt", sablona);
     List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel, "kod");
     request.setAttribute("pomery", pomery);
+    List<SablonaVykaz> vykazy = pripojeni.ziskejObjekty(SablonaVykaz.class, uzivatel, "kod");
+    request.setAttribute("objekty", vykazy);
     request.setAttribute("typy", SablonaVykaz.getTypy());
     presmerovani(request, response, adresa + "/sablony.jsp");
   }
@@ -267,10 +277,7 @@ public class Nastaveni extends AServletZamestnanec{
         for (int i = 0; i < fields.size(); i++) {
           FileItem fi = fields.get(i);  
           if(!fi.isFormField()){
-            if(fi.getName().contains(".xls")){
-              data = fi.get();//new byte[(int) fi.getSize()];
-              //fi.getInputStream().read(data);
-            }
+            if(fi.getName().contains(".xls") && !fi.getName().contains(".xlsx")) data = fi.get();
             else pridejChybu(request, Chyby.PODPOROVANY_FORMAT, "soubor");
           }else{
             if(fi.getFieldName().equals("kod")){
