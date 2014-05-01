@@ -11,14 +11,14 @@
       </property>
       <property  name='nazev' type='string' column='nazev' not-null='true' length='64'>
       </property>
-      <property  name='typ' type='integer' column='typ' not-null='true' precision='2'>
+      <property  name='typ' type='string' column='typ' not-null='true' precision='2'>
       </property>
-      <property  name='data' type='blob' column='data' not-null='true'>
+      <property  name='data' type='binary' column='data' not-null='true' length='4194304'>
       </property>
       <many-to-one  name='uzivatel' class='dao.model.Uzivatel' not-null='true' cascade='save-update' foreign-key='fk_sablona_vykaz_uzivatel_id'>
          <column name='uzivatel_id'/>
       </many-to-one>
-      <set  name='pracovniPomer' inverse='true' table='tb_pracovni_pomer_sablona_vykaz'>
+      <set  name='pracovniPomer' inverse='false' table='tb_pracovni_pomer_sablona_vykaz'>
          <key column='sablona_vykaz_id' foreign-key='fk_sablona_vykaz_id'/>
          <many-to-many class='dao.model.PracovniPomer' foreign-key='fk_sablona_vykaz_pracovni_pomer' column='pracovni_pomer_id' />
       </set>

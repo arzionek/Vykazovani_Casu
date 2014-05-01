@@ -18,7 +18,7 @@
       <many-to-one  name='uzivatel' class='dao.model.Uzivatel' not-null='true' cascade='save-update' foreign-key='fk_sablona_vykaz_uzivatel_id'>
          <column name='uzivatel_id'/>
       </many-to-one>
-      <set  name='pracovniPomer' inverse='true' table='tb_pracovni_pomer_sablona_vykaz'>
+      <set  name='pracovniPomer' inverse='false' table='tb_pracovni_pomer_sablona_vykaz'>
          <key column='sablona_vykaz_id' foreign-key='fk_sablona_vykaz_id'/>
          <many-to-many class='dao.model.PracovniPomer' foreign-key='fk_sablona_vykaz_pracovni_pomer' column='pracovni_pomer_id' />
       </set>

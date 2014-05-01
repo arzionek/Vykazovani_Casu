@@ -11,11 +11,11 @@
 <div id="hlavni">
   <jsp:include page="../../menu_top.jsp" flush="true" />
   <script type="text/javascript">
-    var ulozitTooltip = 'Uložit pracovní poměr.';
-    var upravitTooltip = 'Upravit pracovní poměr.';
+    var ulozitTooltip = 'Uložit šablonu.';
+    var upravitTooltip = 'Upravit údaje u šablony.';
     var stahnoutTooltip = 'Stáhnout soubor.';
-    var odstranitTooltip = 'Odstranit pracovní poměr.';
-    var novyTooltip = 'Nový pracovní poměr';
+    var odstranitTooltip = 'Odstranit šablonu.';
+    var novyTooltip = 'Nová šablona.';
   </script>
   <h2 class="stred">Nastavení systému:</h2>
   

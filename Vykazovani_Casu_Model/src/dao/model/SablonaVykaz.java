@@ -4,10 +4,6 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
 	/**
    * @generated
    */
-  private String kod;
-  /**
-   * @generated
-   */
   private String nazev;
   /**
    * @generated
@@ -39,6 +35,11 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
+  private String kod;
+
+  /**
+   * @generated
+   */
 	public SablonaVykaz() {
   }
 
@@ -48,20 +49,6 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
 	public String toString() {
     return "SablonaVykaz" + " kod=" + kod + " nazev=" + nazev + " typ=" + typ
         + " data=" + java.util.Arrays.toString(data) + " id=" + id;
-  }
-
-  /**
-   * @generated
-   */
-  public String getKod() {
-    return this.kod;
-  }
-
-  /**
-   * @generated
-   */
-  public void setKod(String kod) {
-    this.kod = kod;
   }
 
   /**
@@ -134,6 +121,10 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
     this.id = id;
   }
 
+  public static String[] getTypy() {
+    return TYPY;
+  }
+
   /**
    * @generated
    */
@@ -162,7 +153,17 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
     getPracovniPomer().remove(pracovniPomer);
   }
 
-  public static String[] getTypy() {
-    return TYPY;
+  /**
+   * @generated
+   */
+  public String getKod() {
+    return this.kod;
+  }
+
+  /**
+   * @generated
+   */
+  public void setKod(String kod) {
+    this.kod = kod;
   }
 }

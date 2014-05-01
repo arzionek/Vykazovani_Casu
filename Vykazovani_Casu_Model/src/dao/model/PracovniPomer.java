@@ -35,14 +35,14 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
 	/**
    * @generated
    */
-  private java.util.Set<SablonaVykaz> sablonaVykaz = new java.util.HashSet<SablonaVykaz>();
+  private String typUvazku;
+  
+  private static final String[] TYPY = {"Dohoda o provedení práce","Dohoda o provedení èinnosti","Pracovní pomìr"};
 
   /**
    * @generated
    */
-  private String typUvazku;
-  
-  private static final String[] TYPY = {"Dohoda o provedení práce","Dohoda o provedení èinnosti","Pracovní pomìr"};
+  private java.util.Set<SablonaVykaz> sablonaVykaz = new java.util.HashSet<SablonaVykaz>();
 
   /**
    * @generated
@@ -161,6 +161,24 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
+  public String getTypUvazku() {
+    return this.typUvazku;
+  }
+
+  /**
+   * @generated
+   */
+  public void setTypUvazku(String typUvazku) {
+    this.typUvazku = typUvazku;
+  }
+
+  public static String[] getTypy() {
+    return TYPY;
+  }
+
+  /**
+   * @generated
+   */
   public java.util.Set<SablonaVykaz> getSablonaVykaz() {
     return sablonaVykaz;
   }
@@ -184,23 +202,5 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
    */
   public void removeSablonaVykaz(SablonaVykaz sablonaVykaz) {
     getSablonaVykaz().remove(sablonaVykaz);
-  }
-
-  /**
-   * @generated
-   */
-  public String getTypUvazku() {
-    return this.typUvazku;
-  }
-
-  /**
-   * @generated
-   */
-  public void setTypUvazku(String typUvazku) {
-    this.typUvazku = typUvazku;
-  }
-
-  public static String[] getTypy() {
-    return TYPY;
   }
 }

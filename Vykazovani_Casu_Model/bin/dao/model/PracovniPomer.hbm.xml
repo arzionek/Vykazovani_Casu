@@ -20,11 +20,11 @@
       <many-to-one  name='uzivatel' class='dao.model.Uzivatel' not-null='true' cascade='save-update' foreign-key='fk_pracovni_pomer_uzivatel_id'>
          <column name='uzivatel_id'/>
       </many-to-one>
-      <set  name='sablonaVykaz' inverse='false' table='tb_pracovni_pomer_sablona_vykaz'>
+      <property  name='typUvazku' type='string' column='typ_uvazku' not-null='true' length='64'>
+      </property>
+      <set  name='sablonaVykaz' inverse='true' table='tb_pracovni_pomer_sablona_vykaz'>
          <key column='pracovni_pomer_id' foreign-key='fk_pracovni_pomer_id'/>
          <many-to-many class='dao.model.SablonaVykaz' foreign-key='fk_pracovni_pomer_sablona_vykaz' column='sablona_vykaz_id' />
       </set>
-      <property  name='typUvazku' type='string' column='typ_uvazku' not-null='true' length='64'>
-      </property>
    </class>
 </hibernate-mapping>
