@@ -7,6 +7,7 @@ import java.util.Date;
 public class ExportSablona extends AEntita {
 
   private static final long serialVersionUID = 3159839262963637723L;
+  private Uzivatel uzivatel;
   private PracovniPomer pracovniPomer;
   private SablonaVykaz sablonaVykaz;
   private Date datumOd;
@@ -89,6 +90,14 @@ public class ExportSablona extends AEntita {
 
   public void setDatumDo2(String datumDo2) {
     this.datumDo2 = datumDo2;
+  }
+
+  public Uzivatel getUzivatel() {
+    return uzivatel;
+  }
+
+  public void setUzivatel(Uzivatel uzivatel) {
+    this.uzivatel = uzivatel;
   }
 
 }

@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlety.nastroje.ExportDoSablony;
+
 import dao.beany.Cas;
 import dao.beany.Chyby;
 import dao.databaze.Databaze;
@@ -32,6 +34,7 @@ public class Export extends AServletZamestnanec{
 	private void export(HttpServletRequest request, HttpServletResponse response, Databaze pripojeni) throws ServletException, IOException {
 	  Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
 	  ExportSablona export = new ExportSablona();
+	  export.setUzivatel(uzivatel);
 	  
 	  if(akce.getExportPomer().equals(volanaAkce) || akce.getExportXls().equals(volanaAkce)){
   	  long pracovniPomerId = vratId(request, "pomer");
@@ -55,7 +58,7 @@ public class Export extends AServletZamestnanec{
       export.setDatumDo(datumDo);
       
 	    if(chyba == null){
-	       //TODO export
+	       ExportDoSablony.provestExport(export, pripojeni);
 	    }
 	  }
 	  
@@ -65,4 +68,5 @@ public class Export extends AServletZamestnanec{
 	  request.setAttribute("datepickerFormat", "dd.mm.yy");
 	  presmerovani(request, response, adresa + "/export.jsp");	
 	}
+
 }
