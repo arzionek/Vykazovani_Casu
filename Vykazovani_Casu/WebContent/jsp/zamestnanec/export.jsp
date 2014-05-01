@@ -13,6 +13,7 @@
 <jsp:include page="../zahlavi_komponenta_datum.jsp" flush="true" />
 <script type="text/javascript">
   var ulozitTooltip = 'Provést export.';
+  var ulozit2Tooltip = 'Nastavit pracovní poměr.';
   var novyTooltip = 'Nový export.';
 </script>
 <h2 class="stred">Export dat</h2>
@@ -23,7 +24,9 @@
   <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
   <div class="box">
   <table>
-  
+    <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
+    <c:if test="${platneDatum != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumZprava}</td></tr></c:if>
+    <c:if test="${platneDatumPorovnani != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumPorovnaniZprava}</td></tr></c:if>
   </table>
   <table>
     <tr><td style="width: 200px;"><b>*Pracovní poměr:</b></td><td><select name="pomer" <c:if test="${objekt.pracovniPomer.id != null}">disabled="disabled"</c:if>>
@@ -31,7 +34,8 @@
         <option value="${pomer.id}" <c:if test="${pomer.id == objekt.pracovniPomer.id}">selected="selected"</c:if>><c:out value="${pomer.kod}" /> - <c:out value="${pomer.nazev}" /></option>  
       </c:forEach>
     </select></td>
-    <td><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td></tr>
+    <c:if test="${objekt.pracovniPomer.id == null}"><td style="float: right;"><input onmouseover="tooltip(ulozit2Tooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td></c:if>
+    </tr>
   </table>
   </form>
   <c:url var="ulozit" value="export">
@@ -39,9 +43,9 @@
   </c:url>
   <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
   <table>
-    <tr><td style="width: 200px;"><b>*Datum od:</b></td><td><input type="text" required="true" name="datumOd" value="${objekt.datumOd2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumOd') || fn:contains(platneDatumPorovnani,'datumOd') || fn:contains(platneDatum,'datumOd')}"> povinne</c:if>"/></td></tr>
-    <tr><td style="width: 200px;"><b>*Datum do:</b></td><td><input type="text" required="true" name="datumDo" value="${objekt.datumDo2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumDo') || fn:contains(platneDatum,'datumDo')}"> povinne</c:if>"/></td></tr>
-    <tr><td style="width: 200px;"><b>*Šablona:</b></td><td><select name="sablona" required="true" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if>>
+    <tr><td style="width: 200px;"><b>*Datum od:</b></td><td><input type="text" required="true" name="datumOd" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> value="${objekt.datumOd2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumOd') || fn:contains(platneDatumPorovnani,'datumOd') || fn:contains(platneDatum,'datumOd')}"> povinne</c:if>"/></td></tr>
+    <tr><td style="width: 200px;"><b>*Datum do:</b></td><td><input type="text" required="true" name="datumDo" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> value="${objekt.datumDo2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumDo') || fn:contains(platneDatum,'datumDo')}"> povinne</c:if>"/></td></tr>
+    <tr><td style="width: 200px;"><b>*Šablona:</b></td><td><select name="sablona" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> <c:if test="${fn:contains(povinnyUdaj,'sablona')}">class="povinne"</c:if>>
       <c:forEach items="${sablony}" var="sablona">
         <option value="${sablona.id}" <c:if test="${sablona.id == objekt.sablonaVykaz.id}">selected="selected"</c:if>><c:out value="${sablona.typ}" /> - <c:out value="${pomer.nazev}" /></option>  
       </c:forEach>
@@ -51,7 +55,10 @@
   </div>
   <div class="box" style="padding-top: 0px; padding-bottom: 0px;">
   <table>
-    <tr><td style="float: left;"><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td>
+    <tr><td style="float: left;">
+    <c:if test="${objekt.pracovniPomer.id != null}"><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Exportovat" src="img/xls.png" name="exportovat" value="Exportovat"/></c:if>
+    <c:if test="${objekt.pracovniPomer.id == null}"><img src="img/xls2.png" alt="Exportovat"/></c:if>
+    </td>
     <c:url var="novy" value="export">
 
     </c:url>

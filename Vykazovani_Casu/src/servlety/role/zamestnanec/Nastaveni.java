@@ -45,7 +45,8 @@ public class Nastaveni extends AServletZamestnanec{
       vypisAkce("nastaveni_kalendare", request);
       nastaveniKalendare(request, response);
     }else {    
-      presmerovani(request, response, adresa + "/nastaveni.jsp");
+      vypisAkce("nastaveni_cinnosti", request);
+      nastaveniCinnosti(request, response);  
     }
   }
 
