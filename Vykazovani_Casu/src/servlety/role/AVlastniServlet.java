@@ -227,7 +227,7 @@ public abstract class AVlastniServlet extends AServlet{
       if(((Svatek) entita).getKod().equals(((Svatek) entitaDb).getKod())) nazev = "kod";
       if(((Svatek) entita).getNazev().equals(((Svatek) entitaDb).getNazev())) nazev += " nazev";
       if(((Svatek) entita).getDatum().equals(((Svatek) entitaDb).getDatum())) nazev += " datum";
-      
+
     }else if(entita instanceof KalendarDefinice){
       if(((KalendarDefinice) entita).getKod().equals(((KalendarDefinice) entitaDb).getKod())) nazev = "kod"; 
       if(((KalendarDefinice) entita).getNazev().equals(((KalendarDefinice) entitaDb).getNazev())) nazev += " nazev"; 

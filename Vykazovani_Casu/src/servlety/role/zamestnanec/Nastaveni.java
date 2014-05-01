@@ -267,7 +267,10 @@ public class Nastaveni extends AServletZamestnanec{
         for (int i = 0; i < fields.size(); i++) {
           FileItem fi = fields.get(i);  
           if(!fi.isFormField()){
-            if(fi.getName().contains(".xls")) data = fi.get();
+            if(fi.getName().contains(".xls")){
+              data = fi.get();//new byte[(int) fi.getSize()];
+              //fi.getInputStream().read(data);
+            }
             else pridejChybu(request, Chyby.PODPOROVANY_FORMAT, "soubor");
           }else{
             if(fi.getFieldName().equals("kod")){
@@ -296,6 +299,7 @@ public class Nastaveni extends AServletZamestnanec{
         sablona.setKod(kod);
         sablona.setNazev(nazev);
         sablona.setTyp(typ);
+        sablona.setData(data);
         sablona.setPracovniPomer(pomery);
           
         if(chyba == null){

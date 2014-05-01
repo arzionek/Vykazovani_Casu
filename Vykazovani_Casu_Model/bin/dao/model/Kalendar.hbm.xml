@@ -19,7 +19,7 @@
       <many-to-one  name='uzivatel' class='dao.model.Uzivatel' not-null='true' cascade='save-update' foreign-key='fk_kalendar_uzivatel_id'>
          <column name='uzivatel_id'/>
       </many-to-one>
-      <property  name='data' type='blob' column='data' not-null='true'>
+      <property  name='data' type='binary' column='data' not-null='true' length='4194304'>
       </property>
    </class>
 </hibernate-mapping>

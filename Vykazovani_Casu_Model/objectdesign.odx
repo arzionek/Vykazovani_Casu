@@ -928,7 +928,8 @@
                 <tag name="@hibernate">
                   <parameters>
                     <not-null>true</not-null>
-                    <type>blob</type>
+                    <type>binary</type>
+                    <length>4194304</length>
                   </parameters>
                 </tag>
               </tags>
@@ -1149,7 +1150,8 @@
                 <tag name="@hibernate">
                   <parameters>
                     <not-null>true</not-null>
-                    <type>blob</type>
+                    <type>binary</type>
+                    <length>4194304</length>
                   </parameters>
                 </tag>
               </tags>
@@ -1387,7 +1389,7 @@
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="2">
-            <x>46</x>
+            <x>51</x>
             <y>520</y>
             <connectedTo symbol="40"/>
             <tag class="dao.model.Kalendar" variable="data" id="@hibernate"/>
@@ -1443,8 +1445,8 @@
             <showNotSet>true</showNotSet>
           </tagSymbol>
           <tagSymbol id="10">
-            <x>116</x>
-            <y>124</y>
+            <x>145</x>
+            <y>184</y>
             <connectedTo symbol="44"/>
             <tag class="dao.model.SablonaVykaz" variable="data" id="@hibernate"/>
             <showNotSet>true</showNotSet>
