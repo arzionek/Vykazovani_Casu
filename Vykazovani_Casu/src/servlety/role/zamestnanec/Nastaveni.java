@@ -226,8 +226,8 @@ public class Nastaveni extends AServletZamestnanec{
     SablonaVykaz sablona = new SablonaVykaz();
     long sablonaId = vratId(request, "objektId");
     if(akce.getNastaveniSablonVlozit().equals(volanaAkce)) {
-      if(sablonaId == 0 && ServletFileUpload.isMultipartContent(request)) vlozitSablonu(sablona, uzivatel, request);
-      else upravitSablonu(sablona, uzivatel, request, sablonaId);
+      if(sablonaId == 0 && ServletFileUpload.isMultipartContent(request)) sablona = vlozitSablonu(sablona, uzivatel, request);
+      else sablona = upravitSablonu(sablona, uzivatel, request, sablonaId);
       vypisAkce("_vlozit", request);
     } else if(akce.getNastaveniSablonUpravit().equals(volanaAkce)){
       sablona = pripojeni.nacti(SablonaVykaz.class, sablonaId);
@@ -255,7 +255,7 @@ public class Nastaveni extends AServletZamestnanec{
     presmerovani(request, response, adresa + "/sablony.jsp");
   }
 
-  private void vlozitSablonu(SablonaVykaz sablona, Uzivatel uzivatel, HttpServletRequest request) {
+  private SablonaVykaz vlozitSablonu(SablonaVykaz sablona, Uzivatel uzivatel, HttpServletRequest request) {
     FileItemFactory factory = new DiskFileItemFactory();
     ServletFileUpload upload = new ServletFileUpload(factory);
     upload.setHeaderEncoding("UTF-8"); 
@@ -312,10 +312,11 @@ public class Nastaveni extends AServletZamestnanec{
       }
     } catch (Exception e) {
       e.printStackTrace();
-    }   
+    }
+    return sablona;
   }
 
-  private void upravitSablonu(SablonaVykaz sablona, Uzivatel uzivatel, HttpServletRequest request, long sablonaId) {
+  private SablonaVykaz upravitSablonu(SablonaVykaz sablona, Uzivatel uzivatel, HttpServletRequest request, long sablonaId) {
     String kod = (String) kontrola(request, SablonaVykaz.class, "kod");
     String nazev = (String) kontrola(request, SablonaVykaz.class, "nazev");
     String typ = (String) kontrola(request, SablonaVykaz.class, "typ");
@@ -348,6 +349,7 @@ public class Nastaveni extends AServletZamestnanec{
       String atribut = getShoda(sablona, sablona2);
       request.setAttribute(Chyby.DUPLICITNI_ZADANI, atribut);
     }
+    return sablona;
   }
   
 }

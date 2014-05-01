@@ -210,6 +210,7 @@ public abstract class AVlastniServlet extends AServlet{
 	  if (chyba == null) chyba = request.getAttribute(Chyby.MAXIMALNI_DELKA);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_CISLO_0_1);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.PODPOROVANY_FORMAT);
 	  return chyba;
 	}
 	
@@ -234,7 +235,7 @@ public abstract class AVlastniServlet extends AServlet{
 
     }else if(entita instanceof SablonaVykaz){
       if(((SablonaVykaz) entita).getKod().equals(((SablonaVykaz) entitaDb).getKod())) nazev = "kod";
-      if(((SablonaVykaz) entita).getKod().equals(((SablonaVykaz) entitaDb).getKod())) nazev += " nazev";
+      if(((SablonaVykaz) entita).getNazev().equals(((SablonaVykaz) entitaDb).getNazev())) nazev += " nazev";
       
     }
     return nazev;
