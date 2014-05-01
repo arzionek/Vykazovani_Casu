@@ -59,6 +59,7 @@ public class Export extends AServletZamestnanec{
       
 	    if(chyba == null){
 	       ExportDoSablony.provestExport(export, pripojeni);
+	       export = new ExportSablona();
 	    }
 	  }
 	  
