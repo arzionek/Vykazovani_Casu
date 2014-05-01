@@ -9,6 +9,7 @@ public class Chyby {
   public static final String MAXIMALNI_DELKA = "maximalniDelka";
   public static final String PLATNE_DATUM_POROVNANI = "platneDatumPorovnani";
   public static final String REALNE_CISLO_0_1 = "realneCislo01";
+  public static final String PODPOROVANY_FORMAT = "podporovanyFormat";
   
   public static final String DUPLICITNI_ZADANI_ZPRAVA = "Údaj se stejnými atributy již existuje!";
   public static final String CELE_NEZAPORNE_CISLO_ZPRAVA = "Musí být zadáno kladné celé èíslo!";
@@ -18,6 +19,7 @@ public class Chyby {
   public static final String MAXIMALNI_DELKA_ZPRAVA = "Zadané údaje jsou pøíliš dlouhé!";
   public static final String PLATNE_DATUM_POROVNANI_ZPRAVA = "Èas od je vìtší než èas do!";
   public static final String REALNE_CISLO_0_1_ZPRAVA = "Musí být zadáno èíslo 0 - 1!";
+  public static final String PODPOROVANY_FORMAT_ZPRAVA = "Podporovány jsou pouze XLS soubory!";
   
   public String getDuplicitniZadani() {
     return DUPLICITNI_ZADANI;
@@ -81,6 +83,14 @@ public class Chyby {
 
   public String getRealneCislo01Zprava() {
     return REALNE_CISLO_0_1_ZPRAVA;
+  }
+
+  public String getPodporovanyFormat() {
+    return PODPOROVANY_FORMAT;
+  }
+
+  public String getPodporovanyFormatZprava() {
+    return PODPOROVANY_FORMAT_ZPRAVA;
   }
 
 }

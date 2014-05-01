@@ -45,8 +45,8 @@ public class Export extends AServletZamestnanec{
   	  }
 	  }
 	  if(akce.getExportXls().equals(volanaAkce)){
-	    Date datumOd = kontrolaDatum("datumOd", request);
-      Date datumDo = kontrolaDatum("datumDo", request);
+	    Date datumOd = kontrolaDatum("datumOd", null, request);
+      Date datumDo = kontrolaDatum("datumDo", null, request);
       kontrolaDatumCas(datumOd, datumDo, request, "datumOd");
 	    long sablonaVykazId = vratId(request, "sablona");
 	    if(sablonaVykazId == 0) pridejChybu(request, Chyby.POVINNY_UDAJ, "sablona");

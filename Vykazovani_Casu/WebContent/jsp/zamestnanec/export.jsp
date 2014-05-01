@@ -47,7 +47,7 @@
     <tr><td style="width: 200px;"><b>*Datum do:</b></td><td><input type="text" required="true" name="datumDo" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> value="${objekt.datumDo2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumDo') || fn:contains(platneDatum,'datumDo')}"> povinne</c:if>"/></td></tr>
     <tr><td style="width: 200px;"><b>*Šablona:</b></td><td><select name="sablona" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> <c:if test="${fn:contains(povinnyUdaj,'sablona')}">class="povinne"</c:if>>
       <c:forEach items="${sablony}" var="sablona">
-        <option value="${sablona.id}" <c:if test="${sablona.id == objekt.sablonaVykaz.id}">selected="selected"</c:if>><c:out value="${sablona.typ}" /> - <c:out value="${pomer.nazev}" /></option>  
+        <option value="${sablona.id}" <c:if test="${sablona.id == objekt.sablonaVykaz.id}">selected="selected"</c:if>><c:out value="${sablona.typ}" /> - <c:out value="${sablona.kod}" /></option>  
       </c:forEach>
     </select></td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>

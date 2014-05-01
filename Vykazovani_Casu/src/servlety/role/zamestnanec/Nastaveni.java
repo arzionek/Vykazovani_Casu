@@ -2,11 +2,19 @@ package servlety.role.zamestnanec;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.util.Streams;
 
 import dao.beany.Cas;
 import dao.beany.Chyby;
@@ -213,11 +221,98 @@ public class Nastaveni extends AServletZamestnanec{
   
   private void nastaveniSablony(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
+    SablonaVykaz sablona = new SablonaVykaz();
+    long sablonaId = vratId(request, "objektId");
+    if(akce.getNastaveniSablonVlozit().equals(volanaAkce)) {
+      if(sablonaId == 0){
+        vlozitSablonu(sablona, uzivatel, request);
+      }else{
+        sablona = pripojeni.nacti(SablonaVykaz.class, sablonaId);
+        upravitSablonu(sablona, uzivatel, request);
+      }
+      vypisAkce("_vlozit", request);
+    } else if(akce.getNastaveniSablonUpravit().equals(volanaAkce)){
+      sablona = pripojeni.nacti(SablonaVykaz.class, sablonaId);
+      vypisAkce("_upravit", request);
+    } else if(akce.getNastaveniSablonSmazat().equals(volanaAkce)){
+      sablona = pripojeni.nacti(SablonaVykaz.class, sablonaId);
+      pripojeni.smaz(sablona);
+      sablona = new SablonaVykaz();
+      vypisAkce("_smazat", request);
+    }
     
+    request.setAttribute("objekt", sablona);
     List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel, "kod");
     request.setAttribute("pomery", pomery);
     request.setAttribute("typy", SablonaVykaz.getTypy());
     presmerovani(request, response, adresa + "/sablony.jsp");
+  }
+
+  private void vlozitSablonu(SablonaVykaz sablona, Uzivatel uzivatel, HttpServletRequest request) {
+    boolean uploadSouboru = ServletFileUpload.isMultipartContent(request);
+    if (!uploadSouboru) {
+      //TODO nemuze nastat
+    }else {
+      FileItemFactory factory = new DiskFileItemFactory();
+      ServletFileUpload upload = new ServletFileUpload(factory);
+      upload.setHeaderEncoding("UTF-8"); 
+      try {
+        @SuppressWarnings("unchecked")
+        List<FileItem> fields = upload.parseRequest(request);
+        String kod = null;
+        String nazev = null;
+        String typ = null;
+        byte[] data = null;
+        Set<PracovniPomer> pomery = new HashSet<PracovniPomer>();
+        for (int i = 0; i < fields.size(); i++) {
+          FileItem fi = fields.get(i);  
+          if(!fi.isFormField()){
+            if(fi.getName().contains(".xls")) data = fi.get();
+            else pridejChybu(request, Chyby.PODPOROVANY_FORMAT, "soubor");
+          }else{
+            if(fi.getFieldName().equals("kod")){
+              kod = (String) kontrola(request, SablonaVykaz.class, "kod", Streams.asString(fi.getInputStream(), "UTF-8"));
+            }else if(fi.getFieldName().equals("nazev")){
+              nazev = (String) kontrola(request, SablonaVykaz.class, "nazev", Streams.asString(fi.getInputStream(), "UTF-8"));
+            }else if(fi.getFieldName().equals("typ")){
+              typ = (String) kontrola(request, SablonaVykaz.class, "typ", Streams.asString(fi.getInputStream(), "UTF-8"));
+            }else if(fi.getFieldName().equals("pomery")){
+              try{
+                long pomerId = Long.parseLong(fi.getString());
+                PracovniPomer p = new PracovniPomer();
+                p.setId(pomerId);
+                pomery.add(p);
+              }catch(Exception e){}
+            }
+          }
+        }
+        if(data == null) pridejChybu(request, Chyby.POVINNY_UDAJ, "soubor");
+        if(pomery.isEmpty()) pridejChybu(request, Chyby.POVINNY_UDAJ, "pomery");
+        SablonaVykaz sablona2 = pripojeni.nacti(SablonaVykaz.class, new String[]{"kod", "nazev"}, new Object[]{kod, nazev}, uzivatel);
+        if(sablona2 != null) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
+          
+        Object chyba = overChyby(request);
+          
+        sablona.setKod(kod);
+        sablona.setNazev(nazev);
+        sablona.setTyp(typ);
+        sablona.setPracovniPomer(pomery);
+          
+        if(chyba == null){
+          pripojeni.vlozUprav(sablona, sablona.getId());
+          sablona = new SablonaVykaz();
+        }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
+          String atribut = getShoda(sablona, sablona2);
+          request.setAttribute(Chyby.DUPLICITNI_ZADANI, atribut);
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }   
+    }
+  }
+
+  private void upravitSablonu(SablonaVykaz sablona, Uzivatel uzivatel, HttpServletRequest request) {
+    //TODO bez multipart
   }
   
 }

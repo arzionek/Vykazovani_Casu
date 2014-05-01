@@ -83,16 +83,16 @@ public abstract class AVlastniServlet extends AServlet{
 	protected static Object kontrola(HttpServletRequest request, Class<?> trida, String nazev) {
 	  Class<?> typDat = AEntita.getTypSloupce(trida, nazev);
 	  if (typDat.equals(Double.class)) {
-	    return kontrolaDouble(nazev, request);
+	    return kontrolaDouble(nazev, null, request);
 	  }
 
 	  if (typDat.equals(Date.class)) {
-	    return kontrolaDatum(nazev, request);
+	    return kontrolaDatum(nazev, null, request);
 	  }  
 
 	  if (typDat.equals(String.class)) {
 	    String parametr = "";
-      if(!AEntita.getSloupec(trida, nazev).isNullable()) parametr = kontrolaVyplneni(nazev, request);
+      if(!AEntita.getSloupec(trida, nazev).isNullable()) parametr = kontrolaVyplneni(nazev, null, request);
       else parametr = request.getParameter(nazev);
       kontrolaMaximalniDelky(nazev, parametr, request, AEntita.getSloupec(trida, nazev).getLength());  
       return parametr;
@@ -100,6 +100,22 @@ public abstract class AVlastniServlet extends AServlet{
 	  
 	  return null;
 	}
+	
+	protected static Object kontrola(HttpServletRequest request, Class<?> trida, String nazev, String hodnota) {
+	  Class<?> typDat = AEntita.getTypSloupce(trida, nazev);
+    if (typDat.equals(String.class)) {
+      String parametr = "";
+      if(!AEntita.getSloupec(trida, nazev).isNullable()) parametr = kontrolaVyplneni(nazev, hodnota, request);
+      else parametr = request.getParameter(nazev);
+      kontrolaMaximalniDelky(nazev, parametr, request, AEntita.getSloupec(trida, nazev).getLength());  
+      return parametr;
+    }else if (typDat.equals(Double.class)) {
+      return kontrolaDouble(nazev, hodnota, request);
+    }else if (typDat.equals(Date.class)) {
+      return kontrolaDatum(nazev, hodnota, request);
+    }  
+    return null;
+  }
 	
 	protected static int kontrolaCislo(String nazev, HttpServletRequest request){
     int cislo = 0;
@@ -115,8 +131,8 @@ public abstract class AVlastniServlet extends AServlet{
     return cislo;
   }
 	
-	 private static Double kontrolaDouble(String nazev, HttpServletRequest request) {
-	    String parametr = request.getParameter(nazev);
+	 private static Double kontrolaDouble(String nazev, String parametr, HttpServletRequest request) {
+	    if(parametr == null) parametr = request.getParameter(nazev);
 	    parametr = parametr.replace(",", ".");
 	    double cislo = 0.0;
 	    try {
@@ -128,8 +144,8 @@ public abstract class AVlastniServlet extends AServlet{
 	    return cislo;
 	  }
 	
-	 protected static Date kontrolaDatum(String nazev, HttpServletRequest request) {
-	   String datum = (String) request.getParameter(nazev);
+	 protected static Date kontrolaDatum(String nazev, String datum, HttpServletRequest request) {
+	   if(datum == null) datum = (String) request.getParameter(nazev);
 	   DateFormat format = null;
 	   if(nazev.contains("cas")){
 	     int pocetUdaju = datum.length() - datum.replace(":", "").length();
@@ -170,11 +186,11 @@ public abstract class AVlastniServlet extends AServlet{
   	 return datumDatabaze;
 	  }
 	
-	private static String kontrolaVyplneni(String nazev, HttpServletRequest request) {
-		String parameter = request.getParameter(nazev);
-		if(parameter == null) return parameter;
-		if(parameter.length() < 2 || parameter.equals("%")) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
-		return parameter;
+	private static String kontrolaVyplneni(String nazev, String parametr, HttpServletRequest request) {
+		if(parametr == null) parametr = request.getParameter(nazev);
+		if(parametr == null) return parametr;
+		if(parametr.length() < 2 || parametr.equals("%")) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
+		return parametr;
 	}
 	
 	protected static void kontrolaMaximalniDelky(String nazev, String parametr, HttpServletRequest request, int maximalniDelka) {

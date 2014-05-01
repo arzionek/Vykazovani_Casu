@@ -33,19 +33,20 @@
     <c:if test="${duplicitniZadani != null}" ><tr><td class="hlaska_chyba">${chyby.duplicitniZadaniZprava}</td></tr></c:if>
     <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
     <c:if test="${maximalniDelka != null}" ><tr><td class="hlaska_chyba">${chyby.maximalniDelkaZprava}</td></tr></c:if>
+    <c:if test="${podporovanyFormat != null}" ><tr><td class="hlaska_chyba">${chyby.podporovanyFormatZprava}</td></tr></c:if>
   </table>
   <table>
     <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${fn:contains(duplicitniZadani,'kod') || fn:contains(povinnyUdaj,'kod') || fn:contains(maximalniDelka,'kod')}">class="povinne"</c:if>/></td></tr>
     <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${fn:contains(duplicitniZadani,'nazev') || fn:contains(povinnyUdaj,'nazev') || fn:contains(maximalniDelka,'nazev')}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 200px;"><b>*Typ šablony:</b></td><td><select name="typSablony">
+    <tr><td style="width: 200px;"><b>*Typ šablony:</b></td><td><select name="typ">
       <c:forEach items="${typy}" var="typ">
-        <option value="${typ}" <c:if test="${typ== objekt.typUvazku}">selected="selected"</c:if>><c:out value="${typ}" /></option>  
+        <option value="${typ}" <c:if test="${typ == objekt.typ}">selected="selected"</c:if>><c:out value="${typ}" /></option>  
       </c:forEach>
     </select></td></tr>
-    <c:if test="${objekt.id == null}"><tr><td style="width: 200px;"><b>*Soubor:</b></td><td><input type="file" required="true" name="soubor" /></td></tr></c:if>
+    <c:if test="${objekt.id == null}"><tr><td style="width: 200px;"><b>*Soubor:</b></td><td><input type="file" required="true" name="soubor" <c:if test="${fn:contains(povinnyUdaj,'soubor') || fn:contains(podporovanyFormat,'soubor')}" >class="povinne"</c:if>/></td></tr></c:if>
     <tr><td style="width: 200px;"><b>*Pracovní poměry:</b></td><td><select multiple="true" required="true" name="pomery" <c:if test="${fn:contains(povinnyUdaj,'pomery')}" >class="povinne"</c:if>>
       <c:forEach items="${pomery}" var="pomer">
-        <option value="${pomer.id}" <c:forEach items="${objekt.pomery}" var="ep"><c:if test="${ep.id == pomer.id}" >selected="selected"</c:if></c:forEach>><c:out value="${pomer.kod}" /> - <c:out value="${pomer.nazev}" /></option>
+        <option value="${pomer.id}" <c:forEach items="${objekt.pracovniPomer}" var="ep"><c:if test="${ep.id == pomer.id}" >selected="selected"</c:if></c:forEach>><c:out value="${pomer.kod}" /> - <c:out value="${pomer.nazev}" /></option>
       </c:forEach>
     </select></td></tr>
     <tr><td>&nbsp;</td></tr>

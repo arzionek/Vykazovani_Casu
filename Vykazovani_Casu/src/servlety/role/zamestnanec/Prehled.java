@@ -56,8 +56,8 @@ public class Prehled extends AServletZamestnanec{
       pripojeni.smaz(cinnost);
       vypisAkce("_smazat", request);
     }else if(akce.getPrehledObdobi().equals(volanaAkce)){
-      Date datumOd = kontrolaDatum("datumOd", request);
-      Date datumDo = kontrolaDatum("datumDo", request);
+      Date datumOd = kontrolaDatum("datumOd", null, request);
+      Date datumDo = kontrolaDatum("datumDo", null, request);
       kontrolaDatumCas(datumOd, datumDo, request, "datumOd");
       
       Object chyba = overChyby(request);
