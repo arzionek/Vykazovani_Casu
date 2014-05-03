@@ -1,5 +1,6 @@
 package servlety.role;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.fortuna.ical4j.data.CalendarBuilder;
 import dao.beany.Cas;
 import dao.beany.Chyby;
 import dao.model.AEntita;
@@ -201,6 +203,19 @@ public abstract class AVlastniServlet extends AServlet{
     if(casOd.after(casDo)) pridejChybu(request, Chyby.PLATNE_DATUM_POROVNANI, nazev); 
   }
 	
+	protected static void kontrolaChybnySoubor(HttpServletRequest request, FileInputStream stream, String nazev) {
+	  CalendarBuilder builder = new CalendarBuilder();
+	  try {
+      builder.build(stream);
+    } catch (Exception e) {
+      pridejChybu(request, Chyby.CHYBNY_SOUBOR, nazev);
+    }
+	}
+	
+	 protected static void kontrolaChybnySoubor(HttpServletRequest request, boolean multipart, String nazev) {
+	    if (!multipart) pridejChybu(request, Chyby.CHYBNY_SOUBOR, nazev);
+	  }
+	
 	protected static Object overChyby(HttpServletRequest request) {
 	  Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.CELE_NEZAPORNE_CISLO);
@@ -211,6 +226,7 @@ public abstract class AVlastniServlet extends AServlet{
 	  if (chyba == null) chyba = request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_CISLO_0_1);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.PODPOROVANY_FORMAT);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.CHYBNY_SOUBOR);
 	  return chyba;
 	}
 	

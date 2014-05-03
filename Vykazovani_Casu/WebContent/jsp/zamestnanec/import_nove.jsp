@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <jsp:include page="../zahlavi.jsp" flush="true" />
@@ -19,7 +20,6 @@
     </c:url>
     <form action="<c:out value="${ulozit}" escapeXml="true" />"
       method="post" enctype="multipart/form-data">
-      <input type="hidden" name="objektId" value="${objekt.id}" />
       <div class="box">
         <table>
           <tr>
@@ -27,10 +27,18 @@
           </tr>
         </table>
         <table>
+          <c:if test="${chybnySoubor != null}" ><tr><td class="hlaska_chyba">${chyby.chybnySouborZprava}</td></tr></c:if>
+        </table>
+        <table>
           <tr>
             <td style="width: 200px;"><b>*Soubor:</b></td>
-            <td><input type="file" required="true" name="soubor" /></td>
+            <td><input type="file" required="true" name="soubor" <c:if test="${fn:contains(chybnySoubor,'soubor')}">class="povinne"</c:if> /></td>
           </tr>
+          <tr><td style="width: 200px;"><b>*Definice kalendáře:</b></td><td><select name="definice" required="true">
+            <c:forEach items="${definice}" var="definice">
+              <option value="${definice.id}"><c:out value="${definice.kod}" /> - <c:out value="${definice.nazev}" /></option>  
+            </c:forEach>
+          </select></td></tr>
           <tr>
             <td>&nbsp;</td>
           </tr>
