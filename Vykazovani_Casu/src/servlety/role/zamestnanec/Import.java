@@ -1,6 +1,7 @@
 package servlety.role.zamestnanec;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -8,10 +9,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlety.nastroje.Download;
+
 import dao.beany.Cas;
 import dao.databaze.Databaze;
 import dao.model.Kalendar;
 import dao.model.KalendarCinnost;
+import dao.model.NastaveniSystemu;
 import dao.model.Uzivatel;
 
 public class Import extends AServletZamestnanec{
@@ -29,6 +33,21 @@ public class Import extends AServletZamestnanec{
 	
 	private void importDatZKalendare(HttpServletRequest request, HttpServletResponse response, Databaze pripojeni) throws ServletException, IOException {	  
 	  Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");  
+	  NastaveniSystemu datumOdN = pripojeni.nacti(NastaveniSystemu.class, "nazev", "datumOd", true, uzivatel);
+    if(datumOdN == null || datumOdN.getId() == null){
+      datumOdN = new NastaveniSystemu();
+      datumOdN.setNazev("datumOd");
+      datumOdN.setHodnota(new Cas(new Date()).getDatumDatabaze());
+      datumOdN.setUzivatel(uzivatel);
+    }
+    NastaveniSystemu datumDoN = pripojeni.nacti(NastaveniSystemu.class, "nazev", "datumDo", true, uzivatel);
+    if(datumDoN == null || datumDoN.getId() == null){
+      datumDoN = new NastaveniSystemu();
+      datumDoN.setNazev("datumDo");
+      datumDoN.setHodnota(new Cas(new Date()).getDatumDatabaze());
+      datumDoN.setUzivatel(uzivatel);
+    }
+    
     Kalendar kalendar = new Kalendar();
     long kalendarId = vratId(request, "objektId");
     if (akce.getImportSmazat().equals(volanaAkce)) {
@@ -42,14 +61,37 @@ public class Import extends AServletZamestnanec{
       kalendar = new Kalendar();
       vypisAkce("_smazat", request);
     }
-    
-    List<Kalendar> kalendare = pripojeni.ziskejObjekty(Kalendar.class, uzivatel);
-    for (int i = 0; kalendare != null && i < kalendare.size(); i++) {
-      Kalendar k = kalendare.get(i);
-      pripojeni.inicializaceSetu(k.getKalendarCinnost());
+    else if (akce.getImportStahnout().equals(volanaAkce)) {
+      kalendar = pripojeni.nacti(Kalendar.class, kalendarId);
+      Download.download(response, kalendar.getData(), "kalendar.ics");
+      kalendar = new Kalendar();
+      vypisAkce("stahnout", request);
     }
-    request.setAttribute("kalendare", kalendare); 
-
-		presmerovani(request, response, adresa + "/import.jsp");
+    else if (akce.getImportObdobi().equals(volanaAkce)) {
+      Date datumOd = kontrolaDatum("datumOd", null, request);
+      Date datumDo = kontrolaDatum("datumDo", null, request);
+      kontrolaDatumCas(datumOd, datumDo, request, "datumOd");
+      
+      Object chyba = overChyby(request);
+      if(chyba == null){
+        datumOdN.setHodnota(new Cas(datumOd).getDatumDatabaze());
+        pripojeni.vlozUprav(datumOdN, datumOdN.getId());
+        datumDoN.setHodnota(new Cas(datumDo).getDatumDatabaze());
+        pripojeni.vlozUprav(datumDoN, datumOdN.getId());
+      }
+    }
+    
+    if(!response.isCommitted()){
+      List<Kalendar> kalendare = pripojeni.ziskejImporty(datumOdN, datumDoN, uzivatel);
+      for (int i = 0; kalendare != null && i < kalendare.size(); i++) {
+        Kalendar k = kalendare.get(i);
+        pripojeni.inicializaceSetu(k.getKalendarCinnost());
+      }
+      request.setAttribute("kalendare", kalendare); 
+      request.setAttribute("datumOd", datumOdN);
+      request.setAttribute("datumDo", datumDoN);
+      request.setAttribute("datepickerFormat", "dd.mm.yy");
+      presmerovani(request, response, adresa + "/import.jsp");
+    }
 	}
 }

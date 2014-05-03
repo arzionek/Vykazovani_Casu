@@ -44,6 +44,8 @@ public class Akce {
   private static final String IMPORT = "7";
   private static final String IMPORT_NAHRAT = "71";
   private static final String IMPORT_SMAZAT = "72";
+  private static final String IMPORT_STAHNOUT = "73";
+  private static final String IMPORT_OBDOBI = "74";
   
   private static final String EXPORT = "8";
   private static final String EXPORT_POMER = "81";
@@ -182,4 +184,11 @@ public class Akce {
     return NASTAVENI_SABLON_STAHNOUT;
   }
 
+  public String getImportStahnout() {
+    return IMPORT_STAHNOUT;
+  }
+
+  public String getImportObdobi() {
+    return IMPORT_OBDOBI;
+  }
 }
