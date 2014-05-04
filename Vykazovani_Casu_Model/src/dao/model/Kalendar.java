@@ -94,9 +94,9 @@ public class Kalendar extends AEntita implements java.io.Serializable {
   }
   
   public String getDatumImportu2() {
-    if(datumImportu2 != null){
+    if(datumImportu != null){
       DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss"); 
-      String datumCas[] = (df.format(datumImportu2)).split("_");
+      String datumCas[] = (df.format(datumImportu)).split("_");
       
       String den = datumCas[0];
       if(den.length() == 1) den = "0" + den;
