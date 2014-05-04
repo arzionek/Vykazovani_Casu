@@ -143,15 +143,17 @@ public class NovyImport extends AServletZamestnanec {
     Cinnost cin = pripojeni.nacti(Cinnost.class, new Object[]{"nazev"}, new Object[]{cinnost}, uzivatel);
     if (cin == null) {
       int cinDelka = cinnost.length();
-      String cinKod = cinnost.substring(0, Math.min(3, cinDelka));
+      String cinKod = cinnost.replace(" ", "").substring(0, Math.min(3, cinDelka));
+      String cinKod2 = cinKod;
       cin = pripojeni.nacti(Cinnost.class, new Object[]{"kod"}, new Object[]{cinKod}, uzivatel);
       int cislo = -1;
       while (cin != null) {
         cislo++;
-        cin = pripojeni.nacti(Cinnost.class, new Object[]{"kod"}, new Object[]{(cinKod + cislo)}, uzivatel);
+        cin = pripojeni.nacti(Cinnost.class, new Object[]{"kod"}, new Object[]{cinKod.concat(String.valueOf(cislo))}, uzivatel);
+        cinKod2 = cinKod.concat(String.valueOf(cislo));
       }
       cin = new Cinnost();
-      cin.setKod((cinKod + cislo));
+      cin.setKod((cinKod2));
       cin.setNazev(cinnost);
       cin.setUzivatel(uzivatel);
       pripojeni.vlozUprav(cin, cin.getId());
@@ -160,15 +162,17 @@ public class NovyImport extends AServletZamestnanec {
     PracovniPomer pom = pripojeni.nacti(PracovniPomer.class, new Object[]{"nazev"}, new Object[]{pomer}, uzivatel);
     if (pom == null) {
       int pomDelka = pomer.length();
-      String pomKod = pomer.substring(0, Math.min(3, pomDelka));
+      String pomKod = pomer.replace(" ", "").substring(0, Math.min(3, pomDelka));
+      String pomKod2 = pomKod;
       pom = pripojeni.nacti(PracovniPomer.class, new Object[]{"kod"}, new Object[]{pomKod}, uzivatel);
       int cislo = -1;
       while (pom != null) {
         cislo++;
-        pom = pripojeni.nacti(PracovniPomer.class, new Object[]{"kod"}, new Object[]{(pomKod + cislo)}, uzivatel);
+        pom = pripojeni.nacti(PracovniPomer.class, new Object[]{"kod"}, new Object[]{pomKod.concat(String.valueOf(cislo))}, uzivatel);
+        pomKod2 = pomKod.concat(String.valueOf(cislo));
       }
       pom = new PracovniPomer();
-      pom.setKod((pomKod + cislo));
+      pom.setKod(pomKod2);
       pom.setNazev(pomer);
       pom.setUzivatel(uzivatel);
       pom.setTypUvazku("Pracovní pomìr");
@@ -180,7 +184,13 @@ public class NovyImport extends AServletZamestnanec {
     kalendarCinnost.setCasOd(start);
     kalendarCinnost.setCasDo(end);
     kalendarCinnost.setCinnost(cin);
-    kalendarCinnost.setDatum(new Date());
+    
+    Date datum = (Date) start.clone();
+    datum.setHours(0);
+    datum.setMinutes(0);
+    datum.setSeconds(0);
+    
+    kalendarCinnost.setDatum(datum);
     kalendarCinnost.setKalendar(kalendar);
     kalendarCinnost.setPracovniPomer(pom);
     kalendarCinnost.setUzivatel(uzivatel);
