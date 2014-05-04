@@ -58,28 +58,34 @@ public class NovyImport extends AServletZamestnanec {
       else {
         FileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setHeaderEncoding("UTF-8"); 
         try {
+          FileItem fileItem = null;
+          long kalendarDefiniceId = 0;
+          KalendarDefinice kalendarDefinice = null;
           @SuppressWarnings("unchecked")
           List<FileItem> fields = upload.parseRequest(request);
-          FileItem fileItem = fields.get(0);
+          for (int i = 0; i < fields.size(); i++) {
+            FileItem fi = fields.get(i); 
+            if (!fi.isFormField()) fileItem = fi;
+            else if(fi.getFieldName().equals("definice")){
+              try {
+                kalendarDefiniceId = Long.parseLong(fi.getString());
+              } catch (Exception e) {
+                //
+              }
+            }
+          }
           File file = new File("cal.ics");
           fileItem.write(file);
           FileInputStream stream = new FileInputStream(file);
 
           kontrolaChybnySoubor(request, stream, "soubor");
-
+          kalendarDefinice = pripojeni.nacti(KalendarDefinice.class, new Object[]{"id"}, new Object[]{kalendarDefiniceId}, uzivatel);
+          kontrolaNenulovostiObjektu(request, kalendarDefinice, "definice");
+          
           if (overChyby(request) == null) {
             stream = new FileInputStream(file);
-
-            long kalendarDefiniceId = vratId(request, "definice");
-            List<KalendarDefinice> definice = pripojeni.ziskejObjekty(KalendarDefinice.class, uzivatel);
-            KalendarDefinice kalendarDefinice = definice.get(1);  //TODO
-            for (int i = 0; i < definice.size(); i++) {
-              if (definice.get(i).getId() == kalendarDefiniceId) {
-                kalendarDefinice = definice.get(i);
-                break;
-              }
-            }
 
             kalendar.setData(fileItem.get());
             kalendar.setDatumImportu(new Date());
@@ -166,7 +172,7 @@ public class NovyImport extends AServletZamestnanec {
       pom.setNazev(pomer);
       pom.setUzivatel(uzivatel);
       pom.setTypUvazku("Pracovní pomìr");
-      pom.setVelikostUvazku(50);//TODO
+      pom.setVelikostUvazku(1);
       pripojeni.vlozUprav(pom, pom.getId());
     }
 

@@ -1,5 +1,8 @@
 package dao.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class Kalendar extends AEntita implements java.io.Serializable {
 	/**
    * @generated
@@ -10,6 +13,7 @@ public class Kalendar extends AEntita implements java.io.Serializable {
    * @generated
    */
   private java.util.Date datumImportu;
+  private String datumImportu2;
   /**
    * @generated
    */
@@ -87,6 +91,30 @@ public class Kalendar extends AEntita implements java.io.Serializable {
    */
   public void setDatumImportu(java.util.Date datumImportu) {
     this.datumImportu = datumImportu;
+  }
+  
+  public String getDatumImportu2() {
+    if(datumImportu2 != null){
+      DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss"); 
+      String datumCas[] = (df.format(datumImportu2)).split("_");
+      
+      String den = datumCas[0];
+      if(den.length() == 1) den = "0" + den;
+      String mesic = datumCas[1];
+      if(mesic.length() == 1) mesic = "0" + mesic;
+      String rok = datumCas[2];
+      if(rok.length() == 1) rok = "0" + rok;
+      String hodina = datumCas[3];
+      if(hodina.length() == 1) hodina = "0" + hodina;
+      String minuta = datumCas[4];
+      if(minuta.length() == 1) minuta = "0" + minuta;
+      datumImportu2 = den + "." + mesic + "." + rok + " " + hodina + ":" + minuta;
+    }
+    return datumImportu2;
+  }
+
+  public void setDatumImportu2(String datumImportu2) {
+    this.datumImportu2 = datumImportu2;
   }
 
   /**

@@ -215,6 +215,10 @@ public abstract class AVlastniServlet extends AServlet{
 	 protected static void kontrolaChybnySoubor(HttpServletRequest request, boolean multipart, String nazev) {
 	    if (!multipart) pridejChybu(request, Chyby.CHYBNY_SOUBOR, nazev);
 	  }
+	 
+   protected static void kontrolaNenulovostiObjektu(HttpServletRequest request, Object o, String nazev) {
+     if (o == null) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
+   }
 	
 	protected static Object overChyby(HttpServletRequest request) {
 	  Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);
