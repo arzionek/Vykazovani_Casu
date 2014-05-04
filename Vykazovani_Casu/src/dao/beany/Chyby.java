@@ -11,6 +11,7 @@ public class Chyby {
   public static final String REALNE_CISLO_0_1 = "realneCislo01";
   public static final String PODPOROVANY_FORMAT = "podporovanyFormat";
   public static final String CHYBNY_SOUBOR = "chybnySoubor";
+  public static final String REDUNDANTNI_DATA = "redundantniData";
   
   public static final String DUPLICITNI_ZADANI_ZPRAVA = "Údaj se stejnými atributy již existuje!";
   public static final String CELE_NEZAPORNE_CISLO_ZPRAVA = "Musí být zadáno kladné celé èíslo!";
@@ -22,6 +23,7 @@ public class Chyby {
   public static final String REALNE_CISLO_0_1_ZPRAVA = "Musí být zadáno èíslo 0 - 1!";
   public static final String PODPOROVANY_FORMAT_ZPRAVA = "Podporovány jsou pouze XLS soubory!";
   public static final String CHYBNY_SOUBOR_ZPRAVA = "Podporovány jsou pouze ics soubory!";
+  public static final String REDUNDANTNI_DATA_ZPRAVA = "Kalendáø obsahuje již vložené záznamy!";
   
   public String getDuplicitniZadani() {
     return DUPLICITNI_ZADANI;
@@ -101,5 +103,13 @@ public class Chyby {
 
   public String getChybnySouborZprava() {
     return CHYBNY_SOUBOR_ZPRAVA;
+  }
+  
+  public String getRedundantniData() {
+    return REDUNDANTNI_DATA;
+  }
+
+  public String getRedundantniDataZprava() {
+    return REDUNDANTNI_DATA_ZPRAVA;
   }
 }

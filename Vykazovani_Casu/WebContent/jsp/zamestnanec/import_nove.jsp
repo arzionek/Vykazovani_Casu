@@ -32,11 +32,12 @@
         <table>
           <c:if test="${chybnySoubor != null}" ><tr><td class="hlaska_chyba">${chyby.chybnySouborZprava}</td></tr></c:if>
           <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
+          <c:if test="${redundantniData != null}" ><tr><td class="hlaska_chyba">${chyby.redundantniDataZprava}</td></tr></c:if>
         </table>
         <table>
           <tr>
             <td style="width: 200px;"><b>*Soubor:</b></td>
-            <td><input type="file" required="true" name="soubor" <c:if test="${fn:contains(chybnySoubor,'soubor')}">class="povinne"</c:if> /></td>
+            <td><input type="file" required="true" name="soubor" <c:if test="${fn:contains(chybnySoubor,'soubor') || fn:contains(redundantniData,'soubor')}">class="povinne"</c:if> /></td>
           </tr>
           <tr><td style="width: 200px;"><b>*Definice kalendáře:</b></td><td><select name="definice" required="true" <c:if test="${fn:contains(povinnyUdaj,'definice')}">class="povinne"</c:if>>
             <c:forEach items="${definice}" var="definice">

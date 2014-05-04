@@ -86,14 +86,13 @@ public class NovyImport extends AServletZamestnanec {
           
           if (overChyby(request) == null) {
             stream = new FileInputStream(file);
-
             kalendar.setData(fileItem.get());
             kalendar.setDatumImportu(new Date());
             kalendar.setUzivatel(uzivatel);
             kalendar.setKalendarDefinice(kalendarDefinice);     
             pripojeni.vlozUprav(kalendar, kalendar.getId());
 
-            novyKalendar(stream, uzivatel, kalendarDefinice, kalendar);
+            novyKalendar(stream, uzivatel, kalendarDefinice, kalendar, request);
 
             stream.close();
             file.delete();
@@ -109,7 +108,7 @@ public class NovyImport extends AServletZamestnanec {
     request.setAttribute("definice", definice);
   }
 
-  private void novyKalendar(FileInputStream stream, Uzivatel uzivatel, KalendarDefinice kd, Kalendar kalendar) {
+  private void novyKalendar(FileInputStream stream, Uzivatel uzivatel, KalendarDefinice kd, Kalendar kalendar, HttpServletRequest request) {
     try {
       CalendarBuilder builder = new CalendarBuilder();
       Calendar calendar = builder.build(stream);
@@ -118,7 +117,8 @@ public class NovyImport extends AServletZamestnanec {
       String pomKonec = "</" + kd.getTagPracovniPomer() + ">";
       String cinStart = "<" + kd.getTagKalendarCinnost() + ">";
       String cinKonec = "</" + kd.getTagKalendarCinnost() + ">";
-
+      boolean prvniNacitani = true;
+      
       for (Iterator<?> i = calendar.getComponents(Component.VEVENT).iterator(); i.hasNext(); ) {
         VEvent component = (VEvent) i.next();
         String text = component.getDescription().getValue();
@@ -130,7 +130,18 @@ public class NovyImport extends AServletZamestnanec {
           String cinnost = text.substring(text.lastIndexOf(cinStart) + cinStart.length(), text.indexOf(cinKonec));
           Date start = component.getStartDate().getDate();
           Date end = component.getEndDate().getDate();
+          if (prvniNacitani) {
+            String uid = component.getUid().getValue();
+            if (pripojeni.nacti(Kalendar.class, new Object[]{"googleId"}, new Object[]{uid}, uzivatel) != null) {
+              pripojeni.smaz(kalendar);
+              kontrolaRedundance(request, true, "soubor");
+              return;
+            }
+            kalendar.setGoogleId(uid);
+            pripojeni.vlozUprav(kalendar, kalendar.getId());
+          }
           ulozUdalost(start, end, uzivatel, kalendar, pomer, cinnost);
+          prvniNacitani = false;
         }
       }      
 

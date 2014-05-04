@@ -219,6 +219,10 @@ public abstract class AVlastniServlet extends AServlet{
    protected static void kontrolaNenulovostiObjektu(HttpServletRequest request, Object o, String nazev) {
      if (o == null) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
    }
+   
+   protected static void kontrolaRedundance(HttpServletRequest request, boolean redundantni, String nazev) {
+     if (redundantni) pridejChybu(request, Chyby.REDUNDANTNI_DATA, nazev);
+   }
 	
 	protected static Object overChyby(HttpServletRequest request) {
 	  Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);
@@ -231,6 +235,7 @@ public abstract class AVlastniServlet extends AServlet{
 	  if (chyba == null) chyba = request.getAttribute(Chyby.REALNE_CISLO_0_1);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.PODPOROVANY_FORMAT);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.CHYBNY_SOUBOR);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.REDUNDANTNI_DATA);
 	  return chyba;
 	}
 	
