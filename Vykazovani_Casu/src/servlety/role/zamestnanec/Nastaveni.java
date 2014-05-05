@@ -233,7 +233,7 @@ public class Nastaveni extends AServletZamestnanec{
 	          String tagCinnosti =  (String) kontrola(request, KalendarDefinice.class, "tagKalendarCinnost");
 	          String tagUvazku =  (String) kontrola(request, KalendarDefinice.class, "tagPracovniPomer");
 			  
-	          KalendarDefinice definice2 = pripojeni.nacti(KalendarDefinice.class, new String[]{"kod", "nazev" , "tagKalendarCinnost" ,  "tagPracovniPomer"}, new Object[]{kod, nazev , tagCinnosti ,tagUvazku }, uzivatel);
+	          KalendarDefinice definice2 = pripojeni.nacti(KalendarDefinice.class, new String[]{"kod", "nazev" }, new Object[]{kod, nazev }, uzivatel);
 	          if(definice2 != null && definice2.getId() != definiceID) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
 	          
 	          Object chyba = overChyby(request);
