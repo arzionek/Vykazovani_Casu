@@ -250,6 +250,7 @@ public class Nastaveni extends AServletZamestnanec{
 	       
 	          if(chyba == null){
 	          pripojeni.vlozUprav(definice, definice.getId());
+	          definice = new KalendarDefinice();
 	          }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
 	              String atribut = getShoda(definice, definice2);
 	              request.setAttribute(Chyby.DUPLICITNI_ZADANI, atribut);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 
 <jsp:include page="../../zahlavi.jsp" flush="true" />
@@ -34,10 +35,10 @@
     <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
   </table>
   <table>
-    <tr><td style="width: 100px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${duplicitniZadani != null || povinnyUdaj != null || maximalniDelka!= null}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 100px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${duplicitniZadani != null || povinnyUdaj != null || maximalniDelka != null}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 100px;"><b>*tag úvazku:</b></td><td><input type="text" required="true" name="tagPracovniPomer" value="${objekt.tagPracovniPomer}" <c:if test="${duplicitniZadani != null || povinnyUdaj != null || maximalniDelka!= null}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 100px;"><b>*tag činnosti:</b></td><td><input type="text" required="true" name="tagKalendarCinnost" value="${objekt.tagKalendarCinnost}" <c:if test="${duplicitniZadani != null || povinnyUdaj != null || maximalniDelka != null}">class="povinne"</c:if>/></td></tr> 
+    <tr><td style="width: 200px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${fn:contains(duplicitniZadani,'kod') || fn:contains(povinnyUdaj,'kod') || fn:contains(maximalniDelka,'kod')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${fn:contains(duplicitniZadani ,'nazev') || fn:contains(povinnyUdaj ,'nazev') || fn:contains(maximalniDelka ,'nazev')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;"><b>*tag úvazku:</b></td><td><input type="text" required="true" name="tagPracovniPomer" value="${objekt.tagPracovniPomer}" <c:if test="${ fn:contains(povinnyUdaj , 'tagPracovniPomer') || fn:contains(maximalniDelka, 'tagPracovniPomer')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;"><b>*tag činnosti:</b></td><td><input type="text" required="true" name="tagKalendarCinnost" value="${objekt.tagKalendarCinnost}" <c:if test="${ fn:contains(povinnyUdaj , 'tagKalendarCinnost') || fn:contains(maximalniDelka , 'tagKalendarCinnost')}">class="povinne"</c:if>/></td></tr> 
     <tr><td>&nbsp;</td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>  
   </table>
@@ -64,7 +65,7 @@
   </table>
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px">
-    <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" /> - <c:out value="${o.tagPracovniPomer}" /> - <c:out value="${o.tagKalendarCinnost}" /> </td>
+    <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" />  </td>
   
       <td class="vpravo">
        <c:if  test="${o.uzivatel != null}">
