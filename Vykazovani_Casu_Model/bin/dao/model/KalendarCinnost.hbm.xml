@@ -29,5 +29,7 @@
       </property>
       <property  name='popis' type='string' column='popis' length='512'>
       </property>
+      <property  name='googleId' type='string' column='google_id'>
+      </property>
    </class>
 </hibernate-mapping>

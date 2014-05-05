@@ -23,7 +23,7 @@ public class Chyby {
   public static final String REALNE_CISLO_0_1_ZPRAVA = "Musí být zadáno èíslo 0 - 1!";
   public static final String PODPOROVANY_FORMAT_ZPRAVA = "Podporovány jsou pouze XLS soubory!";
   public static final String CHYBNY_SOUBOR_ZPRAVA = "Podporovány jsou pouze ics soubory!";
-  public static final String REDUNDANTNI_DATA_ZPRAVA = "Kalendáø obsahuje již vložené záznamy!";
+  public static final String REDUNDANTNI_DATA_ZPRAVA = "Všechny záznamy jsou již uloženy!";
   
   public String getDuplicitniZadani() {
     return DUPLICITNI_ZADANI;

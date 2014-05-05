@@ -61,10 +61,15 @@ public class KalendarCinnost extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
+  private String googleId;
+
+  /**
+   * @generated
+   */
 	public String toString() {
     return "KalendarCinnost" + " datum=" + datum + " pocetHodin=" + pocetHodin
         + " id=" + id + " casOd=" + casOd + " casDo=" + casDo + " popis="
-        + popis;
+        + popis + " googleId=" + googleId;
   }
 
 	/**
@@ -267,5 +272,19 @@ public class KalendarCinnost extends AEntita implements java.io.Serializable {
    */
   public void setPopis(String popis) {
     this.popis = popis;
+  }
+
+  /**
+   * @generated
+   */
+  public String getGoogleId() {
+    return this.googleId;
+  }
+
+  /**
+   * @generated
+   */
+  public void setGoogleId(String googleId) {
+    this.googleId = googleId;
   }
 }

@@ -40,11 +40,6 @@ public class Kalendar extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
-  private String googleId;
-
-  /**
-   * @generated
-   */
 	public Kalendar() {
   }
 
@@ -53,7 +48,7 @@ public class Kalendar extends AEntita implements java.io.Serializable {
    */
 	public String toString() {
     return "Kalendar" + " datumImportu=" + datumImportu + " id=" + id
-        + " data=" + java.util.Arrays.toString(data) + " googleId=" + googleId;
+        + " data=" + java.util.Arrays.toString(data);
   }
 
   /**
@@ -176,19 +171,5 @@ public class Kalendar extends AEntita implements java.io.Serializable {
    */
   public void setData(byte[] data) {
     this.data = data;
-  }
-
-  /**
-   * @generated
-   */
-  public String getGoogleId() {
-    return this.googleId;
-  }
-
-  /**
-   * @generated
-   */
-  public void setGoogleId(String googleId) {
-    this.googleId = googleId;
   }
 }

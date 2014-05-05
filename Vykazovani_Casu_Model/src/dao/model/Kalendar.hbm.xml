@@ -21,7 +21,5 @@
       </many-to-one>
       <property  name='data' type='binary' column='data' not-null='true' length='4194304'>
       </property>
-      <property  name='googleId' type='string' column='google_id'>
-      </property>
    </class>
 </hibernate-mapping>
