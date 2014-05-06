@@ -41,7 +41,7 @@ public class Vytvoreni extends AServletZamestnanec{
     double rozdil = casDo.getTime() - casOd.getTime();    
     rozdil /= 1000; //na sekundy
     rozdil /= 60; //na minuty
-    rozdil /= 60; //na hodiny  
+    rozdil /= 60; //na hodiny
     return rozdil;
   }
 	
@@ -49,24 +49,32 @@ public class Vytvoreni extends AServletZamestnanec{
     long kalendarCinnostId = vratId(request, "objektId");
     if(akce.getVytvoreniVlozit().equals(volanaAkce)){
       //if(kod != null){
+        String datumText = request.getParameter("datum");
         Date datum = (Date) kontrola(request, KalendarCinnost.class, "datum");
+        String casOdText = request.getParameter("casOd");
         Date casOd = (Date) kontrola(request, KalendarCinnost.class, "casOd");
+        String casDoText = request.getParameter("casDo");
         Date casDo = (Date) kontrola(request, KalendarCinnost.class, "casDo");
-        kontrolaDatumCas(casOd, casDo, request, "casOd");
+        if (casDo != null && casDo != null) kontrolaDatumCas(casOd, casDo, request, "casOd");
         long pomerId = vratId(request, "pomer");
         long cinnostId = vratId(request, "cinnost");
         String popis = (String) kontrola(request, KalendarCinnost.class, "popis");
-        List<KalendarCinnost> cinnostList = pripojeni.ziskejObjekty(KalendarCinnost.class, new String[]{"datum"}, new Object[]{new Cas(datum).getDatumDatabaze(false)}, true, uzivatel, new String[]{"casOd asc"});
-        zkontrolujZadaneCinnosti(request, cinnostList, casOd, casDo, kalendarCinnostId);
+        if (datum != null && casDo != null && casDo != null) {
+          List<KalendarCinnost> cinnostList = pripojeni.ziskejObjekty(KalendarCinnost.class, new String[]{"datum"}, new Object[]{new Cas(datum).getDatumDatabaze(false)}, true, uzivatel, new String[]{"casOd asc"});
+          zkontrolujZadaneCinnosti(request, cinnostList, casOd, casDo, kalendarCinnostId);
+        }
         
         Object chyba = overChyby(request);
         
         if(kalendarCinnostId != 0 && chyba == null) kalendarCinnost = pripojeni.nacti(KalendarCinnost.class, kalendarCinnostId);
         else if(kalendarCinnostId != 0) kalendarCinnost.setId(kalendarCinnostId);
+        kalendarCinnost.setDatum2(datumText);
         kalendarCinnost.setDatum(datum);
+        kalendarCinnost.setCasOd2(casOdText);
         kalendarCinnost.setCasOd(casOd);
-        kalendarCinnost.setCasDo(casDo);
-        if(request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI) == null) kalendarCinnost.setPocetHodin(vratPocetOdpracovanychHodin(casOd, casDo));
+        kalendarCinnost.setCasDo2(casDoText);
+        kalendarCinnost.setCasOd(casDo);
+        if(request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI) == null && casOd != null && casDo != null) kalendarCinnost.setPocetHodin(vratPocetOdpracovanychHodin(casOd, casDo));
         PracovniPomer pomer = pripojeni.nacti(PracovniPomer.class, pomerId);
         kalendarCinnost.setPracovniPomer(pomer);
         Cinnost cinnost = pripojeni.nacti(Cinnost.class, cinnostId);

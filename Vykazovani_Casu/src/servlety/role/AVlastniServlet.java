@@ -153,7 +153,7 @@ public abstract class AVlastniServlet extends AServlet{
 	     int pocetUdaju = datum.length() - datum.replace(":", "").length();
        if (pocetUdaju != 1) {
          pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
-         return new Date();
+         return null;
        }
 	     datum = "01-01-2000 " + datum;
        
@@ -164,7 +164,7 @@ public abstract class AVlastniServlet extends AServlet{
   	   int pocetUdaju = datum.length() - datum.replace("-", "").length();
   	   if (pocetUdaju < 1 || pocetUdaju > 2) {
   	     pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
-  	     return new Date();
+  	     return null;
   	   }
   	   else if (pocetUdaju == 2) {
   	     if (datum.charAt(datum.length() - 1) == '-') datum += "9999";
@@ -181,9 +181,12 @@ public abstract class AVlastniServlet extends AServlet{
   	   if (datum.contains("29-2-") || datum.contains("29-02-")) { //29. unor - prestupny rok
   	     try {
   	       return format.parse("29-02-2000");
-  	     } catch (Exception e2) {}
+  	     } catch (Exception e2) { datumDatabaze = null; }
   	   }
-  	   else pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
+  	   else {
+  	     pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
+  	     datumDatabaze = null;
+  	   }
   	 }
   	 return datumDatabaze;
 	  }
@@ -222,6 +225,14 @@ public abstract class AVlastniServlet extends AServlet{
    
    protected static void kontrolaRedundance(HttpServletRequest request, boolean redundantni, String nazev) {
      if (redundantni) pridejChybu(request, Chyby.REDUNDANTNI_DATA, nazev);
+   }
+   
+   protected static String kontrolaVolitelnehoAtributu(Class<?> trida, String parametr, HttpServletRequest request) {
+     String parameter = request.getParameter(parametr);
+     if (parameter == null) return parameter;
+     int delka = AEntita.getSloupec(trida, parametr).getLength();
+     if (parameter.length() > delka) pridejChybu(request, Chyby.MAXIMALNI_DELKA, parametr);
+     return parameter;
    }
 	
 	protected static Object overChyby(HttpServletRequest request) {

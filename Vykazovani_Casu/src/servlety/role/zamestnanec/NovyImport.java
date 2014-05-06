@@ -121,6 +121,12 @@ public class NovyImport extends AServletZamestnanec {
       String pomKonec = "</" + kd.getTagPracovniPomer() + ">";
       String cinStart = "<" + kd.getTagKalendarCinnost() + ">";
       String cinKonec = "</" + kd.getTagKalendarCinnost() + ">";
+      String popisStart = null;
+      String popisKonec = null;
+      if (kd.getTagPopis() != null) {
+        popisStart = "<" + kd.getTagPopis() + ">";
+        popisKonec = "</" + kd.getTagPopis() + ">";
+      }
       
       for (Iterator<?> i = calendar.getComponents(Component.VEVENT).iterator(); i.hasNext(); ) {
         VEvent component = (VEvent) i.next();
@@ -131,6 +137,13 @@ public class NovyImport extends AServletZamestnanec {
             && text.contains(cinStart) && text.contains(cinKonec)) {
           String pomer = text.substring(text.lastIndexOf(pomStart) + pomStart.length(), text.indexOf(pomKonec));
           String cinnost = text.substring(text.lastIndexOf(cinStart) + cinStart.length(), text.indexOf(cinKonec));
+          String popis = null;
+          if (popisStart != null) {
+            if (text.contains(popisStart) && text.contains(popisKonec)) {
+              popis = text.substring(text.lastIndexOf(popisStart) + popisStart.length(), text.indexOf(popisKonec));
+            }
+          }
+          
           Date start = component.getStartDate().getDate();
           Date end = component.getEndDate().getDate();
           String uid = component.getUid().getValue();
@@ -139,7 +152,7 @@ public class NovyImport extends AServletZamestnanec {
           }
           else {
             citac++;
-            ulozUdalost(start, end, uzivatel, kalendar, pomer, cinnost, uid);
+            ulozUdalost(start, end, uzivatel, kalendar, pomer, cinnost, popis, uid);
           }
         }
       }      
@@ -150,7 +163,7 @@ public class NovyImport extends AServletZamestnanec {
     return citac;
   }
 
-  private void ulozUdalost(Date start, Date end, Uzivatel uzivatel, Kalendar kalendar, String pomer, String cinnost, String uid) {
+  private void ulozUdalost(Date start, Date end, Uzivatel uzivatel, Kalendar kalendar, String pomer, String cinnost, String popis, String uid) {
     Cinnost cin = pripojeni.nacti(Cinnost.class, new Object[]{"nazev"}, new Object[]{cinnost}, uzivatel);
     if (cin == null) {
       int cinDelka = cinnost.length();
@@ -196,11 +209,15 @@ public class NovyImport extends AServletZamestnanec {
     kalendarCinnost.setCasDo(end);
     kalendarCinnost.setCinnost(cin);
     kalendarCinnost.setGoogleId(uid);
+    if (popis != null) kalendarCinnost.setPopis(popis);
     
-    Date datum = (Date) start.clone();
-    datum.setHours(0);
-    datum.setMinutes(0);
-    datum.setSeconds(0);
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    cal.setTime(start);
+    cal.set(java.util.Calendar.HOUR, 0);
+    cal.set(java.util.Calendar.MINUTE, 0);
+    cal.set(java.util.Calendar.SECOND, 0);
+    cal.set(java.util.Calendar.MILLISECOND, 0);
+    Date datum = cal.getTime();
     
     kalendarCinnost.setDatum(datum);
     kalendarCinnost.setKalendar(kalendar);
