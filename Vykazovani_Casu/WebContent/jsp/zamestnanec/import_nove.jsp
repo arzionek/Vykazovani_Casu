@@ -13,8 +13,8 @@
   <h2 class="stred">Import dat</h2>
   <jsp:include page="../zamestnanec/import_menu.jsp" flush="true" />
   <script type="text/javascript">
-    var ulozitTooltip = 'Uložit činnost.';
-    var novyTooltip = 'Nová činnost.';
+    var ulozitTooltip = 'Provést import dat.';
+    var novyTooltip = 'Nový import.';
   </script>
 
   <div class="box2">
