@@ -219,66 +219,53 @@ public class Nastaveni extends AServletZamestnanec{
   }
 
   private void nastaveniKalendare(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    
-	  Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
-	  KalendarDefinice definice = new KalendarDefinice();
-	  long definiceID = vratId(request, "objektId");
-	  
-	  if(akce.getNastaveniDefiniceKalendareVlozit().equals(volanaAkce)) {
-		  String kod = request.getParameter("kod");
-	  
-		  if(kod != null){
-			  kod = (String) kontrola(request, KalendarDefinice.class, "kod");
-			  String nazev = (String) kontrola(request, KalendarDefinice.class, "nazev");
-	          String tagCinnosti =  (String) kontrola(request, KalendarDefinice.class, "tagKalendarCinnost");
-	          String tagUvazku =  (String) kontrola(request, KalendarDefinice.class, "tagPracovniPomer");
-			  
-	          KalendarDefinice definice2 = pripojeni.nacti(KalendarDefinice.class, new String[]{"kod", "nazev" }, new Object[]{kod, nazev }, uzivatel);
-	          if(definice2 != null && definice2.getId() != definiceID) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
-	          
-	          Object chyba = overChyby(request);
+    Uzivatel uzivatel = (Uzivatel) request.getAttribute("uzivatel");
+    KalendarDefinice definice = new KalendarDefinice();
+    long definiceID = vratId(request, "objektId");
+    if(akce.getNastaveniDefiniceKalendareVlozit().equals(volanaAkce)) {
+      String kod = request.getParameter("kod");
+      if(kod != null){
+        kod = (String) kontrola(request, KalendarDefinice.class, "kod");
+        String nazev = (String) kontrola(request, KalendarDefinice.class, "nazev");
+        String tagCinnosti =  (String) kontrola(request, KalendarDefinice.class, "tagKalendarCinnost");
+        String tagUvazku =  (String) kontrola(request, KalendarDefinice.class, "tagPracovniPomer");
 
-	          if(definiceID != 0 && chyba == null) definice = pripojeni.nacti(KalendarDefinice.class, definiceID);
-	          else if(definiceID != 0)  definice.setId(definiceID);
-	          
-	          
-	          definice.setKod(kod);
-	          definice.setNazev(nazev);
-	          definice.setTagKalendarCinnost(tagCinnosti);
-	          definice.setTagPracovniPomer(tagUvazku);
-	          definice.setUzivatel(uzivatel);
-	       
-	          if(chyba == null){
-	          pripojeni.vlozUprav(definice, definice.getId());
-	          definice = new KalendarDefinice();
-	          }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
-	              String atribut = getShoda(definice, definice2);
-	              request.setAttribute(Chyby.DUPLICITNI_ZADANI, atribut);
-	          }	
-	          
-	          
-	          vypisAkce("_vlozit", request);
-		  }
-	  
-	  
-	  } else if(akce.getNastaveniDefiniceKalendareUpravit().equals(volanaAkce)){
-		    
-		  definice = pripojeni.nacti(KalendarDefinice.class, definiceID);
-		  vypisAkce("_upravit", request);
-		      
-	  } else if(akce.getNastaveniDefiniceKalendareSmazat().equals(volanaAkce)){
-	
-		  definice = pripojeni.nacti(KalendarDefinice.class, definiceID);
-	      pripojeni.smaz( definice);
-	      definice = new KalendarDefinice();
-	      vypisAkce("_smazat", request);
-	  
-	  }
-	  
-	  request.setAttribute("objekt", definice);
-	  List<KalendarDefinice> definiceKalendare = pripojeni.ziskejObjekty(KalendarDefinice.class, uzivatel, "kod");
-	  request.setAttribute("objekty", definiceKalendare);
-	  presmerovani(request, response, adresa + "/definiceKalendare.jsp");
+        KalendarDefinice definice2 = pripojeni.nacti(KalendarDefinice.class, new String[]{"kod", "nazev" }, new Object[]{kod, nazev }, uzivatel);
+        if(definice2 != null && definice2.getId() != definiceID) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
+
+        Object chyba = overChyby(request);
+
+        if(definiceID != 0 && chyba == null) definice = pripojeni.nacti(KalendarDefinice.class, definiceID);
+        else if(definiceID != 0)  definice.setId(definiceID);
+        definice.setKod(kod);
+        definice.setNazev(nazev);
+        definice.setTagKalendarCinnost(tagCinnosti);
+        definice.setTagPracovniPomer(tagUvazku);
+        definice.setUzivatel(uzivatel);
+
+        if(chyba == null){
+          pripojeni.vlozUprav(definice, definice.getId());
+          definice = new KalendarDefinice();
+        }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
+          String atribut = getShoda(definice, definice2);
+          request.setAttribute(Chyby.DUPLICITNI_ZADANI, atribut);
+        }	
+        vypisAkce("_vlozit", request);
+      }
+    } else if(akce.getNastaveniDefiniceKalendareUpravit().equals(volanaAkce)){
+      definice = pripojeni.nacti(KalendarDefinice.class, definiceID);
+      vypisAkce("_upravit", request);
+    } else if(akce.getNastaveniDefiniceKalendareSmazat().equals(volanaAkce)){
+      definice = pripojeni.nacti(KalendarDefinice.class, definiceID);
+      pripojeni.smaz( definice);
+      definice = new KalendarDefinice();
+      vypisAkce("_smazat", request);
+    }
+
+    request.setAttribute("objekt", definice);
+    List<KalendarDefinice> definiceKalendare = pripojeni.ziskejObjekty(KalendarDefinice.class, uzivatel, "kod");
+    request.setAttribute("objekty", definiceKalendare);
+    presmerovani(request, response, adresa + "/definiceKalendare.jsp");
   }
 
   
