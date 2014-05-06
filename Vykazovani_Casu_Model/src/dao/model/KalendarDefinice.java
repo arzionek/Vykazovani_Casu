@@ -38,6 +38,11 @@ public class KalendarDefinice extends AEntita implements java.io.Serializable {
   /**
    * @generated
    */
+  private String tagPopis;
+
+  /**
+   * @generated
+   */
 	public KalendarDefinice() {
   }
 
@@ -47,7 +52,7 @@ public class KalendarDefinice extends AEntita implements java.io.Serializable {
 	public String toString() {
     return "KalendarDefinice" + " kod=" + kod + " nazev=" + nazev
         + " tagPracovniPomer=" + tagPracovniPomer + " tagKalendarCinnost="
-        + tagKalendarCinnost + " id=" + id;
+        + tagKalendarCinnost + " id=" + id + " tagPopis=" + tagPopis;
   }
 
   /**
@@ -160,5 +165,19 @@ public class KalendarDefinice extends AEntita implements java.io.Serializable {
    */
   public void setUzivatel(Uzivatel uzivatel) {
     this.uzivatel = uzivatel;
+  }
+
+  /**
+   * @generated
+   */
+  public String getTagPopis() {
+    return this.tagPopis;
+  }
+
+  /**
+   * @generated
+   */
+  public void setTagPopis(String tagPopis) {
+    this.tagPopis = tagPopis;
   }
 }

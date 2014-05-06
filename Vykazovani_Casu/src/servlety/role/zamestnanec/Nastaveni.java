@@ -74,14 +74,19 @@ public class Nastaveni extends AServletZamestnanec{
       if(kod != null){
         kod = (String) kontrola(request, Svatek.class, "kod");
         String nazev = (String) kontrola(request, Svatek.class, "nazev");
+        String datumText = request.getParameter("datum");
         Date datum = (Date) kontrola(request, Svatek.class, "datum");
-        Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze(false)}, uzivatel);
-        if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
+        Svatek svatek2 = null;
+        if (datum != null) {
+          svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze(false)}, uzivatel);
+          if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
+        }
         
         Object chyba = overChyby(request);
         
         if(svatekId != 0 && chyba == null) svatek = pripojeni.nacti(Svatek.class, svatekId);
         else if(svatekId != 0) svatek.setId(svatekId);
+        svatek.setDatum2(datumText);
         svatek.setKod(kod);
         svatek.setNazev(nazev);
         svatek.setDatum(datum);
@@ -229,6 +234,8 @@ public class Nastaveni extends AServletZamestnanec{
         String nazev = (String) kontrola(request, KalendarDefinice.class, "nazev");
         String tagCinnosti =  (String) kontrola(request, KalendarDefinice.class, "tagKalendarCinnost");
         String tagUvazku =  (String) kontrola(request, KalendarDefinice.class, "tagPracovniPomer");
+        String tagPopis = kontrolaVolitelnehoAtributu(KalendarDefinice.class, "tagPopis", request);
+        
 
         KalendarDefinice definice2 = pripojeni.nacti(KalendarDefinice.class, new String[]{"kod", "nazev" }, new Object[]{kod, nazev }, uzivatel);
         if(definice2 != null && definice2.getId() != definiceID) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
@@ -241,6 +248,7 @@ public class Nastaveni extends AServletZamestnanec{
         definice.setNazev(nazev);
         definice.setTagKalendarCinnost(tagCinnosti);
         definice.setTagPracovniPomer(tagUvazku);
+        if (tagPopis != null) definice.setTagPopis(tagPopis);
         definice.setUzivatel(uzivatel);
 
         if(chyba == null){

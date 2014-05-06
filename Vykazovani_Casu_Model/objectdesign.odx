@@ -1291,6 +1291,11 @@
               <access>1</access>
               <inverse class="dao.model.Uzivatel" name="kalendarDefinice"/>
             </variable>
+            <variable name="tagPopis">
+              <type class="java.lang.String"/>
+              <multiplicity>0..1</multiplicity>
+              <access>1</access>
+            </variable>
           </variables>
           <operations>
             <operation name="constructor">
@@ -1680,6 +1685,7 @@
               <attribute>nazev</attribute>
               <attribute>tagPracovniPomer</attribute>
               <attribute>tagKalendarCinnost</attribute>
+              <attribute>tagPopis</attribute>
             </attributes>
             <operations autoDisplay="37" accessVisible="true" parametersVisible="true"/>
           </classSymbol>
@@ -2204,7 +2210,7 @@
             </end-1>
             <end-2>
               <x>206</x>
-              <y>536</y>
+              <y>538</y>
               <w>96</w>
               <h>34</h>
               <connectedSymbol symbol="40"/>
@@ -2429,7 +2435,7 @@
             </end-1>
             <end-2>
               <x>364</x>
-              <y>580</y>
+              <y>590</y>
               <w>96</w>
               <h>34</h>
               <connectedSymbol symbol="40"/>
