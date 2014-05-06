@@ -94,11 +94,9 @@ public class Vytvoreni extends AServletZamestnanec{
     boolean chyba = false;
     for (int i = 0; cinnostList != null && i < cinnostList.size(); i++) {
       KalendarCinnost cinnost2 = cinnostList.get(i);
-      Date casOd2 = cinnost2.getCasOd();
-      Date casDo2 = cinnost2.getCasDo();
-      if(casOd.after(casDo2) || casDo.before(casOd2)){
-        
-      }else if(casOd.equals(casOd2) && casDo.equals(casDo2) && kalendarCinnostId == cinnost2.getId()){
+      Date casOd2 = new Date(cinnost2.getCasOd().getTime() + 1);
+      Date casDo2 = new Date(cinnost2.getCasDo().getTime() - 1);
+      if(casOd.after(casDo2) || casDo.before(casOd2) || kalendarCinnostId == cinnost2.getId()){
         
       }else{
         chyba = true;
