@@ -75,7 +75,7 @@ public class Nastaveni extends AServletZamestnanec{
         kod = (String) kontrola(request, Svatek.class, "kod");
         String nazev = (String) kontrola(request, Svatek.class, "nazev");
         Date datum = (Date) kontrola(request, Svatek.class, "datum");
-        Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze()}, uzivatel);
+        Svatek svatek2 = pripojeni.nacti(Svatek.class, new String[]{"kod", "nazev", "datum"}, new Object[]{kod, nazev, new Cas(datum).getDatumDatabaze(false)}, uzivatel);
         if(svatek2 != null && svatek2.getId() != svatekId) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
         
         Object chyba = overChyby(request);

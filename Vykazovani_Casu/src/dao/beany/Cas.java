@@ -135,8 +135,9 @@ public class Cas{
 		return datum;
 	}
 	
-	public String getDatumDatabaze(){
-		return rok + "-" + mesic + "-" + den + " " + hodina + ":" + minuta + ":" + sekunda;
+	public String getDatumDatabaze(boolean konec){
+	  if(konec) return rok + "-" + mesic + "-" + den + " " + 23 + ":" + 59 + ":" + 59;
+	  else return rok + "-" + mesic + "-" + den + " " + hodina + ":" + minuta + ":" + sekunda;
 	}
 
 	public int getHodina() {

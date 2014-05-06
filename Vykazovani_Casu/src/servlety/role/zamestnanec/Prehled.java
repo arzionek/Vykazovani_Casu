@@ -33,14 +33,14 @@ public class Prehled extends AServletZamestnanec{
 	  if(datumOdN == null || datumOdN.getId() == null){
       datumOdN = new NastaveniSystemu();
       datumOdN.setNazev("datumOd");
-      datumOdN.setHodnota(new Cas(new Date()).getDatumDatabaze());
+      datumOdN.setHodnota(new Cas(new Date()).getDatumDatabaze(false));
       datumOdN.setUzivatel(uzivatel);
     }
     NastaveniSystemu datumDoN = pripojeni.nacti(NastaveniSystemu.class, "nazev", "datumDo", true, uzivatel);
     if(datumDoN == null || datumDoN.getId() == null){
       datumDoN = new NastaveniSystemu();
       datumDoN.setNazev("datumDo");
-      datumDoN.setHodnota(new Cas(new Date()).getDatumDatabaze());
+      datumDoN.setHodnota(new Cas(new Date()).getDatumDatabaze(true));
       datumDoN.setUzivatel(uzivatel);
     }
     
@@ -62,9 +62,9 @@ public class Prehled extends AServletZamestnanec{
       
       Object chyba = overChyby(request);
       if(chyba == null){
-        datumOdN.setHodnota(new Cas(datumOd).getDatumDatabaze());
+        datumOdN.setHodnota(new Cas(datumOd).getDatumDatabaze(false));
         pripojeni.vlozUprav(datumOdN, datumOdN.getId());
-        datumDoN.setHodnota(new Cas(datumDo).getDatumDatabaze());
+        datumDoN.setHodnota(new Cas(datumDo).getDatumDatabaze(true));
         pripojeni.vlozUprav(datumDoN, datumOdN.getId());
       }
     }

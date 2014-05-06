@@ -35,7 +35,8 @@
       </tr>
     </table>
   </form>
-
+</div>
+<div class="box2">
   <c:forEach items="${kalendare}" var="kalendar">
   <table style="border: solid black 1px; margin-bottom: 20px; margin-top: 20px;">
     <tr><td><c:out value="${kalendar.datumImportu2}" /> - ${fn:length(kalendar.kalendarCinnost)} záznamů.</td>
