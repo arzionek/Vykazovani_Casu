@@ -123,7 +123,7 @@ public class NovyImport extends AServletZamestnanec {
       String cinKonec = "</" + kd.getTagKalendarCinnost() + ">";
       String popisStart = null;
       String popisKonec = null;
-      if (kd.getTagPopis() != null) {
+      if (kd.getTagPopis() != null && kd.getTagPopis().trim().length() > 0) {
         popisStart = "<" + kd.getTagPopis() + ">";
         popisKonec = "</" + kd.getTagPopis() + ">";
       }
