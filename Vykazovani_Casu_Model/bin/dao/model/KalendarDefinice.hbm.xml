@@ -22,7 +22,7 @@
       <many-to-one  name='uzivatel' class='dao.model.Uzivatel' not-null='true' cascade='save-update' foreign-key='fk_kalendar_definice_uzivatel_id'>
          <column name='uzivatel_id'/>
       </many-to-one>
-      <property  name='tagPopis' type='string' column='tag_popis'>
+      <property  name='tagPopis' type='string' column='tag_popis' length='32'>
       </property>
    </class>
 </hibernate-mapping>
