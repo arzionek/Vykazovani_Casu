@@ -203,7 +203,7 @@ public abstract class AVlastniServlet extends AServlet{
   }
 	
 	protected static void kontrolaDatumCas(Date casOd, Date casDo, HttpServletRequest request, String nazev) {
-    if(casOd.after(casDo)) pridejChybu(request, Chyby.PLATNE_DATUM_POROVNANI, nazev); 
+    if(casOd != null && casDo != null && casOd.after(casDo)) pridejChybu(request, Chyby.PLATNE_DATUM_POROVNANI, nazev); 
   }
 	
 	protected static void kontrolaChybnySoubor(HttpServletRequest request, FileInputStream stream, String nazev) {
@@ -215,25 +215,17 @@ public abstract class AVlastniServlet extends AServlet{
     }
 	}
 	
-	 protected static void kontrolaChybnySoubor(HttpServletRequest request, boolean multipart, String nazev) {
-	    if (!multipart) pridejChybu(request, Chyby.CHYBNY_SOUBOR, nazev);
-	  }
+	protected static void kontrolaChybnySoubor(HttpServletRequest request, boolean multipart, String nazev) {
+	  if (!multipart) pridejChybu(request, Chyby.CHYBNY_SOUBOR, nazev);
+	}
 	 
-   protected static void kontrolaNenulovostiObjektu(HttpServletRequest request, Object o, String nazev) {
-     if (o == null) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
-   }
+  protected static void kontrolaNenulovostiObjektu(HttpServletRequest request, Object o, String nazev) {
+    if (o == null) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
+  }
    
-   protected static void kontrolaRedundance(HttpServletRequest request, boolean redundantni, String nazev) {
-     if (redundantni) pridejChybu(request, Chyby.REDUNDANTNI_DATA, nazev);
-   }
-   
-   protected static String kontrolaVolitelnehoAtributu(Class<?> trida, String parametr, HttpServletRequest request) {
-     String parameter = request.getParameter(parametr);
-     if (parameter == null) return parameter;
-     int delka = AEntita.getSloupec(trida, parametr).getLength();
-     if (parameter.length() > delka) pridejChybu(request, Chyby.MAXIMALNI_DELKA, parametr);
-     return parameter;
-   }
+  protected static void kontrolaRedundance(HttpServletRequest request, boolean redundantni, String nazev) {
+    if (redundantni) pridejChybu(request, Chyby.REDUNDANTNI_DATA, nazev);
+  }
 	
 	protected static Object overChyby(HttpServletRequest request) {
 	  Object chyba = request.getAttribute(Chyby.DUPLICITNI_ZADANI);

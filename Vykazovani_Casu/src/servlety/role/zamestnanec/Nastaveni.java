@@ -234,8 +234,7 @@ public class Nastaveni extends AServletZamestnanec{
         String nazev = (String) kontrola(request, KalendarDefinice.class, "nazev");
         String tagCinnosti =  (String) kontrola(request, KalendarDefinice.class, "tagKalendarCinnost");
         String tagUvazku =  (String) kontrola(request, KalendarDefinice.class, "tagPracovniPomer");
-        String tagPopis = kontrolaVolitelnehoAtributu(KalendarDefinice.class, "tagPopis", request);
-        
+        String tagPopis = (String) kontrola(request, KalendarDefinice.class, "tagPopis");
 
         KalendarDefinice definice2 = pripojeni.nacti(KalendarDefinice.class, new String[]{"kod", "nazev" }, new Object[]{kod, nazev }, uzivatel);
         if(definice2 != null && definice2.getId() != definiceID) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "");
@@ -248,7 +247,7 @@ public class Nastaveni extends AServletZamestnanec{
         definice.setNazev(nazev);
         definice.setTagKalendarCinnost(tagCinnosti);
         definice.setTagPracovniPomer(tagUvazku);
-        if (tagPopis != null) definice.setTagPopis(tagPopis);
+        definice.setTagPopis(tagPopis);
         definice.setUzivatel(uzivatel);
 
         if(chyba == null){

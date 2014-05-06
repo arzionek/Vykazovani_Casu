@@ -69,9 +69,7 @@ public class Import extends AServletZamestnanec{
     }
     else if (akce.getImportObdobi().equals(volanaAkce)) {
       Date datumOd = kontrolaDatum("datumOd", null, request);
-      if (datumOd == null) datumOd = new Date();
       Date datumDo = kontrolaDatum("datumDo", null, request);
-      if (datumDo == null) datumDo = new Date();
       kontrolaDatumCas(datumOd, datumDo, request, "datumOd");
       
       Object chyba = overChyby(request);
