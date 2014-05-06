@@ -11,6 +11,7 @@
 <div id="hlavni">
 	<jsp:include page="../menu_top.jsp" flush="true" />
 	<script type="text/javascript">
+	  var ulozitTooltip = 'Uložit.';
     var upravitTooltip = 'Upravit činnost.';
     var odstranitTooltip = 'Odstranit činnost.';
   </script>
