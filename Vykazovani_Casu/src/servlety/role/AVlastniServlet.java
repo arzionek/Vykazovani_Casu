@@ -191,7 +191,7 @@ public abstract class AVlastniServlet extends AServlet{
 	private static String kontrolaVyplneni(String nazev, String parametr, HttpServletRequest request) {
 		if(parametr == null) parametr = request.getParameter(nazev);
 		if(parametr == null) return parametr;
-		if(parametr.length() < 2 || parametr.equals("%")) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
+		if(parametr.trim().length() < 1 || parametr.equals("%")) pridejChybu(request, Chyby.POVINNY_UDAJ, nazev);
 		return parametr;
 	}
 	
