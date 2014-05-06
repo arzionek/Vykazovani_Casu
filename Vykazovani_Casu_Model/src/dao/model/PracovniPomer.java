@@ -17,6 +17,11 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
    * @generated
    */
   private double velikostUvazku;
+  
+  private double mesicniFond;
+  private double odpracovano;
+  private String varovani;
+  private String mesicRok;
 
 	/**
    * @generated
@@ -202,5 +207,37 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
    */
   public void removeSablonaVykaz(SablonaVykaz sablonaVykaz) {
     getSablonaVykaz().remove(sablonaVykaz);
+  }
+
+  public double getMesicniFond() {
+    return mesicniFond;
+  }
+
+  public void setMesicniFond(double mesicniFond) {
+    this.mesicniFond = mesicniFond;
+  }
+
+  public double getOdpracovano() {
+    return odpracovano;
+  }
+
+  public void setOdpracovano(double odpracovano) {
+    this.odpracovano = odpracovano;
+  }
+
+  public String getVarovani() {
+    return varovani;
+  }
+
+  public void setVarovani(String varovani) {
+    this.varovani = varovani;
+  }
+
+  public String getMesicRok() {
+    return mesicRok;
+  }
+
+  public void setMesicRok(String mesicRok) {
+    this.mesicRok = mesicRok;
   }
 }

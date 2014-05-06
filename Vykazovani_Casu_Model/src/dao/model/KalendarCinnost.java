@@ -128,6 +128,8 @@ public class KalendarCinnost extends AEntita implements java.io.Serializable {
 		this.id = id;
 	}
 
+	private String varovani;
+	
 	/**
    * @generated
    */
@@ -286,5 +288,13 @@ public class KalendarCinnost extends AEntita implements java.io.Serializable {
    */
   public void setGoogleId(String googleId) {
     this.googleId = googleId;
+  }
+
+  public String getVarovani() {
+    return varovani;
+  }
+
+  public void setVarovani(String varovani) {
+    this.varovani = varovani;
   }
 }

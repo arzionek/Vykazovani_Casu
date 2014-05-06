@@ -229,7 +229,7 @@ public class Cas{
 		this.cas = cas;
 	}
 
-	private void nastavDen(int d, int m, int r) {
+	public void nastavDen(int d, int m, int r) {
 		Calendar c = Calendar.getInstance();
 		c.set(r, m-1, d);
 		denTyden = ((c.getTime()).toString()).substring(0, 3);
@@ -266,5 +266,67 @@ public class Cas{
 	public void setDenTydenZkratka(String denTydenZkratka) {
 		this.denTydenZkratka = denTydenZkratka;
 	}
+
+  public String getMesicRok() {
+    if(mesic == 1) return "leden";
+    if(mesic == 2) return "únor";
+    if(mesic == 3) return "bøezen";
+    if(mesic == 4) return "duben";
+    if(mesic == 5) return "kvìten";
+    if(mesic == 6) return "èerven";
+    if(mesic == 7) return "èervenec";
+    if(mesic == 8) return "srpen";
+    if(mesic == 9) return "záøí";
+    if(mesic == 10) return "øíjen";
+    if(mesic == 11) return "listopad";
+    if(mesic == 12) return "prosinec";
+    return "";
+  }
+
+  public void setDen(int den) {
+    this.den = den;
+    switch(mesic){
+      case 1:
+        if(den > 31) this.den = 31;
+        break;
+      case 2:
+        if(den > 29) this.den = 29;//TODO pøestupný rok
+        break;
+      case 3:
+        if(den > 31) this.den = 31;
+        break;
+      case 4:
+        if(den > 30) this.den = 30;
+        break;
+      case 5:
+        if(den > 31) this.den = 31;
+        break;
+      case 6:
+        if(den > 30) this.den = 30;
+        break;
+      case 7:
+        if(den > 31) this.den = 31;
+        break;
+      case 8:
+        if(den > 31) this.den = 31;
+        break;
+      case 9:
+        if(den > 30) this.den = 30;
+        break;
+      case 10:
+        if(den > 31) this.den = 31;
+        break;
+      case 11:
+        if(den > 30) this.den = 30;
+        break;
+      case 12:
+        if(den > 31) this.den = 31;
+        break;
+    }
+  }
+  
+  public void setMesic(int mesic) {
+    if(mesic >= 1 && mesic <= 12) this.mesic = mesic;
+  }
 	
 }

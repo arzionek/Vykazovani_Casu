@@ -13,6 +13,10 @@ public class Chyby {
   public static final String CHYBNY_SOUBOR = "chybnySoubor";
   public static final String REDUNDANTNI_DATA = "redundantniData";
   
+  public static final String PRACE_VIKEND = "praceVikend";
+  public static final String PRACE_SVATEK = "praceSvatek";
+  public static final String POMER_MESICNI_FOND = "pomerMesicniFond";
+  
   public static final String DUPLICITNI_ZADANI_ZPRAVA = "Údaj se stejnými atributy již existuje!";
   public static final String CELE_NEZAPORNE_CISLO_ZPRAVA = "Musí být zadáno kladné celé èíslo!";
   public static final String POVINNY_UDAJ_ZPRAVA = "Oznaèené údaje musí být vyplnìny!";
@@ -24,6 +28,10 @@ public class Chyby {
   public static final String PODPOROVANY_FORMAT_ZPRAVA = "Podporovány jsou pouze XLS soubory!";
   public static final String CHYBNY_SOUBOR_ZPRAVA = "Podporovány jsou pouze ics soubory!";
   public static final String REDUNDANTNI_DATA_ZPRAVA = "Všechny záznamy jsou již uloženy!";
+  
+  public static final String PRACE_VIKEND_ZPRAVA = "Práce o víkendu!";
+  public static final String PRACE_SVATEK_ZPRAVA = "Práce ve státní svátek!";
+  public static final String POMER_MESICNI_FOND_ZPRAVA = "Je pekroèen mìsíèní fond!";
   
   public String getDuplicitniZadani() {
     return DUPLICITNI_ZADANI;
@@ -111,5 +119,29 @@ public class Chyby {
 
   public String getRedundantniDataZprava() {
     return REDUNDANTNI_DATA_ZPRAVA;
+  }
+
+  public String getPraceVikend() {
+    return PRACE_VIKEND;
+  }
+
+  public String getPraceSvatek() {
+    return PRACE_SVATEK;
+  }
+
+  public String getPraceVikendZprava() {
+    return PRACE_VIKEND_ZPRAVA;
+  }
+
+  public String getPraceSvatekZprava() {
+    return PRACE_SVATEK_ZPRAVA;
+  }
+
+  public String getPomerMesicniFondZprava() {
+    return POMER_MESICNI_FOND_ZPRAVA;
+  }
+
+  public String getPomerMesicniFond() {
+    return POMER_MESICNI_FOND;
   }
 }
