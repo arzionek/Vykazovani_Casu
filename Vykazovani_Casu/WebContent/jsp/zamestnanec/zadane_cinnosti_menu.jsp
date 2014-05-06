@@ -9,12 +9,12 @@
       <c:url var="novy" value="vytvoreni">
 
 	  </c:url>
-      <a href="<c:out value="${novy}" escapeXml="true" />">Nové činnosti</a>
+      <a href="<c:out value="${novy}" escapeXml="true" />">Nová činnost</a>
     
       <c:url var="prehled" value="prehled">
 	    
 	  </c:url>
-      <a href="<c:out value="${prehled}" escapeXml="true" />">Zadané činnost</a>
+      <a href="<c:out value="${prehled}" escapeXml="true" />">Zadané činnosti</a>
     </tr>
   </table>
   </div>

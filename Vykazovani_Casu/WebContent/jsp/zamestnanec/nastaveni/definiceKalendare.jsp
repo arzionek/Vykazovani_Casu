@@ -16,8 +16,7 @@
     var odstranitTooltip = 'Odstranit definici kalendáře.';
     var novyTooltip = 'Nová definice kalendáře.';
   </script>
-  
-   <h2 class="stred">Nastavení definic kalendáře:</h2>
+  <h2 class="stred">Nastavení číselníků:</h2>
   
   <jsp:include page="menu.jsp" flush="true" />
  
@@ -29,7 +28,7 @@
   <input type="hidden" name="objektId" value="${objekt.id}" /> 
   <div class="box">
   <table>
-    <c:if test="${objekt.id != null}"><tr><td class="zvyraznit2">Upravit existující definici kalendáře:</td></tr></c:if>
+    <c:if test="${objekt.id != null}"><tr><td class="zvyraznit2">Upravit definici kalendáře:</td></tr></c:if>
     <c:if test="${objekt.id == null}"><tr><td class="zvyraznit2">Nová definice kalendáře:</td></tr></c:if>
     <c:if test="${duplicitniZadani != null}" ><tr><td class="hlaska_chyba">${chyby.duplicitniZadaniZprava}</td></tr></c:if>
     <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>

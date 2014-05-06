@@ -15,7 +15,7 @@
     var ulozitTooltip = 'Uložit činnost.';
     var novyTooltip = 'Nová činnost.';
   </script>
-	<h2 class="stred">Nová činnost:</h2>
+	<h2 class="stred">Zadávání činností:</h2>
 	
 	<jsp:include page="../zamestnanec/zadane_cinnosti_menu.jsp" flush="true" />
 	

@@ -17,7 +17,7 @@
     var odstranitTooltip = 'Odstranit šablonu.';
     var novyTooltip = 'Nová šablona.';
   </script>
-  <h2 class="stred">Nastavení systému:</h2>
+  <h2 class="stred">Nastavení číselníků:</h2>
   
   <jsp:include page="menu.jsp" flush="true" />
   	

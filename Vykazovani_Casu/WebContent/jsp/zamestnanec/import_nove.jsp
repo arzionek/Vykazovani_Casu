@@ -10,7 +10,7 @@
 <!-- hlavní část dokumentu -->
 <div id="hlavni">
   <jsp:include page="../menu_top.jsp" flush="true" />
-  <h2 class="stred">Import dat</h2>
+  <h2 class="stred">Import dat:</h2>
   <jsp:include page="../zamestnanec/import_menu.jsp" flush="true" />
   <script type="text/javascript">
     var ulozitTooltip = 'Provést import dat.';
@@ -26,7 +26,7 @@
       <div class="box">
         <table>
           <tr>
-            <td class="zvyraznit2">Nový import:</td>
+            <td class="zvyraznit2">Nový import dat:</td>
           </tr>
         </table>
         <table>

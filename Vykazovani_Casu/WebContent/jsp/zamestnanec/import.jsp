@@ -15,7 +15,7 @@
     var odstranitTooltip = 'Odstranit kalendář.';
     var stahnoutTooltip = 'Stáhnout kalendář.';
   </script>
-<h2 class="stred">Přehled importů</h2>
+<h2 class="stred">Import dat:</h2>
 <jsp:include page="../zamestnanec/import_menu.jsp" flush="true" />
 <jsp:include page="../zahlavi_komponenta_datum.jsp" flush="true" />
 <div class="box2">

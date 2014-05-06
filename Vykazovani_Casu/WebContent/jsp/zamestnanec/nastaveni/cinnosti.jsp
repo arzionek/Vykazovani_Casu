@@ -16,7 +16,7 @@
     var odstranitTooltip = 'Odstranit činnost.';
     var novyTooltip = 'Nová činnost.';
   </script>
-  <h2 class="stred">Nastavení systému:</h2>
+  <h2 class="stred">Nastavení číselníků:</h2>
   
   <jsp:include page="menu.jsp" flush="true" />
   	

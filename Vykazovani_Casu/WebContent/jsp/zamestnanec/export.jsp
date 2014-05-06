@@ -16,7 +16,7 @@
   var ulozit2Tooltip = 'Nastavit pracovní poměr.';
   var novyTooltip = 'Nový export.';
 </script>
-<h2 class="stred">Export dat</h2>
+<h2 class="stred">Export dat:</h2>
 <div class="box2"> 
   <c:url var="ulozit" value="export">
     <c:param name="akce" value="${akce.exportPomer}"/>

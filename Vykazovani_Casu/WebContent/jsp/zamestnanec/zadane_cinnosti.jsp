@@ -14,7 +14,7 @@
     var upravitTooltip = 'Upravit činnost.';
     var odstranitTooltip = 'Odstranit činnost.';
   </script>
-	<h2 class="stred">Přehled činností:</h2>
+	<h2 class="stred">Zadávání činností:</h2>
 	
 	<jsp:include page="../zamestnanec/zadane_cinnosti_menu.jsp" flush="true" />
 	<jsp:include page="../zahlavi_komponenta_datum.jsp" flush="true" />
