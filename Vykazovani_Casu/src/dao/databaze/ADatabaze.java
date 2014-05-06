@@ -148,8 +148,9 @@ public abstract class ADatabaze{
     try{
       session = hibernate.getSession();
       String dotaz = "select o from " + trida.getName() + " o";
-      dotaz += " where" + getPodminka(trida, atributy, hodnoty, zaroven, uzivatel);
-      dotaz += getRazeni(trida, atributyRazeni);
+      String podminka = getPodminka(trida, atributy, hodnoty, zaroven, uzivatel);
+      if(podminka.length() > 0) dotaz += " where" + podminka;
+      dotaz += " " + getRazeni(trida, atributyRazeni);
       Query query = session.createQuery(dotaz);
       list = query.list();
     }catch(RuntimeException e){

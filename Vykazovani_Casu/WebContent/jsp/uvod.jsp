@@ -18,11 +18,12 @@
 		</table>
 	</div>
 	<c:forEach items="${system}" var="sys">
-		<div class="box">
-			<table>${sys}
-			</table>
-		</div>
-	</c:forEach>
+    <div class="box">
+      <h3 id="" class="zvyraznit3">${sys.nadpis}</h3>
+      <p>${sys.data}</p>
+      <p style="text-align: right">${sys.datum2}</p>
+    </div>
+  </c:forEach>
 </div>
 
 

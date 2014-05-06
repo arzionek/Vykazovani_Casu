@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.beany.Cas;
 import dao.databaze.Databaze;
+import dao.model.SystemovaInformace;
 
 public class Uvod extends AVlastniServlet{
 
@@ -27,9 +28,9 @@ public class Uvod extends AVlastniServlet{
 	}
 	
 	private void uvod(HttpServletRequest request, HttpServletResponse response, Databaze pripojeni) throws ServletException, IOException {
-		Cas cas = new Cas();
+	  Cas cas = new Cas();
 		request.setAttribute("cas", cas);
-		request.setAttribute("system", pripojeni.ziskejSystemoveInformace());
+		request.setAttribute("system", pripojeni.ziskejObjekty(SystemovaInformace.class, null, "datum desc"));
 		presmerovani(request, response, adresa + "/uvod.jsp");
 	}
 
