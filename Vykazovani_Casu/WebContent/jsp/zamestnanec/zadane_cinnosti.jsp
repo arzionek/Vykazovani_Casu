@@ -37,9 +37,27 @@
 	  </form>
 	</div>
 	<div class="box2">
+	<table>
+      <tr><td><b><c:out value="${obdobi}" />:</b></td></tr>
+  </table>
+	<table>
+	<c:forEach items="${pomery}" var="p">
+    <tr><td style="width: 250px;"><span style="font-style: italic;"><c:out value="${p.kod}" /> - <c:out value="${p.nazev}" /></span></td>
+      <td>fond: <c:out value="${p.mesicniFond}" /> hod., 
+      <span <c:if test="${fn:contains(p.varovani,chyby.pomerMesicniFond)}" >style="color: red;"</c:if>>odpracováno: <c:out value="${p.odpracovano}" /> hod.</span>
+      <c:if test="${fn:contains(p.varovani,chyby.pomerMesicniFond)}" >&nbsp;<img onmouseover="tooltip('${chyby.pomerMesicniFondZprava}', this, 100)" src="img/varovani.png" alt="Varování" /></c:if>
+      </td>
+    </tr>
+  </c:forEach>
+  </table>
+	</div>
+	<div class="box2">
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px; margin-top: 20px;">
-    <tr><td><c:out value="${o.datum2}" />&nbsp;<c:out value="${o.casOd2}" /> - <c:out value="${o.casDo2}" /></td>
+    <tr><td <c:if test="${fn:contains(o.varovani,chyby.praceVikend) || fn:contains(o.varovani,chyby.praceSvatek)}" >style="color: red;"</c:if>>
+      <c:out value="${o.datum3}" />,&nbsp;<c:out value="${o.casOd2}" /> - <c:out value="${o.casDo2}" />
+      <c:if test="${fn:contains(o.varovani,chyby.praceVikend)}" >&nbsp;<img onmouseover="tooltip('${chyby.praceVikendZprava}', this, 100)" src="img/varovani.png" alt="Varování" /></c:if>
+      <c:if test="${fn:contains(o.varovani,chyby.praceSvatek)}" >&nbsp;<img onmouseover="tooltip('${chyby.praceSvatekZprava}', this, 100)" src="img/varovani.png" alt="Varování" /></c:if></td>
     <c:url var="upravit" value="prehled">
       <c:param name="akce" value="${akce.prehledUpravit}"/>
     </c:url>

@@ -52,6 +52,7 @@ public class KalendarCinnost extends AEntita implements java.io.Serializable {
    */
   private java.util.Date datum;
   private String datum2;
+  private String datum3;
 
   /**
    * @generated
@@ -296,5 +297,13 @@ public class KalendarCinnost extends AEntita implements java.io.Serializable {
 
   public void setVarovani(String varovani) {
     this.varovani = varovani;
+  }
+
+  public String getDatum3() {
+    return datum3;
+  }
+
+  public void setDatum3(String datum3) {
+    this.datum3 = datum3;
   }
 }

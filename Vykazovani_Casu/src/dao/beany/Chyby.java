@@ -31,7 +31,7 @@ public class Chyby {
   
   public static final String PRACE_VIKEND_ZPRAVA = "Práce o víkendu!";
   public static final String PRACE_SVATEK_ZPRAVA = "Práce ve státní svátek!";
-  public static final String POMER_MESICNI_FOND_ZPRAVA = "Je pekroèen mìsíèní fond!";
+  public static final String POMER_MESICNI_FOND_ZPRAVA = "Pøekroèen mìsíèní fond!";
   
   public String getDuplicitniZadani() {
     return DUPLICITNI_ZADANI;

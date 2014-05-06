@@ -268,18 +268,18 @@ public class Cas{
 	}
 
   public String getMesicRok() {
-    if(mesic == 1) return "leden";
-    if(mesic == 2) return "únor";
-    if(mesic == 3) return "bøezen";
-    if(mesic == 4) return "duben";
-    if(mesic == 5) return "kvìten";
-    if(mesic == 6) return "èerven";
-    if(mesic == 7) return "èervenec";
-    if(mesic == 8) return "srpen";
-    if(mesic == 9) return "záøí";
-    if(mesic == 10) return "øíjen";
-    if(mesic == 11) return "listopad";
-    if(mesic == 12) return "prosinec";
+    if(mesic == 1) return "Leden";
+    if(mesic == 2) return "Únor";
+    if(mesic == 3) return "Bøezen";
+    if(mesic == 4) return "Duben";
+    if(mesic == 5) return "Kvìten";
+    if(mesic == 6) return "Èerven";
+    if(mesic == 7) return "Èervenec";
+    if(mesic == 8) return "Srpen";
+    if(mesic == 9) return "Záøí";
+    if(mesic == 10) return "Øíjen";
+    if(mesic == 11) return "Listopad";
+    if(mesic == 12) return "Prosinec";
     return "";
   }
 

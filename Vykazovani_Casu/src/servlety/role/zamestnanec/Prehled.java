@@ -82,6 +82,8 @@ public class Prehled extends AServletZamestnanec{
       request.setAttribute("pomery", pomery);
       request.setAttribute("datumOd", datumOdN);
       request.setAttribute("datumDo", datumDoN);
+      Cas cas = new Cas(datumOdN.getHodnota());
+      request.setAttribute("obdobi", cas.getMesicRok() + " " + cas.getRok());
       request.setAttribute("datepickerFormat", "dd.mm.yy");
   	  presmerovani(request, response, adresa + "/zadane_cinnosti.jsp");
     }
@@ -93,6 +95,8 @@ public class Prehled extends AServletZamestnanec{
       pripojeni.inicializaceObjektu(kc.getCinnost());
       pripojeni.inicializaceObjektu(kc.getPracovniPomer());
       kc.setVarovani(ziskejVarovani(kc, svatky));
+      Cas cas = new Cas(kc.getDatum());
+      kc.setDatum3(cas.getDenTydenZkratka() + " " + cas.getDatum());
     }
   }
 
@@ -104,11 +108,10 @@ public class Prehled extends AServletZamestnanec{
     for (int i = 0; pomery != null && i < pomery.size(); i++) {
       PracovniPomer p = pomery.get(i);
       List<KalendarCinnost> cin = pripojeni.ziskejCinnosti(casMesicOd.getDatumDatabaze(false), casMesicDo.getDatumDatabaze(true), p);
-      p.setMesicRok(casMesicOd.getMesicRok() + casMesicOd.getRok());
       p.setMesicniFond(ziskejMesicniFond(p, casMesicDo, svatky));
       p.setOdpracovano(ziskejOdpracovano(cin));
       if(p.getOdpracovano() > p.getMesicniFond()) p.setVarovani(Chyby.POMER_MESICNI_FOND);
-      else p.setVarovani("");
+      else p.setVarovani(" ");
     }
   }
 

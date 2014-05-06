@@ -72,7 +72,7 @@
   </table>
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px">
-    <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" /> - <c:out value="${o.typ}" /></td>
+    <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" />, <c:out value="${o.typ}" /></td>
     <td class="vpravo">
       <c:url var="stahnout" value="nastaveni">
         <c:param name="akce" value="${akce.nastaveniSablonStahnout}"/>

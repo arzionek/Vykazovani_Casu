@@ -21,7 +21,6 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
   private double mesicniFond;
   private double odpracovano;
   private String varovani;
-  private String mesicRok;
 
 	/**
    * @generated
@@ -210,6 +209,7 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
   }
 
   public double getMesicniFond() {
+    mesicniFond = Math.round(mesicniFond * 100.0) / 100.0;
     return mesicniFond;
   }
 
@@ -218,6 +218,7 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
   }
 
   public double getOdpracovano() {
+    odpracovano = Math.round(odpracovano * 100.0) / 100.0;
     return odpracovano;
   }
 
@@ -233,11 +234,4 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
     this.varovani = varovani;
   }
 
-  public String getMesicRok() {
-    return mesicRok;
-  }
-
-  public void setMesicRok(String mesicRok) {
-    this.mesicRok = mesicRok;
-  }
 }

@@ -67,7 +67,7 @@
   </table>
   <c:forEach items="${objekty}" var="o">
   <table style="border: solid black 1px; margin-bottom: 20px">
-    <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" /> - <c:out value="${o.velikostUvazku}" /></td>
+    <tr><td><c:out value="${o.kod}" /> - <c:out value="${o.nazev}" /></td>
     <td class="vpravo">
       <c:if  test="${o.uzivatel != null}">
         <c:url var="upravit" value="nastaveni">
@@ -95,7 +95,8 @@
       <c:if test="${o.uzivatel == null || !empty o.kalendarCinnost || !empty o.sablonaVykaz}">
         <img src="img/odstranit2.png" alt="Odstranit" class="vpravo2"/>
       </c:if>
-    </td>    
+    </td></tr>
+    <tr><td style="padding-left: 20px;">velikost úvazku:&nbsp;<c:out value="${o.velikostUvazku}" />, typ:&nbsp;<c:out value="${o.typUvazku}" /></td><td></td><td></td></tr>    
   </table> 
   </c:forEach> 
   </div> 
