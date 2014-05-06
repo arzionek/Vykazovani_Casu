@@ -76,9 +76,9 @@
 	<p>
 	K tomu, jak bude probíhat převod z externího kalendáře do systému, slouží číselník <i>Kalendář</i>.
 	Při zadávání nové definice kalendáře do číselníku je nutné zadat kód, název, tag úvazku(pracovního poměru)
-	, tag činnosti. Tyto dva tagy slouží k odlišení pracovního poměru a činnosti ve strukturovaném zápisu v 
-	externím kalendáři. Je nutné rozlišit od sebe pracovní poměr a činnost. Poté je možné dekódovat externí
-	kalendář a přenést činnosti (jejich popis a označení) do systému. Definice kalendáře v číselníku je možné
-	editovat a mazat.
+	, tag činnosti, tag popisu. Tyto tři tagy slouží k odlišení pracovního poměru, činnosti a popisu činnosti 
+	ve strukturovaném zápisu v	externím kalendáři. Je nutné rozlišit od sebe pracovní poměr, činnost
+	a popis činnosti. Poté je možné dekódovat externí kalendář a přenést činnosti (jejich popis a označení) do systému. 
+	Definice kalendáře v číselníku je možné	editovat a mazat.
 	</p>
 </div>
