@@ -37,7 +37,7 @@ public class PracovniPomer extends AEntita implements java.io.Serializable {
    */
   private String typUvazku;
   
-  private static final String[] TYPY = {"Dohoda o provedení práce","Dohoda o provedení èinnosti","Pracovní pomìr"};
+  private static final String[] TYPY = {"Dohoda o provedení práce", "Dohoda o provedení èinnosti", "Hlavní Pracovní pomìr", "Vedlejší Pracovní pomìr"};
 
   /**
    * @generated
