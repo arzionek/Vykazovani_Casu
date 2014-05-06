@@ -26,7 +26,7 @@
 		zde nutné vyplnit o jaký pracovní poměr se jedná, datum "od-do" a je
 		nutné zvolit šablonu příslušného výkazu. Pracovní výkazy se vždy
 		generují za celý měsíc, dovolené a nemocenské za zvolené období.
-		Vygenerovaný soubor je ve formátu ".xls".
+		Vygenerovaný soubor je ve formátu ".xls". 
 	</p>
 
 </div>
