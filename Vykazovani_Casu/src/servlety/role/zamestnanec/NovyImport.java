@@ -163,6 +163,15 @@ public class NovyImport extends AServletZamestnanec {
     return citac;
   }
 
+  private Date getCas(Date datum) {
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    cal.setTime(datum);
+    cal.set(java.util.Calendar.DAY_OF_MONTH, 1);
+    cal.set(java.util.Calendar.MONTH, 0);
+    cal.set(java.util.Calendar.YEAR, 9999);
+    return cal.getTime();
+  }
+
   private void ulozUdalost(Date start, Date end, Uzivatel uzivatel, Kalendar kalendar, String pomer, String cinnost, String popis, String uid) {
     Cinnost cin = pripojeni.nacti(Cinnost.class, new Object[]{"nazev"}, new Object[]{cinnost}, uzivatel);
     if (cin == null) {
@@ -205,25 +214,26 @@ public class NovyImport extends AServletZamestnanec {
     }
 
     KalendarCinnost kalendarCinnost = new KalendarCinnost();
-    kalendarCinnost.setCasOd(start);
-    kalendarCinnost.setCasDo(end);
+    kalendarCinnost.setCasOd(getCas(start));
+    kalendarCinnost.setCasDo(getCas(end));
     kalendarCinnost.setCinnost(cin);
     kalendarCinnost.setGoogleId(uid);
     if (popis != null) kalendarCinnost.setPopis(popis);
-    
-    java.util.Calendar cal = java.util.Calendar.getInstance();
-    cal.setTime(start);
-    cal.set(java.util.Calendar.HOUR, 0);
-    cal.set(java.util.Calendar.MINUTE, 0);
-    cal.set(java.util.Calendar.SECOND, 0);
-    cal.set(java.util.Calendar.MILLISECOND, 0);
-    Date datum = cal.getTime();
-    
-    kalendarCinnost.setDatum(datum);
+    kalendarCinnost.setDatum(getDatum(start));
     kalendarCinnost.setKalendar(kalendar);
     kalendarCinnost.setPracovniPomer(pom);
     kalendarCinnost.setUzivatel(uzivatel);
     kalendarCinnost.setPocetHodin((end.getTime() - start.getTime())/(1000*60*60));
     pripojeni.vlozUprav(kalendarCinnost, kalendarCinnost.getId());
+  }
+
+  private Date getDatum(Date datum) {
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    cal.setTime(datum);
+    cal.set(java.util.Calendar.HOUR, 0);
+    cal.set(java.util.Calendar.MINUTE, 0);
+    cal.set(java.util.Calendar.SECOND, 0);
+    cal.set(java.util.Calendar.MILLISECOND, 0);
+    return cal.getTime();
   }
 }
