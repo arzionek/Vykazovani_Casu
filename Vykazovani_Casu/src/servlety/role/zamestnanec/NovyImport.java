@@ -199,7 +199,7 @@ public class NovyImport extends AServletZamestnanec {
       pom.setKod(pomKod2);
       pom.setNazev(pomer);
       pom.setUzivatel(uzivatel);
-      pom.setTypUvazku("Pracovní pomìr");
+      pom.setTypUvazku("Hlavní pracovní pomìr");
       pom.setVelikostUvazku(1);
       pripojeni.vlozUprav(pom, pom.getId());
     }
