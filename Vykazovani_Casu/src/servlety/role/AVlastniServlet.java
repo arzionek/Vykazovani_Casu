@@ -190,7 +190,6 @@ public abstract class AVlastniServlet extends AServlet{
   	     datumDatabaze = null;
   	   }
   	 }
-  	 System.out.println(nazev + " " + datumDatabaze);
   	 return datumDatabaze;
 	  }
 	
