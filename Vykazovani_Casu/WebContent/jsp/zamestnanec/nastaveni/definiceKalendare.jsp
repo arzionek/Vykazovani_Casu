@@ -38,7 +38,7 @@
     <tr><td style="width: 200px;"><b>*Název:</b></td><td><input type="text" required="true" name="nazev" value="${objekt.nazev}" <c:if test="${fn:contains(duplicitniZadani ,'nazev') || fn:contains(povinnyUdaj ,'nazev') || fn:contains(maximalniDelka ,'nazev')}">class="povinne"</c:if>/></td></tr>
     <tr><td style="width: 200px;"><b>*tag úvazku:</b></td><td><input type="text" required="true" name="tagPracovniPomer" value="${objekt.tagPracovniPomer}" <c:if test="${ fn:contains(povinnyUdaj , 'tagPracovniPomer') || fn:contains(maximalniDelka, 'tagPracovniPomer')}">class="povinne"</c:if>/></td></tr>
     <tr><td style="width: 200px;"><b>*tag činnosti:</b></td><td><input type="text" required="true" name="tagKalendarCinnost" value="${objekt.tagKalendarCinnost}" <c:if test="${ fn:contains(povinnyUdaj , 'tagKalendarCinnost') || fn:contains(maximalniDelka , 'tagKalendarCinnost')}">class="povinne"</c:if>/></td></tr> 
-    <tr><td style="width: 200px;"><b>tag popis:</b></td><td><input type="text" name="tagPopis" value="${objekt.tagPopis}" <c:if test="${fn:contains(maximalniDelka , 'tagPopis')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;">tag popis:</td><td><input type="text" name="tagPopis" value="${objekt.tagPopis}" <c:if test="${fn:contains(maximalniDelka , 'tagPopis')}">class="povinne"</c:if>/></td></tr>
     <tr><td>&nbsp;</td></tr>
     <tr><td colspan="2" class="popisek"> Povinné údaje označeny * </td></tr>  
   </table>

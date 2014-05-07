@@ -9,7 +9,7 @@ public class SablonaVykaz extends AEntita implements java.io.Serializable {
    * @generated
    */
   private String typ;
-  private static final String[] TYPY = {"Pracovní výkaz","Dovolená","Nemocenská"};
+  private static final String[] TYPY = {"Pracovní výkaz","Dovolená","Pracovní neschopnost"};
   /**
    * @generated
    */

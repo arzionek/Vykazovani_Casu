@@ -155,7 +155,7 @@ public abstract class AVlastniServlet extends AServlet{
          pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
          return null;
        }
-	     datum = "01-01-2000 " + datum;
+	     datum = "01-01-9999 " + datum;
        
 	     format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	   }else{
@@ -181,13 +181,16 @@ public abstract class AVlastniServlet extends AServlet{
   	   if (datum.contains("29-2-") || datum.contains("29-02-")) { //29. unor - prestupny rok
   	     try {
   	       return format.parse("29-02-2000");
-  	     } catch (Exception e2) { datumDatabaze = null; }
+  	     } catch (Exception e2) { 
+  	       datumDatabaze = null; 
+  	     }
   	   }
   	   else {
   	     pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
   	     datumDatabaze = null;
   	   }
   	 }
+  	 System.out.println(nazev + " " + datumDatabaze);
   	 return datumDatabaze;
 	  }
 	

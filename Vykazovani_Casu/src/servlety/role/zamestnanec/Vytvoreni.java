@@ -73,7 +73,7 @@ public class Vytvoreni extends AServletZamestnanec{
         kalendarCinnost.setCasOd2(casOdText);
         kalendarCinnost.setCasOd(casOd);
         kalendarCinnost.setCasDo2(casDoText);
-        kalendarCinnost.setCasOd(casDo);
+        kalendarCinnost.setCasDo(casDo);
         if(request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI) == null && casOd != null && casDo != null) kalendarCinnost.setPocetHodin(vratPocetOdpracovanychHodin(casOd, casDo));
         PracovniPomer pomer = pripojeni.nacti(PracovniPomer.class, pomerId);
         kalendarCinnost.setPracovniPomer(pomer);
