@@ -115,7 +115,7 @@ public class Prehled extends AServletZamestnanec{
     }
   }
 
-  private double ziskejOdpracovano(List<KalendarCinnost> cin) {
+  protected static double ziskejOdpracovano(List<KalendarCinnost> cin) {
     double odpracovano = 0;
     for (int i = 0; i < cin.size(); i++) {
       odpracovano += cin.get(i).getPocetHodin();
@@ -123,7 +123,7 @@ public class Prehled extends AServletZamestnanec{
     return odpracovano;
   }
 
-  private double ziskejMesicniFond(PracovniPomer p, Cas casMesicDo, List<Svatek> svatky) {
+  protected static double ziskejMesicniFond(PracovniPomer p, Cas casMesicDo, List<Svatek> svatky) {
     double fond = 0;
     Cas cas = new Cas(casMesicDo.getDatumDatabaze(false));
     for (int i = 1; i <= casMesicDo.getDen(); i++) {
@@ -136,7 +136,7 @@ public class Prehled extends AServletZamestnanec{
     return fond;
   }
 
-  private boolean jeSvatek(Cas cas, List<Svatek> svatky) {
+  protected static boolean jeSvatek(Cas cas, List<Svatek> svatky) {
     for (int i = 0; svatky != null && i < svatky.size(); i++) {
       Cas casSv = new Cas(svatky.get(i).getDatum());
       if(casSv.getMesic() == cas.getMesic() && casSv.getDen() == cas.getDen()){

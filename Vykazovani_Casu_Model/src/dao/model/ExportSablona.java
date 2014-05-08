@@ -3,6 +3,7 @@ package dao.model;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class ExportSablona extends AEntita {
 
@@ -14,6 +15,7 @@ public class ExportSablona extends AEntita {
   private Date datumDo;
   private String datumOd2;
   private String datumDo2;
+  private List<KalendarCinnost> cinnosti;
   
   public ExportSablona(){
     this.pracovniPomer = new PracovniPomer();
@@ -98,6 +100,14 @@ public class ExportSablona extends AEntita {
 
   public void setUzivatel(Uzivatel uzivatel) {
     this.uzivatel = uzivatel;
+  }
+
+  public List<KalendarCinnost> getCinnosti() {
+    return cinnosti;
+  }
+
+  public void setCinnosti(List<KalendarCinnost> cinnosti) {
+    this.cinnosti = cinnosti;
   }
 
 }

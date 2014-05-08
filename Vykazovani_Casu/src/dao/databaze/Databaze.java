@@ -52,15 +52,19 @@ public class Databaze extends ADatabaze{
     return list;
   }
   
-  @SuppressWarnings("unchecked")
   public List<KalendarCinnost> ziskejCinnosti(String datumOd, String datumDo, PracovniPomer pomer) {
+    return ziskejCinnosti(datumOd, datumDo, pomer, new String[]{"datum desc", "casOd asc"});
+  }
+  
+  @SuppressWarnings("unchecked")
+  public List<KalendarCinnost> ziskejCinnosti(String datumOd, String datumDo, PracovniPomer pomer, String[] razeni) {
     List<KalendarCinnost> list = null;
     Session session = null;
     try{
       session = hibernate.getSession();
       String dotaz = "select o from " + KalendarCinnost.class.getName() + " o";
       dotaz += " where o.uzivatel.id='" + pomer.getUzivatel().getId() + "' and o.pracovniPomer.id='" + pomer.getId() + "' and o.datum>='" + datumOd + "' and o.datum<='" + datumDo + "'";
-      dotaz += getRazeni(null, new String[]{"datum desc", "casOd asc"});
+      dotaz += getRazeni(null, razeni);
       Query query = session.createQuery(dotaz);
       list = query.list();
     }catch(RuntimeException e){

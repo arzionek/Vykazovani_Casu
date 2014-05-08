@@ -33,6 +33,7 @@
     <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
     <c:if test="${platneDatum != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumZprava}</td></tr></c:if>
     <c:if test="${platneDatumPorovnani != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumPorovnaniZprava}</td></tr></c:if>
+    <c:if test="${vlozeniZaznamu != null}" ><tr><td class="hlaska_uspech">${oznameni.vlozeniZaznamuZprava}</td></tr></c:if>
   </table>
   <table>
     <tr><td style="width: 200px;"><b>*Datum:</b></td><td><input type="text" required="true" name="datum" id="datepicker" value="${objekt.datum2}" <c:if test="${fn:contains(duplicitniZadani,'casOd') || fn:contains(povinnyUdaj,'datum') || fn:contains(platneDatum,'datum')}">class="povinne"</c:if>/></td></tr>

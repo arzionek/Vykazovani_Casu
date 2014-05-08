@@ -33,6 +33,7 @@
           <c:if test="${chybnySoubor != null}" ><tr><td class="hlaska_chyba">${chyby.chybnySouborZprava}</td></tr></c:if>
           <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
           <c:if test="${redundantniData != null}" ><tr><td class="hlaska_chyba">${chyby.redundantniDataZprava}</td></tr></c:if>
+          <c:if test="${vlozeniZaznamu != null}" ><tr><td class="hlaska_uspech">${oznameni.vlozeniZaznamuZprava}</td></tr></c:if>
         </table>
         <table>
           <tr>

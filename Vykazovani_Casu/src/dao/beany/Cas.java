@@ -1,6 +1,7 @@
 package dao.beany;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -329,4 +330,14 @@ public class Cas{
     if(mesic >= 1 && mesic <= 12) this.mesic = mesic;
   }
 	
+  public Date getDatumDate(){
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    Date datum = null;
+    try {
+      datum = sdf.parse(den + "-" + mesic + "-" + rok);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return datum;
+  }
 }

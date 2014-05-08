@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.beany.Akce;
 import dao.beany.Cas;
 import dao.beany.Chyby;
+import dao.beany.Oznameni;
 import dao.databaze.Databaze;
 import dao.model.Cinnost;
 import dao.model.KalendarCinnost;
@@ -37,7 +38,7 @@ public class Vytvoreni extends AServletZamestnanec{
 	  presmerovani(request, response, adresa + "/zadane_cinnosti_nove.jsp");
 	}
 
-	private static double vratPocetOdpracovanychHodin(Date casOd, Date casDo) {
+	public static double vratPocetHodin(Date casOd, Date casDo) {
     double rozdil = casDo.getTime() - casOd.getTime();    
     rozdil /= 1000; //na sekundy
     rozdil /= 60; //na minuty
@@ -74,7 +75,7 @@ public class Vytvoreni extends AServletZamestnanec{
         kalendarCinnost.setCasOd(casOd);
         kalendarCinnost.setCasDo2(casDoText);
         kalendarCinnost.setCasDo(casDo);
-        if(request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI) == null && casOd != null && casDo != null) kalendarCinnost.setPocetHodin(vratPocetOdpracovanychHodin(casOd, casDo));
+        if(request.getAttribute(Chyby.PLATNE_DATUM_POROVNANI) == null && casOd != null && casDo != null) kalendarCinnost.setPocetHodin(vratPocetHodin(casOd, casDo));
         PracovniPomer pomer = pripojeni.nacti(PracovniPomer.class, pomerId);
         kalendarCinnost.setPracovniPomer(pomer);
         Cinnost cinnost = pripojeni.nacti(Cinnost.class, cinnostId);
@@ -84,6 +85,7 @@ public class Vytvoreni extends AServletZamestnanec{
         
         if(chyba == null){
           pripojeni.vlozUprav(kalendarCinnost, kalendarCinnost.getId());
+          request.setAttribute(Oznameni.VLOZENI_ZAZNAMU, true);
           kalendarCinnost = new KalendarCinnost();
         }
       //}

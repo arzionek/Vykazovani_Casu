@@ -32,6 +32,7 @@
     <c:if test="${objekt.id == null}"><tr><td class="zvyraznit2">Nová definice kalendáře:</td></tr></c:if>
     <c:if test="${duplicitniZadani != null}" ><tr><td class="hlaska_chyba">${chyby.duplicitniZadaniZprava}</td></tr></c:if>
     <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
+    <c:if test="${vlozeniZaznamu != null}" ><tr><td class="hlaska_uspech">${oznameni.vlozeniZaznamuZprava}</td></tr></c:if>
   </table>
   <table>
     <tr><td style="width: 200px;"><b>*Kód:</b></td><td><input type="text" required="true" name="kod" value="${objekt.kod}" <c:if test="${fn:contains(duplicitniZadani,'kod') || fn:contains(povinnyUdaj,'kod') || fn:contains(maximalniDelka,'kod')}">class="povinne"</c:if>/></td></tr>

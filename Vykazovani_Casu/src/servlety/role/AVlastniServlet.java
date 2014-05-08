@@ -155,7 +155,7 @@ public abstract class AVlastniServlet extends AServlet{
          pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
          return null;
        }
-	     datum = "01-01-9999 " + datum;
+	     datum = "01-01-1900 " + datum;
        
 	     format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	   }else{
