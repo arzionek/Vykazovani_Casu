@@ -92,6 +92,12 @@ th{
   font-weight: bold;
 }
 
+.hlaska_uspech{
+  text-align: left;
+  color: green;
+  font-weight: bold;
+}
+
 .povinne{
   border: 2px solid red;
 }

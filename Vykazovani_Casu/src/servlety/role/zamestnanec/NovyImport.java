@@ -22,6 +22,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import dao.beany.Akce;
+import dao.beany.Oznameni;
 import dao.model.Cinnost;
 import dao.model.Kalendar;
 import dao.model.KalendarCinnost;
@@ -95,6 +96,9 @@ public class NovyImport extends AServletZamestnanec {
             if (novyKalendar(stream, uzivatel, kalendarDefinice, kalendar, request) == 0) {
               pripojeni.smaz(kalendar);
               kontrolaRedundance(request, true, "soubor");
+            }
+            else {
+              request.setAttribute(Oznameni.VLOZENI_ZAZNAMU, true);
             }
 
             stream.close();

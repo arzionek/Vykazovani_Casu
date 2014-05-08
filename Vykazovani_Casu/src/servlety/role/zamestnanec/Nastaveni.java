@@ -20,6 +20,7 @@ import servlety.nastroje.Download;
 
 import dao.beany.Cas;
 import dao.beany.Chyby;
+import dao.beany.Oznameni;
 import dao.model.Cinnost;
 import dao.model.KalendarDefinice;
 import dao.model.PracovniPomer;
@@ -94,6 +95,7 @@ public class Nastaveni extends AServletZamestnanec{
         
         if(chyba == null){
           pripojeni.vlozUprav(svatek, svatek.getId());
+          request.setAttribute(Oznameni.VLOZENI_ZAZNAMU, true);
           svatek = new Svatek();
         }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
           String atribut = getShoda(svatek, svatek2);
@@ -140,6 +142,7 @@ public class Nastaveni extends AServletZamestnanec{
         
         if(chyba == null){
           pripojeni.vlozUprav(cinnost, cinnost.getId());
+          request.setAttribute(Oznameni.VLOZENI_ZAZNAMU, true);
           cinnost = new Cinnost();
         }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
           String atribut = getShoda(cinnost, cinnost2);
@@ -194,6 +197,7 @@ public class Nastaveni extends AServletZamestnanec{
         
         if(chyba == null){
           pripojeni.vlozUprav(pomer, pomer.getId());
+          request.setAttribute(Oznameni.VLOZENI_ZAZNAMU, true);
           pomer = new PracovniPomer();
         }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
           String atribut = getShoda(pomer, pomer2);
@@ -252,6 +256,7 @@ public class Nastaveni extends AServletZamestnanec{
 
         if(chyba == null){
           pripojeni.vlozUprav(definice, definice.getId());
+          request.setAttribute(Oznameni.VLOZENI_ZAZNAMU, true);
           definice = new KalendarDefinice();
         }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
           String atribut = getShoda(definice, definice2);
@@ -360,6 +365,7 @@ public class Nastaveni extends AServletZamestnanec{
 
       if(chyba == null){
         pripojeni.vlozUprav(sablona, sablona.getId());
+        request.setAttribute(Oznameni.VLOZENI_ZAZNAMU, true);
         sablona = new SablonaVykaz();
       }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
         String atribut = getShoda(sablona, sablona2);
@@ -399,6 +405,7 @@ public class Nastaveni extends AServletZamestnanec{
 
     if(chyba == null){
       pripojeni.vlozUprav(sablona, sablona.getId());
+      request.setAttribute(Oznameni.VLOZENI_ZAZNAMU, true);
       sablona = new SablonaVykaz();
     }else if(request.getAttribute(Chyby.DUPLICITNI_ZADANI) != null){
       String atribut = getShoda(sablona, sablona2);
