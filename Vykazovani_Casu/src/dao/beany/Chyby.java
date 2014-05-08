@@ -23,7 +23,7 @@ public class Chyby {
   public static final String PLATNE_DATUM_ZPRAVA = "Neplatné datum nebo èas!";
   public static final String REALNE_NEZAPORNE_CISLO_ZPRAVA = "Musí být zadáno kladné èíslo!";
   public static final String MAXIMALNI_DELKA_ZPRAVA = "Zadané údaje jsou pøíliš dlouhé!";
-  public static final String PLATNE_DATUM_POROVNANI_ZPRAVA = "Èas od je vìtší než èas do!";
+  public static final String PLATNE_DATUM_POROVNANI_ZPRAVA = "Èas od musí být menší než èas do!";
   public static final String REALNE_CISLO_0_1_ZPRAVA = "Musí být zadáno èíslo 0 - 1!";
   public static final String PODPOROVANY_FORMAT_ZPRAVA = "Podporovány jsou pouze XLS soubory!";
   public static final String CHYBNY_SOUBOR_ZPRAVA = "Podporovány jsou pouze ics soubory!";
