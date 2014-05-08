@@ -67,7 +67,8 @@ public class ExportPracovnihoVykazu extends ExportDoSablony {
           }else{
             nastavBunku(sheet, rowCount, 0, pocetHodin);
             nastavBunku(sheet, rowCount, 1, cin.getCinnost().getNazev());
-            popisy = popisy.substring(0, popisy.lastIndexOf(','));
+            int index = popisy.lastIndexOf(',');
+            if(index != -1)popisy = popisy.substring(0, index);
             nastavBunku(sheet, rowCount, 3, popisy);
             rowCount++;
             popisy = "";
