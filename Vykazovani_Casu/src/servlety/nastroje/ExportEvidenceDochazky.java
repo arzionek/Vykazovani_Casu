@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.CellReference;
 
 import servlety.role.zamestnanec.Vytvoreni;
 import dao.beany.Cas;
@@ -54,7 +55,7 @@ public class ExportEvidenceDochazky extends ExportDoSablony {
               
               int cellCount = 3;
               while(cas.getDatumDate().equals(cin.getDatum())){
-                if(cellCount <= 15){
+                if(cellCount < 15){
                   if(cellCount == 6){
                     KalendarCinnost cin0 = cinnosti.get(cisloCinnosti - 1);
                     nastavBunku(sheet, rowCount, cellCount++, cin0.getCasDo());
@@ -64,13 +65,13 @@ public class ExportEvidenceDochazky extends ExportDoSablony {
                   nastavBunku(sheet, rowCount, cellCount++, cin.getCasOd());
                   nastavBunku(sheet, rowCount, cellCount++, cin.getCasDo());
                   nastavBunku(sheet, rowCount, cellCount++, cin.getPocetHodin());
-                  cisloCinnosti++;
-                  if(cisloCinnosti == cinnosti.size()) break;
-                  cin = cinnosti.get(cisloCinnosti);
                 }
+                cisloCinnosti++;
+                if(cisloCinnosti == cinnosti.size()) break;
+                cin = cinnosti.get(cisloCinnosti);
               }
             }else{
-              nastavBunku(sheet, rowCount, 16, cin.getCinnost().getNazev());
+              nastavBunku(sheet, "Q" + rowCount, cin.getCinnost().getNazev());
               while(cas.getDatumDate().equals(cin.getDatum())){
                 cisloCinnosti++;
                 if(cisloCinnosti == cinnosti.size()) break;
@@ -90,6 +91,11 @@ public class ExportEvidenceDochazky extends ExportDoSablony {
       e.printStackTrace();
     }
     return vysledek;
+  }
+
+  private static void nastavBunku(HSSFSheet sheet, String oznaceni, Object hodnota) {
+    CellReference cr = new CellReference(oznaceni);
+    nastavBunku(sheet, cr.getRow(), cr.getCol(), hodnota);
   }
 
   private static void evidenceDochazkyHlavicka(HSSFSheet sheet, Uzivatel uzivatel) {

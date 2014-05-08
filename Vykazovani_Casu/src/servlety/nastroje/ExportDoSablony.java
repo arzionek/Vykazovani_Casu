@@ -35,7 +35,10 @@ public class ExportDoSablony extends Prehled{
     pomer.setUzivatel(export.getUzivatel());
     export.setPracovniPomer(pomer);
     
-    List<KalendarCinnost> cinnosti = pripojeni.ziskejCinnosti(new Cas(export.getDatumOd()).getDatumDatabaze(false), new Cas(export.getDatumDo()).getDatumDatabaze(true), pomer, new String[]{"datum asc", "casOd asc"});
+    String[] razeni = new String[]{"datum asc", "casOd asc"};
+    if(vykaz.getTyp().equals(SablonaVykaz.PRACOVNI_VYKAZ)) razeni = new String[]{"cinnost.id asc", "datum asc", "casOd asc"};
+    
+    List<KalendarCinnost> cinnosti = pripojeni.ziskejCinnosti(new Cas(export.getDatumOd()).getDatumDatabaze(false), new Cas(export.getDatumDo()).getDatumDatabaze(true), pomer, razeni);
     for (int i = 0; cinnosti != null && i < cinnosti.size(); i++) {
       KalendarCinnost kc = cinnosti.get(i);
       pripojeni.inicializaceObjektu(kc.getCinnost());
