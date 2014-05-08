@@ -42,6 +42,7 @@
     <c:param name="akce" value="${akce.exportXls}"/>
   </c:url>
   <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
+  <input type="hidden" name="pomer" value="${objekt.pracovniPomer.id}" />
   <table>
     <tr><td style="width: 200px;"><b>*Datum od:</b></td><td><input type="text" required="true" name="datumOd" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> value="${objekt.datumOd2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumOd') || fn:contains(platneDatumPorovnani,'datumOd') || fn:contains(platneDatum,'datumOd')}"> povinne</c:if>"/></td></tr>
     <tr><td style="width: 200px;"><b>*Datum do:</b></td><td><input type="text" required="true" name="datumDo" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> value="${objekt.datumDo2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumDo') || fn:contains(platneDatum,'datumDo')}"> povinne</c:if>"/></td></tr>

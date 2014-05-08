@@ -49,6 +49,7 @@ public class Export extends AServletZamestnanec{
       Date datumDo = kontrolaDatum("datumDo", null, request);
       kontrolaDatumCas(datumOd, datumDo, request, "datumOd");
 	    long sablonaVykazId = vratId(request, "sablona");
+	    long pracovniPomerId = vratId(request, "pomer");
 	    if(sablonaVykazId == 0) pridejChybu(request, Chyby.POVINNY_UDAJ, "sablona");
 	    else export.getSablonaVykaz().setId(sablonaVykazId);
 	    
@@ -56,9 +57,10 @@ public class Export extends AServletZamestnanec{
 	    
 	    export.setDatumOd(datumOd);
       export.setDatumDo(datumDo);
+      export.getPracovniPomer().setId(pracovniPomerId);
       
 	    if(chyba == null){
-	       ExportDoSablony.provestExport(export, pripojeni);
+	       ExportDoSablony.provestExport(response, export, pripojeni);
 	       export = new ExportSablona();
 	    }
 	  }
