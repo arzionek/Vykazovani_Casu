@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 
 import dao.beany.Akce;
 import dao.beany.Chyby;
+import dao.beany.Oznameni;
 
 public class EncodingFilter implements Filter {
 	private String encoding;
@@ -29,6 +30,7 @@ public class EncodingFilter implements Filter {
 
 		request.setAttribute("akce", new Akce());
 		request.setAttribute("chyby", new Chyby());
+		request.setAttribute("oznameni", new Oznameni());
 		request.setAttribute("baseUrl", baseUrl);
 
 		chain.doFilter(request, response);
