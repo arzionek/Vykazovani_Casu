@@ -206,7 +206,7 @@ public abstract class AVlastniServlet extends AServlet{
 	
 	protected static void kontrolaDatumCas(Date casOd, Date casDo, HttpServletRequest request, String nazev) {
     if(casOd != null && casDo != null && casOd.after(casDo)) pridejChybu(request, Chyby.PLATNE_DATUM_POROVNANI, nazev); 
-    else if (nazev.contains("cas") && casOd.getTime() == casDo.getTime()) pridejChybu(request, Chyby.PLATNE_DATUM_POROVNANI, nazev);
+    else if (casOd != null && casDo != null && nazev.contains("cas") && casOd.getTime() == casDo.getTime()) pridejChybu(request, Chyby.PLATNE_DATUM_POROVNANI, nazev);
   }
 	
 	protected static void kontrolaChybnySoubor(HttpServletRequest request, FileInputStream stream, String nazev) {
