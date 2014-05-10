@@ -10,12 +10,13 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import dao.beany.Cas;
 import dao.model.ExportSablona;
 import dao.model.KalendarCinnost;
+import dao.model.Svatek;
 
 public class ExportPracovnihoVykazu extends ExportDoSablony {
 
   private static final long serialVersionUID = -81168711497304198L;
   
-  public static Vysledek exportPracovnihoVykazu(ExportSablona export) {
+  public static Vysledek exportPracovnihoVykazu(ExportSablona export, List<Svatek> svatky) {
     Vysledek vysledek = new Vysledek();
     vysledek.nazevSouboru = "pracovni_vykaz";
     try {
@@ -77,7 +78,7 @@ public class ExportPracovnihoVykazu extends ExportDoSablony {
         }
       }
       nastavBunku2(sheet, 37, 1, "SUM(A24:A36)");
-      nastavBunku2(sheet, 44, 3, "B38+C43+G43");
+      nastavBunku2(sheet, 44, 3, "B38+C43+G43+" + pocetHodinSvatek(export.getPracovniPomer().getVelikostUvazku(), svatky, cas));
       nastavBunku(sheet, 51, 4, export.getUzivatel().getCeleJmeno());
 
       bais.close();
@@ -87,6 +88,18 @@ public class ExportPracovnihoVykazu extends ExportDoSablony {
       e.printStackTrace();
     }
     return vysledek;
+  }
+
+  private static double pocetHodinSvatek(double velikostUvazku, List<Svatek> svatky, Cas cas) {
+    double pocetHodin = 0;
+    for (int i = 0; i < svatky.size(); i++) {
+      Svatek sv = svatky.get(i);
+      Cas casSv = new Cas(sv.getDatum());
+      casSv.setRok(cas.getRok());
+      casSv.nastavDen(casSv.getDen(), casSv.getMesic(), casSv.getRok());
+      if(casSv.getMesic() == cas.getMesic() && !jeVikend(casSv)) pocetHodin += (8 * velikostUvazku);
+    }
+    return pocetHodin;
   }
 
 }

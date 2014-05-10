@@ -48,7 +48,7 @@ public class ExportDoSablony extends Prehled{
     
     Vysledek vysledek = null;
     if(vykaz.getTyp().equals(SablonaVykaz.EVIDENCE_DOCHAZKY)) vysledek = ExportEvidenceDochazky.exportEvidenceDochazky(export, svatky);
-    else if(vykaz.getTyp().equals(SablonaVykaz.PRACOVNI_VYKAZ)) vysledek = ExportPracovnihoVykazu.exportPracovnihoVykazu(export);
+    else if(vykaz.getTyp().equals(SablonaVykaz.PRACOVNI_VYKAZ)) vysledek = ExportPracovnihoVykazu.exportPracovnihoVykazu(export, svatky);
     //else if(vykaz.getTyp().equals(SablonaVykaz.DOVOLENA)) vysledek = ExportDovolene.exportDovolene(export);
     
     Cas cas = new Cas();
