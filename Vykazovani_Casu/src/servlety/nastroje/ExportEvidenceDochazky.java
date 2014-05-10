@@ -79,6 +79,13 @@ public class ExportEvidenceDochazky extends ExportDoSablony {
               }
             }
           }
+        }else if(cisloCinnosti < cinnosti.size()){
+          KalendarCinnost cin = cinnosti.get(cisloCinnosti);
+          while(cas.getDatumDate().equals(cin.getDatum())){
+            cisloCinnosti++;
+            if(cisloCinnosti == cinnosti.size()) break;
+            cin = cinnosti.get(cisloCinnosti);
+          }
         }
         rowCount++;
       }
