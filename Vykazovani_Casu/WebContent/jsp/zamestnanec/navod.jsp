@@ -23,10 +23,9 @@
 	<h3 class="zvyraznit3">Export dat:</h3>
 	<p>
 		Záložka <i>Export dat</i> slouží k vygenerování přislušného výkazu. Je
-		zde nutné vyplnit o jaký pracovní poměr se jedná, datum "od-do" a je
-		nutné zvolit šablonu příslušného výkazu. Pracovní výkazy se vždy
-		generují za celý měsíc, dovolené a nemocenské za zvolené období.
-		Vygenerovaný soubor je ve formátu ".xls". 
+		zde nutné vyplnit o jaký pracovní poměr se jedná (potvrdit kliknutím na 
+		ikonku uložit), datum "od-do" a je nutné zvolit šablonu příslušného výkazu. Pracovní výkazy se vždy
+		generují za zvolené období. Vygenerovaný soubor je ve formátu ".xls". 
 	</p>
 
 </div>
@@ -71,7 +70,9 @@
 	Do číselníku <i>Šablony</i> ukládají šablony potřebných pracovních výkazů. Pri vkládání nové šablony
 	je nutné zadat kód, název, vybrat typ šablony (výběr z předem nadefinovaných variant), soubor 
 	(odpovídající <b>.xls</b> soubor z pevného disku), a zvolit odpovídající pracovní poměr. Již 
-	uložené šablony je možné si stáhnout, editovat označení nebo smazat.
+	uložené šablony je možné si stáhnout, editovat označení nebo smazat. 
+	Defaultně jsou v systému již uloženy šablony, které systém aktuálně podporuje. Uživatel si tuto šablonu stáhne,
+	předvyplní potřebné a zpět nahraje. Při exportu pak zvolí příslušnou šablonu.
 	</p>
 	<p>
 	K tomu, jak bude probíhat převod z externího kalendáře do systému, slouží číselník <i>Kalendář</i>.
