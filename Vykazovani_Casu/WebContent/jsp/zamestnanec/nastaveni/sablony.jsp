@@ -15,7 +15,7 @@
     var upravitTooltip = 'Upravit údaje u šablony.';
     var stahnoutTooltip = 'Stáhnout soubor.';
     var odstranitTooltip = 'Odstranit šablonu.';
-    var novyTooltip = 'Nová šablona.';
+    var novyTooltip = 'Vyčistit formulář.';
   </script>
   <h2 class="stred">Nastavení číselníků:</h2>
   

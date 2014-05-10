@@ -13,7 +13,7 @@
 	<jsp:include page="../zahlavi_komponenta_datum.jsp" flush="true" />
 	<script type="text/javascript">
     var ulozitTooltip = 'Uložit činnost.';
-    var novyTooltip = 'Nová činnost.';
+    var novyTooltip = 'Vyčistit formulář.';
   </script>
 	<h2 class="stred">Zadávání činností:</h2>
 	

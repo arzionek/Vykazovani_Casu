@@ -14,7 +14,7 @@
   <jsp:include page="../zamestnanec/import_menu.jsp" flush="true" />
   <script type="text/javascript">
     var ulozitTooltip = 'Provést import dat.';
-    var novyTooltip = 'Nový import.';
+    var novyTooltip = 'Vyčistit formulář.';
   </script>
 
   <div class="box2">

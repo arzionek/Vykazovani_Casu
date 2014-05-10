@@ -14,7 +14,7 @@
     var ulozitTooltip = 'Uložit definici kalendáře.';
     var upravitTooltip = 'Upravit definici kalendáře.';
     var odstranitTooltip = 'Odstranit definici kalendáře.';
-    var novyTooltip = 'Nová definice kalendáře.';
+    var novyTooltip = 'Vyčistit formulář.';
   </script>
   <h2 class="stred">Nastavení číselníků:</h2>
   

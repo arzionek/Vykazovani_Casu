@@ -14,7 +14,7 @@
     var ulozitTooltip = 'Uložit činnost.';
     var upravitTooltip = 'Upravit činnost.';
     var odstranitTooltip = 'Odstranit činnost.';
-    var novyTooltip = 'Nová činnost.';
+    var novyTooltip = 'Vyčistit formulář.';
   </script>
   <h2 class="stred">Nastavení číselníků:</h2>
   

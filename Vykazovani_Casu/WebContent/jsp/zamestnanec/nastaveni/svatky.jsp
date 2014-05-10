@@ -15,7 +15,7 @@
     var ulozitTooltip = 'Uložit svátek.';
     var upravitTooltip = 'Upravit svátek.';
     var odstranitTooltip = 'Odstranit svátek.';
-    var novyTooltip = 'Nový svátek.';
+    var novyTooltip = 'Vyčistit formulář.';
   </script>
   <h2 class="stred">Nastavení číselníků:</h2>
   

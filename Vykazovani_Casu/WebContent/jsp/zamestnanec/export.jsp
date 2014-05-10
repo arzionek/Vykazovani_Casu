@@ -14,7 +14,7 @@
 <script type="text/javascript">
   var ulozitTooltip = 'Provést export.';
   var ulozit2Tooltip = 'Nastavit pracovní poměr.';
-  var novyTooltip = 'Nový export.';
+  var novyTooltip = 'Vyčistit formulář.';
 </script>
 <h2 class="stred">Export dat:</h2>
 <div class="box2"> 

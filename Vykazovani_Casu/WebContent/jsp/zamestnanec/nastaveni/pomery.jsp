@@ -14,7 +14,7 @@
     var ulozitTooltip = 'Uložit pracovní poměr.';
     var upravitTooltip = 'Upravit pracovní poměr.';
     var odstranitTooltip = 'Odstranit pracovní poměr.';
-    var novyTooltip = 'Nový pracovní poměr';
+    var novyTooltip = 'Vyčistit formulář.';
   </script>
   <h2 class="stred">Nastavení číselníků:</h2>
   
