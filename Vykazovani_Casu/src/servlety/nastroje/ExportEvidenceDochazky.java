@@ -20,7 +20,7 @@ public class ExportEvidenceDochazky extends ExportDoSablony {
   
   private static final long serialVersionUID = -4756236081184968312L;
 
-  public static Vysledek exportEvidenceDochazky(ExportSablona export, List<Svatek> svatky) {
+  public static Vysledek exportEvidenceDochazky(ExportSablona export, List<Svatek> svatky) throws Exception{
     Vysledek vysledek = new Vysledek();
     vysledek.nazevSouboru = "evidence_dochazky";
     try {
@@ -100,17 +100,17 @@ public class ExportEvidenceDochazky extends ExportDoSablony {
     return vysledek;
   }
 
-  private static void nastavBunku(HSSFSheet sheet, String oznaceni, Object hodnota) {
+  private static void nastavBunku(HSSFSheet sheet, String oznaceni, Object hodnota) throws Exception{
     CellReference cr = new CellReference(oznaceni);
     nastavBunku(sheet, cr.getRow(), cr.getCol(), hodnota);
   }
 
-  private static void evidenceDochazkyHlavicka(HSSFSheet sheet, Uzivatel uzivatel) {
+  private static void evidenceDochazkyHlavicka(HSSFSheet sheet, Uzivatel uzivatel) throws Exception{
     nastavBunku(sheet, 0, 5, uzivatel.getCeleJmeno());
     nastavBunku(sheet, 35, 8, uzivatel.getCeleJmeno());
   }
   
-  private static void evidenceDochazkyPaticka(HSSFSheet sheet, PracovniPomer pracovniPomer) {
+  private static void evidenceDochazkyPaticka(HSSFSheet sheet, PracovniPomer pracovniPomer) throws Exception{
     nastavBunku2(sheet, 35, 5, "SUM(F4:F34)+SUM(L4:L34)+SUM(O4:O34)");
     nastavBunku2(sheet, 36, 5, "F36+F38");
     nastavBunku2(sheet, 37, 5, "SUM(I4:I34)");

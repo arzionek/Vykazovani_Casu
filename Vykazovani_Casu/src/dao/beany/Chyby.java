@@ -11,6 +11,7 @@ public class Chyby {
   public static final String REALNE_CISLO_0_1 = "realneCislo01";
   public static final String PODPOROVANY_FORMAT = "podporovanyFormat";
   public static final String CHYBNY_SOUBOR = "chybnySoubor";
+  public static final String CHYBNY_SOUBOR_EXPORT = "chybnySouborExport";
   public static final String REDUNDANTNI_DATA = "redundantniData";
   
   public static final String PRACE_VIKEND = "praceVikend";
@@ -27,6 +28,7 @@ public class Chyby {
   public static final String REALNE_CISLO_0_1_ZPRAVA = "Musí být zadáno èíslo 0 - 1!";
   public static final String PODPOROVANY_FORMAT_ZPRAVA = "Podporovány jsou pouze XLS soubory!";
   public static final String CHYBNY_SOUBOR_ZPRAVA = "Podporovány jsou pouze ics soubory!";
+  public static final String CHYBNY_SOUBOR_EXPORT_ZPRAVA = "Chyba šablony!";
   public static final String REDUNDANTNI_DATA_ZPRAVA = "Všechny záznamy jsou již uloženy!";
   
   public static final String PRACE_VIKEND_ZPRAVA = "Práce o víkendu!";
@@ -143,5 +145,13 @@ public class Chyby {
 
   public String getPomerMesicniFond() {
     return POMER_MESICNI_FOND;
+  }
+
+  public String getChybnySouborExportZprava() {
+    return CHYBNY_SOUBOR_EXPORT_ZPRAVA;
+  }
+
+  public String getChybnySouborExport() {
+    return CHYBNY_SOUBOR_EXPORT;
   }
 }

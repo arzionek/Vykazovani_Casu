@@ -242,6 +242,7 @@ public abstract class AVlastniServlet extends AServlet{
 	  if (chyba == null) chyba = request.getAttribute(Chyby.PODPOROVANY_FORMAT);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.CHYBNY_SOUBOR);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.REDUNDANTNI_DATA);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.CHYBNY_SOUBOR_EXPORT);
 	  return chyba;
 	}
 	

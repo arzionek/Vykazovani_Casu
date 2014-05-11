@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -15,6 +16,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import servlety.role.zamestnanec.Prehled;
 
 import dao.beany.Cas;
+import dao.beany.Chyby;
 import dao.databaze.Databaze;
 import dao.model.ExportSablona;
 import dao.model.KalendarCinnost;
@@ -26,7 +28,7 @@ public class ExportDoSablony extends Prehled{
 
   private static final long serialVersionUID = -7136951769912776457L;
 
-  public static void provestExport(HttpServletResponse response, ExportSablona export, Databaze pripojeni) {
+  public static void provestExport(HttpServletResponse response, ExportSablona export, Databaze pripojeni, HttpServletRequest request) {
     SablonaVykaz vykaz = pripojeni.nacti(SablonaVykaz.class, export.getSablonaVykaz().getId());
     pripojeni.inicializaceObjektu(vykaz);
     export.setSablonaVykaz(vykaz);
@@ -47,13 +49,16 @@ public class ExportDoSablony extends Prehled{
     List<Svatek> svatky = pripojeni.ziskejObjekty(Svatek.class, pomer.getUzivatel(), "datum");
     
     Vysledek vysledek = null;
-    if(vykaz.getTyp().equals(SablonaVykaz.EVIDENCE_DOCHAZKY)) vysledek = ExportEvidenceDochazky.exportEvidenceDochazky(export, svatky);
-    else if(vykaz.getTyp().equals(SablonaVykaz.PRACOVNI_VYKAZ)) vysledek = ExportPracovnihoVykazu.exportPracovnihoVykazu(export, svatky);
-    //else if(vykaz.getTyp().equals(SablonaVykaz.DOVOLENA)) vysledek = ExportDovolene.exportDovolene(export);
-    
-    Cas cas = new Cas();
-    String datum = cas.getRok() + "_" + cas.getMesic() + "_" + cas.getDen();
-    Download.download(response, vysledek.data, datum + "_" + vysledek.nazevSouboru + ".xls");
+    try{
+      if(vykaz.getTyp().equals(SablonaVykaz.EVIDENCE_DOCHAZKY)) vysledek = ExportEvidenceDochazky.exportEvidenceDochazky(export, svatky);
+      else if(vykaz.getTyp().equals(SablonaVykaz.PRACOVNI_VYKAZ)) vysledek = ExportPracovnihoVykazu.exportPracovnihoVykazu(export, svatky);
+      //else if(vykaz.getTyp().equals(SablonaVykaz.DOVOLENA)) vysledek = ExportDovolene.exportDovolene(export);
+      Cas cas = new Cas();
+      String datum = cas.getRok() + "_" + cas.getMesic() + "_" + cas.getDen();
+      Download.download(response, vysledek.data, datum + "_" + vysledek.nazevSouboru + ".xls");
+    }catch(Exception e){
+      pridejChybu(request, Chyby.CHYBNY_SOUBOR_EXPORT, "sablona");
+    }
   }
 
   protected static class Vysledek{
@@ -61,16 +66,16 @@ public class ExportDoSablony extends Prehled{
     String nazevSouboru;
   }
 
-  protected static void vycistiRadku(HSSFSheet sheet, int rowCount) {
+  protected static void vycistiRadku(HSSFSheet sheet, int rowCount) throws Exception{
     for (int i = 0; i <= 16; i++) nastavBunku(sheet, rowCount, i, "");
   }
 
-  protected static void nastavBunku2(HSSFSheet sheet, int rowCount, int cellCount, String formula) {
+  protected static void nastavBunku2(HSSFSheet sheet, int rowCount, int cellCount, String formula) throws Exception{
     Cell cell = sheet.getRow(rowCount).getCell(cellCount);
     cell.setCellFormula(formula);
   }
 
-  protected static void nastavBunku(HSSFSheet sheet, int rowCount, int cellCount, Object hodnota) {
+  protected static void nastavBunku(HSSFSheet sheet, int rowCount, int cellCount, Object hodnota) throws Exception{
     Cell cell = sheet.getRow(rowCount).getCell(cellCount);
     cell.setCellFormula(null);
     if(hodnota instanceof Date){

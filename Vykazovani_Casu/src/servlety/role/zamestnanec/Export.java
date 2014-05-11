@@ -60,8 +60,9 @@ public class Export extends AServletZamestnanec{
       export.getPracovniPomer().setId(pracovniPomerId);
       
 	    if(chyba == null){
-	       ExportDoSablony.provestExport(response, export, pripojeni);
-	       export = new ExportSablona();
+	       ExportDoSablony.provestExport(response, export, pripojeni, request);
+	       Object chyba2 = overChyby(request);
+	       if(chyba2 == null) export = new ExportSablona();
 	    }
 	  }
 	  

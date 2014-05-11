@@ -16,7 +16,7 @@ public class ExportPracovnihoVykazu extends ExportDoSablony {
 
   private static final long serialVersionUID = -81168711497304198L;
   
-  public static Vysledek exportPracovnihoVykazu(ExportSablona export, List<Svatek> svatky) {
+  public static Vysledek exportPracovnihoVykazu(ExportSablona export, List<Svatek> svatky) throws Exception{
     Vysledek vysledek = new Vysledek();
     vysledek.nazevSouboru = "pracovni_vykaz";
     try {
