@@ -44,13 +44,11 @@ public class ExportEvidenceDochazky extends ExportDoSablony {
         cas.nastavDen(i, cas.getMesic(), cas.getRok());
         
         nastavBunku(sheet, rowCount, 0, cas.getDatumDate());
-        
         if(!jeVikend(cas) && !jeSvatek(cas, svatky)){
           nastavBunku(sheet, rowCount, 1, cas.getDatumDate());
-        
           if(cisloCinnosti < cinnosti.size()){
             KalendarCinnost cin = cinnosti.get(cisloCinnosti);
-            if(!jeDovolena(cin) && !jeSluzebniCesta(cin) && !jeNemoc(cin)){
+            if(!jeDovolena(cin) && !jeSluzebniCesta(cin) && !jeNemoc(cin) && cas.getDatumDate().equals(cin.getDatum())){
               nastavBunku2(sheet, rowCount, 2, getTyp(cas));
               
               int cellCount = 3;
@@ -70,8 +68,8 @@ public class ExportEvidenceDochazky extends ExportDoSablony {
                 if(cisloCinnosti == cinnosti.size()) break;
                 cin = cinnosti.get(cisloCinnosti);
               }
-            }else{
-              nastavBunku(sheet, "Q" + rowCount, cin.getCinnost().getNazev());
+            }else if(cas.getDatumDate().equals(cin.getDatum())) {
+              nastavBunku(sheet, "Q" + (rowCount + 1), cin.getCinnost().getNazev());
               while(cas.getDatumDate().equals(cin.getDatum())){
                 cisloCinnosti++;
                 if(cisloCinnosti == cinnosti.size()) break;
