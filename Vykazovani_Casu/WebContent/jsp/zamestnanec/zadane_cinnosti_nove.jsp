@@ -33,12 +33,13 @@
     <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
     <c:if test="${platneDatum != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumZprava}</td></tr></c:if>
     <c:if test="${platneDatumPorovnani != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumPorovnaniZprava}</td></tr></c:if>
+    <c:if test="${pocetHodin != null}" ><tr><td class="hlaska_chyba">${chyby.pocetHodinZprava}</td></tr></c:if>
     <c:if test="${vlozeniZaznamu != null}" ><tr><td class="hlaska_uspech">${oznameni.vlozeniZaznamuZprava}</td></tr></c:if>
   </table>
   <table>
     <tr><td style="width: 200px;"><b>*Datum:</b></td><td><input type="text" required="true" name="datum" id="datepicker" value="${objekt.datum2}" <c:if test="${fn:contains(duplicitniZadani,'casOd') || fn:contains(povinnyUdaj,'datum') || fn:contains(platneDatum,'datum')}">class="povinne"</c:if>/></td></tr>
     <tr><td style="width: 200px;"><b>*Čas od (hh:mm):</b></td><td><input type="text" required="true" name="casOd" value="${objekt.casOd2}" <c:if test="${fn:contains(duplicitniZadani,'casOd') || fn:contains(platneDatumPorovnani,'casOd') || fn:contains(povinnyUdaj,'casOd') || fn:contains(platneDatum,'casOd')}">class="povinne"</c:if>/></td></tr>
-    <tr><td style="width: 200px;"><b>*Čas do (hh:mm):</b></td><td><input type="text" required="true" name="casDo" value="${objekt.casDo2}" <c:if test="${fn:contains(povinnyUdaj,'casDo') || fn:contains(platneDatum,'casDo')}">class="povinne"</c:if>/></td></tr>
+    <tr><td style="width: 200px;"><b>*Čas do (hh:mm):</b></td><td><input type="text" required="true" name="casDo" value="${objekt.casDo2}" <c:if test="${fn:contains(povinnyUdaj,'casDo') || fn:contains(platneDatum,'casDo') || fn:contains(pocetHodin,'casDo')}">class="povinne"</c:if>/></td></tr>
     <tr><td style="width: 200px;"><b>*Pracovní poměr:</b></td><td><select name="pomer" required="true" <c:if test="${fn:contains(povinnyUdaj,'pomer')}">class="povinne"</c:if>>
       <c:forEach items="${pomery}" var="pomer">
         <option value="${pomer.id}" <c:if test="${pomer.id == objekt.pracovniPomer.id}">selected="selected"</c:if>><c:out value="${pomer.kod}" /> - <c:out value="${pomer.nazev}" /></option>  

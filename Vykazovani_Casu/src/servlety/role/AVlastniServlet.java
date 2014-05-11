@@ -218,6 +218,10 @@ public abstract class AVlastniServlet extends AServlet{
     }
 	}
 	
+	protected static void kontrolaDelkyCinnosti(HttpServletRequest request, double pocetHodin, String nazev) {
+	  if (pocetHodin < 0.5 || pocetHodin > 12) pridejChybu(request, Chyby.POCET_HODIN, nazev);
+	}
+	
 	protected static void kontrolaChybnySoubor(HttpServletRequest request, boolean multipart, String nazev) {
 	  if (!multipart) pridejChybu(request, Chyby.CHYBNY_SOUBOR, nazev);
 	}
@@ -243,6 +247,7 @@ public abstract class AVlastniServlet extends AServlet{
 	  if (chyba == null) chyba = request.getAttribute(Chyby.CHYBNY_SOUBOR);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.REDUNDANTNI_DATA);
 	  if (chyba == null) chyba = request.getAttribute(Chyby.CHYBNY_SOUBOR_EXPORT);
+	  if (chyba == null) chyba = request.getAttribute(Chyby.POCET_HODIN);
 	  return chyba;
 	}
 	

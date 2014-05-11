@@ -13,6 +13,7 @@ public class Chyby {
   public static final String CHYBNY_SOUBOR = "chybnySoubor";
   public static final String CHYBNY_SOUBOR_EXPORT = "chybnySouborExport";
   public static final String REDUNDANTNI_DATA = "redundantniData";
+  public static final String POCET_HODIN = "pocetHodin";
   
   public static final String PRACE_VIKEND = "praceVikend";
   public static final String PRACE_SVATEK = "praceSvatek";
@@ -30,6 +31,7 @@ public class Chyby {
   public static final String CHYBNY_SOUBOR_ZPRAVA = "Podporovány jsou pouze ics soubory!";
   public static final String CHYBNY_SOUBOR_EXPORT_ZPRAVA = "Chyba šablony!";
   public static final String REDUNDANTNI_DATA_ZPRAVA = "Všechny záznamy jsou již uloženy!";
+  public static final String POCET_HODIN_ZPRAVA = "Délka èinnosti musí být v intervalu od 0.5 do 12 hodin!";
   
   public static final String PRACE_VIKEND_ZPRAVA = "Práce o víkendu!";
   public static final String PRACE_SVATEK_ZPRAVA = "Práce ve státní svátek!";
@@ -153,5 +155,13 @@ public class Chyby {
 
   public String getChybnySouborExport() {
     return CHYBNY_SOUBOR_EXPORT;
+  }
+  
+  public String getPocetHodin() {
+    return POCET_HODIN;
+  }
+
+  public String getPocetHodinZprava() {
+    return POCET_HODIN_ZPRAVA;
   }
 }

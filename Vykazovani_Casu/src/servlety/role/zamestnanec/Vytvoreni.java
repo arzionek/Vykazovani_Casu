@@ -57,6 +57,8 @@ public class Vytvoreni extends AServletZamestnanec{
         String casDoText = request.getParameter("casDo");
         Date casDo = (Date) kontrola(request, KalendarCinnost.class, "casDo");
         kontrolaDatumCas(casOd, casDo, request, "casOd");
+        double pocetHodin = vratPocetHodin(casOd, casDo);
+        kontrolaDelkyCinnosti(request, pocetHodin, "casDo");
         long pomerId = vratId(request, "pomer");
         long cinnostId = vratId(request, "cinnost");
         String popis = (String) kontrola(request, KalendarCinnost.class, "popis");
