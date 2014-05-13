@@ -31,16 +31,24 @@ public class Cas{
 	 * Konstruktor tøídy
 	 */
 	public Cas(){
-		Date dat = new Date();
-		DateFormat df = new SimpleDateFormat("dd_M_yyyy_HH_mm_ss"); 
-		String datumCas[] = (df.format(dat)).split("_");
+		//Date dat = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		den = cal.get(Calendar.DAY_OF_MONTH);
+		mesic = cal.get(Calendar.MONTH);
+		rok = cal.get(Calendar.YEAR);
+		hodina = cal.get(Calendar.HOUR_OF_DAY);
+		minuta = cal.get(Calendar.MINUTE);
+		sekunda = cal.get(Calendar.SECOND);
 		
-		den = Integer.parseInt(datumCas[0]);
-		mesic = Integer.parseInt(datumCas[1]);
-		rok = Integer.parseInt(datumCas[2]);
-		hodina = Integer.parseInt(datumCas[3]);
-		minuta = Integer.parseInt(datumCas[4]);
-		sekunda = Integer.parseInt(datumCas[5]);
+		//DateFormat df = new SimpleDateFormat("dd_M_yyyy_HH_mm_ss"); 
+		//String datumCas[] = (df.format(dat)).split("_");
+		//den = Integer.parseInt(datumCas[0]);
+		//mesic = Integer.parseInt(datumCas[1]);
+		//rok = Integer.parseInt(datumCas[2]);
+		//hodina = Integer.parseInt(datumCas[3]);
+		//minuta = Integer.parseInt(datumCas[4]);
+		//sekunda = Integer.parseInt(datumCas[5]);
 		
 		nastavDatum("" + den, "" + mesic, "" + rok);
 		nastavCas("" + hodina, "" + minuta);
