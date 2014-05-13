@@ -1,6 +1,7 @@
 package servlety.role.zamestnanec;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -68,9 +69,8 @@ public class Import extends AServletZamestnanec{
       vypisAkce("stahnout", request);
     }
     else if (akce.getImportObdobi().equals(volanaAkce)) {
-      Date datumOd = kontrolaDatum("datumOd", null, request);
-      Date datumDo = kontrolaDatum("datumDo", null, request);
-      kontrolaDatumCas(datumOd, datumDo, request, "datumOd");
+      Date datumOd = kontrolaDatum("mesic", null, request);
+      Date datumDo = setDatumDo(datumOd);
       
       Object chyba = overChyby(request);
       if(chyba == null){
@@ -94,4 +94,12 @@ public class Import extends AServletZamestnanec{
       presmerovani(request, response, adresa + "/import.jsp");
     }
 	}
+	
+	private Date setDatumDo(Date datumOd) {
+    if (datumOd == null) return null;
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(datumOd);
+    cal.set(Calendar.DATE, cal.getMaximum(Calendar.DATE)); 
+    return cal.getTime();
+  }
 }

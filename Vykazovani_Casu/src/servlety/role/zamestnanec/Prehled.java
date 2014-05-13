@@ -1,6 +1,7 @@
 package servlety.role.zamestnanec;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -59,9 +60,8 @@ public class Prehled extends AServletZamestnanec{
       pripojeni.smaz(cinnost);
       vypisAkce("_smazat", request);
     }else if(akce.getPrehledObdobi().equals(volanaAkce)){
-      Date datumOd = kontrolaDatum("datumOd", null, request);
-      Date datumDo = kontrolaDatum("datumDo", null, request);
-      kontrolaDatumCas(datumOd, datumDo, request, "datumOd");
+      Date datumOd = kontrolaDatum("mesic", null, request);
+      Date datumDo = setDatumDo(datumOd);
       
       Object chyba = overChyby(request);
       if(chyba == null){
@@ -154,5 +154,13 @@ public class Prehled extends AServletZamestnanec{
     else if(jeSvatek(cas, svatky)) varovani += " " + Chyby.PRACE_SVATEK;
     
     return varovani;
+  }
+  
+  private Date setDatumDo(Date datumOd) {
+    if (datumOd == null) return null;
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(datumOd);
+    cal.set(Calendar.DATE, cal.getMaximum(Calendar.DATE)); 
+    return cal.getTime();
   }
 }

@@ -100,9 +100,7 @@ public class NastaveniSystemu extends AEntita implements java.io.Serializable {
     String mesic = hodnota.substring(0, hodnota.indexOf('-'));
     if(mesic.length() == 1) mesic = "0" + mesic;
     hodnota = hodnota.substring(hodnota.indexOf('-') + 1);
-    String den = hodnota.substring(0, hodnota.indexOf(' '));
-    if(den.length() == 1) den = "0" + den;
-    datum = den + "." + mesic + "." + rok;
+    datum = mesic + "." + rok;
     return datum;
   }
 

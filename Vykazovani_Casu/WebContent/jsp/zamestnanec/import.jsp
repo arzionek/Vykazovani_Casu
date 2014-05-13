@@ -21,7 +21,6 @@
 <div class="box2">
   <table>
     <c:if test="${platneDatum != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumZprava}</td></tr></c:if>
-    <c:if test="${platneDatumPorovnani != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumPorovnaniZprava}</td></tr></c:if>
   </table>
   <c:url var="ulozit" value="import">
     <c:param name="akce" value="${akce.importObdobi}"/>
@@ -29,8 +28,7 @@
   <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
   	<table>
     	<tr>
-          <td style="width: 15px;"><b>Od:</b></td><td style="width: 80px;"><input id="datumOd" type="text" name="datumOd" value="${datumOd.datum}" class="datepicker<c:if test="${fn:contains(platneDatum,'datumOd') || fn:contains(platneDatumPorovnani,'datumOd')}"> povinne</c:if>"/></td>
-          <td style="width: 15px;"><b>Do:</b></td><td style="width: 80px;"><input id="datumDo" type="text" name="datumDo" value="${datumDo.datum}" class="datepicker<c:if test="${fn:contains(platneDatum,'datumDo')}"> povinne</c:if>"/></td>
+          <td style="width: 15px;"><b>Měsíc:</b></td><td style="width: 80px;"><input id="mesic" type="text" name="mesic" value="${datumOd.datum}" class="date-picker<c:if test="${fn:contains(platneDatum,'mesic') || fn:contains(platneDatumPorovnani,'mesic')}"> povinne</c:if>"/></td>
           <td><input onmouseover="tooltip(ulozitTooltip, this, 100)" type="image" alt="Uložit" src="img/ulozit.png" name="ulozit" value="Uložit"/></td>
       </tr>
     </table>
