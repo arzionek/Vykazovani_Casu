@@ -94,6 +94,7 @@ public class Vytvoreni extends AServletZamestnanec{
       vypisAkce("_vlozit", request);
     }
     
+    if (kalendarCinnost.getDatum() == null) kalendarCinnost.setDatum(getDatum(new Date()));
     request.setAttribute("objekt", kalendarCinnost);
     List<Cinnost> cinnosti = pripojeni.ziskejObjekty(Cinnost.class, uzivatel);
     request.setAttribute("cinnosti", cinnosti);
@@ -115,5 +116,15 @@ public class Vytvoreni extends AServletZamestnanec{
       }
     }
     if(chyba) request.setAttribute(Chyby.DUPLICITNI_ZADANI, "casOd"); 
+  }
+  
+  private static Date getDatum(Date datum) {
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    cal.setTime(datum);
+    cal.set(java.util.Calendar.HOUR, 0);
+    cal.set(java.util.Calendar.MINUTE, 0);
+    cal.set(java.util.Calendar.SECOND, 0);
+    cal.set(java.util.Calendar.MILLISECOND, 0);
+    return cal.getTime();
   }
 }
