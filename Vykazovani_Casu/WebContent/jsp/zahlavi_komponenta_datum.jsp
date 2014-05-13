@@ -10,11 +10,28 @@
     $(function() {
      $( ".datepicker" ).datepicker();
     });
+    $(function() {
+      $('.date-picker').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'mm.yy',
+        onClose: function(dateText, inst) { 
+            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(year, month, 1));
+        }
+      }).focus(function () {
+        $(".ui-datepicker-calendar").hide(); 
+      });
+    });
+    
+    
     $.datepicker.regional['cs'] = {
-      closeText: 'Cerrar',
+      closeText: 'Zavřít',
       prevText: 'Předchozí',
       nextText: 'Další',
-      currentText: 'Hoy',
+      currentText: 'Aktuální',
       monthNames: ['Leden','Únor','Březen','Duben','Květen','Červen', 'Červenec','Srpen','Září','Říjen','Listopad','Prosinec'],
       monthNamesShort: ['Le','Ún','Bř','Du','Kv','Čn', 'Čc','Sr','Zá','Ří','Li','Pr'],
       dayNames: ['Neděle','Pondělí','Úterý','Středa','Čtvrtek','Pátek','Sobota'],

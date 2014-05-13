@@ -158,7 +158,16 @@ public abstract class AVlastniServlet extends AServlet{
 	     datum = "01-01-1900 " + datum;
        
 	     format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-	   }else{
+	   }
+	   else if (nazev.contains("mesic")) {
+	     int pocetUdaju = datum.length() - datum.replace(".", "").length();
+	     if (pocetUdaju != 1) {
+	       pridejChybu(request, Chyby.PLATNE_DATUM, nazev);
+	       return null;
+	     }
+	     format = new SimpleDateFormat("MM.yyyy");
+	   }
+	   else {
   	   datum = datum.replace('.', '-');
   	    
   	   int pocetUdaju = datum.length() - datum.replace("-", "").length();

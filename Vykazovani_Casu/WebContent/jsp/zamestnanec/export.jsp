@@ -26,7 +26,6 @@
   <table>
     <c:if test="${povinnyUdaj != null}" ><tr><td class="hlaska_chyba">${chyby.povinnyUdajZprava}</td></tr></c:if>
     <c:if test="${platneDatum != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumZprava}</td></tr></c:if>
-    <c:if test="${platneDatumPorovnani != null}" ><tr><td class="hlaska_chyba">${chyby.platneDatumPorovnaniZprava}</td></tr></c:if>
     <c:if test="${chybnySouborExport != null}" ><tr><td class="hlaska_chyba">${chyby.chybnySouborExportZprava}</td></tr></c:if>
   </table>
   <table>
@@ -45,8 +44,7 @@
   <form action="<c:out value="${ulozit}" escapeXml="true" />" method="post">
   <input type="hidden" name="pomer" value="${objekt.pracovniPomer.id}" />
   <table>
-    <tr><td style="width: 200px;"><b>*Datum od:</b></td><td><input type="text" required="true" name="datumOd" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> value="${objekt.datumOd2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumOd') || fn:contains(platneDatumPorovnani,'datumOd') || fn:contains(platneDatum,'datumOd')}"> povinne</c:if>"/></td></tr>
-    <tr><td style="width: 200px;"><b>*Datum do:</b></td><td><input type="text" required="true" name="datumDo" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> value="${objekt.datumDo2}" class="datepicker<c:if test="${fn:contains(povinnyUdaj,'datumDo') || fn:contains(platneDatum,'datumDo')}"> povinne</c:if>"/></td></tr>
+    <tr><td style="width: 200px;"><b>*Měsíc:</b></td><td><input type="text" required="true" name="mesic" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> value="${objekt.datumOd2}" class="date-picker<c:if test="${fn:contains(povinnyUdaj,'mesic') || fn:contains(platneDatum,'mesic')}"> povinne</c:if>"/></td></tr>
     <tr><td style="width: 200px;"><b>*Šablona:</b></td><td><select name="sablona" <c:if test="${objekt.pracovniPomer.id == null}">disabled="disabled"</c:if> <c:if test="${fn:contains(povinnyUdaj,'sablona') || fn:contains(chybnySouborExport,'sablona')}">class="povinne"</c:if>>
       <c:forEach items="${sablony}" var="sablona">
         <option value="${sablona.id}" <c:if test="${sablona.id == objekt.sablonaVykaz.id}">selected="selected"</c:if>><c:out value="${sablona.typ}" /> - <c:out value="${sablona.kod}" /></option>  

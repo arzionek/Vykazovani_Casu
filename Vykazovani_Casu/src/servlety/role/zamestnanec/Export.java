@@ -1,6 +1,7 @@
 package servlety.role.zamestnanec;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -45,9 +46,7 @@ public class Export extends AServletZamestnanec{
   	  }
 	  }
 	  if(akce.getExportXls().equals(volanaAkce)){
-	    Date datumOd = kontrolaDatum("datumOd", null, request);
-      Date datumDo = kontrolaDatum("datumDo", null, request);
-      kontrolaDatumCas(datumOd, datumDo, request, "datumOd");
+	    Date datumOd = kontrolaDatum("mesic", null, request);
 	    long sablonaVykazId = vratId(request, "sablona");
 	    long pracovniPomerId = vratId(request, "pomer");
 	    if(sablonaVykazId == 0) pridejChybu(request, Chyby.POVINNY_UDAJ, "sablona");
@@ -56,7 +55,7 @@ public class Export extends AServletZamestnanec{
 	    Object chyba = overChyby(request);
 	    
 	    export.setDatumOd(datumOd);
-      export.setDatumDo(datumDo);
+      export.setDatumDo(setDatumDo(datumOd));
       export.getPracovniPomer().setId(pracovniPomerId);
       
 	    if(chyba == null){
@@ -66,11 +65,34 @@ public class Export extends AServletZamestnanec{
 	    }
 	  }
 	  
+	  if (export.getDatumOd() == null) {
+	    Calendar cal = Calendar.getInstance();
+	    cal.setTime(new Date());	    
+	    cal.set(Calendar.HOUR_OF_DAY, 0);
+      cal.set(Calendar.MINUTE, 0);
+      cal.set(Calendar.SECOND, 0);
+      cal.set(Calendar.MILLISECOND, 0);
+	    int den = cal.get(Calendar.DATE);
+	    if (den <= 15) {
+	      cal.set(Calendar.DATE, 1);
+	    }
+	    else {
+	      cal.add(Calendar.MONTH, 1);
+	      cal.set(Calendar.DATE, 1);
+	    }
+	    export.setDatumOd(cal.getTime());
+	  }
 	  List<PracovniPomer> pomery = pripojeni.ziskejObjekty(PracovniPomer.class, uzivatel, "kod");
     request.setAttribute("pomery", pomery);
 	  request.setAttribute("objekt", export);
-	  request.setAttribute("datepickerFormat", "dd.mm.yy");
 	  presmerovani(request, response, adresa + "/export.jsp");	
 	}
-
+	
+	private Date setDatumDo(Date datumOd) {
+	  if (datumOd == null) return null;
+	  Calendar cal = Calendar.getInstance();
+	  cal.setTime(datumOd);
+	  cal.set(Calendar.DATE, cal.getMaximum(Calendar.DATE)); 
+	  return cal.getTime();
+	}
 }

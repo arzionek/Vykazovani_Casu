@@ -59,13 +59,11 @@ public class ExportSablona extends AEntita {
       DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss"); 
       String datumCas[] = (df.format(datumOd)).split("_");
       
-      String den = datumCas[0];
-      if(den.length() == 1) den = "0" + den;
       String mesic = datumCas[1];
       if(mesic.length() == 1) mesic = "0" + mesic;
       String rok = datumCas[2];
       if(rok.length() == 1) rok = "0" + rok;
-      datumOd2 = den + "." + mesic + "." + rok;
+      datumOd2 = mesic + "." + rok;
     }
     return datumOd2;
   }
